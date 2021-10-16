@@ -12,7 +12,7 @@
 
 body{
     background-color: var(--background-color);
-    background-image: url("../imgs/mobile_background_Frame48.png");
+    background-image: url("../imgs/mobile_background_Frame96.png");
 }
 
 button{
@@ -22,8 +22,8 @@ button{
 }
 
 
-/* labtop(1020px) or desktop(1024px) */
-@media screen and (min-width: 768px){
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 1020px){
     body{
         background-image: url("../imgs/desktop_background_Frame48.png");
     }

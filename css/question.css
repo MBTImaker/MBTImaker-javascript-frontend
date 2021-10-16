@@ -89,13 +89,15 @@ body{
     src: url('/font/SB_Mac_Font/SB\ 어그로OTF\ M.otf')
 }
 
-/* labtop(1020px) or desktop(1024px) */
-@media screen and (min-width: 768px){
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 1020px){
     .block{
         width: 30vw;
+        margin: 0.4%;
     }
 
-    .block .two-btns button{
+    .block .two-btns button,
+    .block .next{
         width: 25vw;
     }
 }
