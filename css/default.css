@@ -1,0 +1,17 @@
+/* 모든 html 파일 안에 들어가는 css입니다. */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #2C6141;
+}
+
+
+/* labtop(1020px) or desktop(1024px) */
+@media screen and (min-width: 768px){
+    
+}

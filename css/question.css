@@ -1,0 +1,18 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.block{
+    width: 30vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin: 1%;
+    border: 4px #1A3D2A solid;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+}
