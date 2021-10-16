@@ -14,6 +14,12 @@ body{
     background-color: var(--background-color);
 }
 
+button{
+    background-color: white;
+    border: 0px;
+    opacity: 1;
+}
+
 
 /* labtop(1020px) or desktop(1024px) */
 @media screen and (min-width: 768px){

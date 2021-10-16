@@ -5,10 +5,20 @@
     --q-num-font-color: #D1D1D1;
     --q-title-font-color: #FFFFFF;
     --q-title-shadow-color: #060713;
+    --two-btns-unclicked-font-color:#888888;
+    --two-btns-clicked-font-color:#FFFFFF;
+    
+
+    /* button-color */
+    --two-btns-unclicked-color: #E8E8E8;
+    --two-btns-clicked-color: #2D6242;
+    --two-btns-clicked-border-color: #1A3E2A;
+
 
     /* font-size */
-    --q-num-font-size: 40px;
-    --q-title-font-size: 30px;
+    --xlarge-size: 40px;
+    --large-size: 30px;
+    --medium-size: 20px;
 }
 
 body{
@@ -19,27 +29,54 @@ body{
 }
 
 .block{
-    width: 30vw;
+    width: 90vw;
     height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
     text-align: center;
-    margin: 1%;
-    border-radius: 20px;
+    margin: 3%;
+    border-radius: 30px;
     border: 4px var(--block-border-color) solid;
     background-color: var(--block-background-color);
 }
 
 .block .q-num{
-    font-size: var(--q-num-font-size);
+    font-size: var(--xlarge-size);
     color:var(--q-num-font-color);
 }
 
 .block .q-title{
-    font-size: var(--q-title-font-size);
+    font-size: var(--large-size);
     color:var(--q-title-font-color);
     -webkit-text-stroke: 1.2px black; /* 글씨 테두리 */
     text-shadow: var(--q-title-shadow-color) 0 3px;
+    margin: 6%;
+}
+
+.block .two-btns{
+    display: flex;
+    flex-direction: column;
+}
+
+.block .two-btns button{
+    width: 80vw;
+    height: 10vh;
+    margin: 2%;
+    border-radius: 50px;
+    font-size: var(--medium-size);
+    background-color: var(--two-btns-unclicked-color);
+    color:var(--two-btns-unclicked-font-color)
+}
+
+/* labtop(1020px) or desktop(1024px) */
+@media screen and (min-width: 768px){
+    .block{
+        width: 30vw;
+    }
+
+    .block .two-btns button{
+        width: 25vw;
+    }
 }
