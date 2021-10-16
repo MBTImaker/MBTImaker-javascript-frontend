@@ -76,11 +76,12 @@ body{
     width: 80vw;
     height: 7vh;
     margin: 12% 0;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     font-size: var(--medium-size);
     font-weight: bolder;
-    background-color: var(--two-btns-unclicked-color);
-    color:var(--two-btns-unclicked-font-color)
+    background-image: url(/imgs/reminder_button_Group3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 @font-face{
