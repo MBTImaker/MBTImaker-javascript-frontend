@@ -1,3 +1,8 @@
+:root{
+    --block-background-color: #F5F5F5;
+    --block-border-color: #1A3D2A;
+}
+
 body{
     display: flex;
     flex-direction: column;
@@ -12,7 +17,7 @@ body{
     justify-content:center;
     align-items: center;
     margin: 1%;
-    border: 4px #1A3D2A solid;
     border-radius: 20px;
-    background-color: #F5F5F5;
+    border: 4px var(--block-border-color) solid;
+    background-color: var(--block-background-color);
 }
