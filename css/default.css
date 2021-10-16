@@ -16,13 +16,14 @@ body{
 }
 
 button{
+    cursor: pointer;
     background-color: white;
     border: 0px;
     opacity: 1;
 }
 
 
-/* mobile(768px) labtop(1020px) / desktop(1024px) */
+/* mobile(768px) labtop(1020px) / desktop(1400px) */
 @media screen and (min-width: 1020px){
     body{
         background-image: url("../imgs/desktop_background_Frame48.png");

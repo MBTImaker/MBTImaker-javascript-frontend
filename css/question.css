@@ -72,13 +72,22 @@ body{
     color:var(--two-btns-unclicked-font-color)
 }
 
+.block .two-btns button.active{
+    /* background */
+    background-image: url(/imgs/reminder_button_Group3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .block .next{
     width: 80vw;
     height: 7vh;
-    margin: 12% 0;
+    margin: 12% 0 0 0;
     /* border-radius: 50px; */
     font-size: var(--medium-size);
     font-weight: bolder;
+
+    /* background */
     background-image: url(/imgs/reminder_button_Group3.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -90,14 +99,25 @@ body{
 }
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
-@media screen and (min-width: 1020px){
+@media screen and (min-width: 768px){
+    .block .next{
+        margin: 2% 0 0 0;
+    }
+}
+
+
+@media screen and (min-width: 1400px){
     .block{
         width: 30vw;
         margin: 0.4%;
     }
 
-    .block .two-btns button,
+    .block .two-btns button{
+        width: 25vw;
+    }
+
     .block .next{
         width: 25vw;
+        margin: 12% 0 0 0;
     }
 }
