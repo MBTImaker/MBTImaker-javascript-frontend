@@ -28,7 +28,7 @@ body {
 
 .block {
   width: 89.25vw;
-  height: 64vh;
+  height: 620px;
   display: flex;
   flex-direction: column;
   justify-content: center;
