@@ -92,10 +92,25 @@ block
   font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
   /* 글씨 테두리 */
-  /* -webkit-text-stroke: 0.2px black;  */
-  border: 2px solid #0d111d;
-  text-shadow: 0px 2px 0px var(--q-title-shadow-color), -2px 0px 0px crimson,
-    2px 0px 0px crimson, 0px 2px 0px crimson, 0px -2px 0px crimson;
+  /* -webkit-text-stroke: 5px #0d111d; */
+  text-shadow: 0px 2px 0px var(--q-title-shadow-color), 0px 10px 0.02px #000,
+    9.8px 2.1px 0.02px #000, 4.2px -9.1px 0.02px #000, -8px -6px 0.02px #000,
+    -7.6px 6.5px 0.02px #000, 4.8px 8.8px 0.02px #000, 9.6px -2.8px 0.02px #000,
+    -0.7px -10px 0.02px #000, -9.9px -1.5px 0.02px #000,
+    -3.5px 9.4px 0.02px #000, 8.4px 5.4px 0.02px #000, 7.1px -7px 0.02px #000,
+    -5.4px -8.4px 0.02px #000, -9.4px 3.5px 0.02px #000, 1.4px 9.9px 0.02px #000,
+    10px 0.8px 0.02px #000, 2.9px -9.6px 0.02px #000, -8.7px -4.8px 0.02px #000,
+    -6.6px 7.5px 0.02px #000, 5.9px 8px 0.02px #000, 9.1px -4.1px 0.02px #000,
+    -2.1px -9.8px 0.02px #000, -10px -0.1px 0.02px #000,
+    -2.2px 9.8px 0.02px #000, 9.1px 4.2px 0.02px #000, 6.1px -8px 0.02px #000,
+    -6.5px -7.6px 0.02px #000, -8.8px 4.7px 0.02px #000, 2.7px 9.6px 0.02px #000,
+    10px -0.6px 0.02px #000, 1.5px -9.9px 0.02px #000, -9.3px -3.6px 0.02px #000,
+    -5.5px 8.4px 0.02px #000, 7px 7.2px 0.02px #000, 8.5px -5.3px 0.02px #000,
+    -3.4px -9.4px 0.02px #000, -9.9px 1.3px 0.02px #000, -0.8px 10px 0.02px #000,
+    9.6px 2.9px 0.02px #000, 4.9px -8.7px 0.02px #000, -7.5px -6.7px 0.02px #000,
+    -8.1px 5.9px 0.02px #000, 4px 9.2px 0.02px #000, 9.8px -2px 0.02px #000,
+    0.2px -10px 0.02px #000, -9.7px -2.3px 0.02px #000, -4.3px 9px 0.02px #000,
+    7.9px 6.1px 0.02px #000;
   font-weight: bold;
   line-height: 167%;
   letter-spacing: var(--letter-spacing);
