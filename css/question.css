@@ -34,6 +34,9 @@ Variables
   --q-num-mobile-size: 1.75rem;
   --q-title-mobile-size: 1rem;
   --medium-size: 16px;
+
+  /* spacing */
+  --letter-spacing: 0.02em;
 }
 /*
 ===========
@@ -82,14 +85,20 @@ block
   color: var(--q-num-font-color);
   font-weight: bold;
   line-height: 250%;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--letter-spacing);
 }
 
 .block .q-title {
   font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
-  -webkit-text-stroke: 0.2px black; /* 글씨 테두리 */
-  text-shadow: var(--q-title-shadow-color) 0 3px;
+  /* 글씨 테두리 */
+  /* -webkit-text-stroke: 0.2px black;  */
+  border: 2px solid #0d111d;
+  text-shadow: 0px 2px 0px var(--q-title-shadow-color), -2px 0px 0px crimson,
+    2px 0px 0px crimson, 0px 2px 0px crimson, 0px -2px 0px crimson;
+  font-weight: bold;
+  line-height: 167%;
+  letter-spacing: var(--letter-spacing);
 }
 
 .block .q-title.top {
