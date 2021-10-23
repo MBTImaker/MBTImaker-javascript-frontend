@@ -31,7 +31,8 @@ Variables
 
   /* font-size */
   --xlarge-size: 32px;
-  --large-size: 20px;
+  --q-num-mobile-size: 1.75rem;
+  --q-title-mobile-size: 1rem;
   --medium-size: 16px;
 }
 /*
@@ -54,11 +55,11 @@ block
 */
 
 .block {
+  /* size */
   width: 89.25vw;
   height: 620px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   margin-bottom: 20px;
@@ -68,17 +69,28 @@ block
 }
 
 .block .q-num {
-  font-size: var(--xlarge-size);
+  /* size */
+  width: 89.1%; /* 295px */
+  height: 70px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 42px;
+  margin-bottom: 4px;
+  /* font */
+  font-size: var(--q-num-mobile-size);
   color: var(--q-num-font-color);
-  margin: 2% 0 1% 0;
+  font-weight: bold;
+  line-height: 250%;
+  letter-spacing: 0.02em;
+  /* margin: 2% 0 1% 0; */
 }
 
 .block .q-title {
-  font-size: var(--large-size);
+  font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
   -webkit-text-stroke: 0.2px black; /* 글씨 테두리 */
   text-shadow: var(--q-title-shadow-color) 0 3px;
-  margin: 6% 0;
+  /* margin: 6% 0; */
 }
 
 .block .two-btns {
