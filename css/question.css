@@ -1,123 +1,120 @@
-:root{
-    /* font-color */
-    --block-background-color: #F5F5F5; 
-    --block-border-color: #1A3D2A;
-    --q-num-font-color: #D1D1D1;
-    --q-title-font-color: #FFFFFF;
-    --q-title-shadow-color: #060713;
-    --two-btns-unclicked-font-color:#888888;
-    --two-btns-clicked-font-color:#FFFFFF;
-    
+:root {
+  /* font-color */
+  --block-background-color: #f5f5f5;
+  --block-border-color: #1a3d2a;
+  --q-num-font-color: #d1d1d1;
+  --q-title-font-color: #ffffff;
+  --q-title-shadow-color: #060713;
+  --two-btns-unclicked-font-color: #888888;
+  --two-btns-clicked-font-color: #ffffff;
 
-    /* button-color */
-    --two-btns-unclicked-color: #E8E8E8;
-    --two-btns-clicked-color: #2D6242;
-    --two-btns-clicked-border-color: #1A3E2A;
+  /* button-color */
+  --two-btns-unclicked-color: #e8e8e8;
+  --two-btns-clicked-color: #2d6242;
+  --two-btns-clicked-border-color: #1a3e2a;
 
-
-    /* font-size */
-    --xlarge-size: 32px;
-    --large-size: 20px;
-    --medium-size: 16px;
+  /* font-size */
+  --xlarge-size: 32px;
+  --large-size: 20px;
+  --medium-size: 16px;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'SBAG_M';
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "SBAG_M";
 }
 
-.block{
-    width: 90vw;
-    height: 64vh;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    text-align: center;
-    margin: 3%;
-    border-radius: 20px;
-    border: 2px var(--block-border-color) solid;
-    background-color: var(--block-background-color);
+.block {
+  width: 89.25vw;
+  height: 64vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 3%;
+  border-radius: 20px;
+  border: 2px var(--block-border-color) solid;
+  background-color: var(--block-background-color);
 }
 
-.block .q-num{
-    font-size: var(--xlarge-size);
-    color:var(--q-num-font-color);
-    margin: 2% 0 1% 0;
+.block .q-num {
+  font-size: var(--xlarge-size);
+  color: var(--q-num-font-color);
+  margin: 2% 0 1% 0;
 }
 
-.block .q-title{
-    font-size: var(--large-size);
-    color:var(--q-title-font-color);
-    -webkit-text-stroke: 0.2px black; /* 글씨 테두리 */
-    text-shadow: var(--q-title-shadow-color) 0 3px;
-    margin: 6% 0;
+.block .q-title {
+  font-size: var(--large-size);
+  color: var(--q-title-font-color);
+  -webkit-text-stroke: 0.2px black; /* 글씨 테두리 */
+  text-shadow: var(--q-title-shadow-color) 0 3px;
+  margin: 6% 0;
 }
 
-.block .two-btns{
-    display: flex;
-    flex-direction: column;
+.block .two-btns {
+  display: flex;
+  flex-direction: column;
 }
 
-.block .two-btns button{
-    width: 80vw;
-    height: 8vh;
-    margin: 3% 0;
-    border-radius: 50px;
-    font-size: var(--medium-size);
-    font-weight: bolder;
-    background-color: var(--two-btns-unclicked-color);
-    color:var(--two-btns-unclicked-font-color)
+.block .two-btns button {
+  width: 80vw;
+  height: 8vh;
+  margin: 3% 0;
+  border-radius: 50px;
+  font-size: var(--medium-size);
+  font-weight: bolder;
+  background-color: var(--two-btns-unclicked-color);
+  color: var(--two-btns-unclicked-font-color);
 }
 
-.block .two-btns button.active{
-    /* background */
-    background-image: url(/imgs/reminder_button_Group3.png);
-    background-repeat: no-repeat;
-    background-size: contain;
+.block .two-btns button.active {
+  /* background */
+  background-image: url(/imgs/reminder_button_Group3.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.block .next{
-    width: 80vw;
-    height: 7vh;
-    margin: 12% 0 0 0;
-    /* border-radius: 50px; */
-    font-size: var(--medium-size);
-    font-weight: bolder;
+.block .next {
+  width: 80vw;
+  height: 7vh;
+  margin: 12% 0 0 0;
+  /* border-radius: 50px; */
+  font-size: var(--medium-size);
+  font-weight: bolder;
 
-    /* background */
-    background-image: url(/imgs/reminder_button_Group3.png);
-    background-repeat: no-repeat;
-    background-size: contain;
+  /* background */
+  background-image: url(/imgs/reminder_button_Group3.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-@font-face{
-    font-family: 'SBAG_M';
-    src: url('/font/SB_Mac_Font/SB\ 어그로OTF\ M.otf')
+@font-face {
+  font-family: "SBAG_M";
+  src: url("/font/SB_Mac_Font/SB\ 어그로OTF\ M.otf");
 }
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
-@media screen and (min-width: 768px){
-    .block .next{
-        margin: 2% 0 0 0;
-    }
+@media screen and (min-width: 768px) {
+  .block .next {
+    margin: 2% 0 0 0;
+  }
 }
 
+@media screen and (min-width: 1400px) {
+  .block {
+    width: 30vw;
+    margin: 0.4%;
+  }
 
-@media screen and (min-width: 1400px){
-    .block{
-        width: 30vw;
-        margin: 0.4%;
-    }
+  .block .two-btns button {
+    width: 25vw;
+  }
 
-    .block .two-btns button{
-        width: 25vw;
-    }
-
-    .block .next{
-        width: 25vw;
-        margin: 12% 0 0 0;
-    }
+  .block .next {
+    width: 25vw;
+    margin: 12% 0 0 0;
+  }
 }
