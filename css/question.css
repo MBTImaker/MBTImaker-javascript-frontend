@@ -62,6 +62,7 @@ block
   flex-direction: column;
   align-items: center;
   text-align: center;
+  /* margin */
   margin-bottom: 20px;
   border-radius: 20px;
   border: 2px var(--block-border-color) solid;
@@ -82,7 +83,6 @@ block
   font-weight: bold;
   line-height: 250%;
   letter-spacing: 0.02em;
-  /* margin: 2% 0 1% 0; */
 }
 
 .block .q-title {
@@ -90,7 +90,14 @@ block
   color: var(--q-title-font-color);
   -webkit-text-stroke: 0.2px black; /* 글씨 테두리 */
   text-shadow: var(--q-title-shadow-color) 0 3px;
-  /* margin: 6% 0; */
+}
+
+.block .q-title.top {
+  margin-bottom: 22px;
+}
+
+.block .q-title.bottom {
+  margin-bottom: 28px;
 }
 
 .block .two-btns {
