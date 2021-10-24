@@ -34,10 +34,12 @@ Variables
   --two-btns-clicked-border-color: #1a3e2a;
 
   /* font-size */
-  --xlarge-size: 32px;
   --q-num-mobile-size: 1.75rem;
   --q-title-mobile-size: 1.125rem; /* 18px */
+  --q-title-desktop-size: 2rem; /* 32px */
   --button-text-mobile-size: 0.875rem; /* 14px */
+  --two-btns-desktop-size: 1.25rem; /* 20px */
+  --button-text-desktop-size: 1.375rem; /* 22px */
 
   /* spacing */
   --letter-spacing: 0.02em;
@@ -169,15 +171,25 @@ PC
   }
   .block {
     width: 37vw;
+    min-width: 716px;
     height: 940px;
   }
 
-  .block .two-btns button {
-    width: 25vw;
+  .block .q-title {
+    font-size: var(--q-title-desktop-size);
+  }
+
+  .block .q-title.bottom {
+    margin-bottom: 40px;
+  }
+
+  .block .two-btns .select_btn {
+    width: 74.3vw;
+    height: 120px;
+    line-height: 30px;
+    font-size: var(--button-text-desktop-size);
   }
 
   .block .next {
-    width: 25vw;
-    margin: 12% 0 0 0;
-  }
+    height: 94px;
 }
