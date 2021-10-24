@@ -123,7 +123,7 @@ block - btns
   margin-bottom: 30px;
 }
 
-.block .two-btns button {
+.block .two-btns .select_btn {
   width: 89.1%; /* 295px */
   height: 80px;
   margin-bottom: 20px;
@@ -135,11 +135,10 @@ block - btns
   color: var(--two-btns-unclicked-font-color);
 }
 
-.block .two-btns button.active {
-  /* background */
-  background-image: url(/imgs/reminder_button_Group3.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+.block .two-btns .select_btn.active {
+  background-color: var(--two-btns-clicked-color);
+  border: 2px solid var(--two-btns-clicked-border-color);
+  color: var(--two-btns-clicked-font-color);
 }
 
 .block .next {
