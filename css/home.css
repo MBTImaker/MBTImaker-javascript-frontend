@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  height: 100%;
+}
+
+header .sub-title {
+  width: 100vw;
+  height: 2vh;
+  background-image: url("../imgs/mobile/mobile_subTitle.png");
+  background-repeat: no-repeat;
+}
+
+header .title {
+  width: 100vw;
+  height: 13vh;
+  background-image: url("../imgs/mobile/mobile_title_Frame897.png");
+  background-repeat: no-repeat;
+}
