@@ -20,12 +20,13 @@ Variables
 :root {
   /* font-color */
   --block-background-color: #f5f5f5;
-  --block-border-color: #1a3d2a;
+  --block-border-color: #053f28;
   --q-num-font-color: #d1d1d1;
-  --q-title-font-color: #ffffff;
+  --q-title-font-color: #222222;
   --q-title-shadow-color: #060713;
   --two-btns-unclicked-font-color: #888888;
   --two-btns-clicked-font-color: #ffffff;
+  --next-btn-unclicked-font-color: #6f6f70;
 
   /* button-color */
   --two-btns-unclicked-color: #e8e8e8;
@@ -35,7 +36,7 @@ Variables
   /* font-size */
   --xlarge-size: 32px;
   --q-num-mobile-size: 1.75rem;
-  --q-title-mobile-size: 1rem;
+  --q-title-mobile-size: 1.125rem; /* 18px */
   --button-text-mobile-size: 0.875rem; /* 14px */
 
   /* spacing */
@@ -46,13 +47,15 @@ Variables
 Global
 ===========
 */
+* {
+  font-family: "SBAggroM";
+}
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 96px;
-  font-family: "SBAggroM";
 }
 /*
 ===========
@@ -63,6 +66,7 @@ block - num & title
 .block {
   /* size */
   width: 89.25vw;
+  min-width: 335px;
   height: 620px;
   display: flex;
   flex-direction: column;
@@ -75,6 +79,7 @@ block - num & title
   background-color: var(--block-background-color);
 }
 
+/* 곧 사라질 것 */
 .block .q-num {
   /* size */
   width: 89.1%; /* 295px */
@@ -94,10 +99,7 @@ block - num & title
 .block .q-title {
   font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
-  /* 글씨 테두리 */
-  /* -webkit-text-stroke: 2px #0d111d; */
-  /* text-shadow: 0px 2px 0px var(--q-title-shadow-color); */
-  font-weight: bold;
+  font-weight: 400;
   line-height: 167%;
   letter-spacing: var(--letter-spacing);
 }
@@ -145,16 +147,15 @@ block - btns
   width: 89.1%;
   height: 64px;
   border-radius: 80px;
-  font-size: var(--button-text-mobile-size);
   line-height: 20px;
+  font-size: var(--button-text-mobile-size);
+  color: var(--next-btn-unclicked-font-color);
 
   background: linear-gradient(93.11deg, #dadcdd 4.01%, #bec0c2 97.86%);
   box-shadow: 0px 6px 0px #505050;
   border: 2px solid #6f6f70;
 }
 
-.block .next .text {
-}
 /*
 ===========
 PC
