@@ -169,10 +169,12 @@ PC
   body {
     margin-top: 70px;
   }
+
   .block {
     width: 37vw;
     min-width: 716px;
     height: 940px;
+    border: 6px var(--block-border-color) solid;
   }
 
   .block .q-title {
@@ -183,13 +185,18 @@ PC
     margin-bottom: 40px;
   }
 
+  .block .two-btns {
+    margin-bottom: 114px;
+  }
+
   .block .two-btns .select_btn {
-    width: 74.3vw;
     height: 120px;
     line-height: 30px;
-    font-size: var(--button-text-desktop-size);
+    font-size: var(--two-btns-desktop-size);
   }
 
   .block .next {
     height: 94px;
+    font-size: var(--button-text-desktop-size);
+  }
 }
