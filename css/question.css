@@ -4,8 +4,11 @@ Font
 ===========
 */
 @font-face {
-  font-family: "SBAG_M";
-  src: url("/font/SB_Mac_Font/SB\ 어그로OTF\ M.otf");
+  font-family: "SBAggroM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /*
@@ -49,7 +52,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 96px;
-  font-family: "SBAG_M";
+  font-family: "SBAggroM";
 }
 /*
 ===========
@@ -141,22 +144,18 @@ block - btns
 
 .block .next {
   width: 89.1%;
-  height: 100px;
+  height: 64px;
   border-radius: 80px;
   font-size: var(--button-text-mobile-size);
   line-height: 20px;
-  background-color: black;
 
-  /* background */
-  background-image: url("/imgs/reminder_button_Group3.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: linear-gradient(93.11deg, #dadcdd 4.01%, #bec0c2 97.86%);
+  box-shadow: 0px 6px 0px #505050;
+  border: 2px solid #6f6f70;
 }
-/* .block .next .text {
-  position: relative;
-  top: -55px;
-} */
+
+.block .next .text {
+}
 /*
 ===========
 PC
