@@ -4,8 +4,11 @@ Font
 ===========
 */
 @font-face {
-  font-family: "SBAG_M";
-  src: url("/font/SB_Mac_Font/SB\ 어그로OTF\ M.otf");
+  font-family: "SBAggroM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /*
@@ -17,12 +20,13 @@ Variables
 :root {
   /* font-color */
   --block-background-color: #f5f5f5;
-  --block-border-color: #1a3d2a;
+  --block-border-color: #053f28;
   --q-num-font-color: #d1d1d1;
-  --q-title-font-color: #ffffff;
+  --q-title-font-color: #222222;
   --q-title-shadow-color: #060713;
   --two-btns-unclicked-font-color: #888888;
   --two-btns-clicked-font-color: #ffffff;
+  --next-btn-unclicked-font-color: #6f6f70;
 
   /* button-color */
   --two-btns-unclicked-color: #e8e8e8;
@@ -30,10 +34,12 @@ Variables
   --two-btns-clicked-border-color: #1a3e2a;
 
   /* font-size */
-  --xlarge-size: 32px;
   --q-num-mobile-size: 1.75rem;
-  --q-title-mobile-size: 1rem;
+  --q-title-mobile-size: 1.125rem; /* 18px */
+  --q-title-desktop-size: 2rem; /* 32px */
   --button-text-mobile-size: 0.875rem; /* 14px */
+  --two-btns-desktop-size: 1.25rem; /* 20px */
+  --button-text-desktop-size: 1.375rem; /* 22px */
 
   /* spacing */
   --letter-spacing: 0.02em;
@@ -43,13 +49,15 @@ Variables
 Global
 ===========
 */
+* {
+  font-family: "SBAggroM";
+}
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 96px;
-  font-family: "SBAG_M";
 }
 /*
 ===========
@@ -60,6 +68,7 @@ block - num & title
 .block {
   /* size */
   width: 89.25vw;
+  min-width: 335px;
   height: 620px;
   display: flex;
   flex-direction: column;
@@ -72,6 +81,7 @@ block - num & title
   background-color: var(--block-background-color);
 }
 
+/* 곧 사라질 것 */
 .block .q-num {
   /* size */
   width: 89.1%; /* 295px */
@@ -91,10 +101,7 @@ block - num & title
 .block .q-title {
   font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
-  /* 글씨 테두리 */
-  /* -webkit-text-stroke: 2px #0d111d; */
-  /* text-shadow: 0px 2px 0px var(--q-title-shadow-color); */
-  font-weight: bold;
+  font-weight: 400;
   line-height: 167%;
   letter-spacing: var(--letter-spacing);
 }
@@ -120,7 +127,7 @@ block - btns
   margin-bottom: 30px;
 }
 
-.block .two-btns button {
+.block .two-btns .select_btn {
   width: 89.1%; /* 295px */
   height: 80px;
   margin-bottom: 20px;
@@ -132,31 +139,25 @@ block - btns
   color: var(--two-btns-unclicked-font-color);
 }
 
-.block .two-btns button.active {
-  /* background */
-  background-image: url(/imgs/reminder_button_Group3.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+.block .two-btns .select_btn.active {
+  background-color: var(--two-btns-clicked-color);
+  border: 2px solid var(--two-btns-clicked-border-color);
+  color: var(--two-btns-clicked-font-color);
 }
 
 .block .next {
   width: 89.1%;
-  height: 100px;
+  height: 64px;
   border-radius: 80px;
-  font-size: var(--button-text-mobile-size);
   line-height: 20px;
-  background-color: black;
+  font-size: var(--button-text-mobile-size);
+  color: var(--next-btn-unclicked-font-color);
 
-  /* background */
-  background-image: url("/imgs/reminder_button_Group3.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: linear-gradient(93.11deg, #dadcdd 4.01%, #bec0c2 97.86%);
+  box-shadow: 0px 6px 0px #505050;
+  border: 2px solid #6f6f70;
 }
-/* .block .next .text {
-  position: relative;
-  top: -55px;
-} */
+
 /*
 ===========
 PC
@@ -168,17 +169,34 @@ PC
   body {
     margin-top: 70px;
   }
+
   .block {
     width: 37vw;
+    min-width: 716px;
     height: 940px;
+    border: 6px var(--block-border-color) solid;
   }
 
-  .block .two-btns button {
-    width: 25vw;
+  .block .q-title {
+    font-size: var(--q-title-desktop-size);
+  }
+
+  .block .q-title.bottom {
+    margin-bottom: 40px;
+  }
+
+  .block .two-btns {
+    margin-bottom: 114px;
+  }
+
+  .block .two-btns .select_btn {
+    height: 120px;
+    line-height: 30px;
+    font-size: var(--two-btns-desktop-size);
   }
 
   .block .next {
-    width: 25vw;
-    margin: 12% 0 0 0;
+    height: 94px;
+    font-size: var(--button-text-desktop-size);
   }
 }
