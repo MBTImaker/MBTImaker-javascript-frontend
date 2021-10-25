@@ -85,6 +85,7 @@ header
   min-width: 335px;
   height: 65px;
 
+  border-radius: 80px;
   background-image: url("../imgs/mobile/mobile_startTest_Frame95.png");
   background-repeat: no-repeat;
   background-position: center;
