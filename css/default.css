@@ -1,13 +1,38 @@
 /* 모든 html 파일 안에 들어가는 css입니다. */
 
+/*
+===========
+Font
+===========
+*/
+@font-face {
+  font-family: "SBAggroM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+===========
+Variable
+===========
+*/
+
 :root {
   --background-color: #2c6141;
 }
+
+/*
+===========
+Global
+===========
+*/
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "SBAggroM";
 }
 
 body {
