@@ -1,26 +1,76 @@
+:root {
+  /* font-color */
+  --text-start-color: #ffffff;
+}
+
+/*
+==========
+global
+==========
+*/
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
+/*
+==========
+header
+==========
+*/
 
-header {
-  width: 100%;
-  height: 100%;
+header,
+.btnAndText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 header .sub-title {
-  width: 100vw;
-  height: 2vh;
+  width: 89.1vw;
+  height: 17px;
+
+  /* background */
   background-image: url("../imgs/mobile/mobile_subTitle.png");
   background-repeat: no-repeat;
+  background-position: center;
+
+  /* margin */
+  margin-top: 144px;
 }
 
 header .title {
-  width: 100vw;
-  height: 13vh;
+  width: 89.1vw;
+  height: 112px;
+
+  /* background */
   background-image: url("../imgs/mobile/mobile_title_Frame897.png");
   background-repeat: no-repeat;
+  background-position: center;
+
+  /* margin */
+  margin-top: 21px;
+}
+/*
+==========
+header
+==========
+*/
+
+.btnAndText .btn-start {
+  width: 89.1vw;
+  min-width: 335px;
+  height: 65px;
+
+  background-image: url("../imgs/mobile/mobile_startTest_Frame95.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.btnAndText .text-start {
+  color: var(--text-start-color);
 }
