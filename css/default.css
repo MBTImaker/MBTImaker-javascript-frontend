@@ -37,7 +37,8 @@ Global
 
 html {
   min-width: 375px;
-  min-height: 100vh; /* 815px; */
+  height: 100%;
+  /* min-height: 100vh; 815px; */
 }
 
 body {
