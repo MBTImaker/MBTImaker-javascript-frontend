@@ -19,7 +19,7 @@ Variable
 */
 
 :root {
-  --background-color: #2c6141;
+  --background-color: #08623e;
 }
 
 /*
@@ -60,8 +60,8 @@ button {
   }
 }
 
-@media screen and (max-height: 815px) {
+/* @media screen and (max-height: 815px) {
   * {
     display: none;
   }
-}
+} */
