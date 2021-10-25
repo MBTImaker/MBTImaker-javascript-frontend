@@ -36,6 +36,9 @@ Global
 }
 
 body {
+  min-width: 375px;
+  min-height: 815px;
+
   background-color: var(--background-color);
   background-image: url("../imgs/mobile/mobile_background_Frame96.png");
 }

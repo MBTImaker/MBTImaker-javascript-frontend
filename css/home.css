@@ -1,6 +1,9 @@
 :root {
   /* font-color */
   --text-start-color: #ffffff;
+
+  /* font-size */
+  --text-start-size: 14px;
 }
 
 /*
@@ -21,8 +24,7 @@ header
 ==========
 */
 
-header,
-.btnAndText {
+header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,6 +62,15 @@ header
 ==========
 */
 
+.btnAndText {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* justify-items: right; */
+  align-items: center;
+}
+
 .btnAndText .btn-start {
   width: 89.1vw;
   min-width: 335px;
@@ -73,4 +84,10 @@ header
 
 .btnAndText .text-start {
   color: var(--text-start-color);
+  font-size: var(--text-start-size);
+  line-height: 16.79px;
+
+  /* margin */
+  margin-top: 29px;
+  margin-bottom: 80px;
 }
