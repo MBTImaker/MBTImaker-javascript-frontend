@@ -35,10 +35,12 @@ Global
   font-family: "SBAggroM";
 }
 
-body {
+html {
   min-width: 375px;
-  min-height: 815px;
+  min-height: 100vh; /* 815px; */
+}
 
+body {
   background-color: var(--background-color);
   background-image: url("../imgs/mobile/mobile_background_Frame96.png");
 }
