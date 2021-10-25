@@ -14,10 +14,19 @@ global
 */
 
 body {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* hide scroll bar */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
 }
 /*
 ==========
