@@ -60,8 +60,8 @@ button {
   }
 }
 
-@media screen and (max-height: 815px) {
+/* @media screen and (max-height: 815px) {
   * {
     display: none;
   }
-}
+} */
