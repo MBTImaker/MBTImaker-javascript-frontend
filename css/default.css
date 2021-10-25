@@ -58,3 +58,9 @@ button {
     background-image: url("../imgs/desktop/desktop_background_Frame48.png");
   }
 }
+
+@media screen and (max-height: 815px) {
+  * {
+    display: none;
+  }
+}
