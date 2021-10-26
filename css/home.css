@@ -43,6 +43,7 @@ header {
 
 header .sub-title {
   width: 89.1vw;
+  max-width: 335px;
   height: 17px;
 
   /* background */
@@ -57,6 +58,7 @@ header .sub-title {
 
 header .title {
   width: 89.1vw;
+  max-width: 335px;
   height: 112px;
 
   /* background */
@@ -84,7 +86,7 @@ header
 
 .btnAndText .btn-start {
   width: 89.1vw;
-  min-width: 335px;
+  max-width: 335px;
   height: 65px;
 
   border-radius: 80px;
