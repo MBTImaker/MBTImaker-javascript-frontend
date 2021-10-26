@@ -46,9 +46,10 @@ header .sub-title {
   height: 17px;
 
   /* background */
-  background-image: url("../imgs/mobile/mobile_subTitle.png");
+  background-image: url("../imgs/subTitle_Frame16.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
 
   /* margin */
   margin-top: 144px;
@@ -59,9 +60,10 @@ header .title {
   height: 112px;
 
   /* background */
-  background-image: url("../imgs/mobile/mobile_title_Frame897.png");
+  background-image: url("../imgs/title.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
 
   /* margin */
   margin-top: 21px;
@@ -86,9 +88,11 @@ header
   height: 65px;
 
   border-radius: 80px;
-  background-image: url("../imgs/mobile/mobile_startTest_Frame95.png");
+  background-image: url("../imgs/startBtn_Frame88.png");
   background-repeat: no-repeat;
   background-position: center;
+  /* background-size: 99% 100%; */
+  background-size: contain;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -114,9 +118,6 @@ PC
     min-width: 716px;
     height: 38px;
 
-    /* background */
-    background-image: url("../imgs/desktop/desktop_subTitle_Frame16.png");
-
     /* margin */
     margin-top: 144px;
   }
@@ -125,18 +126,12 @@ PC
     width: 37vw;
     min-width: 716px;
     height: 204px;
-
-    /* background */
-    background-image: url("../imgs/desktop/desktop_title.png");
   }
 
   .btnAndText .btn-start {
     width: 37vw;
     min-width: 716px;
     height: 140px;
-
-    /* background */
-    background-image: url("../imgs/desktop/desktop_startTest_Frame88.png");
   }
 
   .btnAndText .text-start {
