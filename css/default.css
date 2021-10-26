@@ -35,12 +35,16 @@ Global
   margin: 0;
   box-sizing: border-box;
   font-family: "SBAggroM";
+
+  /* background */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 html {
   min-width: 375px;
   height: 100%;
-  /* min-height: 100vh; 815px; */
 }
 
 body {
