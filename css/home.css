@@ -42,7 +42,7 @@ header {
 }
 
 header .sub-title {
-  width: 89.1vw;
+  width: 89.1vw; /* 335px*/
   max-width: 335px;
   height: 17px;
 
@@ -57,8 +57,8 @@ header .sub-title {
 }
 
 header .title {
-  width: 89.1vw;
-  max-width: 335px;
+  width: 76.5vw; /* 287px */
+  max-width: 287px;
   height: 112px;
 
   /* background */
