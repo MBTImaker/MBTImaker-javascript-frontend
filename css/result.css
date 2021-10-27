@@ -90,7 +90,7 @@ block
   text-align: center;
 
   /* background */
-  background-color: var(--block-background-color);
+  background-color: #ffffff;
   border: 2px solid var(--block-border-color);
   border-radius: 20px;
 
