@@ -93,9 +93,9 @@ block
   margin-top: 40px;
 }
 /*
-===========
-block - result-character
-===========
+=====================================
+block - result-character - textAndImg
+=====================================
 */
 
 .block .result-character {
@@ -157,6 +157,11 @@ block - result-character
   /* margin */
   margin-top: 40px;
 }
+/*
+=====================================
+block - result-character - conclusion
+=====================================
+*/
 
 .block .result-character .conclusion {
   /* display */
@@ -204,6 +209,11 @@ block - result-character
   font-size: var(--feature-mobile-font-size);
   line-height: var(--feature-mobile-line-height);
 }
+/*
+=====================================
+block - result-character - point-line
+=====================================
+*/
 
 .point-line {
   width: 100%;
@@ -211,6 +221,11 @@ block - result-character
   border: 2px dashed var(--point-line-color);
   margin-top: 41px;
 }
+/*
+=====================================
+block - result-character - chemistry
+=====================================
+*/
 
 .block .result-character .chemistry {
   width: 86.1%;
