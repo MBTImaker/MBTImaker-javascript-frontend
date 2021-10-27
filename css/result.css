@@ -342,7 +342,8 @@ block - share
   height: 166px;
 }
 
-.block .share span {
+.block .share span,
+.block .movies span {
   /* size */
   width: 100%;
   height: 52px;
@@ -401,13 +402,50 @@ block - share
   background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
 }
 /*
-===========
+==============
 block - movies
-===========
+==============
 */
 
 .block .movies {
   height: 854px;
+}
+
+.block .movies .movie-list {
+  /* size */
+  width: 55.93%;
+  height: 100%;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* margin */
+  margin-top: 6px;
+  margin-bottom: 30px;
+}
+
+.block .movies .movie-list li {
+  width: 100%;
+  height: 100%;
+
+  margin-bottom: 10px;
+}
+
+.block .movies .movie-list li div {
+  /* size */
+  width: 100%;
+  height: 100%;
+
+  /* background */
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid var(--chemi-border-color);
+  border-radius: 16px;
+}
+
+.block .movies .movie-list li .movie-01 {
+  background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
 }
 
 /*
