@@ -447,6 +447,23 @@ block - movies
 .block .movies .movie-list li .movie-01 {
   background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
 }
+/*
+===============
+block - restart
+===============
+*/
+.block .restart {
+  /* size */
+  width: 88.05%;
+  height: 56px;
+
+  /* background */
+  background-image: url("../imgs/startBtn_Frame88.png");
+
+  /* margin */
+  margin-top: 42px;
+  margin-bottom: 35px;
+}
 
 /*
 ===========
