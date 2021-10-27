@@ -18,24 +18,29 @@ Variables
   /* font-size */
   --conclusion-desktop-font-size: 2rem;
   --feature-desktop-font-size: 1.125rem;
+
   --conclusion-mobile-font-size: 1.25rem;
   --feature-mobile-font-size: 0.875rem; /* 14px */
   --chemi-title-mobile-font-size: 0.875rem; /* 14px */
   --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
   --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
+  --share-mobile-font-size: 1.125rem; /* 18px */
 
   /* line-height */
   --conclusion-desktop-line-height: 2.625rem;
   --feature-desktop-line-height: 1.35rem;
+
   --conclusion-mobile-line-height: 1.875rem;
   --feature-mobile-line-height: 1.5rem; /* 24px */
   --chemi-title-mobile-line-height: 1.0625rem; /* 17px */
   --chemi-movie-title-mobile-line-height: 0.875rem; /* 14px */
   --chemi-movie-character-mobile-line-height: 1.0625rem; /* 17px */
+  --share-mobile-line-height: 3.375rem; /* 54px */
 
   /* font-weight*/
   --conclusion-desktop-font-weight: 400;
   --feature-desktop-font-weight: 300;
+
   --conclusion-mobile-font-weight: 400;
 }
 /*
@@ -113,13 +118,13 @@ block - result-character - textAndImg
 .block .result-character .textAndImg .subject {
   /* size */
   width: 100%;
-  height: 56px;
+  height: 16px; /* 56 - 40 */
 
   /* background */
   background-image: url("../imgs/result_character_subject.png");
 
   /* margin */
-  margin-top: 18px;
+  margin-top: 58px; /* 18 + 40*/
 }
 
 .block .result-character .textAndImg .movie-title {
@@ -328,13 +333,29 @@ block - result-character - chemistry
 }
 
 /*
-===========
+=============
 block - share
-===========
+=============
 */
 
 .block .share {
   height: 166px;
+}
+
+.block .share span {
+  /* size */
+  width: 100%;
+  height: 52px;
+
+  /* display */
+  display: inline-block;
+
+  /* font */
+  font-size: var(--share-mobile-font-size);
+  line-height: var(--share-mobile-line-height);
+
+  /* margin */
+  margin-top: 22px;
 }
 /*
 ===========
