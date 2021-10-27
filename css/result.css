@@ -57,7 +57,7 @@ body {
 
 section {
   /* size */
-  width: 83.24%;
+  width: 100%; /*83.24%;*/
 
   /* display */
   display: flex;
@@ -70,7 +70,7 @@ section {
   border-radius: 10px;
 
   /* margin */
-  margin-top: 10px;
+  margin: 20px;
 }
 /*
 ===========
@@ -95,17 +95,13 @@ block
   border-radius: 20px;
 
   /* margin */
-  margin-top: 40px;
+  margin: 40px 0px;
 }
 /*
 =====================================
 block - result-character - textAndImg
 =====================================
 */
-
-.block .result-character {
-  height: 100%; /* 수정 가능 */
-}
 
 .block .result-character .textAndImg {
   width: 100%;
@@ -463,6 +459,15 @@ block - restart
   /* margin */
   margin-top: 42px;
   margin-bottom: 35px;
+}
+/*
+=====================
+block - communication
+=====================
+*/
+
+.block .communication {
+  height: 100%;
 }
 
 /*
