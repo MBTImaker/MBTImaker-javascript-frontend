@@ -10,22 +10,37 @@ Variables
   --basic-font-color: #2a2a2a;
   --feature-background-color: #ffffff;
   --point-line-color: #ededed;
+  --chemi-background-color: #ffffff;
+  --chemi-border-color: #e5e5e5;
+  --chemi-movie-title-mobile-font-color: #4a4a4a;
+  --chemi-movie-character-mobile-font-color: #e10017;
 
   /* font-size */
   --conclusion-desktop-font-size: 2rem;
   --feature-desktop-font-size: 1.125rem;
+
   --conclusion-mobile-font-size: 1.25rem;
   --feature-mobile-font-size: 0.875rem; /* 14px */
+  --chemi-title-mobile-font-size: 0.875rem; /* 14px */
+  --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
+  --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
+  --share-mobile-font-size: 1.125rem; /* 18px */
 
   /* line-height */
   --conclusion-desktop-line-height: 2.625rem;
   --feature-desktop-line-height: 1.35rem;
+
   --conclusion-mobile-line-height: 1.875rem;
   --feature-mobile-line-height: 1.5rem; /* 24px */
+  --chemi-title-mobile-line-height: 1.0625rem; /* 17px */
+  --chemi-movie-title-mobile-line-height: 0.875rem; /* 14px */
+  --chemi-movie-character-mobile-line-height: 1.0625rem; /* 17px */
+  --share-mobile-line-height: 3.375rem; /* 54px */
 
   /* font-weight*/
   --conclusion-desktop-font-weight: 400;
   --feature-desktop-font-weight: 300;
+
   --conclusion-mobile-font-weight: 400;
 }
 /*
@@ -42,7 +57,7 @@ body {
 
 section {
   /* size */
-  width: 83.24%;
+  width: 100%; /*83.24%;*/
 
   /* display */
   display: flex;
@@ -55,7 +70,7 @@ section {
   border-radius: 10px;
 
   /* margin */
-  margin-top: 10px;
+  margin: 20px;
 }
 /*
 ===========
@@ -66,7 +81,7 @@ block
 .block {
   /* size */
   width: 89.3vw;
-  height: 1017px; /* 수정 가능 */
+  height: 100%; /* 수정 가능 */
 
   /* display */
   display: flex;
@@ -75,22 +90,18 @@ block
   text-align: center;
 
   /* background */
-  background-color: var(--block-background-color);
+  background-color: #ffffff;
   border: 2px solid var(--block-border-color);
   border-radius: 20px;
 
   /* margin */
-  margin-top: 40px;
+  margin: 40px 0px;
 }
 /*
-===========
-block - result-character
-===========
+=====================================
+block - result-character - textAndImg
+=====================================
 */
-
-.block .result-character {
-  height: 1461px;
-}
 
 .block .result-character .textAndImg {
   width: 100%;
@@ -103,13 +114,13 @@ block - result-character
 .block .result-character .textAndImg .subject {
   /* size */
   width: 100%;
-  height: 56px;
+  height: 16px; /* 56 - 40 */
 
   /* background */
   background-image: url("../imgs/result_character_subject.png");
 
   /* margin */
-  margin-top: 18px;
+  margin-top: 58px; /* 18 + 40*/
 }
 
 .block .result-character .textAndImg .movie-title {
@@ -147,6 +158,11 @@ block - result-character
   /* margin */
   margin-top: 40px;
 }
+/*
+=====================================
+block - result-character - conclusion
+=====================================
+*/
 
 .block .result-character .conclusion {
   /* display */
@@ -194,29 +210,264 @@ block - result-character
   font-size: var(--feature-mobile-font-size);
   line-height: var(--feature-mobile-line-height);
 }
+/*
+=====================================
+block - result-character - point-line
+=====================================
+*/
 
 .point-line {
   width: 100%;
+
   border: 2px dashed var(--point-line-color);
   margin-top: 41px;
 }
 /*
-===========
+=====================================
+block - result-character - chemistry
+=====================================
+*/
+
+.block .result-character .chemistry {
+  /* size */
+  width: 86.1%;
+
+  /* display */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  /* margin */
+  margin-top: 41px;
+  margin-bottom: 40px;
+}
+
+.block .result-character .chemistry .chemi {
+  /* size */
+  width: 100%;
+  height: 240px;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* background */
+  background-color: var(--chemi-background-color);
+  border: 2px solid var(--chemi-border-color);
+  border-radius: 10px;
+}
+
+.block .result-character .chemistry .good {
+  margin-right: 10px;
+}
+
+.block .result-character .chemistry .chemi .chemi-title {
+  /* size */
+  width: 100%;
+  height: 32px;
+
+  /* display */
+  display: inline-block;
+  text-align: center;
+
+  /* font */
+  font-size: var(--chemi-title-mobile-font-size);
+  line-height: var(--chemi-title-mobile-line-height);
+
+  /* margin */
+  margin-top: 24px;
+}
+
+.block .result-character .chemistry .chemi .character-img {
+  width: 67.21%;
+  height: 96px;
+}
+
+.block .result-character .chemistry .chemi .movie-title {
+  /* size */
+  width: 67.21%;
+  height: 28px;
+
+  /* display */
+  display: inline-block;
+
+  /* font */
+  font-size: var(--chemi-movie-title-mobile-font-size);
+  line-height: var(--chemi-movie-title-mobile-line-height);
+  color: var(--chemi-movie-title-mobile-font-color);
+
+  /* margin */
+  margin-top: 16px;
+}
+
+.block .result-character .chemistry .chemi .movie-character {
+  /* size */
+  width: 67.21%;
+  height: 17px;
+
+  /* display */
+  display: inline-block;
+
+  /* font */
+  font-size: var(--chemi-movie-character-mobile-font-size);
+  line-height: var(--chemi-movie-character-mobile-line-height);
+  color: var(--chemi-movie-character-mobile-font-color);
+
+  /* margin */
+  margin-top: 4px;
+  margin-bottom: 23px;
+}
+
+.block .result-character .chemistry .good .character-img {
+  background-image: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
+}
+
+.block .result-character .chemistry .bad .character-img {
+  background-image: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
+}
+
+/*
+=============
 block - share
-===========
+=============
 */
 
 .block .share {
   height: 166px;
 }
+
+.block .share span,
+.block .movies span {
+  /* size */
+  width: 100%;
+  height: 52px;
+
+  /* display */
+  display: inline-block;
+
+  /* font */
+  font-size: var(--share-mobile-font-size);
+  line-height: var(--share-mobile-line-height);
+
+  /* margin */
+  margin-top: 22px;
+}
+
+.block .share .share-btns {
+  /* size */
+  width: 83.72%;
+  min-width: 247px;
+  height: 40px;
+
+  /* display */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  /* margin */
+  margin-top: 8px;
+}
+
+.block .share .share-btns li {
+  width: 20%;
+  height: 100%;
+}
+
+.block .share .share-btns li button {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.block .share .share-btns li .kakaotalk {
+  background-image: url("../imgs/share-icons/share_kakaotalk_Frame85.png");
+}
+
+.block .share .share-btns li .facebook {
+  background-image: url("../imgs/share-icons/share_facebook_Frame86.png");
+}
+.block .share .share-btns li .twitter {
+  background-image: url("../imgs/share-icons/share_twitter_Frame87.png");
+}
+.block .share .share-btns li .band {
+  background-image: url("../imgs/share-icons/share_band_Frame88.png");
+}
+.block .share .share-btns li .instagram {
+  background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
+}
 /*
-===========
+==============
 block - movies
-===========
+==============
 */
 
 .block .movies {
   height: 854px;
+}
+
+.block .movies .movie-list {
+  /* size */
+  width: 55.93%;
+  height: 100%;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* margin */
+  margin-top: 6px;
+  margin-bottom: 30px;
+}
+
+.block .movies .movie-list li {
+  width: 100%;
+  height: 100%;
+
+  margin-bottom: 10px;
+}
+
+.block .movies .movie-list li div {
+  /* size */
+  width: 100%;
+  height: 100%;
+
+  /* background */
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid var(--chemi-border-color);
+  border-radius: 16px;
+}
+
+.block .movies .movie-list li .movie-01 {
+  background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
+}
+/*
+===============
+block - restart
+===============
+*/
+.block .restart {
+  /* size */
+  width: 88.05%;
+  height: 56px;
+
+  /* background */
+  background-image: url("../imgs/startBtn_Frame88.png");
+
+  /* margin */
+  margin-top: 42px;
+  margin-bottom: 35px;
+}
+/*
+=====================
+block - communication
+=====================
+*/
+
+.block .communication {
+  height: 100%;
 }
 
 /*
