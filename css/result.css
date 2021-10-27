@@ -357,6 +357,49 @@ block - share
   /* margin */
   margin-top: 22px;
 }
+
+.block .share .share-btns {
+  /* size */
+  width: 83.72%;
+  min-width: 247px;
+  height: 40px;
+
+  /* display */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  /* margin */
+  margin-top: 8px;
+}
+
+.block .share .share-btns li {
+  width: 20%;
+  height: 100%;
+}
+
+.block .share .share-btns li button {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.block .share .share-btns li .kakaotalk {
+  background-image: url("../imgs/share-icons/share_kakaotalk_Frame85.png");
+}
+
+.block .share .share-btns li .facebook {
+  background-image: url("../imgs/share-icons/share_facebook_Frame86.png");
+}
+.block .share .share-btns li .twitter {
+  background-image: url("../imgs/share-icons/share_twitter_Frame87.png");
+}
+.block .share .share-btns li .band {
+  background-image: url("../imgs/share-icons/share_band_Frame88.png");
+}
+.block .share .share-btns li .instagram {
+  background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
+}
 /*
 ===========
 block - movies
