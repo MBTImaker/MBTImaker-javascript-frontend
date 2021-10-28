@@ -75,8 +75,11 @@ PC
 
   /* ----------------- conclusion ----------------- */
   .block .result-character .conclusion {
+    /* size */
+    height: 100%;
+
     /* font */
-    line-height: var(--feature-desktop-line-height);
+    line-height: var(--conclusion-desktop-line-height);
     font-size: var(--conclusion-desktop-font-size);
 
     /* margin */
