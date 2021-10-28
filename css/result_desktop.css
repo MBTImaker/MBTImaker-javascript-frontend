@@ -1,0 +1,16 @@
+/*
+===========
+PC
+===========
+*/
+
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 1020px) {
+  /* block */
+  .block {
+    width: 37.29vw;
+    border-width: 6px;
+    border-radius: 40px;
+    margin: 80px 0;
+  }
+}
