@@ -450,8 +450,7 @@ block - restart
   background-image: url("../imgs/restartBtn_Frame134.png");
 
   /* margin */
-  margin-top: 42px;
-  margin-bottom: 35px;
+  margin: 42px 0 35px 0;
 }
 /*
 =====================

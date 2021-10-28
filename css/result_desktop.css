@@ -190,4 +190,30 @@ PC
     /* margin */
     margin: 28px 0 68px 0;
   }
+
+  /* ----------------- movies ----------------- */
+  .block .movies {
+    height: 100%;
+  }
+
+  .block .movies .movie-list {
+    /* size */
+    width: var(--basic-desktop-width);
+    height: 210px;
+
+    /* display */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+
+    /* margin */
+    margin-top: 26px;
+    margin-bottom: 60px;
+  }
+
+  .block .movies .movie-list li {
+    width: 30%;
+    margin-bottom: 0;
+  }
 }
