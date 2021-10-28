@@ -114,7 +114,7 @@ PC
 */
 
 /* mobile(768px) labtop(1020px) / desktop(1400px) */
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 756px) {
   header .sub-title {
     width: 37vw;
     min-width: 716px;

@@ -32,7 +32,7 @@ PC
 */
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 756px) {
   /* ----------------- Global ----------------- */
   section {
     margin: 10px 60px;
@@ -40,13 +40,10 @@ PC
     border-radius: 32px;
   }
 
-  section:not(.result-character) {
-  }
-
   /* ----------------- block ----------------- */
   .block {
     /* size */
-    width: 37.29vw;
+    width: 716px;
 
     /* background */
     border-width: 6px;
@@ -62,7 +59,7 @@ PC
   .block .result-character .textAndImg .movie-title {
     /* size */
     width: 100%;
-    height: 104px;
+    height: 56px;
 
     /* margin */
     margin-top: 66px;
@@ -70,7 +67,7 @@ PC
 
   .block .result-character .textAndImg .movie-character {
     /* size */
-    height: 86px;
+    height: 80px;
   }
 
   .block .result-character .textAndImg .character-img {
@@ -148,7 +145,8 @@ PC
   }
 
   .block .result-character .chemistry .chemi .character-img {
-    width: 75.43%;
+    width: 64.91%;
+    height: 172px;
 
     /* margin */
     margin-top: 10px;
@@ -198,6 +196,9 @@ PC
 
     /* margin */
     margin: 28px 0 68px 0;
+
+    /* padding */
+    padding: 0 30px;
   }
 
   /* ----------------- movies ----------------- */
@@ -228,10 +229,12 @@ PC
 
   .block .restart {
     /* size */
-    width: 53.07%;
-    height: 94px;
+    width: 380px;
+    height: 102px;
 
     /* margin */
-    margin: 40px 0 48px 0;
+    margin: 40px 0;
+
+    background-size: 100% 100%;
   }
 }
