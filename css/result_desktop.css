@@ -35,9 +35,12 @@ PC
 @media screen and (min-width: 1020px) {
   /* ----------------- Global ----------------- */
   section {
-    margin: 60px;
+    margin: 10px 60px;
     border-width: 4px;
     border-radius: 32px;
+  }
+
+  section:not(.result-character) {
   }
 
   /* ----------------- block ----------------- */
@@ -51,6 +54,9 @@ PC
 
     /* margin */
     margin: 80px 0;
+
+    /* padding */
+    padding: 60px;
   }
 
   .block .result-character .textAndImg .movie-title {
@@ -70,13 +76,16 @@ PC
   .block .result-character .textAndImg .character-img {
     /* size */
     width: var(--basic-desktop-width);
-    height: 320px;
+    max-height: 320px;
   }
 
   /* ----------------- conclusion ----------------- */
   .block .result-character .conclusion {
+    /* size */
+    height: 100%;
+
     /* font */
-    line-height: var(--feature-desktop-line-height);
+    line-height: var(--conclusion-desktop-line-height);
     font-size: var(--conclusion-desktop-font-size);
 
     /* margin */
