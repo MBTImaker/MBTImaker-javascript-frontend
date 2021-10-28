@@ -16,10 +16,7 @@ Variables
   --chemi-movie-character-mobile-font-color: #e10017;
 
   /* font-size */
-  --conclusion-desktop-font-size: 2rem;
-  --feature-desktop-font-size: 1.125rem;
-
-  --conclusion-mobile-font-size: 1.25rem;
+  --conclusion-mobile-font-size: 1.25rem; /* 20px */
   --feature-mobile-font-size: 0.875rem; /* 14px */
   --chemi-title-mobile-font-size: 0.875rem; /* 14px */
   --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
@@ -27,8 +24,7 @@ Variables
   --share-mobile-font-size: 1.125rem; /* 18px */
 
   /* line-height */
-  --conclusion-desktop-line-height: 2.625rem;
-  --feature-desktop-line-height: 1.35rem;
+  --conclusion-desktop-line-height: 2.625rem; /* 42px */
 
   --conclusion-mobile-line-height: 1.875rem;
   --feature-mobile-line-height: 1.5rem; /* 24px */
@@ -38,9 +34,6 @@ Variables
   --share-mobile-line-height: 3.375rem; /* 54px */
 
   /* font-weight*/
-  --conclusion-desktop-font-weight: 400;
-  --feature-desktop-font-weight: 300;
-
   --conclusion-mobile-font-weight: 400;
 }
 /*
