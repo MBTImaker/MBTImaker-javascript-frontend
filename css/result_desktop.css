@@ -40,9 +40,6 @@ PC
     border-radius: 32px;
   }
 
-  section:not(.result-character) {
-  }
-
   /* ----------------- block ----------------- */
   .block {
     /* size */

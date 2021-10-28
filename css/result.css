@@ -63,7 +63,7 @@ section {
   border-radius: 10px;
 
   /* margin */
-  margin: 20px;
+  margin-bottom: 10px;
 }
 /*
 ===========
@@ -447,14 +447,15 @@ block - restart
 */
 .block .restart {
   /* size */
-  width: 88.05%;
+  width: 295px;
   height: 56px;
 
   /* background */
   background-image: url("../imgs/restartBtn_Frame134.png");
+  background-size: 100% 100%;
 
   /* margin */
-  margin: 42px 0 35px 0;
+  margin: 32px 0 45px 0;
 }
 /*
 =====================
