@@ -152,7 +152,7 @@ PC
 */
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
-@media screen and (min-width: 1020px) {
+@media screen and (min-width: 756px) {
   body {
     margin-top: 70px;
   }
