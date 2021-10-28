@@ -1,0 +1,219 @@
+/*
+===========
+Variables
+===========
+*/
+:root {
+  /* width */
+  --basic-desktop-width: 79.86%; /* 476px*/
+
+  /* font-size */
+  --conclusion-desktop-font-size: 2rem; /* 32px */
+  --feature-desktop-font-size: 1.125rem; /* 18px */
+  --chemi-title-desktop-font-size: 1.5rem; /* 24px */
+  --chemi-movie-title-desktop-font-size: 1rem; /* 16px */
+  --chemi-movie-character-desktop-font-size: 1.625rem; /* 26px */
+  --share-desktop-font-size: 1.75rem; /* 28px */
+
+  /* line-height */
+  --feature-desktop-line-height: 1.35rem; /* 22px */
+  --chemi-title-desktop-line-height: 1.8125rem; /* 29px */
+  --chemi-movie-title-desktop-line-height: 1.1875rem; /* 19px */
+  --chemi-movie-character-desktop-line-height: 1.9375rem; /* 31px */
+
+  /* font-weight */
+  --feature-desktop-font-weight: 300;
+}
+
+/*
+===========
+PC
+===========
+*/
+
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 1020px) {
+  /* ----------------- Global ----------------- */
+  section {
+    margin: 60px;
+    border-width: 4px;
+    border-radius: 32px;
+  }
+
+  /* ----------------- block ----------------- */
+  .block {
+    /* size */
+    width: 37.29vw;
+
+    /* background */
+    border-width: 6px;
+    border-radius: 40px;
+
+    /* margin */
+    margin: 80px 0;
+  }
+
+  .block .result-character .textAndImg .movie-title {
+    /* size */
+    width: 100%;
+    height: 104px;
+
+    /* margin */
+    margin-top: 66px;
+  }
+
+  .block .result-character .textAndImg .movie-character {
+    /* size */
+    height: 86px;
+  }
+
+  .block .result-character .textAndImg .character-img {
+    /* size */
+    width: var(--basic-desktop-width);
+    height: 320px;
+  }
+
+  /* ----------------- conclusion ----------------- */
+  .block .result-character .conclusion {
+    /* font */
+    line-height: var(--feature-desktop-line-height);
+    font-size: var(--conclusion-desktop-font-size);
+
+    /* margin */
+    margin-top: 38px;
+  }
+
+  .block .result-character .feature-list {
+    width: var(--basic-desktop-width);
+  }
+
+  .block .result-character .feature {
+    /* size */
+    height: 56px;
+
+    /* font */
+    font-size: var(--feature-desktop-font-size);
+    line-height: var(--feature-desktop-line-height);
+    font-weight: var(--feature-desktop-font-weight);
+  }
+
+  /* ----------------- point-line ----------------- */
+  .point-line {
+    border-width: 4px;
+    margin-top: 62px;
+  }
+
+  /* ----------------- chemistry ----------------- */
+  .block .result-character .chemistry {
+    /* size */
+    width: var(--basic-desktop-width);
+
+    /* margin */
+    margin-top: 41px;
+    margin-bottom: 40px;
+  }
+
+  .block .result-character .chemistry .chemi {
+    /* size */
+    height: 100%;
+
+    /* background */
+    border-radius: 16px;
+  }
+
+  .block .result-character .chemistry .good {
+    margin-right: 20px;
+  }
+
+  .block .result-character .chemistry .chemi .chemi-title {
+    /* size */
+    width: 100%;
+    height: 52px;
+
+    /* font */
+    font-size: var(--chemi-title-desktop-font-size);
+    line-height: var(--chemi-title-desktop-line-height);
+
+    /* margin */
+    margin-top: 40px;
+  }
+
+  .block .result-character .chemistry .chemi .character-img {
+    width: 75.43%;
+
+    /* margin */
+    margin-top: 10px;
+  }
+
+  .block .result-character .chemistry .chemi .movie-title {
+    /* size */
+    width: 100%;
+    height: 22px;
+
+    /* font */
+    font-size: var(--chemi-movie-title-dsektop-font-size);
+    line-height: var(--chemi-movie-title-desktop-line-height);
+
+    /* margin */
+    margin-top: 38px;
+  }
+
+  .block .result-character .chemistry .chemi .movie-character {
+    /* size */
+    width: 100%;
+    height: 34px;
+
+    /* font */
+    font-size: var(--chemi-movie-character-desktop-font-size);
+    line-height: var(--chemi-movie-character-desktop-line-height);
+
+    /* margin */
+    margin-top: 12px;
+    margin-bottom: 36px;
+  }
+
+  /* ----------------- share ----------------- */
+  .block .share span,
+  .block .movies span {
+    /* font */
+    font-size: var(--share-desktop-font-size);
+
+    /* margin */
+    margin-top: 48px;
+  }
+
+  .block .share .share-btns {
+    /* size */
+    width: var(--basic-desktop-width);
+    height: 64px;
+
+    /* margin */
+    margin: 28px 0 68px 0;
+  }
+
+  /* ----------------- movies ----------------- */
+  .block .movies {
+    height: 100%;
+  }
+
+  .block .movies .movie-list {
+    /* size */
+    width: var(--basic-desktop-width);
+    height: 210px;
+
+    /* display */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+
+    /* margin */
+    margin-top: 26px;
+    margin-bottom: 60px;
+  }
+
+  .block .movies .movie-list li {
+    width: 30%;
+    margin-bottom: 0;
+  }
+}

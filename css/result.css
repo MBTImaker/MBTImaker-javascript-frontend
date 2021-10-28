@@ -16,10 +16,7 @@ Variables
   --chemi-movie-character-mobile-font-color: #e10017;
 
   /* font-size */
-  --conclusion-desktop-font-size: 2rem;
-  --feature-desktop-font-size: 1.125rem;
-
-  --conclusion-mobile-font-size: 1.25rem;
+  --conclusion-mobile-font-size: 1.25rem; /* 20px */
   --feature-mobile-font-size: 0.875rem; /* 14px */
   --chemi-title-mobile-font-size: 0.875rem; /* 14px */
   --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
@@ -27,8 +24,7 @@ Variables
   --share-mobile-font-size: 1.125rem; /* 18px */
 
   /* line-height */
-  --conclusion-desktop-line-height: 2.625rem;
-  --feature-desktop-line-height: 1.35rem;
+  --conclusion-desktop-line-height: 2.625rem; /* 42px */
 
   --conclusion-mobile-line-height: 1.875rem;
   --feature-mobile-line-height: 1.5rem; /* 24px */
@@ -38,9 +34,6 @@ Variables
   --share-mobile-line-height: 3.375rem; /* 54px */
 
   /* font-weight*/
-  --conclusion-desktop-font-weight: 400;
-  --feature-desktop-font-weight: 300;
-
   --conclusion-mobile-font-weight: 400;
 }
 /*
@@ -335,7 +328,7 @@ block - share
 */
 
 .block .share {
-  height: 166px;
+  height: 100%; /* 166px */
 }
 
 .block .share span,
@@ -367,7 +360,7 @@ block - share
   justify-content: center;
 
   /* margin */
-  margin-top: 8px;
+  margin: 8px 0 44.84px 0;
 }
 
 .block .share .share-btns li {
@@ -454,11 +447,10 @@ block - restart
   height: 56px;
 
   /* background */
-  background-image: url("../imgs/startBtn_Frame88.png");
+  background-image: url("../imgs/restartBtn_Frame134.png");
 
   /* margin */
-  margin-top: 42px;
-  margin-bottom: 35px;
+  margin: 42px 0 35px 0;
 }
 /*
 =====================
@@ -468,67 +460,4 @@ block - communication
 
 .block .communication {
   height: 100%;
-}
-
-/*
-===========
-PC
-===========
-*/
-
-/* mobile(768px) labtop(1020px) / desktop(1024px) */
-@media screen and (min-width: 1020px) {
-  .block .result-character .textAndImg .character-img {
-    /* size */
-    height: 320px;
-
-    /* margin */
-    margin-top: 43px;
-  }
-
-  .block .result-character .conclusion {
-    /* display */
-    display: inline-block;
-    width: 100%;
-    height: 52px;
-
-    /* font */
-    font-size: var(--conclusion-font-size);
-    line-height: var(--conclusion-line-height);
-    font-weight: var(--conclusion-font-weight);
-
-    margin-top: 38px;
-  }
-
-  .block .result-character .feature-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 52px;
-  }
-
-  .block .result-character .feature {
-    /* size */
-    width: 79.86vw;
-    height: 56px;
-
-    /* display */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* background */
-    background-color: var(--feature-background-color);
-    border-radius: 16px;
-
-    /* margin */
-    margin-top: 10px;
-
-    /* font */
-    font-size: var(--feature-font-size);
-    line-height: var(--feature-line-height);
-    font-weight: var(--feature-font-weight);
-  }
 }
