@@ -216,4 +216,13 @@ PC
     width: 30%;
     margin-bottom: 0;
   }
+
+  .block .restart {
+    /* size */
+    width: 53.07%;
+    height: 94px;
+
+    /* margin */
+    margin: 40px 0 48px 0;
+  }
 }
