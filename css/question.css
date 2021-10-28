@@ -42,9 +42,9 @@ body {
   margin-top: 96px;
 }
 /*
-===========
+===================
 block - num & title
-===========
+===================
 */
 
 .block {
@@ -66,18 +66,15 @@ block - num & title
 /* 곧 사라질 것 */
 .block .q-num {
   /* size */
-  width: 89.1%; /* 295px */
+  /* width: 89.1%; 295px */
   height: 70px;
   display: inline-block;
   vertical-align: middle;
   margin-top: 42px;
   margin-bottom: 4px;
-  /* font */
-  font-size: var(--q-num-mobile-size);
-  color: var(--q-num-font-color);
-  font-weight: bold;
-  line-height: 250%;
-  letter-spacing: var(--letter-spacing);
+
+  /* background */
+  background-image: url("../imgs/question_num/Q1.png");
 }
 
 .block .q-title {
@@ -96,9 +93,9 @@ block - num & title
   margin-bottom: 28px;
 }
 /*
-===========
+============
 block - btns
-===========
+============
 */
 
 .block .two-btns {
