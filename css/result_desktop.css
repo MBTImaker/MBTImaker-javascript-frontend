@@ -13,6 +13,7 @@ Variables
   --chemi-title-desktop-font-size: 1.5rem; /* 24px */
   --chemi-movie-title-desktop-font-size: 1rem; /* 16px */
   --chemi-movie-character-desktop-font-size: 1.625rem; /* 26px */
+  --share-desktop-font-size: 1.75rem; /* 28px */
 
   /* line-height */
   --feature-desktop-line-height: 1.35rem; /* 22px */
@@ -169,5 +170,24 @@ PC
     /* margin */
     margin-top: 12px;
     margin-bottom: 36px;
+  }
+
+  /* ----------------- share ----------------- */
+  .block .share span,
+  .block .movies span {
+    /* font */
+    font-size: var(--share-desktop-font-size);
+
+    /* margin */
+    margin-top: 48px;
+  }
+
+  .block .share .share-btns {
+    /* size */
+    width: var(--basic-desktop-width);
+    height: 64px;
+
+    /* margin */
+    margin: 28px 0 68px 0;
   }
 }

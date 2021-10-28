@@ -328,7 +328,7 @@ block - share
 */
 
 .block .share {
-  height: 166px;
+  height: 100%; /* 166px */
 }
 
 .block .share span,
@@ -360,7 +360,7 @@ block - share
   justify-content: center;
 
   /* margin */
-  margin-top: 8px;
+  margin: 8px 0 44.84px 0;
 }
 
 .block .share .share-btns li {
