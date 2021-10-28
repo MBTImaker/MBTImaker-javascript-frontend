@@ -50,7 +50,7 @@ html {
 body {
   background-color: var(--background-color);
   background-image: url("../imgs/mobile/mobile_background_Frame96.png");
-  background-repeat: repeat-y;
+  background-repeat: repeat;
 }
 
 button {
