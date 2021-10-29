@@ -109,6 +109,7 @@ block - btns
 .block .two-btns .select_btn {
   width: 89.1%; /* 295px */
   height: 80px;
+  max-height: 200px;
   margin-bottom: 20px;
   border-radius: 80px;
   font-size: var(--button-text-mobile-size);
@@ -124,17 +125,24 @@ block - btns
   color: var(--two-btns-clicked-font-color);
 }
 
-.block .next {
-  width: 89.1%;
-  height: 64px;
-  border-radius: 80px;
-  line-height: 20px;
-  font-size: var(--button-text-mobile-size);
-  color: var(--next-btn-unclicked-font-color);
+.next {
+  /* size */
+  width: 295px;
+  height: 70px;
 
+  position: fixed;
+  top: 63%;
+
+  /* background */
+  border-radius: 80px;
   background: linear-gradient(93.11deg, #dadcdd 4.01%, #bec0c2 97.86%);
   box-shadow: 0px 6px 0px #505050;
   border: 2px solid #6f6f70;
+
+  /* font */
+  line-height: 20px;
+  font-size: var(--button-text-mobile-size);
+  color: var(--next-btn-unclicked-font-color);
 }
 
 button {
@@ -182,5 +190,13 @@ PC
   .block .next {
     height: 94px;
     font-size: var(--button-text-desktop-size);
+  }
+
+  .next {
+    /* size */
+    width: 532px;
+    height: 102px;
+
+    top: 80%;
   }
 }
