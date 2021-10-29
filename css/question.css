@@ -109,6 +109,7 @@ block - btns
 .block .two-btns .select_btn {
   width: 89.1%; /* 295px */
   height: 80px;
+  max-height: 200px;
   margin-bottom: 20px;
   border-radius: 80px;
   font-size: var(--button-text-mobile-size);
@@ -126,10 +127,11 @@ block - btns
 
 .next {
   /* size */
-  width: 532px;
-  height: 102px;
+  width: 295px;
+  height: 70px;
 
-  position: absolute;
+  position: fixed;
+  top: 63%;
 
   /* background */
   border-radius: 80px;
@@ -188,5 +190,13 @@ PC
   .block .next {
     height: 94px;
     font-size: var(--button-text-desktop-size);
+  }
+
+  .next {
+    /* size */
+    width: 532px;
+    height: 102px;
+
+    top: 80%;
   }
 }
