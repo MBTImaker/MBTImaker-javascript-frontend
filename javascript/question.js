@@ -86,45 +86,51 @@ const questionList = [
         btnBottom: "\"그러면 지금 하는 다른 걸 볼까?\" 하며<br>다른 걸 본다."
     }
 ];
+
 const body = document.querySelector("body");
 
+// window.addEventListener('DOMContentLoaded', function () {
+// });
 
-window.addEventListener('DOMContentLoaded', function () {
-    displayMenuItems(questionList);
-});
+// body 안에 질문들을 보여준다.
+// html이 반복되어 사용되어 js를 사용하였다.
 
-function displayMenuItems(question) {
-    let displayQuestion = question.map(function (q) {
+displayQuestion(questionList);
 
-        return `<div class="block">
-        <div class="q-num"></div>
-        <span class="q-title top">${q.qTop}</span>
-        <span class="q-title bottom">${q.qBottom}</span>
+function displayQuestion(question) {
+    let innerQuestion = question.map(function (q) {
+
+        return `
+        <div class="block">
+            <img class="q-num" src=${q.num} alt="">
+            <span class="q-title top">${q.qTop}</span>
+            <span class="q-title bottom">${q.qBottom}</span>
         
-        <div class="two-btns">
-            <button class="select_btn top">${q.btnTop}</button>
-            <button class="select_btn bottom">${q.btnBottom}</button>
+            <div class="two-btns">
+                <button class="select_btn top">${q.btnTop}</button>
+                <button class="select_btn bottom">${q.btnBottom}</button>
+            </div>
         </div>
         `;
     });
 
-    console.log(displayQuestion);
-
     // string -> html
-    displayQuestion = displayQuestion.join("");
+    innerQuestion = innerQuestion.join("");
 
     // innerHTML
-    body.innerHTML += displayQuestion;
+    body.innerHTML += innerQuestion;
 }
 
+// --------------------------------------------------------------------
 
 const selectBtns = document.querySelectorAll(".select_btn");
 const nextBtn = document.querySelector(".next");
 const blocks = document.querySelectorAll(".block:nth-child(n)");
 
 let questionNum = 1;
-const questionNumMax = 12;
+const questionNumMax = questionList.length;
 
+// nextBtn을 누르면 다음 문제로 이동한다.
 nextBtn.addEventListener("click", () => {
     if (questionNum < questionNumMax) {
         scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
@@ -162,11 +168,3 @@ selectBtns.forEach((btn) => {
         e.currentTarget.classList.add("active");
     });
 });
-
-console.log(selectBtns.length);
-
-// https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=288964
-function fnMove(seq) {
-    var offset = $("#div" + seq).offset();
-    $('html, body').animate({ scrollTop: offset.top + 120 }, 400);
-}
