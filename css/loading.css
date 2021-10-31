@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'SB AggroOTF'; 
+  src: url(../font/SB_Mac_Font/SB\ 어그로OTF\ M.otf) format('opentype'); 
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+
+}
+.block {
+  display: flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+.block .ment1 {
+  margin: 75.4% 0 0 0;
+}
+.block .ment2 {
+  margin: 4% 0 0 0;
+}
+
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 768px){
+  .block .ment1 {
+    margin: 93.3% 0 0 0;
+  }
+  .block .ment2 {
+    margin: 3.5% 0 0 0;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  .block{
+      margin: 0.4% 0 0 0;
+  }
+}
