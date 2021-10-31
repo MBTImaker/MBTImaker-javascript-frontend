@@ -158,6 +158,9 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     }
     else {
         next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
+        next.onclick = function () {
+            location.href = 'result.html';
+        }
         next.classList.remove('next');
         next.classList.add('showResult');
         // nextText.style.backgroundImage = "url('../imgs/showResult_Frame61.png')";
