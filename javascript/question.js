@@ -102,7 +102,7 @@ function displayQuestion(question) {
 
         return `
         <div class="block">
-            <img class="q-num" src=${q.num} alt="">
+            <div class="q-num" style="background-image: url('${q.num}');"></div>
             <span class="q-title top">${q.qTop}</span>
             <span class="q-title bottom">${q.qBottom}</span>
         
