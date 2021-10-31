@@ -74,9 +74,6 @@ block - num & title
   vertical-align: middle;
   margin-top: 42px;
   margin-bottom: 4px;
-
-  /* background */
-  background-image: url("../imgs/question_num/Q1.png");
 }
 
 .block .q-title {
