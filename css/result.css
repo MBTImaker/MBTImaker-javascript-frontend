@@ -145,7 +145,7 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .character-img {
   /* size */
-  width: 86.44%;
+  width: 67.21%;
   height: 32vh;
   max-height: 172px;
 
@@ -278,7 +278,7 @@ block - result-character - chemistry
 }
 
 .block .result-character .chemistry .chemi .character-img {
-  width: 67.21%;
+  width: 64.91%;
   height: 96px;
 }
 
