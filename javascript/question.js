@@ -126,6 +126,7 @@ function displayQuestion(question) {
 const selectBtns = document.querySelectorAll(".select_btn");
 const nextBtn = document.querySelector(".next");
 const blocks = document.querySelectorAll(".block:nth-child(n)");
+const next = document.querySelector(".next");
 
 let questionNum = 1;
 const questionNumMax = questionList.length;
@@ -139,7 +140,7 @@ nextBtn.addEventListener("click", () => {
 });
 
 function scrollToNextQuestion(element, nextQuestion, duration) {
-    let start = element.scrollTop, change = nextQuestion - start, currentTime = 0, increment = 20;
+    let start = element.scrollTop, change = nextQuestion - start - 153, currentTime = 0, increment = 20;
 
     let animateScroll = function () {
         currentTime += increment;
@@ -149,6 +150,17 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         if (currentTime < duration) {
             setTimeout(animateScroll, increment);
         }
+    }
+
+    let leftQuestion = questionNumMax - questionNum - 1;
+    if (leftQuestion > 0) {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+    }
+    else {
+        next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
+        next.classList.remove('next');
+        next.classList.add('showResult');
+        // nextText.style.backgroundImage = "url('../imgs/showResult_Frame61.png')";
     }
     animateScroll();
 }
