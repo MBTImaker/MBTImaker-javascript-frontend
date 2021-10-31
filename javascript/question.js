@@ -140,7 +140,7 @@ nextBtn.addEventListener("click", () => {
 });
 
 function scrollToNextQuestion(element, nextQuestion, duration) {
-    let start = element.scrollTop, change = nextQuestion - start - 153, currentTime = 0, increment = 20;
+    let start = element.scrollTop, change = nextQuestion - start - vh(10), currentTime = 0, increment = 20; // 153
 
     let animateScroll = function () {
         currentTime += increment;
@@ -172,6 +172,11 @@ Math.easeInOutQuad = function (t, b, c, d) {
     t--;
     return -c / 2 * (t * (t - 2) - 1) + b;
 };
+
+function vh(v) {
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    return (v * h) / 100;
+}
 
 // ------------------------
 
