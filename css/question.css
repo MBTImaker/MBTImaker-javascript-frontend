@@ -126,7 +126,7 @@ block - btns
   /* background */
   background: linear-gradient(93.11deg, #f7202f 4.01%, #c11723 97.86%);
   box-shadow: 0px 6px 0px #56070c;
-  border: none;
+  border: 4px solid #9b151e;
   border-radius: 80px;
 
   /* font */
