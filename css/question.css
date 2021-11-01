@@ -185,7 +185,7 @@ PC
 */
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
-@media screen and (min-width: 756px) {
+@media screen and (min-width: 47.25rem) {
   .block {
     width: 37vw;
     min-width: 716px;

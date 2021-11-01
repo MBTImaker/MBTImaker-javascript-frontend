@@ -66,7 +66,7 @@ li {
 }
 
 /* mobile(768px) labtop(1020px) / desktop(1400px) */
-@media screen and (min-width: 756x) {
+@media screen and (min-width: 47.25rem) {
   body {
     background-image: url("../imgs/desktop/desktop_background_Frame48.png");
   }
