@@ -22,7 +22,6 @@ Variable
   --background-color: #08623e;
   --block-background-color: #f5f5f5;
   --block-border-color: #053f28;
-  --min-width-size: 47.25rem; /* 756px */
 }
 
 /*
@@ -67,7 +66,7 @@ li {
 }
 
 /* mobile(768px) labtop(1020px) / desktop(1400px) */
-@media screen and (min-width: --min-width-size) {
+@media screen and (min-width: 47.25rem) {
   body {
     background-image: url("../imgs/desktop/desktop_background_Frame48.png");
   }
