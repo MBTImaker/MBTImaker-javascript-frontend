@@ -121,6 +121,7 @@ function displayQuestion(question) {
     body.innerHTML += innerQuestion;
 }
 
+
 // --------------------------------------------------------------------
 
 const selectBtns = document.querySelectorAll(".select_btn");
