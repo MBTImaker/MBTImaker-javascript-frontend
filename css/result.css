@@ -67,6 +67,30 @@ section {
 }
 /*
 ===========
+loading
+===========
+*/
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading img {
+  width: 100%;
+}
+
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 47.25rem) {
+  .loading img {
+    width: 37vw;
+    min-width: 716px;
+  }
+}
+/*
+===========
 block
 ===========
 */
