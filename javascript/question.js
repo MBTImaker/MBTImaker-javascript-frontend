@@ -89,9 +89,6 @@ const questionList = [
 
 const body = document.querySelector("body");
 
-// window.addEventListener('DOMContentLoaded', function () {
-// });
-
 // body 안에 질문들을 보여준다.
 // html이 반복되어 사용되어 js를 사용하였다.
 
@@ -141,7 +138,7 @@ nextBtn.addEventListener("click", () => {
 });
 
 function scrollToNextQuestion(element, nextQuestion, duration) {
-    let start = element.scrollTop, change = nextQuestion - start - vh(10), currentTime = 0, increment = 20; // 153
+    let start = element.scrollTop, change = nextQuestion - start - vh(6.5), currentTime = 0, increment = 20; // 153
 
     let animateScroll = function () {
         currentTime += increment;
