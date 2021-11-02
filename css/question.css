@@ -68,7 +68,7 @@ block - num & title
   /* size */
   width: 89.25vw;
   min-width: 335px;
-  height: 87.03vh;
+  height: 76.35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,8 +84,8 @@ block - num & title
 .block .q-num {
   width: 66px;
   height: 36px;
-  margin-top: 42px;
-  margin-bottom: 4px;
+  margin-top: 52px; /* 42 + 10 */
+  margin-bottom: 14px; /* 4 + 10 */
   background-size: 100% 100%;
 }
 
@@ -189,6 +189,7 @@ PC
   .block {
     width: 37vw;
     min-width: 716px;
+    height: 87.03vh;
     border: 6px var(--block-border-color) solid;
   }
 
