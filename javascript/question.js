@@ -138,7 +138,16 @@ nextBtn.addEventListener("click", () => {
 });
 
 function scrollToNextQuestion(element, nextQuestion, duration) {
-    let start = element.scrollTop, change = nextQuestion - start - vh(6.5), currentTime = 0, increment = 20; // 153
+    let setBlockCenter = 0;
+    // iPhone X, Pixel XL
+    if (screen.availHeight > 811 && screen.availWidth < 756) {
+        setBlockCenter = vh(15);
+    }
+    else {
+        setBlockCenter = vh(7);
+    }
+
+    let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20; // 153
 
     let animateScroll = function () {
         currentTime += increment;
