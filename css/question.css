@@ -68,7 +68,7 @@ block - num & title
   /* size */
   width: 89.25vw;
   min-width: 335px;
-  height: 76.35vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
