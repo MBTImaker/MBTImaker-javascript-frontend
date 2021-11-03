@@ -71,6 +71,7 @@ block - num & title
   height: 85vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
 
@@ -84,7 +85,6 @@ block - num & title
 .block .q-num {
   width: 66px;
   height: 36px;
-  margin-top: 52px; /* 42 + 10 */
   margin-bottom: 14px; /* 4 + 10 */
   background-size: 100% 100%;
 }
@@ -172,6 +172,10 @@ block - btns
   color: var(--two-btns-unclicked-font-color);
 }
 
+.block .two-btns .select_btn.bottom {
+  margin-bottom: 10vh;
+}
+
 .block .two-btns .select_btn.active {
   background-color: var(--two-btns-clicked-color);
   border: 2px solid var(--two-btns-clicked-border-color);
@@ -217,7 +221,6 @@ PC
   .block .q-num {
     width: 110px;
     height: 54px;
-    margin-top: 69px;
     margin-bottom: 23px;
   }
 
