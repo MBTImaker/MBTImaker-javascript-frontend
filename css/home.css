@@ -114,30 +114,32 @@ PC
   header .sub-title {
     width: 37vw;
     min-width: 716px;
-    height: 38px;
+    height: 3.51vh;
 
     /* margin */
-    margin-top: 144px;
+    margin-top: 13.33vh;
   }
 
   header .title {
     width: 37vw;
     min-width: 716px;
     height: 204px;
+
+    margin-top: 1.94vh;
   }
 
   .btnAndText .btn-start {
     width: 37vw;
     min-width: 716px;
-    height: 140px;
+    height: 12.96vh;
   }
 
   .btnAndText .text-start {
     font-size: var(--text-start-desktop-size);
-    line-height: 29px;
+    line-height: 1.8125rem; /* 29px */
 
     /* margin */
-    margin-top: 43px;
-    margin-bottom: 100px;
+    margin-top: 3.98vh;
+    margin-bottom: 9.25vh;
   }
 }
