@@ -21,6 +21,7 @@ Variables
   /* font-size */
   --q-num-mobile-size: 1.75rem;
   --q-title-mobile-size: 1.125rem; /* 18px */
+  --q-title-mobile-xs-size: 0.9375rem; /* 15px */
   --q-title-desktop-size: 2rem; /* 32px */
   --button-text-mobile-size: 0.875rem; /* 14px */
   --button-text-mobile-xs-size: 0.75rem; /* 12px */
@@ -190,7 +191,13 @@ PC
 
 /* width < 320px (iPhone 5, fold) */
 @media screen and (max-width: 20rem) {
-  .block .two-btns .select_btn {
+  .block .q-title {
+    font-size: var(--q-title-mobile-xs-size);
+  }
+
+  .block .two-btns .select_btn,
+  .next,
+  .showResult {
     font-size: var(--button-text-mobile-xs-size);
   }
 }
