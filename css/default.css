@@ -43,7 +43,8 @@ Global
 }
 
 html {
-  min-width: 375px;
+  width: 100vw;
+  /* min-width: 375px; */
   /* height: 100%; */
 }
 
