@@ -129,6 +129,7 @@ const next = document.querySelector(".next");
 let questionNum = 1;
 const questionNumMax = questionList.length;
 
+
 // nextBtn을 누르면 다음 문제로 이동한다.
 nextBtn.addEventListener("click", () => {
     if (questionNum < questionNumMax) {
@@ -137,9 +138,23 @@ nextBtn.addEventListener("click", () => {
     }
 });
 
+
+// next btn의 text의 초깃값 (11개의 항목이 남았습니다.)
+next.setAttribute('style', 'white-space: pre;');
+if (screen.availWidth < 756) {
+    next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다.\r\n`;
+    next.textContent += `(총 ${questionNumMax}문항)`;
+}
+else {
+    next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+}
+
+
+// 버튼을 누를 때마다 다음 문제로 이동한다.
 function scrollToNextQuestion(element, nextQuestion, duration) {
     let setBlockCenter = 0;
-    // iPhone X, Pixel XL
+
+    // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
     if (screen.availHeight > 811 && screen.availWidth < 756) {
         setBlockCenter = vh(15);
     }
@@ -147,6 +162,7 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         setBlockCenter = vh(7);
     }
 
+    // (1) 이동
     let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20; // 153
 
     let animateScroll = function () {
@@ -159,9 +175,17 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         }
     }
 
+    // (2) next btn text 변경
     let leftQuestion = questionNumMax - questionNum - 1;
+
     if (leftQuestion > 0) {
-        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+        if (screen.availWidth < 756) {
+            next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
+            next.textContent += `(총 ${questionNumMax}문항)`;
+        }
+        else {
+            next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+        }
     }
     else {
         next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
@@ -170,7 +194,6 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         }
         next.classList.remove('next');
         next.classList.add('showResult');
-        // nextText.style.backgroundImage = "url('../imgs/showResult_Frame61.png')";
     }
     animateScroll();
 }
@@ -183,6 +206,7 @@ Math.easeInOutQuad = function (t, b, c, d) {
     return -c / 2 * (t * (t - 2) - 1) + b;
 };
 
+// px to vh
 function vh(v) {
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     return (v * h) / 100;
