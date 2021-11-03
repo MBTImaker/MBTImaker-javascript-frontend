@@ -23,6 +23,7 @@ Variables
   --q-title-mobile-size: 1.125rem; /* 18px */
   --q-title-desktop-size: 2rem; /* 32px */
   --button-text-mobile-size: 0.875rem; /* 14px */
+  --button-text-mobile-xs-size: 0.75rem; /* 12px */
   --two-btns-desktop-size: 1.25rem; /* 20px */
   --button-text-desktop-size: 1.375rem; /* 22px */
 
@@ -136,7 +137,7 @@ block - btns
 
   /* position */
   position: fixed;
-  top: 63%;
+  top: 80%;
 
   /* background */
   background: linear-gradient(93.11deg, #f7202f 4.01%, #c11723 97.86%);
@@ -183,14 +184,27 @@ PC
 ===========
 */
 
-/* 812px 보다 크면 (iPhone X) */
-@media screen and (min-height: 50.75rem) {
+/* width < 320px (iPhone 5, fold) */
+@media screen and (max-width: 20rem) {
+  .block .two-btns .select_btn {
+    font-size: var(--button-text-mobile-xs-size);
+  }
+}
+
+/* (width < 428px) and (height > 812px)*/
+@media screen and (max-width: 26.75rem) and (min-height: 50.75rem) {
   .block {
     /* size */
     height: 70vh;
+  }
+
+  .next,
+  .showResult {
+    top: 70%;
+  }
 }
 
-/* mobile(768px) labtop(1020px) / desktop(1024px) */
+/* width > 756px */
 @media screen and (min-width: 47.25rem) {
   /* 756px */
   .block {
@@ -227,8 +241,6 @@ PC
     /* size */
     width: 532px;
     height: 102px;
-
-    top: 80%;
 
     /* font */
     line-height: 40px;
