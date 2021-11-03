@@ -14,7 +14,7 @@ global
 */
 
 body {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,9 +42,9 @@ header {
 }
 
 header .sub-title {
-  width: 89.1vw; /* 335px*/
+  width: 90vw; /* 335px*/
   max-width: 335px;
-  height: 17px;
+  height: 3vh;
 
   /* background */
   background-image: url("../imgs/subTitle_Frame16.png");
@@ -53,22 +53,18 @@ header .sub-title {
   background-size: contain;
 
   /* margin */
-  margin-top: 103px;
+  margin-top: 17.73vh;
 }
 
 header .title {
-  width: 76.5vw; /* 287px */
-  max-width: 287px;
-  height: 112px;
+  width: 100vw; /* 287px */
+  height: 20vh;
 
   /* background */
   background-image: url("../imgs/title.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-
-  /* margin */
-  margin-top: 21px;
 }
 /*
 ==========
@@ -87,7 +83,7 @@ header
 .btnAndText .btn-start {
   width: 89.1vw;
   max-width: 335px;
-  height: 65px;
+  height: 9vh;
 
   border-radius: 80px;
   background-image: url("../imgs/startBtn_Frame88.png");
@@ -104,8 +100,8 @@ header
   line-height: 16.79px;
 
   /* margin */
-  margin-top: 29px;
-  margin-bottom: 80px;
+  margin-top: 3.5vh;
+  margin-bottom: 10vh;
 }
 /*
 ==========
