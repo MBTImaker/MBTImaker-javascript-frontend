@@ -84,6 +84,7 @@ block - num & title
 }
 
 .block .q-num {
+  display: none;
   width: 66px;
   height: 36px;
   margin-bottom: 14px; /* 4 + 10 */
