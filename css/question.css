@@ -84,6 +84,7 @@ block - num & title
 }
 
 .block .q-num {
+  display: none;
   width: 66px;
   height: 36px;
   margin-bottom: 14px; /* 4 + 10 */
@@ -189,8 +190,8 @@ PC
 ===========
 */
 
-/* width < 320px (iPhone 5, fold) */
-@media screen and (max-width: 20rem) {
+/* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold) */
+@media screen and (max-width: 23.4375rem) {
   .block .q-title {
     font-size: var(--q-title-mobile-xs-size);
   }
@@ -199,6 +200,11 @@ PC
   .next,
   .showResult {
     font-size: var(--button-text-mobile-xs-size);
+  }
+
+  .next,
+  .showResult {
+    top: 77%;
   }
 }
 

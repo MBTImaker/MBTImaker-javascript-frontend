@@ -122,13 +122,14 @@ function displayQuestion(question) {
 // --------------------------------------------------------------------
 
 const selectBtns = document.querySelectorAll(".select_btn");
+const qNums = document.querySelectorAll('.q-num:nth-child(n)');
 const nextBtn = document.querySelector(".next");
 const blocks = document.querySelectorAll(".block:nth-child(n)");
 const next = document.querySelector(".next");
 
 let questionNum = 1;
 const questionNumMax = questionList.length;
-
+qNums[questionNum - 1].style.display = "block";
 
 // nextBtn을 누르면 다음 문제로 이동한다.
 nextBtn.addEventListener("click", () => {
@@ -196,6 +197,9 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         next.classList.add('showResult');
     }
     animateScroll();
+
+    // (3) 다음 q-num이 보인다.
+    qNums[questionNum].style.display = "block";
 }
 
 // t = current time,  b = start value, c = change in value, d = duration
