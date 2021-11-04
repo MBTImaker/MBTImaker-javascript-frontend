@@ -157,12 +157,6 @@ block - btns
   font-size: 14px;
   line-height: 20px;
   color: #ffffff;
-
-  cursor: default;
-}
-
-.showResult.active {
-  cursor: pointer;
 }
 
 .block .two-btns {

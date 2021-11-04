@@ -157,7 +157,9 @@ selectBtns.forEach((btn) => {
 
         // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
         if (clientClicked.length === questionNumMax) {
-            next.classList.add("active");
+            next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
+            next.classList.remove("next");
+            next.classList.add("showResult");
             next.onclick = function () {
                 location.href = 'result.html';
             }
@@ -203,20 +205,14 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     // (2) next btn text 변경
     let leftQuestion = questionNumMax - questionNum - 1;
 
-    if (leftQuestion > 0) {
-        if (screen.width < 756) {
-            next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
-            next.textContent += `(총 ${questionNumMax}문항)`;
-        }
-        else {
-            next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
-        }
+    if (screen.width < 756) {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
+        next.textContent += `(총 ${questionNumMax}문항)`;
     }
     else {
-        next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
-        next.classList.remove("next");
-        next.classList.add("showResult");
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
     }
+
     animateScroll();
 
     // (3) 다음 q-num이 보인다.
