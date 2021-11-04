@@ -208,7 +208,7 @@ PC
   }
 }
 
-/* (width < 428px) and (height > 812px)*/
+/* (width < 428px) and (height > 812px) */
 @media screen and (max-width: 26.75rem) and (min-height: 50.75rem) {
   body {
     margin: calc(15vh - 20px) 0 calc(15vh + 20px) 0;

@@ -3,8 +3,8 @@
   --text-start-color: #ffffff;
 
   /* font-size */
-  --text-start-mobile-size: 14px;
-  --text-start-desktop-size: 24px;
+  --text-start-mobile-size: 0.875rem; /* 14px */
+  --text-start-desktop-size: 1.5rem; /* 24px */
 }
 
 /*
@@ -43,7 +43,6 @@ header {
 
 header .sub-title {
   width: 90vw; /* 335px*/
-  max-width: 335px;
   height: 3vh;
 
   /* background */
@@ -82,7 +81,6 @@ header
 
 .btnAndText .btn-start {
   width: 89.1vw;
-  max-width: 335px;
   height: 9vh;
 
   border-radius: 80px;
@@ -97,7 +95,6 @@ header
 .btnAndText .text-start {
   color: var(--text-start-color);
   font-size: var(--text-start-mobile-size);
-  line-height: 16.79px;
 
   /* margin */
   margin-top: 3.5vh;
@@ -109,11 +106,10 @@ PC
 ==========
 */
 
-/* mobile(768px) labtop(1020px) / desktop(1400px) */
-@media screen and (min-width: 47.25rem) {
+/* mobile(width: 756px, height: 812px) labtop(1020px) / desktop(1400px) */
+@media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
   header .sub-title {
     width: 37vw;
-    min-width: 716px;
     height: 3.51vh;
 
     /* margin */
@@ -122,15 +118,13 @@ PC
 
   header .title {
     width: 37vw;
-    min-width: 716px;
-    height: 204px;
+    height: 18.88vh;
 
     margin-top: 1.94vh;
   }
 
   .btnAndText .btn-start {
     width: 37vw;
-    min-width: 716px;
     height: 12.96vh;
   }
 
