@@ -142,7 +142,7 @@ nextBtn.addEventListener("click", () => {
 
 // next btn의 text의 초깃값 (11개의 항목이 남았습니다.)
 next.setAttribute('style', 'white-space: pre;');
-if (screen.availWidth < 756) {
+if (screen.width < 756) {
     next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다.\r\n`;
     next.textContent += `(총 ${questionNumMax}문항)`;
 }
@@ -156,7 +156,7 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     let setBlockCenter = 0;
 
     // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
-    if (screen.availHeight > 811 && screen.availWidth < 428) {
+    if (screen.height > 811 && screen.width < 428) {
         setBlockCenter = vh(15);
     }
     else {
@@ -180,7 +180,7 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     let leftQuestion = questionNumMax - questionNum - 1;
 
     if (leftQuestion > 0) {
-        if (screen.availWidth < 756) {
+        if (screen.width < 756) {
             next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
             next.textContent += `(총 ${questionNumMax}문항)`;
         }
