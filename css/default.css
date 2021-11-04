@@ -72,3 +72,10 @@ li {
     background-image: url("../imgs/desktop/desktop_background_Frame48.png");
   }
 }
+
+@media screen and (max-width: 11.25rem), screen and (max-height: 20rem) {
+  /* 180px */
+  * {
+    display: none;
+  }
+}
