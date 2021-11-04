@@ -223,5 +223,3 @@ selectBtns.forEach((btn) => {
         e.currentTarget.classList.add("active");
     });
 });
-
-// test
