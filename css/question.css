@@ -133,6 +133,8 @@ block - btns
   line-height: 20px;
   font-size: var(--button-text-mobile-size);
   color: var(--next-btn-unclicked-font-color);
+
+  cursor: default;
 }
 
 .showResult {
@@ -155,7 +157,12 @@ block - btns
   font-size: 14px;
   line-height: 20px;
   color: #ffffff;
-  /* text-shadow: 0px 2px 0px #00010c; */
+
+  cursor: default;
+}
+
+.showResult.active {
+  cursor: pointer;
 }
 
 .block .two-btns {
