@@ -43,7 +43,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 70px 0;
+  margin: calc(7vh - 20px) 0 calc(8vh + 20px) 0; /* 100vh(브라우저 세로) - (7vh - 20px)(맨 위 마진) - 85vh(.block 높이) */
 
   /* hide scroll bar */
   scrollbar-width: none; /* Firefox */
@@ -210,6 +210,9 @@ PC
 
 /* (width < 428px) and (height > 812px)*/
 @media screen and (max-width: 26.75rem) and (min-height: 50.75rem) {
+  body {
+    margin: calc(15vh - 20px) 0 calc(15vh + 20px) 0;
+  }
   .block {
     /* size */
     height: 70vh;
