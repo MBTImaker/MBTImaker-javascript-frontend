@@ -16,6 +16,9 @@
 
     <!-- share -->
 
+    <!-- kakao sdk 호출 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
     <!-- facebook -->
     <meta property="og:url" content="https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html" />
     <meta property="og:type" content="website" />
@@ -99,7 +102,7 @@
         <section class="share">
             <span>결과 공유하기</span>
             <ul class="share-btns">
-                <li><a class="kakaotalk"></a></li>
+                <li><a href="javascript:shareKakaotalk();" class="kakaotalk"></a></li>
                 <li><a href="javascript:shareFacebook();" class="facebook"></a></li>
                 <li><a href="javascript:shareTwitter();" class="twitter"></a></li>
                 <li><a class="band"></a></li>
