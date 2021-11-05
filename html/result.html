@@ -14,6 +14,16 @@
     <!-- javascript -->
     <script src="../javascript/result.js" defer></script>
 
+    <!-- share -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@nytimes">
+    <meta name="twitter:creator" content="@SarahMaslinNir">
+    <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+    <meta name="twitter:description"
+        content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+    <meta name="twitter:image"
+        content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+
     <!-- title -->
     <title>Result</title>
 </head>
@@ -72,7 +82,7 @@
             <span>결과 공유하기</span>
             <ul class="share-btns">
                 <li><a class="kakaotalk"></a></li>
-                <li><a class="facebook"></a></li>
+                <li><a href="javascript:shareFacebook(); class=" facebook"></a></li>
                 <li><a href="javascript:shareTwitter();" class="twitter"></a></li>
                 <li><a class="band"></a></li>
                 <li><a class="instagram"></a></li>
@@ -83,9 +93,15 @@
         <section class="movies">
             <span>추천 영화</span>
             <ul class="movie-list">
-                <li><div class="movie-01"></div></li>
-                <li><div class="movie-02"></div></li>
-                <li><div class="movie-03"></div></li>
+                <li>
+                    <div class="movie-01"></div>
+                </li>
+                <li>
+                    <div class="movie-02"></div>
+                </li>
+                <li>
+                    <div class="movie-03"></div>
+                </li>
             </ul>
         </section>
 
@@ -97,11 +113,12 @@
             <!-- 댓글 작성 -->
             <div class="add-comment">
                 <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임">
-                <textarea name="comment-area" class="comment-area" id="comment-area" rows="5" placeholder="댓글"></textarea>
+                <textarea name="comment-area" class="comment-area" id="comment-area" rows="5"
+                    placeholder="댓글"></textarea>
                 <input type="password" class="password" id="password" name="password" placeholder="비밀번호">
                 <button class="wrtie-comment-btn"></button>
             </div>
-            
+
             <div class="point-line"></div>
 
             <div class="show-comment">
