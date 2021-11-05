@@ -9,7 +9,6 @@ window.onload = function () {
     block.style.display = "flex";
 }
 
-// facebook
 function shareFacebook() {
     let sendUrl = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/"; // 전달할 URL
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
