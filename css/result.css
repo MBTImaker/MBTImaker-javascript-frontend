@@ -14,8 +14,7 @@ Variables
   --chemi-border-color: #e5e5e5;
   --chemi-movie-title-mobile-font-color: #4a4a4a;
   --chemi-movie-character-mobile-font-color: #e10017;
-  --comment-placeholder-color: #A8A8A8;
-
+  --comment-placeholder-color: #a8a8a8;
 
   /* font-size */
   --conclusion-mobile-font-size: 1.25rem; /* 20px */
@@ -398,7 +397,8 @@ block - share
   height: 100%;
 }
 
-.block .share .share-btns li button {
+.block .share .share-btns li a {
+  display: inline-block;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
@@ -501,14 +501,15 @@ block - communication
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
-.block .communication .add-comment .nickname, .comment-area, .password{
-background: #FFFFFF;
-border: 2px solid #E8E8E8;
-box-sizing: border-box;
-border-radius: 10px;
+.block .communication .add-comment .nickname,
+.comment-area,
+.password {
+  background: #ffffff;
+  border: 2px solid #e8e8e8;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
 /* .block .communication .add-comment .nickname{
@@ -522,39 +523,34 @@ border-radius: 10px;
   height: 100%;
 }
 
-.block .communication .add-comment input[type="text"] { 
+.block .communication .add-comment input[type="text"] {
   width: 255px;
-  height: 44px; /* 높이 초기화 */ 
+  height: 44px; /* 높이 초기화 */
 
   background-color: red;
-  
-
 }
 
-
-
-.block .communication .add-comment .comment-area{
+.block .communication .add-comment .comment-area {
   width: 89%;
-  height: 100%; 
+  height: 100%;
 
   /* width: 100%;
   height: 122px; */
-
 }
 
-.block .communication .add-comment .password{
+.block .communication .add-comment .password {
   width: 89%;
   height: 78.32%;
   margin: 11px 20px 10px 20px;
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
-    /* size */
-    width: 255px;
-    height: 80.55%;
-  
-    /* background */
-    background-image: url("../imgs/writeCommentBtn_Frame140.png");
-    background-size: 100% 100%;
-    background-color: var(--section-background-color);
-  }
+  /* size */
+  width: 255px;
+  height: 80.55%;
+
+  /* background */
+  background-image: url("../imgs/writeCommentBtn_Frame140.png");
+  background-size: 100% 100%;
+  background-color: var(--section-background-color);
+}
