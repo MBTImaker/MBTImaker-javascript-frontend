@@ -15,6 +15,7 @@ function shareFacebook() {
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
+// twitter
 function shareTwitter() {
     let sendText = "행복한연말보내세요"; // 전달할 텍스트
     let sendUrl = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/"; // 전달할 URL
