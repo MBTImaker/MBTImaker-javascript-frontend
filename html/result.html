@@ -15,6 +15,15 @@
     <script src="../javascript/result.js" defer></script>
 
     <!-- share -->
+
+    <!-- facebook -->
+    <meta property="og:url" content="https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chrimstmas MBTI" />
+    <meta property="og:description" content="MBTI 결과 공유" />
+    <meta property="og:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg" /> <!--http://www.your-domain.com/path/image.jpg-->
+
+    <!-- twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@nytimes">
     <meta name="twitter:creator" content="@SarahMaslinNir">
@@ -32,6 +41,15 @@
     <div class="loading">
         <img src="../imgs/loading_ment.png" alt="영화캐릭터 분석중">
     </div>
+
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
     <!-- 하얀 영역 -->
     <div class="block">
@@ -82,7 +100,7 @@
             <span>결과 공유하기</span>
             <ul class="share-btns">
                 <li><a class="kakaotalk"></a></li>
-                <li><a href="javascript:shareFacebook(); class=" facebook"></a></li>
+                <li><a href="javascript:shareFacebook();" class="facebook"></a></li>
                 <li><a href="javascript:shareTwitter();" class="twitter"></a></li>
                 <li><a class="band"></a></li>
                 <li><a class="instagram"></a></li>
@@ -157,6 +175,8 @@
 
         </section>
     </div>
+
+    <div class="fb-quote"></div>
 </body>
 
 </html>
