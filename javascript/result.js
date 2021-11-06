@@ -59,3 +59,7 @@ function shareBand() {
     let link = format('http://band.us/plugin/share?body={0}&route={1}', encodeBody, encodeRoute);
     window.open(link, 'share', 'width=500, height=500');
 }
+
+function shareInstagram() {
+    window.open("hhttps://www.instagram.com/?url=https://www.drdrop.co/" + shareLink);
+}
