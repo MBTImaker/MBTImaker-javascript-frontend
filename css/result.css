@@ -240,8 +240,19 @@ block - result-character - point-line
 
 .point-line {
   width: 100%;
+  height: 10px;
 
-  border: 2px dashed var(--point-line-color);
+  /* style */
+  background-image: linear-gradient(
+    to right,
+    var(--point-line-color) 50%,
+    rgba(255, 255, 255, 0) 0%
+  );
+  background-position: bottom;
+  background-size: 28px 4px;
+  background-repeat: repeat-x;
+
+  /* margin */
   margin-top: 37px;
 }
 /*
