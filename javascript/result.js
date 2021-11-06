@@ -12,8 +12,6 @@ window.onload = function () {
     block.style.display = "flex";
 }
 
-// -------------------------------------------
-
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
 console.log(Kakao.isInitialized());
 
@@ -34,7 +32,6 @@ function shareKakaotalk() {
         installTalk: true,
     })
 }
-
 
 function shareFacebook() {
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + shareLink);
