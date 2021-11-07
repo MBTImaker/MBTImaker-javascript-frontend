@@ -20,13 +20,11 @@ function comment() {
     const nickname = document.getElementById("nickname").value;
     const content = document.getElementById("comment-area").value;
     const password = document.getElementById("password").value;
-
+    
     xhttp.open("POST", "https://virtserver.swaggerhub.com/seonpilKim/MBTI/1.0.0/comment", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("{\"content\": \"+content+ \",\"mbti\": \"ISTJ\",\"name\": \"+nickname+\",\"password\": \"+password+\"}");
 
-const nickname = document.getElementById("nickname").value;
-const content = document.getElementById("comment-area").value;
-const password = document.getElementById("password").value;
+
 
 }
