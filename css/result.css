@@ -134,7 +134,9 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .subject {
   /* size */
+  width: 90%;
   height: 1rem;
+  object-fit: contain;
 
   /* background */
   content: url("../imgs/result_character_subject.png");
