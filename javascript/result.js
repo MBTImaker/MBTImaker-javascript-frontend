@@ -49,7 +49,7 @@ function format() {
     });
 }
 
-
+// band
 function shareBand() {
     let encodeBody = encodeURIComponent(format('{0}\n{1}', shareText, shareLink));
     let encodeRoute = encodeURIComponent(window.location.href);
