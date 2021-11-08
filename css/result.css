@@ -153,11 +153,7 @@ block - result-character - textAndImg
   content: url("../imgs/movie_title/ISFJ_T.png");
 
   /* margin */
-<<<<<<< Updated upstream
-  margin-top: 0.625rem;
-=======
   margin-top: 1.6rem;
->>>>>>> Stashed changes
 }
 
 .block .result-character .textAndImg .movie-character {
@@ -168,33 +164,20 @@ block - result-character - textAndImg
   content: url("../imgs/movie_character/ISFJ_C.png");
 
   /* margin */
-<<<<<<< Updated upstream
-  margin-top: 1.5rem;
-=======
   margin-top: 1.375rem;
->>>>>>> Stashed changes
 }
 
 .block .result-character .textAndImg .character-img {
   /* size */
   width: 100%;
-<<<<<<< Updated upstream
-  height: 100%;
-  padding: 0 1.25rem;
-=======
   height: 10.6875rem;
   padding: 0 20px;
->>>>>>> Stashed changes
 
   /* imgage */
   content: url("../imgs/chracter-img/ISFJ_I.png");
 
   /* margin */
-<<<<<<< Updated upstream
-  margin-top: 2.5rem;
-=======
   margin-top: 2.375rem;
->>>>>>> Stashed changes
 }
 /*
 =====================================
