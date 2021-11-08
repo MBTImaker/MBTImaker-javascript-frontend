@@ -109,6 +109,5 @@ const commentInit = () => {
 chkCommentInit.addEventListener('click', () => {
     commentInit();
 
-    
     showComment.style.display = "flex";
 });
