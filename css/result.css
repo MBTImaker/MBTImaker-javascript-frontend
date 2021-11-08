@@ -47,6 +47,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 1.25rem;
 }
 
 section {
@@ -99,7 +101,7 @@ block
 
 .block {
   /* size */
-  width: 335px;
+  width: 100%;
   height: 100%; /* 수정 가능 */
 
   /* display */
@@ -112,9 +114,6 @@ block
   background-color: #ffffff;
   border: 2px solid var(--block-border-color);
   border-radius: 20px;
-
-  /* margin */
-  margin: 2.5rem 0px;
 
   /* padding */
   padding: 1.25rem;
@@ -170,8 +169,8 @@ block - result-character - textAndImg
 .block .result-character .textAndImg .character-img {
   /* size */
   width: 100%;
-  height: 10.6875rem;
   padding: 0 20px;
+  object-fit: contain;
 
   /* imgage */
   content: url("../imgs/chracter-img/ISFJ_I.png");
@@ -314,7 +313,7 @@ block - result-character - chemistry
 
 .block .result-character .chemistry .chemi .character-img {
   width: 64.91%;
-  height: 6rem;
+  object-fit: contain;
 }
 
 .block .result-character .chemistry .chemi .movie-title {
