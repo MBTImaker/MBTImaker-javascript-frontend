@@ -48,7 +48,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  padding: 1.25rem;
+  padding: 2.5rem 1.25rem;
 }
 
 section {
@@ -90,7 +90,6 @@ loading
 @media screen and (min-width: 47.25rem) {
   .loading img {
     width: 37vw;
-    min-width: 716px;
   }
 }
 /*
@@ -126,6 +125,7 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg {
   width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -134,8 +134,7 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .subject {
   /* size */
-  width: 60%;
-  height: 15.13%;
+  height: 1rem;
 
   /* background */
   content: url("../imgs/result_character_subject.png");
@@ -146,7 +145,7 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .movie-title {
   /* size */
-  height: 20px;
+  height: 1.25rem;
 
   /* background */
   content: url("../imgs/movie_title/ISFJ_T.png");
@@ -157,7 +156,7 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .movie-character {
   /* size */
-  height: 30px;
+  height: 1.875rem;
 
   /* background */
   content: url("../imgs/movie_character/ISFJ_C.png");
