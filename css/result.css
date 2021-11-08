@@ -137,7 +137,9 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .subject {
   /* size */
+  width: 90%;
   height: 1rem;
+  object-fit: contain;
 
   /* background */
   content: url("../imgs/result_character_subject.png");
@@ -171,7 +173,7 @@ block - result-character - textAndImg
 .block .result-character .textAndImg .character-img {
   /* size */
   width: 100%;
-  padding: 0 20px;
+  padding: 0 1.25rem;
   object-fit: contain;
 
   /* imgage */
@@ -214,7 +216,7 @@ block - result-character - conclusion
 .block .result-character .feature {
   /* size */
   width: 100%;
-  height: 48px;
+  height: 3rem;
 
   /* display */
   display: flex;
@@ -240,7 +242,7 @@ block - result-character - point-line
 
 .point-line {
   width: 100%;
-  height: 10px;
+  height: 0.625rem;
 
   /* style */
   background-image: linear-gradient(
@@ -279,7 +281,6 @@ block - result-character - chemistry
 .block .result-character .chemistry .chemi {
   /* size */
   width: 100%;
-  height: 240px;
 
   /* display */
   display: flex;
@@ -466,6 +467,7 @@ block - movies
   /* size */
   width: 100%;
   height: 100%;
+  object-fit: contain;
 
   /* background */
   background-color: rgba(0, 0, 0, 0);

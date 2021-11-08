@@ -15,6 +15,10 @@ Variables
   --chemi-movie-character-desktop-font-size: 1.625rem; /* 26px */
   --share-desktop-font-size: 1.75rem; /* 28px */
 
+  --conclusion-mobile-font-xs-size: 1.1rem;
+  --feature-mobile-font-xs-size: 0.8rem;
+  --share-mobile-font-xs-size: 1.1rem;
+
   /* line-height */
   --feature-desktop-line-height: 1.35rem; /* 22px */
   --chemi-title-desktop-line-height: 1.8125rem; /* 29px */
@@ -27,15 +31,36 @@ Variables
 
 /*
 ===========
-PC
+media
 ===========
 */
+
+/* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
+@media screen and (max-width: 23.4375rem) {
+  /* ----------------- conclusion ----------------- */
+  .block .result-character .conclusion {
+    font-size: var(--conclusion-mobile-font-xs-size);
+  }
+
+  .block .result-character .feature {
+    font-size: var(--feature-mobile-font-xs-size);
+  }
+
+  .block .share span,
+  .block .movies span {
+    font-size: var(--share-mobile-font-xs-size);
+  }
+}
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
 @media screen and (min-width: 47.25rem) {
   /* ----------------- Global ----------------- */
+  body {
+    padding: 0;
+  }
+
   section {
-    margin: 10px 60px;
+    margin: 0.625rem 3.75rem;
     border-width: 4px;
     border-radius: 32px;
   }
@@ -50,30 +75,34 @@ PC
     border-radius: 40px;
 
     /* margin */
-    margin: 80px 0;
+    margin: 5rem 0;
 
     /* padding */
-    padding: 60px;
+    padding: 3.75rem;
+  }
+  .block .result-character .textAndImg .subject {
+    /* size */
+    height: 2rem;
+
+    /* margin */
+    margin-top: 4rem;
   }
 
   .block .result-character .textAndImg .movie-title {
     /* size */
-    width: 100%;
-    height: 56px;
+    height: 3rem;
 
     /* margin */
-    margin-top: 66px;
+    margin-top: 2.5rem;
   }
 
   .block .result-character .textAndImg .movie-character {
     /* size */
-    height: 80px;
+    height: 4rem;
   }
 
   .block .result-character .textAndImg .character-img {
-    /* size */
-    width: var(--basic-desktop-width);
-    max-height: 320px;
+    padding: 0 3.75rem;
   }
 
   /* ----------------- conclusion ----------------- */
@@ -86,7 +115,7 @@ PC
     font-size: var(--conclusion-desktop-font-size);
 
     /* margin */
-    margin-top: 38px;
+    margin-top: 2.375rem;
   }
 
   .block .result-character .feature-list {
@@ -95,7 +124,7 @@ PC
 
   .block .result-character .feature {
     /* size */
-    height: 56px;
+    height: 3.5rem;
 
     /* font */
     font-size: var(--feature-desktop-font-size);
@@ -117,8 +146,8 @@ PC
     width: var(--basic-desktop-width);
 
     /* margin */
-    margin-top: 41px;
-    margin-bottom: 40px;
+    margin-top: 4.125rem;
+    margin-bottom: 3.75rem;
   }
 
   .block .result-character .chemistry .chemi {
@@ -130,55 +159,55 @@ PC
   }
 
   .block .result-character .chemistry .good {
-    margin-right: 20px;
+    margin-right: 1.25rem;
   }
 
   .block .result-character .chemistry .chemi .chemi-title {
     /* size */
     width: 100%;
-    height: 52px;
+    height: 3.25rem;
 
     /* font */
     font-size: var(--chemi-title-desktop-font-size);
     line-height: var(--chemi-title-desktop-line-height);
 
     /* margin */
-    margin-top: 40px;
+    margin-top: 2.5rem;
   }
 
   .block .result-character .chemistry .chemi .character-img {
     width: 64.91%;
-    height: 172px;
+    height: 10.75rem;
 
     /* margin */
-    margin-top: 10px;
+    margin-top: 0.625rem;
   }
 
   .block .result-character .chemistry .chemi .movie-title {
     /* size */
     width: 100%;
-    height: 22px;
+    height: 1.375rem;
 
     /* font */
     font-size: var(--chemi-movie-title-dsektop-font-size);
     line-height: var(--chemi-movie-title-desktop-line-height);
 
     /* margin */
-    margin-top: 38px;
+    margin-top: 2.375rem;
   }
 
   .block .result-character .chemistry .chemi .movie-character {
     /* size */
     width: 100%;
-    height: 34px;
+    height: 2.125rem;
 
     /* font */
     font-size: var(--chemi-movie-character-desktop-font-size);
     line-height: var(--chemi-movie-character-desktop-line-height);
 
     /* margin */
-    margin-top: 12px;
-    margin-bottom: 36px;
+    margin-top: 0.75rem;
+    margin-bottom: 2.25rem;
   }
 
   /* ----------------- share ----------------- */
@@ -188,19 +217,19 @@ PC
     font-size: var(--share-desktop-font-size);
 
     /* margin */
-    margin-top: 48px;
+    margin-top: 3rem;
   }
 
   .block .share .share-btns {
     /* size */
     width: var(--basic-desktop-width);
-    height: 64px;
+    height: 4rem;
 
     /* margin */
-    margin: 28px 0 68px 0;
+    margin: 1.75rem 0 4.25rem 0;
 
     /* padding */
-    padding: 0 30px;
+    padding: 0 1.875rem;
   }
 
   /* ----------------- movies ----------------- */
@@ -211,17 +240,16 @@ PC
   .block .movies .movie-list {
     /* size */
     width: var(--basic-desktop-width);
-    height: 210px;
+    height: 13.125rem;
 
     /* display */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* align-items: center; */
 
     /* margin */
-    margin-top: 26px;
-    margin-bottom: 60px;
+    margin-top: 1.625rem;
+    margin-bottom: 3.75rem;
   }
 
   .block .movies .movie-list li {
@@ -231,10 +259,10 @@ PC
 
   .block .restart {
     /* size */
-    width: 380px;
-    height: 102px;
+    width: 63.75%;
+    height: 5.875rem;
 
     /* margin */
-    margin: 40px 0;
+    margin: 2.5rem 0;
   }
 }
