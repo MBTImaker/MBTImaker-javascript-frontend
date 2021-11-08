@@ -43,7 +43,8 @@ Global
 }
 
 html {
-  min-width: 375px;
+  width: 100vw;
+  /* min-width: 375px; */
   /* height: 100%; */
 }
 
@@ -69,5 +70,12 @@ li {
 @media screen and (min-width: 47.25rem) {
   body {
     background-image: url("../imgs/desktop/desktop_background_Frame48.png");
+  }
+}
+
+@media screen and (max-width: 11.25rem), screen and (max-height: 20rem) {
+  /* 180px */
+  * {
+    display: none;
   }
 }

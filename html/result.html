@@ -14,6 +14,28 @@
     <!-- javascript -->
     <script src="../javascript/result.js" defer></script>
 
+    <!-- share -->
+
+    <!-- kakao sdk 호출 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+    <!-- facebook -->
+    <meta property="og:url" content="https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chrimstmas MBTI" />
+    <meta property="og:description" content="MBTI 결과 공유" />
+    <meta property="og:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg" /> <!--http://www.your-domain.com/path/image.jpg-->
+
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@nytimes">
+    <meta name="twitter:creator" content="@SarahMaslinNir">
+    <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+    <meta name="twitter:description"
+        content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+    <meta name="twitter:image"
+        content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+
     <!-- title -->
     <title>Result</title>
 </head>
@@ -23,15 +45,24 @@
         <img src="../imgs/loading_ment.png" alt="영화캐릭터 분석중">
     </div>
 
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
     <!-- 하얀 영역 -->
     <div class="block">
         <!-- 나랑 비슷한 영화 캐릭터는 -->
         <section class="result-character">
             <div class="textAndImg">
-                <div class="subject"></div>
-                <div class="movie-title"></div>
-                <div class="movie-character"></div>
-                <div class="character-img"></div>
+                <img class="subject"></img>
+                <img class="movie-title"></img>
+                <img class="movie-character"></img>
+                <img class="character-img"></img>
             </div>
 
             <span class="conclusion">솔직하고 섬세한<br>성격을 가지고 있어요.</span>
@@ -54,13 +85,13 @@
             <div class="chemistry">
                 <div class="chemi good">
                     <span class="chemi-title">환상의 케미</span>
-                    <div class="character-img"></div>
+                    <img class="character-img"></img>
                     <span class="movie-title">사운드 오브 뮤직</span>
                     <span class="movie-character">마리아</span>
                 </div>
                 <div class="chemi bad">
                     <span class="chemi-title">환장의 케미</span>
-                    <div class="character-img"></div>
+                    <img class="character-img"></img>
                     <span class="movie-title">사운드 오브 뮤직</span>
                     <span class="movie-character">마리아</span>
                 </div>
@@ -71,11 +102,11 @@
         <section class="share">
             <span>결과 공유하기</span>
             <ul class="share-btns">
-                <li><button class="kakaotalk"></button></li>
-                <li><button class="facebook"></button></li>
-                <li><button class="twitter"></button></li>
-                <li><button class="band"></button></li>
-                <li><button class="instagram"></button></li>
+                <li><a href="javascript:shareKakaotalk();" class="kakaotalk"></a></li>
+                <li><a href="javascript:shareFacebook();" class="facebook"></a></li>
+                <li><a href="javascript:shareTwitter();" class="twitter"></a></li>
+                <li><a href="javascript:shareBand();" class="band"></a></li>
+                <li><a href="javascript:shareInstagram();" class="instagram"></a></li>
             </ul>
         </section>
 
@@ -83,14 +114,20 @@
         <section class="movies">
             <span>추천 영화</span>
             <ul class="movie-list">
-                <li><div class="movie-01"></div></li>
-                <li><div class="movie-02"></div></li>
-                <li><div class="movie-03"></div></li>
+                <li>
+                    <img class="movie-01"></img>
+                </li>
+                <li>
+                    <img class="movie-02"></img>
+                </li>
+                <li>
+                    <img class="movie-03"></img>
+                </li>
             </ul>
         </section>
 
         <!-- 테스트 다시하기 -->
-        <button class="restart"></button>
+        <a href="home.html"  class="restart"></a>
 
         <!-- 댓글 -->
         <section class="communication">
@@ -102,7 +139,7 @@
                 <input type="password" class="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
                 <button type="submit" class="wrtie-comment-btn" id="comment" name="comment" onclick="commentInit()" ></button>
             </div>
-            
+
             <div class="point-line"></div>
 
             <div class="show-comment">
@@ -172,6 +209,8 @@
 
         </section>
     </div>
+
+    <div class="fb-quote"></div>
 </body>
 
 </html>

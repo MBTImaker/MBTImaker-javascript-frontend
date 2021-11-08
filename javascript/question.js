@@ -122,23 +122,75 @@ function displayQuestion(question) {
 // --------------------------------------------------------------------
 
 const selectBtns = document.querySelectorAll(".select_btn");
-const nextBtn = document.querySelector(".next");
+const qNums = document.querySelectorAll('.q-num:nth-child(n)');
 const blocks = document.querySelectorAll(".block:nth-child(n)");
 const next = document.querySelector(".next");
-
-let questionNum = 1;
 const questionNumMax = questionList.length;
 
-// nextBtn을 누르면 다음 문제로 이동한다.
-nextBtn.addEventListener("click", () => {
-    if (questionNum < questionNumMax) {
-        scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
-        questionNum += 1;
-    }
+let questionNum = 1;
+let clientClicked = "";
+
+qNums[questionNum - 1].style.display = "block";
+
+
+// next btn의 text의 초깃값 (11개의 항목이 남았습니다.)
+next.setAttribute('style', 'white-space: pre;');
+
+if (screen.width < 756) {
+    next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다.\r\n`;
+    next.textContent += `(총 ${questionNumMax}문항)`;
+}
+else {
+    next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+}
+
+selectBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+
+        // 선택지에서 위를 선택하면 '0', 아래를 선택하면 '1'이 추가된다.
+        if (e.currentTarget.classList.contains("top")) {
+            clientClicked += "0";
+        }
+        else {
+            clientClicked += "1";
+        }
+
+        // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
+        if (clientClicked.length === questionNumMax) {
+            next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
+            next.classList.remove("next");
+            next.classList.add("showResult");
+            next.onclick = function () {
+                location.href = 'result.html';
+            }
+        }
+
+        // 선택된 문항의 색을 바꾸어준다.
+        e.currentTarget.classList.add("active");
+
+        // 문항이 선택되면 아래로 이동한다.
+        if (questionNum < questionNumMax) {
+            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
+            questionNum += 1;
+        }
+    });
 });
 
+
+// 버튼을 누를 때마다 다음 문제로 이동한다.
 function scrollToNextQuestion(element, nextQuestion, duration) {
-    let start = element.scrollTop, change = nextQuestion - start - vh(6.5), currentTime = 0, increment = 20; // 153
+    let setBlockCenter = 0;
+
+    // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
+    if (screen.height > 811 && screen.width < 428) {
+        setBlockCenter = vh(15);
+    }
+    else {
+        setBlockCenter = vh(7);
+    }
+
+    // (1) 이동
+    let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20; // 153
 
     let animateScroll = function () {
         currentTime += increment;
@@ -150,20 +202,21 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         }
     }
 
+    // (2) next btn text 변경
     let leftQuestion = questionNumMax - questionNum - 1;
-    if (leftQuestion > 0) {
-        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+
+    if (screen.width < 756) {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
+        next.textContent += `(총 ${questionNumMax}문항)`;
     }
     else {
-        next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
-        next.onclick = function () {
-            location.href = 'result.html';
-        }
-        next.classList.remove('next');
-        next.classList.add('showResult');
-        // nextText.style.backgroundImage = "url('../imgs/showResult_Frame61.png')";
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
     }
+
     animateScroll();
+
+    // (3) 다음 q-num이 보인다.
+    qNums[questionNum].style.display = "block";
 }
 
 // t = current time,  b = start value, c = change in value, d = duration
@@ -174,15 +227,8 @@ Math.easeInOutQuad = function (t, b, c, d) {
     return -c / 2 * (t * (t - 2) - 1) + b;
 };
 
+// px to vh
 function vh(v) {
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     return (v * h) / 100;
 }
-
-// ------------------------
-
-selectBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        e.currentTarget.classList.add("active");
-    });
-});
