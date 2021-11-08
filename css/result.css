@@ -389,7 +389,6 @@ block - share
 .block .share .share-btns {
   /* size */
   width: 83.72%;
-  min-width: 247px;
   height: 2.5rem;
 
   /* display */
@@ -482,12 +481,12 @@ block - restart
 */
 .block .restart {
   /* size */
-  width: 18.4375rem;
+  width: 100%;
   height: 3.5rem;
 
   /* background */
   background-image: url("../imgs/restartBtn_Frame134.png");
-  background-size: 100% 100%;
+  background-size: contain;
 
   /* margin */
   margin: 2rem 0 2.8125rem 0;
