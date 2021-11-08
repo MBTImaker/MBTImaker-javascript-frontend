@@ -14,7 +14,9 @@ Variables
   --chemi-border-color: #e5e5e5;
   --chemi-movie-title-mobile-font-color: #4a4a4a;
   --chemi-movie-character-mobile-font-color: #e10017;
-  --comment-placeholder-color: #a8a8a8;
+  --comment-placeholder-color: #A8A8A8;
+  --comment-created-font-color: #8A8A8A;
+
 
   /* font-size */
   --conclusion-mobile-font-size: 1.25rem; /* 20px */
@@ -23,6 +25,7 @@ Variables
   --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
   --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
   --share-mobile-font-size: 1.125rem; /* 18px */
+  --comment-created-font-size: 0.687rem;  /* 11px */
 
   /* line-height */
   --conclusion-desktop-line-height: 2.625rem; /* 42px */
@@ -492,7 +495,7 @@ block - restart
 }
 /*
 =====================
-block - communication
+block - communication (ver.21-11-04)
 =====================
 */
 
@@ -510,54 +513,103 @@ block - communication
   align-items: center;
 }
 
-.block .communication .add-comment .nickname,
-.comment-area,
-.password {
-  background: #ffffff;
-  border: 2px solid #e8e8e8;
+.block .communication .add-comment .nickname::placeholder, .comment-area::placeholder, .password::placeholder {
+  color: var(--comment-placeholder-color);
+}
+
+.block .communication .add-comment .nickname, .comment-area, .password {
+  background: #FFFFFF;
+  border: 2px solid #E8E8E8;
   box-sizing: border-box;
   border-radius: 10px;
-}
 
-/* .block .communication .add-comment .nickname{
-  width: 89%;
-  height: 95%;
-  margin: 40px 20px 10px 20px;
-} */
+  padding-left: 20px;
+}
 
 .block .communication .add-comment .nickname {
-  width: 100%;
-  height: 100%;
+  width: 89%;
+  height: 19%;
+  margin: 40px 20px 10px 20px;
 }
 
-.block .communication .add-comment input[type="text"] {
-  width: 255px;
-  height: 44px; /* 높이 초기화 */
-
-  background-color: red;
-}
 
 .block .communication .add-comment .comment-area {
   width: 89%;
-  height: 100%;
-
-  /* width: 100%;
-  height: 122px; */
+  height: 100%; 
+  padding-top: 10px;
 }
 
 .block .communication .add-comment .password {
   width: 89%;
-  height: 78.32%;
+  height: 19%;
   margin: 11px 20px 10px 20px;
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
-  /* size */
-  width: 255px;
-  height: 80.55%;
+    /* size */
+    width: 89%;
+    height: 17.3%;
+  
+    /* background */
+    background-image: url("../imgs/writeCommentBtn_Frame140.png");
+    background-size: 100% 100%;
+    background-color: var(--section-background-color);
+}
 
-  /* background */
-  background-image: url("../imgs/writeCommentBtn_Frame140.png");
-  background-size: 100% 100%;
-  background-color: var(--section-background-color);
+.block .communication .show-comment {
+  /* size */
+  width: 100%;
+  height: 17.65%;
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block .communication .show-comment .comment-01 {
+  background: #FFFFFF;
+  border: 2px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  width: 89%;
+  height: 100%;
+}
+
+.block .communication .show-comment .comment-01 .info {
+  display: flex;
+  justify-content: space-between;
+  
+  height: 22.6%;
+}
+
+.block .communication .show-comment .comment-01 .info .name{
+  width: 40%;
+  height: 83%;
+  
+  color: var(--chemi-movie-title-mobile-font-color);
+  font-size: var(--chemi-movie-title-mobile-font-size);
+
+  margin: 7px 21px 0 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.block .communication .show-comment .comment-01 .info .date {
+  width: 37%;
+  height: 83%;
+  color: var(--comment-created-font-color);
+  font-size: var(--comment-created-font-size);
+
+  margin: 6px 20px 0 21px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.block .communication .show-comment .comment-01 .point-line {
+  padding-top: 3px;
+  margin: 0;
 }
