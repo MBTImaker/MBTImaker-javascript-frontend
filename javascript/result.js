@@ -15,10 +15,10 @@ window.onload = function () {
 // 댓글 작성
 function commentInit() {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-             alert(this.responseText);
-         }
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            alert(this.responseText);
+        }
     };
 
     const nickname = document.getElementById("nickname").value;
@@ -55,6 +55,7 @@ function shareKakaotalk() {
     })
 }
 
+// facebook
 function shareFacebook() {
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + shareLink);
 }
