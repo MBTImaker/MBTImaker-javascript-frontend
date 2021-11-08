@@ -34,6 +34,10 @@ PC
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
 @media screen and (min-width: 47.25rem) {
   /* ----------------- Global ----------------- */
+  body {
+    padding: 0;
+  }
+
   section {
     margin: 10px 60px;
     border-width: 4px;
