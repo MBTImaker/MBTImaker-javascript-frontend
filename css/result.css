@@ -47,6 +47,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 2.5rem 1.25rem;
 }
 
 section {
@@ -65,7 +67,7 @@ section {
   border-radius: 10px;
 
   /* margin */
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem; /* 10px */
 }
 /*
 ===========
@@ -88,7 +90,6 @@ loading
 @media screen and (min-width: 47.25rem) {
   .loading img {
     width: 37vw;
-    min-width: 716px;
   }
 }
 /*
@@ -99,7 +100,7 @@ block
 
 .block {
   /* size */
-  width: 335px;
+  width: 100%;
   height: 100%; /* 수정 가능 */
 
   /* display */
@@ -113,11 +114,8 @@ block
   border: 2px solid var(--block-border-color);
   border-radius: 20px;
 
-  /* margin */
-  margin: 40px 0px;
-
   /* padding */
-  padding: 20px;
+  padding: 1.25rem;
 }
 /*
 =====================================
@@ -127,6 +125,7 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg {
   width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -135,49 +134,48 @@ block - result-character - textAndImg
 
 .block .result-character .textAndImg .subject {
   /* size */
-  width: 60%;
-  height: 15.13%;
+  height: 1rem;
 
   /* background */
   content: url("../imgs/result_character_subject.png");
 
   /* margin */
-  margin-top: 5.94%; /* 22 / 370 */
+  margin-top: 2.5rem; /* 22 / 370 */
 }
 
 .block .result-character .textAndImg .movie-title {
   /* size */
-  height: 20px;
+  height: 1.25rem;
 
   /* background */
   content: url("../imgs/movie_title/ISFJ_T.png");
 
   /* margin */
-  margin-top: 10px;
+  margin-top: 1.6rem;
 }
 
 .block .result-character .textAndImg .movie-character {
   /* size */
-  height: 30px;
+  height: 1.875rem;
 
   /* background */
   content: url("../imgs/movie_character/ISFJ_C.png");
 
   /* margin */
-  margin-top: 24px;
+  margin-top: 1.375rem;
 }
 
 .block .result-character .textAndImg .character-img {
   /* size */
   width: 100%;
-  height: 100%;
   padding: 0 20px;
+  object-fit: contain;
 
   /* imgage */
   content: url("../imgs/chracter-img/ISFJ_I.png");
 
   /* margin */
-  margin-top: 40px;
+  margin-top: 2.375rem;
 }
 /*
 =====================================
@@ -189,7 +187,7 @@ block - result-character - conclusion
   /* display */
   display: inline-block;
   width: 100%;
-  height: 52px;
+  height: 3.25rem;
 
   /* font */
   font-size: var(--conclusion-mobile-font-size);
@@ -197,7 +195,7 @@ block - result-character - conclusion
   font-weight: var(--conclusion-mobile-font-weight);
 
   /* margin */
-  margin-top: 28px;
+  margin-top: 1.75rem;
 }
 
 .block .result-character .feature-list {
@@ -207,7 +205,7 @@ block - result-character - conclusion
   justify-content: center;
   align-items: center;
 
-  margin-top: 21px; /* 31 - 10(feature의 margin-top) */
+  margin-top: 1.3125rem; /* 31 - 10(feature의 margin-top) */
 }
 
 .block .result-character .feature {
@@ -225,7 +223,7 @@ block - result-character - conclusion
   border-radius: 16px;
 
   /* margin */
-  margin-top: 10px;
+  margin-top: 0.625rem;
 
   /* font */
   font-size: var(--feature-mobile-font-size);
@@ -248,11 +246,11 @@ block - result-character - point-line
     rgba(255, 255, 255, 0) 0%
   );
   background-position: bottom;
-  background-size: 28px 4px;
+  background-size: 16px 2px;
   background-repeat: repeat-x;
 
   /* margin */
-  margin-top: 37px;
+  margin-top: 2.3125rem;
 }
 /*
 =====================================
@@ -271,8 +269,8 @@ block - result-character - chemistry
   align-items: center;
 
   /* margin */
-  margin-top: 41px;
-  margin-bottom: 40px;
+  margin-top: 2.5625rem;
+  margin-bottom: 2.5rem;
 }
 
 .block .result-character .chemistry .chemi {
@@ -292,13 +290,13 @@ block - result-character - chemistry
 }
 
 .block .result-character .chemistry .good {
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 
 .block .result-character .chemistry .chemi .chemi-title {
   /* size */
   width: 100%;
-  height: 32px;
+  height: 2rem;
 
   /* display */
   display: inline-block;
@@ -309,18 +307,18 @@ block - result-character - chemistry
   line-height: var(--chemi-title-mobile-line-height);
 
   /* margin */
-  margin-top: 24px;
+  margin-top: 1.5rem;
 }
 
 .block .result-character .chemistry .chemi .character-img {
   width: 64.91%;
-  height: 96px;
+  object-fit: contain;
 }
 
 .block .result-character .chemistry .chemi .movie-title {
   /* size */
   width: 67.21%;
-  height: 28px;
+  height: 1.75rem;
 
   /* display */
   display: inline-block;
@@ -331,13 +329,13 @@ block - result-character - chemistry
   color: var(--chemi-movie-title-mobile-font-color);
 
   /* margin */
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .block .result-character .chemistry .chemi .movie-character {
   /* size */
   width: 67.21%;
-  height: 17px;
+  height: 1.0625rem;
 
   /* display */
   display: inline-block;
@@ -348,8 +346,8 @@ block - result-character - chemistry
   color: var(--chemi-movie-character-mobile-font-color);
 
   /* margin */
-  margin-top: 4px;
-  margin-bottom: 23px;
+  margin-top: 0.25rem;
+  margin-bottom: 1.4375rem;
 }
 
 .block .result-character .chemistry .good .character-img {
@@ -374,7 +372,7 @@ block - share
 .block .movies span {
   /* size */
   width: 100%;
-  height: 52px;
+  height: 3.25rem;
 
   /* display */
   display: inline-block;
@@ -384,14 +382,13 @@ block - share
   line-height: var(--share-mobile-line-height);
 
   /* margin */
-  margin-top: 22px;
+  margin-top: 1.375rem;
 }
 
 .block .share .share-btns {
   /* size */
   width: 83.72%;
-  min-width: 247px;
-  height: 40px;
+  height: 2.5rem;
 
   /* display */
   display: flex;
@@ -399,7 +396,7 @@ block - share
   justify-content: center;
 
   /* margin */
-  margin: 8px 0 44.84px 0;
+  margin: 0.5rem 0 2.8025rem 0;
 }
 
 .block .share .share-btns li {
@@ -437,7 +434,7 @@ block - movies
 */
 
 .block .movies {
-  height: 854px;
+  height: 53.375rem;
 }
 
 .block .movies .movie-list {
@@ -451,18 +448,18 @@ block - movies
   align-items: center;
 
   /* margin */
-  margin-top: 6px;
-  margin-bottom: 30px;
+  margin-top: 0.375rem;
+  margin-bottom: 1.875rem;
 }
 
 .block .movies .movie-list li {
   width: 100%;
   height: 100%;
 
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
-.block .movies .movie-list li div {
+.block .movies .movie-list li img {
   /* size */
   width: 100%;
   height: 100%;
@@ -483,15 +480,15 @@ block - restart
 */
 .block .restart {
   /* size */
-  width: 295px;
-  height: 56px;
+  width: 100%;
+  height: 3.5rem;
 
   /* background */
   background-image: url("../imgs/restartBtn_Frame134.png");
-  background-size: 100% 100%;
+  background-size: contain;
 
   /* margin */
-  margin: 32px 0 45px 0;
+  margin: 2rem 0 2.8125rem 0;
 }
 /*
 =====================
