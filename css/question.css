@@ -24,11 +24,11 @@ Variables
   --q-title-mobile-xs-size: 0.9375rem; /* 15px */
   --q-title-desktop-size: 2rem; /* 32px */
   --q-title-desktop-xs-size: 1.25rem; /* 20px */
+  --two-btns-desktop-size: 1.25rem; /* 20px */
   --button-text-mobile-size: 0.875rem; /* 14px */
   --button-text-mobile-xs-size: 0.75rem; /* 12px */
-  --two-btns-desktop-size: 1.25rem; /* 20px */
   --button-text-desktop-size: 1.375rem; /* 22px */
-  --button-text-desktop-xs-size: 1.125rem; /* 18px */
+  --button-text-desktop-xs-size: 1.125rem;
 
   /* spacing */
   --letter-spacing: 0.02em;
@@ -205,24 +205,6 @@ media
 ===========
 */
 
-/* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
-@media screen and (max-width: 23.4375rem) {
-  .block .q-title {
-    font-size: var(--q-title-mobile-xs-size);
-  }
-
-  .block .two-btns .select_btn,
-  .next,
-  .showResult {
-    font-size: var(--button-text-mobile-xs-size);
-  }
-
-  .next,
-  .showResult {
-    top: 77%;
-  }
-}
-
 /* (width < 428px) and (height > 812px) */
 @media screen and (max-width: 26.75rem) and (min-height: 50.75rem) {
   body {
@@ -287,7 +269,7 @@ media
   }
 }
 
-/* height > 756px */
+/* height < 756px */
 @media screen and (max-height: 47.25rem) {
   .block .q-title {
     font-size: var(--q-title-desktop-xs-size);
@@ -302,5 +284,18 @@ media
   .next,
   .showResult {
     top: 77%;
+  }
+}
+
+/* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
+@media screen and (max-width: 23.4375rem) {
+  .block .q-title {
+    font-size: var(--q-title-mobile-xs-size);
+  }
+
+  .block .two-btns .select_btn,
+  .next,
+  .showResult {
+    font-size: var(--button-text-mobile-xs-size);
   }
 }
