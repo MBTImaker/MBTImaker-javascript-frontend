@@ -276,7 +276,6 @@ block - result-character - chemistry
 .block .result-character .chemistry .chemi {
   /* size */
   width: 100%;
-  height: 15rem;
 
   /* display */
   display: flex;
@@ -463,6 +462,7 @@ block - movies
   /* size */
   width: 100%;
   height: 100%;
+  object-fit: contain;
 
   /* background */
   background-color: rgba(0, 0, 0, 0);
