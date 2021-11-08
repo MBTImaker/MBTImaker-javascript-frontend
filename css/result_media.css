@@ -47,7 +47,9 @@ media
   }
 
   .block .share span,
-  .block .movies span {
+  .block .movies span,
+  .block .likeMe span,
+  .block .mostType span {
     font-size: var(--share-mobile-font-xs-size);
   }
 }
@@ -210,9 +212,16 @@ media
     margin-bottom: 2.25rem;
   }
 
+  .block .whiteBox .imgAndGraph {
+    flex-direction: row;
+    justify-content: center;
+  }
+
   /* ----------------- share ----------------- */
   .block .share span,
-  .block .movies span {
+  .block .movies span,
+  .block .likeMe span,
+  .block .mostType span {
     /* font */
     font-size: var(--share-desktop-font-size);
 
