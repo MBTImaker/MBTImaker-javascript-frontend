@@ -10,12 +10,15 @@ Variables
   --basic-font-color: #2a2a2a;
   --feature-background-color: #ffffff;
   --point-line-color: #ededed;
+  --point-line-color-comment: #E6E6E6;
   --chemi-background-color: #ffffff;
   --chemi-border-color: #e5e5e5;
   --chemi-movie-title-mobile-font-color: #4a4a4a;
   --chemi-movie-character-mobile-font-color: #e10017;
   --comment-placeholder-color: #A8A8A8;
   --comment-created-font-color: #8A8A8A;
+  --comment-reply-background-color: #F5F5F5;
+  --comment-reply-border-color: #E8E8E8;
 
 
   /* font-size */
@@ -240,7 +243,9 @@ block - result-character - point-line
 =====================================
 */
 
-.point-line {
+.point-line, 
+.point-line-reply, 
+.point-line-distinct-reply {
   width: 100%;
   height: 0.625rem;
 
@@ -256,6 +261,14 @@ block - result-character - point-line
 
   /* margin */
   margin-top: 2.3125rem;
+}
+
+.point-line-reply {
+  margin-top: 0.25rem;
+}
+
+.point-line-distinct-reply {
+  margin: 37px 0px 0px 33px;
 }
 /*
 =====================================
@@ -497,12 +510,13 @@ block - restart
 }
 /*
 =====================
-block - communication (ver.21-11-04)
+block - communication (ver.21-11-09)
 =====================
 */
 
 .block .communication {
-  height: 1486px;
+  height: 92.875rem;
+  display: flex;
 }
 
 .block .communication .add-comment {
@@ -521,30 +535,30 @@ block - communication (ver.21-11-04)
 
 .block .communication .add-comment .nickname, .comment-area, .password {
   background: #FFFFFF;
-  border: 2px solid #E8E8E8;
+  border: 0.125rem solid #E8E8E8; /* 2px */
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 0.625rem;  /* 10px */
 
-  padding-left: 20px;
+  padding-left: 1.25rem;  /* 20px */
 }
 
 .block .communication .add-comment .nickname {
   width: 89%;
   height: 19%;
-  margin: 40px 20px 10px 20px;
+  margin: 2.5rem 1.25rem 0.625rem 1.25rem;  /* 40px 20px 10px 20px */
 }
 
 
 .block .communication .add-comment .comment-area {
   width: 89%;
   height: 100%; 
-  padding-top: 10px;
+  padding-top: 0.625rem;
 }
 
 .block .communication .add-comment .password {
   width: 89%;
   height: 19%;
-  margin: 11px 20px 10px 20px;
+  margin: 0.6875rem 1.25rem 0.625rem 1.25rem;  /* 11px 20px 10px 20px */
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
@@ -558,6 +572,15 @@ block - communication (ver.21-11-04)
     background-color: var(--section-background-color);
 }
 
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .block .communication .show-comment {
   /* size */
   width: 100%;
@@ -570,12 +593,15 @@ block - communication (ver.21-11-04)
 
 .block .communication .show-comment .comment-01 {
   background: #FFFFFF;
-  border: 2px solid #E8E8E8;
-  box-sizing: border-box;
-  border-radius: 10px;
 
   width: 89%;
   height: 100%;
+
+  margin-top: 11.5%;
+
+  border: 0.125rem solid var(--point-line-color);  /* 2px */
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .block .communication .show-comment .comment-01 .info {
@@ -585,33 +611,69 @@ block - communication (ver.21-11-04)
   height: 22.6%;
 }
 
-.block .communication .show-comment .comment-01 .info .name{
+.block .communication .show-comment .comment-01 .info .rstName{
   width: 40%;
   height: 83%;
   
   color: var(--chemi-movie-title-mobile-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
 
-  margin: 7px 21px 0 20px;
+  margin: 0.4375rem 1.3125rem 0rem 1.25rem;  /* 7px 21px 0 20px */
   display: flex;
   justify-content: flex-start;
   align-items: center;
 
 }
 
-.block .communication .show-comment .comment-01 .info .date {
+.block .communication .show-comment .comment-01 .info .rstDate {
   width: 37%;
   height: 83%;
   color: var(--comment-created-font-color);
   font-size: var(--comment-created-font-size);
 
-  margin: 6px 20px 0 21px;
+  margin: 0.375rem 1.25rem 0rem 0rem; /* 6px 20px 0 0 */
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.block .communication .show-comment .comment-01 .point-line {
-  padding-top: 3px;
-  margin: 0;
+.block .communication .show-comment .comment-01 .rstcomment-text {
+  width: 85.6%;
+  height: 19.3%;
+
+  font-size: var(--chemi-movie-character-mobile-font-size);
+  display: inline-block;
+  margin: 1.25rem 0rem 1.125rem 0rem;  /* 20px 0px 18px 0px */
+}
+
+.block .communication .show-comment .comment-01 .add-reply {
+  width: 100%;
+  height: 52%;
+
+  background-color: var(--comment-reply-background-color);
+  border: 0.125rem solid #EDEDED; /* 2px */
+  box-sizing: border-box;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
+.block .communication .show-comment .comment-01 .add-reply .comment-reply-area {
+  width: 85.6%;
+  height: 34.5%;
+  margin: 0.6875rem 1.25rem 0.625rem 0.625rem;  /* 11px 20px 10px 20px */
+
+  border: 0.125rem solid var(--comment-reply-border-color);
+  box-sizing: border-box;
+  border-radius: 0.625rem;
+}
+
+.block .communication .show-comment .comment-01 .add-reply .write-reply-btn {
+  width: 85.6%;
+  height: 34.5%;
+
+  /* background */
+  background-image: url("../imgs/replyBtn_Frame139.png");
+  background-size: 100% 100%;
+  background-color: var(--section-background-color);
 }
