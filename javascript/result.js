@@ -21,7 +21,8 @@ window.onload = function () {
     showComment.style.display = "none";
 }
 
-function dateToStr(date) {  // ex) 11.08 22:49:51
+// 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
+function dateToStr(date) { 
     var today = new Date();
     var month = ('0' + (today.getMonth() + 1)).slice(-2);
     var day = ('0' + today.getDate()).slice(-2);
