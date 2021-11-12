@@ -41,35 +41,23 @@ const commentInit = () => {
     showComment.style.display = "flex";
 
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-             alert(this.responseText);
-         }
-    };
 
+    var nickname = document.getElementById("nickname").value;
+    var content = document.getElementById("comment-area").value;
+    var password = document.getElementById("password").value;
+    var commentJson = {};
+    commentJson['content'] = content;
+    commentJson['mbti'] = 'ISTJ';
+    commentJson['name'] = nickname;
+    commentJson['password'] = password;
+    console.log(JSON.stringify(commentJson));
 
-    let nickname = document.getElementById("nickname").value;
-    let content = document.getElementById("comment-area").value;
-    let password = document.getElementById("password").value;
-console.log("nickname: "+nickname);
-console.log("content: "+content);
-console.log("password: "+password);
-
-    let commentJson = '{\"content\":\"' + content + '\",\"mbti\": \"ISTJ\",' + '\"nickname\": \"' + nickname + '\", \"password\": \"' + password + '\"}';
-    // var commentJson = {
-    //     "content": "우와 신기해요!",
-    //     "mbti": "ISTJ",
-    //     "name": "만두",
-    //     "password": "1234"
-    //   };
     const url = 'https://mbti-test.herokuapp.com/comment';
     xhttp.open('POST', 'https://mbti-test.herokuapp.com/comment');
 
     fetch('https://mbti-test.herokuapp.com/comment', {
         method: 'POST',
-        mode: 'no-cors', // no-cors, cors, *same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        // credentials: 'omit', // include, *same-origin, omit
         headers: {
             'Accept': '*',
             'Content-Type': 'application/json',
@@ -78,25 +66,11 @@ console.log("password: "+password);
             'Referer': 'https://mbti-test.herokuapp.com'
           },
         body: JSON.stringify(commentJson),
-        // redirect: 'follow', // manual, *follow, error
-        // referrer: 'no-referrer', // no-referrer, *client
-
       })
-      .then(res => res.json())
-      .then(response => console.log('Success:', JSON.stringify(response)))
-      .catch(error => console.error('Error:', error));
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        .catch((error) => console.log("error:", error));
 
-
-     
-
-    // let sendParams = JSON.parse(commentJson);   // string 객체를 json 객체로 변환
-    // let str = JSON.stringify(sendParams); // json 객체를 String 객체로 변환
-    // console.log("str::"+str);
-
-    // xhttp.open("POST", "https://mbti-test.herokuapp.com/comment", true);
-    // xhttp.setRequestHeader("accept", "*/*");
-    // xhttp.setRequestHeader("Content-type", "application/json");
-    // xhttp.send(sendParams);
 
     // 댓글 창 생성하기
     let newComment = document.createElement('div'); // comment-01
