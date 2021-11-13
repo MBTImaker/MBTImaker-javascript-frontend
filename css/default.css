@@ -44,7 +44,7 @@ Global
 
 html {
   width: 100vw;
-  min-height: -webkit-fill-available;
+  min-height: -webkit-fill-available; /* 여기 테스트 */
   /* min-width: 375px; */
   /* height: 100%; */
 }
