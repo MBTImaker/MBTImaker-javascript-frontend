@@ -44,6 +44,7 @@ Global
 
 html {
   width: 100vw;
+  min-height: -webkit-fill-available;
   /* min-width: 375px; */
   /* height: 100%; */
 }
