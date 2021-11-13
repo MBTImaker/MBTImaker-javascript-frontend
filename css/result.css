@@ -20,7 +20,6 @@ Variables
   --comment-reply-background-color: #F5F5F5;
   --comment-reply-border-color: #E8E8E8;
 
-
   /* font-size */
   --conclusion-mobile-font-size: 1.25rem; /* 20px */
   --feature-mobile-font-size: 0.875rem; /* 14px */
@@ -28,7 +27,7 @@ Variables
   --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
   --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
   --share-mobile-font-size: 1.125rem; /* 18px */
-  --comment-created-font-size: 0.687rem;  /* 11px */
+  --comment-created-font-size: 0.687rem; /* 11px */
 
   /* line-height */
   --conclusion-desktop-line-height: 2.625rem; /* 42px */
@@ -374,6 +373,50 @@ block - result-character - chemistry
 .block .result-character .chemistry .bad .character-img {
   content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
 }
+/*
+=============
+block - graph
+=============
+*/
+
+.block .likeMe,
+.block .mostType {
+  padding: 20px;
+}
+
+.block .whiteBox {
+  /* size */
+  width: 100%;
+  height: 100%;
+
+  /* background */
+  background-color: var(--chemi-background-color);
+  border: 2px solid var(--chemi-border-color);
+  border-radius: 16px;
+}
+
+.block .whiteBox .movie-title {
+  font-size: 0.875rem;
+  margin-top: 2.5rem;
+}
+
+.block .whiteBox .movie-character {
+  font-size: 1.125rem;
+  margin-top: 0.4375rem;
+}
+
+.block .whiteBox .imgAndGraph {
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block .whiteBox img {
+  width: 62.74%;
+  content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
+  margin-top: 1rem;
+}
 
 /*
 =============
@@ -386,7 +429,9 @@ block - share
 }
 
 .block .share span,
-.block .movies span {
+.block .movies span,
+.block .likeMe span,
+.block .mostType span {
   /* size */
   width: 100%;
   height: 3.25rem;
@@ -529,7 +574,9 @@ block - communication (ver.21-11-09)
   align-items: center;
 }
 
-.block .communication .add-comment .nickname::placeholder, .comment-area::placeholder, .password::placeholder {
+.block .communication .add-comment .nickname::placeholder,
+.comment-area::placeholder,
+.password::placeholder {
   color: var(--comment-placeholder-color);
 }
 
@@ -548,11 +595,10 @@ block - communication (ver.21-11-09)
   margin: 2.5rem 1.25rem 0.625rem 1.25rem;  /* 40px 20px 10px 20px */
 }
 
-
 .block .communication .add-comment .comment-area {
   width: 89%;
-  height: 100%; 
-  padding-top: 0.625rem;
+  height: 100%;
+  padding-top: 10px;
 }
 
 .block .communication .add-comment .password {
@@ -562,14 +608,14 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
-    /* size */
-    width: 89%;
-    height: 17.3%;
-  
-    /* background */
-    background-image: url("../imgs/writeCommentBtn_Frame140.png");
-    background-size: 100% 100%;
-    background-color: var(--section-background-color);
+  /* size */
+  width: 89%;
+  height: 17.3%;
+
+  /* background */
+  background-image: url("../imgs/writeCommentBtn_Frame140.png");
+  background-size: 100% 100%;
+  background-color: var(--section-background-color);
 }
 
 .loading {
@@ -607,7 +653,7 @@ block - communication (ver.21-11-09)
 .block .communication .show-comment .comment .info {
   display: flex;
   justify-content: space-between;
-  
+
   height: 22.6%;
 }
 
