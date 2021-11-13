@@ -182,12 +182,13 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     let setBlockCenter = 0;
 
     // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
-    if (screen.height > 811 && screen.width < 429) {
+    if (window.innerHeight > 811 && screen.width < 429) {
         setBlockCenter = vh(15);
     }
     else {
         setBlockCenter = vh(7);
     }
+    console.log(setBlockCenter);
 
     // (1) 이동
     let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20; // 153
@@ -227,10 +228,10 @@ Math.easeInOutQuad = function (t, b, c, d) {
     return -c / 2 * (t * (t - 2) - 1) + b;
 };
 
-// px to vh
+// x
 function vh(value) {
     let vHeight = window.innerHeight * 0.01;
     return vHeight * value;
     // var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    // return (v * h) / 100;
+    // return (value * h) / 100;
 }
