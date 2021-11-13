@@ -228,7 +228,7 @@ Math.easeInOutQuad = function (t, b, c, d) {
     return -c / 2 * (t * (t - 2) - 1) + b;
 };
 
-// x
+
 function vh(value) {
     let vHeight = window.innerHeight * 0.01;
     return vHeight * value;
