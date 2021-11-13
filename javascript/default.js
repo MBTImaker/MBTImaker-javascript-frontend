@@ -1,2 +1,2 @@
-let v = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${v}px`);
+let vHeight = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vHeight}px`);

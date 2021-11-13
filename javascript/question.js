@@ -228,7 +228,9 @@ Math.easeInOutQuad = function (t, b, c, d) {
 };
 
 // px to vh
-function vh(v) {
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    return (v * h) / 100;
+function vh(value) {
+    let vHeight = window.innerHeight * 0.01;
+    return vHeight * value;
+    // var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    // return (v * h) / 100;
 }
