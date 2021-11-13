@@ -15,7 +15,6 @@ const chkcommentArea = document.querySelector(".comment-area");
 
 const chkRstName = document.querySelector('.rstName');  // 댓글이 하나도 없는 경우 댓글 화면을 보여주지 못하므로 해당 값 체크
 
-let commentTagName = "comment-01";
 
 window.onload = function () {
     loading.style.display = "none";
@@ -25,189 +24,188 @@ window.onload = function () {
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(date) { 
-    var today = new Date();
-    var month = ('0' + (today.getMonth() + 1)).slice(-2);
-    var day = ('0' + today.getDate()).slice(-2);
-    var hours = ('0' + today.getHours()).slice(-2); 
-    var minutes = ('0' + today.getMinutes()).slice(-2);
-    var seconds = ('0' + today.getSeconds()).slice(-2); 
+    let today = new Date();
+    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+    let day = ('0' + today.getDate()).slice(-2);
+    let hours = ('0' + today.getHours()).slice(-2); 
+    let minutes = ('0' + today.getMinutes()).slice(-2);
+    let seconds = ('0' + today.getSeconds()).slice(-2); 
 
-    var dateToString = month  + '.' + day + " " + hours + ':' + minutes  + ':' + seconds;
+    let dateToString = month  + '.' + day + " " + hours + ':' + minutes  + ':' + seconds;
     return dateToString;
 }
 
 // 댓글 작성
-const commentInit = () => {
+function commentWrite() {
+
     showComment.style.display = "flex";
 
-    var xhttp = new XMLHttpRequest();
+    // 사용자가 입력 한 값을 받아온다.
+    let nickname = document.getElementById("nickname").value;
+    let content = document.getElementById("comment-area").value;
+    let password = document.getElementById("password").value;
 
-    var nickname = document.getElementById("nickname").value;
-    var content = document.getElementById("comment-area").value;
-    var password = document.getElementById("password").value;
-    var commentJson = {};
+    // 서버로 보낼 데이터 셋팅
+    let commentJson = {};
     commentJson['content'] = content;
     commentJson['mbti'] = 'ISTJ';
     commentJson['name'] = nickname;
     commentJson['password'] = password;
-    console.log(JSON.stringify(commentJson));
 
-    const url = 'https://mbti-test.herokuapp.com/comment';
-    xhttp.open('POST', 'https://mbti-test.herokuapp.com/comment');
+    // 서버로 부터 받은 값 저장
+    let recvID; // 각 댓글의 id 값
+    let recvParentId; // 각 댓글의 부모id 값
 
     fetch('https://mbti-test.herokuapp.com/comment', {
         method: 'POST',
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        cache: 'no-cache',
         headers: {
             'Accept': '*',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
             'Origin': 'https://mbti-test.herokuapp.com',
             'Referer': 'https://mbti-test.herokuapp.com'
-          },
+            },
         body: JSON.stringify(commentJson),
-      })
-        .then((response) => response.json())
-        .then((response) => console.log(response))
+    })
+        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+            console.log(response);
+            return response.json();
+        })
+        .then(response => {
+            if (response.status == 200) {
+                alert("댓글 작성 성공!");
+
+                recvID = response.data.id;
+                recvParentId = response.data.parentId;
+
+                displayComment(commentJson, recvID, recvParentId);
+
+            } else {
+                alert("오류 입니다.");
+            }
+          })
         .catch((error) => console.log("error:", error));
+    
+}
 
 
-    // 댓글 창 생성하기
-    let newComment = document.createElement('div'); // comment-01
-    newComment.className = commentTagName;
-    tmp = showComment.appendChild(newComment); 
+function displayComment(comment, id, parentId) {
 
-    //comment-01 스타일 속성
-    tmp.style.background = "#FFFFFF";
-    tmp.style.width = "89%";
-    tmp.style.height = "100%";
-    tmp.style.marginTop = "11.5%";
-    tmp.style.border = "0.125rem solid " + getComputedStyle(document.querySelector(':root')).getPropertyValue('--point-line-color');
-    tmp.style.boxSizing = "border-box";
-    tmp.style.borderRadius = "10px";
-    tmp.style.display = "flex";
-    tmp.style.flexDirection = "column";
+console.log("In FUNC displayComment__id::"+id);
+console.log("In FUNC displayComment__parentId::"+parentId);
 
-
-    let newCommentInfo = document.createElement('div'); // info
-    newCommentInfo.className = 'info';
-    tmp2 = tmp.appendChild(newCommentInfo);
-    // info 스타일 속성
-    tmp2.style.display = "flex";
-    tmp2.style.justifyContent = "space-between";
-    tmp2.style.alignItems = "center";
-    tmp2.style.height = "22.6%";
+    let result = [];  // 배열 선언
+    let obj = new Object();
+    obj.content = comment.content;
+    obj.mbti = "ISTJ";
+    obj.name = comment.name;
+    obj.password = comment.password;
+    obj.id = id;
+    obj.parentId = parentId;
+    result.push(obj);
 
 
-    let newCommentUser = document.createElement('span'); // rstName
-    newCommentUser.className = 'rstName';
-    newCommentUser.innerText = nickname;
-    tmp3 = tmp2.appendChild(newCommentUser);
-    tmp3.style.width = "40%";
-    tmp3.style.height = "83%";
-    tmp3.style.color = getComputedStyle(document.querySelector(':root')).getPropertyValue('--chemi-movie-title-mobile-font-color');
-    tmp3.style.fontSize = getComputedStyle(document.querySelector(':root')).getPropertyValue('--chemi-movie-title-mobile-font-size')
-    tmp3.style.margin = "0.4375rem 1.3125rem 0rem 1.25rem";
-    tmp3.style.display = "flex";
-    tmp3.style.justifyContent = "flex-start";
-    tmp3.style.alignItems = "center";
+    console.log("result: "+result);
 
+    let innerComment = result.map(function (c) {
 
-    let newCommentdate = document.createElement('span');  // rstDate
-    newCommentdate.className = 'rstDate';
     const dateStr = dateToStr(new Date());
-    newCommentdate.innerText = dateStr;
-    tmp4 = tmp2.appendChild(newCommentdate);
-    tmp4.style.width = "37%";
-    tmp4.style.height = "83%";
-    tmp4.style.color = getComputedStyle(document.querySelector(':root')).getPropertyValue('--comment-created-font-color');
-    tmp4.style.fontSize = getComputedStyle(document.querySelector(':root')).getPropertyValue('--comment-created-font-size');
-    tmp4.style.margin = "0.375rem 1.25rem 0rem 0rem";
-    tmp4.style.display = "flex";
-    tmp4.style.justifyContent = "flex-end";
-    tmp4.style.alignItems = "center";
+    let rstDate = dateStr;
 
-    let newDelBtn = document.createElement('button');
-    newDelBtn.className = 'del-reply-btn';
-    tmp5 = tmp2.appendChild(newDelBtn);
-    tmp5.style.width = "13%";
-    tmp5.style.height = "47%";
-    tmp5.style.display = "flex";
-    tmp5.style.justifyContent = "flex-end";
-    tmp5.style.alignItems = "center";
-    tmp5.style.backgroundImage = "url(\"../imgs/replyDeleteBtn_Frame896.png\")";
-    tmp5.style.backgroundSize = "100% 100%";
-    tmp5.style.backgroundColor = getComputedStyle(document.querySelector(':root')).getPropertyValue('--section-background-color');
+        return `
+        <div class="comment" id="comment-${id}">
+            <div class="info">
+                <span id="rstName" class="rstName">${c.name}</span>
+                <span id="rstDate" class="rstDate">${dateStr}</span>
+                <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete()" ></button>
+            </div>
 
-    let makePointLine = document.createElement('div'); // point-line
-    makePointLine.className = 'point-line-reply';
-    tmp6 = tmp.appendChild(makePointLine);
+             <div class="point-line-reply"></div>
 
-    tmp6.style.width = "100%";
-    tmp6.style.height = "0.625rem";
-    tmp6.style.backgroundImage = "linear-gradient\(to right, "
-        + getComputedStyle(document.querySelector(':root')).getPropertyValue('--point-line-color') + "50%, rgba(255, 255, 255, 0) 0%)";
-    tmp6.style.backgroundPosition = "bottom";
-    tmp6.style.backgroundSize = "16px 2px";
-    tmp6.style.backgroundRepeat = "repeat-x";
-    tmp6.style.marginTop = "0.25rem";
+            <span id="rstcomment-text" class="rstcomment-text">${c.content}</span>
 
-    let newCommentText = document.createElement('span'); // rstcomment-text
-    newCommentText.className = 'rstcomment-text';
-    newCommentText.innerText = content;
-    tmp7 = tmp.appendChild(newCommentText);
+            <div class="add-reply">
+                <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
+                <button class="write-reply-btn"></button>
+            </div>
+        
+        </div>
+        `;
+    });
 
-    tmp7.style.width = "85.6%";
-    tmp7.style.height = "19.3%";
-    tmp7.style.fontSize = getComputedStyle(document.querySelector(':root')).getPropertyValue('--chemi-movie-character-mobile-font-size');
-    tmp7.style.display = "inline-block";
-    tmp7.style.margin = "1.25rem 0rem 1.125rem 0rem";
+    // string -> html
+    innerComment = innerComment.join("");
+
+    // innerHTML
+    showComment.innerHTML += innerComment;
+
+    console.log(showComment);
+}
+
+function commentDelete(id, name, password) {  // 댓글 삭제
+//     let id = '1475';
+//     let name = '1234';
+//     let password = '123123123';
+
+// console.log("DELETE__id: "+id);
+// console.log("DELETE__name: "+name);
+// console.log("DELETE__password: "+password);
 
 
-    let newAddReply = document.createElement('div');
-    newAddReply.className = 'add-reply';
-    tmp8 = tmp.appendChild(newAddReply);
-    tmp8.style.width = "100%";
-    tmp8.style.height = "52%";
-    tmp8.style.backgroundColor = getComputedStyle(document.querySelector(':root')).getPropertyValue('--comment-reply-background-color');
-    tmp8.style.border = " 0.125rem solid " + getComputedStyle(document.querySelector(':root')).getPropertyValue('--section-border-color');
-    tmp8.style.boxSizing = "border-box";
-    tmp8.style.borderRadius = "0rem 0rem 0.5rem 0.5rem";
-    tmp8.style.borderLeftWidth = "0px";
-    tmp8.style.borderRightWidth = "0px";
+    
+//         // 서버로 보낼 데이터 셋팅
+//         let commentJson = {};
+//         commentJson['id'] = id;
+//         commentJson['name'] = name;
+//         commentJson['password'] = password;
+    
+//         // 서버로 부터 받은 값 저장
+
+    
+//         fetch('https://mbti-test.herokuapp.com/comment', {
+//             method: 'DELETE',
+//             cache: 'no-cache',
+//             headers: {
+//                 'Accept': '*',
+//                 'Content-Type': 'application/json',
+//                 'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
+//                 'Origin': 'https://mbti-test.herokuapp.com',
+//                 'Referer': 'https://mbti-test.herokuapp.com'
+//                 },
+//             body: JSON.stringify(commentJson),
+//         })
+//             .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+//                 console.log(response);
+//                 return response.json();
+//             })
+//             .then(response => {
+//                 if (response.status == 200) {
+//                     alert("댓글 삭제 성공!");
+    
+//                     recvID = response.data.id;
+//                     recvParentId = response.data.parentId;
+    
+//                     //displayComment(commentJson, recvID, recvParentId);
+    
+//                 } else {
+//                     alert("오류 입니다.");
+//                 }
+//               })
+//             .catch((error) => console.log("error:", error));
+}
 
 
-    let newReplyArea = document.createElement('textarea');
-    newReplyArea.className = 'comment-reply-area';
-    newReplyArea.rows = 18;
-    tmp9 = tmp8.appendChild(newReplyArea);
-    tmp9.style.width = "85.6%";
-    tmp9.style.height = "34.5%";
-    tmp9.style.margin = "0.6875rem 1.25rem 0.625rem 0.625rem";
-    tmp9.style.border = "0.125rem solid " + getComputedStyle(document.querySelector(':root')).getPropertyValue('--comment-reply-border-color');
-    tmp9.style.boxSizing = "border-box";
-    tmp9.style.borderRadius = "0.625rem";
+function searchComment() {  // 댓글 페이징 조회
+
+}
 
 
-    let newReplyBtn = document.createElement('button');
-    newReplyBtn.className = 'write-reply-btn';
-    tmp10 = tmp8.appendChild(newReplyBtn);
-
-    tmp10.style.width = "85.6%";
-    tmp10.style.height = "34.5%";
-    tmp10.style.backgroundImage = "url(\"../imgs/replyBtn_Frame139.png\")";
-    tmp10.style.backgroundSize = "100% 100%";
-    tmp10.style.backgroundColor = getComputedStyle(document.querySelector(':root')).getPropertyValue('--section-background-color');
 
 
-    console.log(tmp);
-};
 
-chkCommentInit.addEventListener('click', () => {
-    commentInit();
 
-    showComment.style.display = "flex";
-});
+
 
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
 console.log(Kakao.isInitialized());
