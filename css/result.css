@@ -639,11 +639,8 @@ block - communication (ver.21-11-09)
   align-items: center;
 }
 
-.block .communication .show-comment .comment-01 {
-  background: #ffffff;
-  border: 2px solid #e8e8e8;
-  box-sizing: border-box;
-  border-radius: 10px;
+.block .communication .show-comment .comment {
+  background: #FFFFFF;
 
   width: 89%;
   height: 100%;
@@ -655,17 +652,17 @@ block - communication (ver.21-11-09)
   border-radius: 10px;
 }
 
-.block .communication .show-comment .comment-01 .info {
+.block .communication .show-comment .comment .info {
   display: flex;
   justify-content: space-between;
 
   height: 22.6%;
 }
 
-.block .communication .show-comment .comment-01 .info .name {
+.block .communication .show-comment .comment .info .rstName{
   width: 40%;
   height: 83%;
-
+  
   color: var(--chemi-movie-title-mobile-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
 
@@ -673,9 +670,10 @@ block - communication (ver.21-11-09)
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
 }
 
-.block .communication .show-comment .comment-01 .info .rstDate {
+.block .communication .show-comment .comment .info .rstDate {
   width: 37%;
   height: 83%;
   color: var(--comment-created-font-color);
@@ -683,11 +681,26 @@ block - communication (ver.21-11-09)
 
   margin: 0.375rem 1.25rem 0rem 0rem; /* 6px 20px 0 0 */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
-.block .communication .show-comment .comment-01 .rstcomment-text {
+.block .communication .show-comment .comment .info .del-reply-btn {
+  /* size */
+  width: 13%;
+  height: 47%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background */
+  background-image: url("../imgs/replyDeleteBtn_Frame896.png");
+  background-size: 100% 100%;
+  background-color: var(--section-background-color);
+}
+
+.block .communication .show-comment .comment .rstcomment-text {
   width: 85.6%;
   height: 19.3%;
 
@@ -696,7 +709,7 @@ block - communication (ver.21-11-09)
   margin: 1.25rem 0rem 1.125rem 0rem; /* 20px 0px 18px 0px */
 }
 
-.block .communication .show-comment .comment-01 .add-reply {
+.block .communication .show-comment .comment .add-reply {
   width: 100%;
   height: 52%;
 
@@ -708,7 +721,7 @@ block - communication (ver.21-11-09)
   border-right-width: 0px;
 }
 
-.block .communication .show-comment .comment-01 .add-reply .comment-reply-area {
+.block .communication .show-comment .comment .add-reply .comment-reply-area {
   width: 85.6%;
   height: 34.5%;
   margin: 0.6875rem 1.25rem 0.625rem 0.625rem; /* 11px 20px 10px 20px */
@@ -718,7 +731,7 @@ block - communication (ver.21-11-09)
   border-radius: 0.625rem;
 }
 
-.block .communication .show-comment .comment-01 .add-reply .write-reply-btn {
+.block .communication .show-comment .comment .add-reply .write-reply-btn {
   width: 85.6%;
   height: 34.5%;
 
