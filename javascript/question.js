@@ -136,9 +136,10 @@ qNums[questionNum - 1].style.display = "block";
 // next btn의 text의 초깃값 (11개의 항목이 남았습니다.)
 next.setAttribute('style', 'white-space: pre;');
 
-if (screen.width < 756) {
+if (window.innerWidth < 756) {
     next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다.\r\n`;
     next.textContent += `(총 ${questionNumMax}문항)`;
+    console.log(next);
 }
 else {
     next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
@@ -188,10 +189,9 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     else {
         setBlockCenter = vh(7);
     }
-    console.log(setBlockCenter);
 
     // (1) 이동
-    let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20; // 153
+    let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20;
 
     let animateScroll = function () {
         currentTime += increment;
@@ -206,7 +206,7 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     // (2) next btn text 변경
     let leftQuestion = questionNumMax - questionNum - 1;
 
-    if (screen.width < 756) {
+    if (window.innerWidth < 756) {
         next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
         next.textContent += `(총 ${questionNumMax}문항)`;
     }
