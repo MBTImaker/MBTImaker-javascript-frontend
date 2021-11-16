@@ -20,6 +20,12 @@ Variables
   --comment-reply-background-color: #f5f5f5;
   --comment-reply-border-color: #e8e8e8;
 
+  /* graph color */
+  --inner-color: #ffffff;
+  --number-color: #222222;
+  --progress-color: #08623e;
+  --bar-color: #e5e5e5;
+
   /* font-size */
   --conclusion-mobile-font-size: 1.25rem; /* 20px */
   --feature-mobile-font-size: 0.875rem; /* 14px */
@@ -41,6 +47,10 @@ Variables
 
   /* font-weight*/
   --conclusion-mobile-font-weight: 400;
+
+  /* graph size */
+  --circular-size: 148px;
+  --inner-size: 124px;
 }
 /*
 ===========
@@ -73,6 +83,25 @@ section {
 
   /* margin */
   margin-bottom: 0.625rem; /* 10px */
+}
+
+.block .share span,
+.block .movies span,
+.block .likeMe span,
+.block .mostType span {
+  /* size */
+  width: 100%;
+  height: 3.25rem;
+
+  /* display */
+  display: inline-block;
+
+  /* font */
+  font-size: var(--share-mobile-font-size);
+  line-height: var(--share-mobile-line-height);
+
+  /* margin */
+  margin-top: 1.375rem;
 }
 /*
 ===========
@@ -375,14 +404,15 @@ block - result-character - chemistry
   content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
 }
 /*
-=============
-block - graph
-=============
+============================
+block - graph - image & text
+============================
 */
 
 .block .likeMe,
 .block .mostType {
-  padding: 20px;
+  /* padding */
+  padding: 0 3.75rem 3.75rem 3.75rem;
 }
 
 .block .whiteBox {
@@ -394,6 +424,8 @@ block - graph
   background-color: var(--chemi-background-color);
   border: 2px solid var(--chemi-border-color);
   border-radius: 16px;
+
+  margin-top: 0.625rem;
 }
 
 .block .whiteBox .movie-title {
@@ -414,11 +446,178 @@ block - graph
 }
 
 .block .whiteBox img {
-  width: 62.74%;
+  width: 148px;
   content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
-  margin-top: 1rem;
+  margin: 1rem 2.5rem 3.75rem 0;
+}
+/*
+======================
+block - graph - design
+======================
+*/
+
+.circular {
+  height: var(--circular-size);
+  width: var(--circular-size);
+  position: relative;
+}
+.circular .inner,
+.circular .outer,
+.circular .circle {
+  position: absolute;
+  z-index: 6;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+}
+.circular .inner {
+  top: 50%;
+  left: 50%;
+  height: var(--inner-size);
+  width: var(--inner-size);
+  margin: calc(-1 * var(--inner-size) / 2) 0 0 calc(-1 * var(--inner-size) / 2);
+  background-color: var(--inner-color);
+  border-radius: 100%;
+}
+.circular .circle {
+  z-index: 1;
+  box-shadow: none;
+}
+.circular .numb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--number-color);
+  white-space: pre;
+}
+.circular .bar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--bar-color);
+  border-radius: 100%;
+  clip: rect(
+    0px,
+    var(--circular-size),
+    var(--circular-size),
+    calc(var(--circular-size) / 2)
+  );
 }
 
+.circle {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.circle.show {
+  opacity: 1;
+  transform: none;
+}
+
+.circle .bar .progress {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  clip: rect(0px, calc(var(--circular-size) / 2), var(--circular-size), 0px);
+}
+.circle .bar .progress {
+  background: var(--progress-color);
+}
+.dot span,
+.fixed-dot span {
+  background: var(--progress-color);
+}
+.circle .left .progress {
+  z-index: 1;
+  animation: left 4s linear both;
+  animation-play-state: paused;
+}
+
+.circle .left .progress.show,
+.circle .right .progress.show,
+.circle .dot.show {
+  animation-play-state: running;
+}
+
+@keyframes left {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+.circle .right {
+  z-index: 3;
+  transform: rotate(180deg);
+}
+.circle .right .progress {
+  animation: right 4s linear both;
+  animation-delay: 4s;
+  animation-play-state: paused;
+}
+@keyframes right {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+.circle .fixed-dot {
+  z-index: 20;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  margin-top: calc(-1 * (var(--circular-size) - var(--inner-size)) / 4);
+  animation: dot 8s linear both;
+  transform-origin: 0% 50%;
+  animation-play-state: paused;
+}
+
+.circle .fixed-dot span {
+  position: absolute;
+  right: 0;
+  width: calc((var(--circular-size) - var(--inner-size)) / 2);
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  border-radius: 100%;
+}
+
+.circle .dot {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  margin-top: calc(-1 * (var(--circular-size) - var(--inner-size)) / 4);
+  animation: dot 8s linear both;
+  transform-origin: 0% 50%;
+  animation-play-state: paused;
+}
+
+.circle .dot span {
+  position: absolute;
+  right: 0;
+  width: calc((var(--circular-size) - var(--inner-size)) / 2);
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  border-radius: 100%;
+}
+
+@keyframes dot {
+  0% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(90deg);
+    z-index: 4;
+  }
+  100% {
+    transform: rotate(270deg);
+    z-index: 4;
+  }
+}
 /*
 =============
 block - share
@@ -427,25 +626,6 @@ block - share
 
 .block .share {
   height: 100%; /* 166px */
-}
-
-.block .share span,
-.block .movies span,
-.block .likeMe span,
-.block .mostType span {
-  /* size */
-  width: 100%;
-  height: 3.25rem;
-
-  /* display */
-  display: inline-block;
-
-  /* font */
-  font-size: var(--share-mobile-font-size);
-  line-height: var(--share-mobile-line-height);
-
-  /* margin */
-  margin-top: 1.375rem;
 }
 
 .block .share .share-btns {
@@ -640,7 +820,7 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .show-comment .comment {
-  background: #FFFFFF;
+  background: #ffffff;
 
   width: 89%;
   height: 100%;
@@ -659,10 +839,10 @@ block - communication (ver.21-11-09)
   height: 22.6%;
 }
 
-.block .communication .show-comment .comment .info .rstName{
+.block .communication .show-comment .comment .info .rstName {
   width: 40%;
   height: 83%;
-  
+
   color: var(--chemi-movie-title-mobile-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
 
@@ -670,7 +850,6 @@ block - communication (ver.21-11-09)
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .block .communication .show-comment .comment .info .rstDate {
