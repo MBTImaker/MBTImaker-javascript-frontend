@@ -102,50 +102,78 @@ console.log(comment);
 //console.log(comment.data.content[1].id);
 
 
-    for(let i=0; i<size; i++){
-        obj.content = comment.data.content[i].content;
-        obj.mbti = "ISTJ";
-        obj.name = comment.data.content[i].name;
-        obj.password = comment.data.content[i].password;
-        obj.id = comment.data.content[i].id;
-        obj.parentId = comment.data.content[i].parentId;
-        obj.createdDate = comment.data.content[i].createdDate;
-        result.push(obj);
+let recvCont = comment.data.content;  // Object 타입임
+console.log(recvCont);
+console.log(typeof recvCont)
 
 
-        let innerComment = result.map(function (c) {
 
 
+//console.log(recvCont[0]);
+
+//     for(let i=0; i<size; i++){
+//         obj.content = recvCont[i].content;
+//         obj.mbti = "ISTJ";
+//         obj.name = recvCont[i].name;
+//         obj.password = recvCont[i].password;
+//         obj.id = recvCont[i].id;
+//         obj.parentId = recvCont[i].parentId;
+//         obj.createdDate = recvCont[i].createdDate;
+
+//          let last = Object.entries(obj);  //Object 타입을 배열 타입으로 변환
+// //console.log(last);
+//          let picked = last.pop();  // 배열에서 마지막 요소를 제거하고 그 요소를 반환
+// result.push(picked);
+
+// //        result.push(obj);
+
+// //        console.log(obj);
+// //console.log(result);
+
+//     let innerComment = result.map(function (c) {
+
+// console.log(c);
         
-            return `
-            <div class="comment" id="comment-${c.id}">
-                <div class="info">
-                    <span id="rstName" class="rstName">${c.name}</span>
-                    <span id="rstDate" class="rstDate">${c.createdDate}</span>
-                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}}, ${c.name}, ${c.password})" ></button>
-                </div>
+//         return `
+//         <div class="comment" id="comment-${c.id}">
+//             <div class="info">
+//                 <span id="rstName" class="rstName">${c.name}</span>
+//                 <span id="rstDate" class="rstDate">${c.createdDate}</span>
+//                 <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}}, ${c.name}, ${c.password})" ></button>
+//             </div>
+
+//              <div class="point-line-reply"></div>
+
+//             <span id="rstcomment-text" class="rstcomment-text">${c.content}</span>
+
+//             <div class="add-reply">
+//                 <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
+//                 <button class="write-reply-btn"></button>
+//             </div>
+        
+//         </div>
+//         `;
+
+
+//     });
+
+
+//     // string -> html
+//     innerComment = innerComment.join("");
+
+//     // innerHTML
+//     showComment.innerHTML += innerComment;    
+
+
+
+
+//     }
     
-                 <div class="point-line-reply"></div>
-    
-                <span id="rstcomment-text" class="rstcomment-text">${c.content}</span>
-    
-                <div class="add-reply">
-                    <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
-                    <button class="write-reply-btn"></button>
-                </div>
-            
-            </div>
-            `;
-    
-    
-        });
-    
-        // string -> html
-        innerComment = innerComment.join("");
-    
-        // innerHTML
-        showComment.innerHTML += innerComment; 
-    }
+
+
+
+
+
 
 
 
