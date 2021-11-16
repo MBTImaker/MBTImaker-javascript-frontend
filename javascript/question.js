@@ -1,5 +1,7 @@
 "use strict";
 
+// =========================== Variables ===========================
+
 const questionList = [
     { // 01
         num: "../imgs/question_num/Q1_Frame900.png",
@@ -92,7 +94,8 @@ const body = document.querySelector("body");
 // body 안에 질문들을 보여준다.
 // html이 반복되어 사용되어 js를 사용하였다.
 
-displayQuestion(questionList);
+
+// =========================== Function ===========================
 
 function displayQuestion(question) {
     let innerQuestion = question.map(function (q) {
@@ -118,79 +121,37 @@ function displayQuestion(question) {
     body.innerHTML += innerQuestion;
 }
 
+// ============================== Run ==============================
 
-// --------------------------------------------------------------------
+displayQuestion(questionList);
 
-const selectBtns = document.querySelectorAll(".select_btn");
+// =========================== Variables ===========================
+// HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
+
+const selectBtns = document.querySelectorAll(".select_btn:nth-child(n)");
 const qNums = document.querySelectorAll('.q-num:nth-child(n)');
 const blocks = document.querySelectorAll(".block:nth-child(n)");
 const next = document.querySelector(".next");
 const questionNumMax = questionList.length;
 
-let questionNum = 1;
+let questionNum = 0;
 let clientClicked = "";
 
-qNums[questionNum - 1].style.display = "block";
-
-
-// next btn의 text의 초깃값 (11개의 항목이 남았습니다.)
-next.setAttribute('style', 'white-space: pre;');
-
-if (window.innerWidth < 756) {
-    next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다.\r\n`;
-    next.textContent += `(총 ${questionNumMax}문항)`;
-    console.log(next);
-}
-else {
-    next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
-}
-
-selectBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-
-        // 선택지에서 위를 선택하면 '0', 아래를 선택하면 '1'이 추가된다.
-        if (e.currentTarget.classList.contains("top")) {
-            clientClicked += "0";
-        }
-        else {
-            clientClicked += "1";
-        }
-
-        // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
-        if (clientClicked.length === questionNumMax) {
-            next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
-            next.classList.remove("next");
-            next.classList.add("showResult");
-            next.onclick = function () {
-                location.href = 'result.html';
-            }
-        }
-
-        // 선택된 문항의 색을 바꾸어준다.
-        e.currentTarget.classList.add("active");
-
-        // 문항이 선택되면 아래로 이동한다.
-        if (questionNum < questionNumMax) {
-            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
-            questionNum += 1;
-        }
-    });
-});
-
+// =========================== Functions ===========================
 
 // 버튼을 누를 때마다 다음 문제로 이동한다.
 function scrollToNextQuestion(element, nextQuestion, duration) {
     let setBlockCenter = 0;
 
     // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
-    if (window.innerHeight > 811 && screen.width < 429) {
+    if (window.innerHeight > 811 && window.innerWidth < 429) {
         setBlockCenter = vh(15);
     }
     else {
         setBlockCenter = vh(7);
     }
 
-    // (1) 이동
+
     let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20;
 
     let animateScroll = function () {
@@ -203,7 +164,17 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         }
     }
 
-    // (2) next btn text 변경
+    // (1) next btn text 변경
+    changeNextText();
+
+    // (2) 이동
+    animateScroll();
+
+    // (3) 다음 q-num이 보인다.
+    showNextQnum();
+}
+
+function changeNextText() {
     let leftQuestion = questionNumMax - questionNum - 1;
 
     if (window.innerWidth < 756) {
@@ -213,13 +184,13 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     else {
         next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
     }
+}
 
-    animateScroll();
-
-    // (3) 다음 q-num이 보인다.
+function showNextQnum() {
     qNums[questionNum].style.display = "block";
 }
 
+// 부드럽게 아래로 이동할 떄 사용하는 함수
 // t = current time,  b = start value, c = change in value, d = duration
 Math.easeInOutQuad = function (t, b, c, d) {
     t /= d / 2;
@@ -228,8 +199,58 @@ Math.easeInOutQuad = function (t, b, c, d) {
     return -c / 2 * (t * (t - 2) - 1) + b;
 };
 
-
 function vh(value) {
     let vHeight = window.innerHeight * 0.01;
     return vHeight * value;
 }
+
+// ============================== Run ==============================
+
+qNums[0].style.display = "block";
+
+changeNextText();
+
+let selectBtnIndex = 0;
+
+selectBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+
+        // 선택된 문항의 색을 바꾸어준다.
+        e.currentTarget.classList.add("active");
+
+        // 선택지에서 위를 선택하면 '0', 아래를 선택하면 '1'이 추가된다.
+        if (clientClicked.length > questionNum) {
+            clientClicked = clientClicked.substring(0, questionNum);
+        }
+
+        if (e.currentTarget.classList.contains("top")) {
+            if (selectBtns[selectBtnIndex + 1].classList.contains("active")) {
+                selectBtns[selectBtnIndex + 1].classList.remove("active");
+            }
+            clientClicked += "0";
+        }
+        else {
+            if (selectBtns[selectBtnIndex].classList.contains("active")) {
+                selectBtns[selectBtnIndex].classList.remove("active");
+            }
+            clientClicked += "1";
+        }
+
+        // 문항이 선택되면 아래로 이동한다.
+        if (questionNum < questionNumMax - 1) {
+            // 다음 문제로
+            questionNum += 1;
+            selectBtnIndex += 2;
+
+            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
+        } else {
+            // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
+            next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
+            next.classList.remove("next");
+            next.classList.add("showResult");
+            next.onclick = function () {
+                location.href = 'result.html';
+            }
+        }
+    });
+});
