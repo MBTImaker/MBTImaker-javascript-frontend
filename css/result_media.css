@@ -67,6 +67,14 @@ media
     border-radius: 32px;
   }
 
+  .subTitle {
+    /* font */
+    font-size: var(--share-desktop-font-size);
+
+    /* margin */
+    margin-top: 3rem;
+  }
+
   /* ----------------- block ----------------- */
   .block {
     /* size */
@@ -218,16 +226,6 @@ media
   }
 
   /* ----------------- share ----------------- */
-  .block .share span,
-  .block .movies span,
-  .block .likeMe span,
-  .block .mostType span {
-    /* font */
-    font-size: var(--share-desktop-font-size);
-
-    /* margin */
-    margin-top: 3rem;
-  }
 
   .block .share .share-btns {
     /* size */

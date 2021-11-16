@@ -49,8 +49,8 @@ Variables
   --conclusion-mobile-font-weight: 400;
 
   /* graph size */
-  --circular-size: 148px;
-  --inner-size: 124px;
+  --circular-size: 160px;
+  --inner-size: 136px;
 }
 /*
 ===========
@@ -85,10 +85,7 @@ section {
   margin-bottom: 0.625rem; /* 10px */
 }
 
-.block .share span,
-.block .movies span,
-.block .likeMe span,
-.block .mostType span {
+.subTitle {
   /* size */
   width: 100%;
   height: 3.25rem;
@@ -460,7 +457,9 @@ block - graph - design
   height: var(--circular-size);
   width: var(--circular-size);
   position: relative;
+  top: -20px;
 }
+
 .circular .inner,
 .circular .outer,
 .circular .circle {
@@ -485,15 +484,26 @@ block - graph - design
 }
 .circular .numb {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 2rem;
   color: var(--number-color);
-  white-space: pre;
+  white-space: nowrap;
 }
+
+.circular .numb-title {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 0.875rem;
+  color: var(--number-color);
+  white-space: nowrap;
+}
+
 .circular .bar {
   position: absolute;
   height: 100%;
@@ -576,7 +586,8 @@ block - graph - design
   animation-play-state: paused;
 }
 
-.circle .fixed-dot span {
+.circle .fixed-dot span,
+.circle .dot span {
   position: absolute;
   right: 0;
   width: calc((var(--circular-size) - var(--inner-size)) / 2);
@@ -595,14 +606,6 @@ block - graph - design
   animation: dot 8s linear both;
   transform-origin: 0% 50%;
   animation-play-state: paused;
-}
-
-.circle .dot span {
-  position: absolute;
-  right: 0;
-  width: calc((var(--circular-size) - var(--inner-size)) / 2);
-  height: calc((var(--circular-size) - var(--inner-size)) / 2);
-  border-radius: 100%;
 }
 
 @keyframes dot {

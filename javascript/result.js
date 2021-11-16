@@ -17,9 +17,9 @@ const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/htm
 const shareText = "크리스마스";
 
 // graph
-const showMargin = 100;
+const showMargin = 940;
 
-let percentage = 25;
+let percentage = 89;
 let counter = 0;
 
 // =========================== Loading ===========================
@@ -40,7 +40,7 @@ const showAnimation = function () {
                     clearInterval(drawing);
                 } else {
                     counter += 1;
-                    numb.textContent = `${counter}%\r\n현재 1위 유형`;
+                    numb.textContent = `${counter}%`;
                 }
             }, 80);
         }
