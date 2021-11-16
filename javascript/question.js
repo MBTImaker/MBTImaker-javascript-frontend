@@ -128,7 +128,7 @@ displayQuestion(questionList);
 // =========================== Variables ===========================
 // HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
 
-const selectBtns = document.querySelectorAll(".select_btn");
+const selectBtns = document.querySelectorAll(".select_btn:nth-child(n)");
 const qNums = document.querySelectorAll('.q-num:nth-child(n)');
 const blocks = document.querySelectorAll(".block:nth-child(n)");
 const next = document.querySelector(".next");
@@ -210,6 +210,8 @@ qNums[0].style.display = "block";
 
 changeNextText();
 
+let selectBtnIndex = 0;
+
 selectBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
 
@@ -218,17 +220,24 @@ selectBtns.forEach((btn) => {
 
         // 선택지에서 위를 선택하면 '0', 아래를 선택하면 '1'이 추가된다.
         if (e.currentTarget.classList.contains("top")) {
+            if (selectBtns[selectBtnIndex + 1].classList.contains("active")) {
+                selectBtns[selectBtnIndex + 1].classList.remove("active");
+            }
             clientClicked += "0";
         }
         else {
+            if (selectBtns[selectBtnIndex].classList.contains("active")) {
+                selectBtns[selectBtnIndex].classList.remove("active");
+            }
             clientClicked += "1";
         }
 
-        // 다음 문제로
-        questionNum += 1;
-
         // 문항이 선택되면 아래로 이동한다.
-        if (questionNum < questionNumMax) {
+        if (questionNum < questionNumMax - 1) {
+            // 다음 문제로
+            questionNum += 1;
+            selectBtnIndex += 2;
+
             scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
         } else {
             // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
