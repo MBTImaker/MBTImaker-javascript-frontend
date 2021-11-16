@@ -1,11 +1,16 @@
+// =========================== Variables ===========================
+
 const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
 const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
 const shareText = "크리스마스";
 
-// loading 보여주기
+// =========================== Loading ===========================
+
 block.style.display = "none";
+
+// =========================== Comment ===========================
 
 const showComment = document.querySelector(".show-comment");
 
@@ -398,11 +403,7 @@ function searchComment() {  // 댓글 페이징 조회
 }
 
 
-
-
-
-
-
+// =========================== Share ===========================
 
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
 console.log(Kakao.isInitialized());
