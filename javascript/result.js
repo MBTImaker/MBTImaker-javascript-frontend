@@ -1,14 +1,61 @@
 // =========================== Variables ===========================
 
+// loading
 const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
+
+// graph
+const numb = document.querySelector(".numb");
+const circle = document.querySelector('.circle');
+const leftProgress = document.querySelector(".circle .left .progress");
+const rightProgress = document.querySelector(".circle .right .progress");
+const dot = document.querySelector(".circle .dot");
+
+// share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
 const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
 const shareText = "크리스마스";
 
+// graph
+const showMargin = 100;
+
+let percentage = 25;
+let counter = 0;
+
 // =========================== Loading ===========================
 
 block.style.display = "none";
+
+// =========================== Graph ===========================
+
+const showAnimation = function () {
+    if (!circle.classList.contains('show')) {
+        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+            circle.classList.add('show');
+            toggleShow();
+
+            let drawing = setInterval(() => {
+                if (counter == percentage) {
+                    toggleShow();
+                    clearInterval(drawing);
+                } else {
+                    counter += 1;
+                    numb.textContent = `${counter}%\r\n현재 1위 유형`;
+                }
+            }, 80);
+        }
+    }
+}
+
+function toggleShow() {
+    leftProgress.classList.toggle("show");
+    rightProgress.classList.toggle("show");
+    dot.classList.toggle("show");
+}
+
+
+window.addEventListener('load', showAnimation);
+window.addEventListener('scroll', showAnimation);
 
 // =========================== Comment ===========================
 
