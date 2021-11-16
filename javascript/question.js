@@ -54,7 +54,7 @@ const questionList = [
     },
     { // 08
         num: "../imgs/question_num/Q8_Frame907.png",
-        qTop: "크리스마스에<br>선물을 받았다.",
+        qTop: "크리스마스<br>선물을 받았다고",
         qBottom: "자랑하는 친구에게 나는?",
         btnTop: "\"진짜? 기분 좋겠다!\"라고 말한다.",
         btnBottom: "\"뭐 받았어? 봐봐!\" 라고 말한다."
