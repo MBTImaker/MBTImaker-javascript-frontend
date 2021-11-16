@@ -23,15 +23,15 @@ window.onload = function () {
 }
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
-function dateToStr(date) { 
+function dateToStr(date) {
     let today = new Date();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    let hours = ('0' + today.getHours()).slice(-2); 
+    let hours = ('0' + today.getHours()).slice(-2);
     let minutes = ('0' + today.getMinutes()).slice(-2);
-    let seconds = ('0' + today.getSeconds()).slice(-2); 
+    let seconds = ('0' + today.getSeconds()).slice(-2);
 
-    let dateToString = month  + '.' + day + " " + hours + ':' + minutes  + ':' + seconds;
+    let dateToString = month + '.' + day + " " + hours + ':' + minutes + ':' + seconds;
     return dateToString;
 }
 
@@ -65,7 +65,7 @@ function commentWrite() {
             'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
             'Origin': 'https://mbti-test.herokuapp.com',
             'Referer': 'https://mbti-test.herokuapp.com'
-            },
+        },
         body: JSON.stringify(commentJson),
     })
         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
@@ -86,33 +86,33 @@ function commentWrite() {
             } else {
                 alert("오류 입니다.");
             }
-          })
+        })
         .catch((error) => console.log("error:", error));
-    
+
 }
 
 
 function displayComment(comment, size) {
 
-console.log("displayComment()___");
-console.log(comment);
+    console.log("displayComment()___");
+    console.log(comment);
 
     let result = [];  // 배열 선언
     let obj = new Object();
-//console.log(comment.data.content[1].id);
+    //console.log(comment.data.content[1].id);
 
-for(let i=0; i<size; i++){
-    obj.content = comment.data.content[i].content;
-    obj.mbti = "ISTJ";
-    obj.name = comment.data.content[i].name;
-    obj.password = comment.data.content[i].password;
-    obj.id = comment.data.content[i].id;
-    obj.parentId = comment.data.content[i].parentId;
-    obj.createdDate = comment.data.content[i].createdDate;
-    result.push(obj);
+    for (let i = 0; i < size; i++) {
+        obj.content = comment.data.content[i].content;
+        obj.mbti = "ISTJ";
+        obj.name = comment.data.content[i].name;
+        obj.password = comment.data.content[i].password;
+        obj.id = comment.data.content[i].id;
+        obj.parentId = comment.data.content[i].parentId;
+        obj.createdDate = comment.data.content[i].createdDate;
+        result.push(obj);
 
-    console.log(result);
-}
+        console.log(obj);
+    }
 
 
 
@@ -131,7 +131,7 @@ for(let i=0; i<size; i++){
     //     let innerComment = result.map(function (c) {
 
 
-        
+
     //             return `
     //             <div class="comment" id="comment-${obj.id}">
     //                 <div class="info">
@@ -139,34 +139,34 @@ for(let i=0; i<size; i++){
     //                     <span id="rstDate" class="rstDate">${obj.createdDate}</span>
     //                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${obj.id}}, ${obj.name}, ${obj.password})" ></button>
     //                 </div>
-        
+
     //                  <div class="point-line-reply"></div>
-        
+
     //                 <span id="rstcomment-text" class="rstcomment-text">${obj.content}</span>
-        
+
     //                 <div class="add-reply">
     //                     <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
     //                     <button class="write-reply-btn"></button>
     //                 </div>
-                
+
     //             </div>
     //             `;
-        
-        
+
+
     //         });
-        
+
 
     //         // string -> html
     //         innerComment = innerComment.join("");
-        
+
     //         // innerHTML
     //         showComment.innerHTML += innerComment;
 
     // }
 
-    
 
-        
+
+
     //         console.log(showComment);
 
 
@@ -197,7 +197,7 @@ for(let i=0; i<size; i++){
     //             <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
     //             <button class="write-reply-btn"></button>
     //         </div>
-        
+
     //     </div>
     //     `;
 
@@ -216,49 +216,49 @@ for(let i=0; i<size; i++){
 function commentDelete(id, name, password) {  // 댓글 삭제
 
 
-console.log("DELETE__id: "+id);
-console.log("DELETE__name: "+name);
-console.log("DELETE__password: "+password);
+    console.log("DELETE__id: " + id);
+    console.log("DELETE__name: " + name);
+    console.log("DELETE__password: " + password);
 
 
-    
-        // 서버로 보낼 데이터 셋팅
-        let commentJson = {};
-        commentJson['id'] = id;
-        commentJson['name'] = name;
-        commentJson['password'] = password;
-    
-        // 서버로 부터 받은 값 저장
 
-    
-        fetch('https://mbti-test.herokuapp.com/comment', {
-            method: 'DELETE',
-            cache: 'no-cache',
-            headers: {
-                'Accept': '*',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-                'Origin': 'https://mbti-test.herokuapp.com',
-                'Referer': 'https://mbti-test.herokuapp.com'
-                },
-            body: JSON.stringify(commentJson),
+    // 서버로 보낼 데이터 셋팅
+    let commentJson = {};
+    commentJson['id'] = id;
+    commentJson['name'] = name;
+    commentJson['password'] = password;
+
+    // 서버로 부터 받은 값 저장
+
+
+    fetch('https://mbti-test.herokuapp.com/comment', {
+        method: 'DELETE',
+        cache: 'no-cache',
+        headers: {
+            'Accept': '*',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
+            'Origin': 'https://mbti-test.herokuapp.com',
+            'Referer': 'https://mbti-test.herokuapp.com'
+        },
+        body: JSON.stringify(commentJson),
+    })
+        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+            console.log(response);
+            return response.json();
         })
-            .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-                console.log(response);
-                return response.json();
-            })
-            .then(response => {
-                if (response.status == 200) {
-                    alert("댓글 삭제 성공!");
-    
-                    searchComment();
-                    //displayComment(commentJson, recvID, recvParentId);
-    
-                } else {
-                    alert("오류 입니다.");
-                }
-              })
-            .catch((error) => console.log("error:", error));
+        .then(response => {
+            if (response.status == 200) {
+                alert("댓글 삭제 성공!");
+
+                searchComment();
+                //displayComment(commentJson, recvID, recvParentId);
+
+            } else {
+                alert("오류 입니다.");
+            }
+        })
+        .catch((error) => console.log("error:", error));
 }
 
 
@@ -271,11 +271,11 @@ function searchComment() {  // 댓글 페이징 조회
     let tmpJson = new Object();
     let tmpArr = new Array();
 
-let page = '1';
-let size = '3';
+    let page = '1';
+    let size = '3';
 
-let tmpURL = 'https://mbti-test.herokuapp.com/comment';
-let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size ;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
+    let tmpURL = 'https://mbti-test.herokuapp.com/comment';
+    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
 
     // 서버로 부터 받은 값 저장
     fetch(reqURL)
@@ -285,53 +285,53 @@ let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size ;  // ex) https://m
         })
         .then(response => {
             if (response.status == 200) {
-//                alert("댓글 삭제 성공!");
-console.log(response);
-console.log(response.data);
-console.log(response.data.content[0]);
+                //                alert("댓글 삭제 성공!");
+                console.log(response);
+                console.log(response.data);
+                console.log(response.data.content[0]);
 
-// let resData = response.json();
-// console.log(resData);
-displayComment(response, size);
-//console.log(response.data.content.Array(0));
-                
-//                displayComment(commentJson, recvID, recvParentId);
+                // let resData = response.json();
+                // console.log(resData);
+                displayComment(response, size);
+                //console.log(response.data.content.Array(0));
+
+                //                displayComment(commentJson, recvID, recvParentId);
 
             } else {
                 alert("오류 입니다.");
             }
-            })
+        })
         .catch((error) => console.log("error:", error));
 
 
-//     fetch('https://mbti-test.herokuapp.com/comment', {
-//         method: 'GET',
-//         cache: 'no-cache',
-//         headers: {
-//             'Accept': '*',
-//             'Content-Type': 'application/json',
-//             'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-//             'Origin': 'https://mbti-test.herokuapp.com',
-//             'Referer': 'https://mbti-test.herokuapp.com'
-//             },
-//         body: JSON.stringify(commentJson),
-//     })
-//         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-//             console.log(response);
-//             return response.json();
-//         })
-//         .then(response => {
-//             if (response.status == 200) {
-// //                alert("댓글 삭제 성공!");
-// console.log(response);
-                
-// //                displayComment(commentJson, recvID, recvParentId);
+    //     fetch('https://mbti-test.herokuapp.com/comment', {
+    //         method: 'GET',
+    //         cache: 'no-cache',
+    //         headers: {
+    //             'Accept': '*',
+    //             'Content-Type': 'application/json',
+    //             'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
+    //             'Origin': 'https://mbti-test.herokuapp.com',
+    //             'Referer': 'https://mbti-test.herokuapp.com'
+    //             },
+    //         body: JSON.stringify(commentJson),
+    //     })
+    //         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+    //             console.log(response);
+    //             return response.json();
+    //         })
+    //         .then(response => {
+    //             if (response.status == 200) {
+    // //                alert("댓글 삭제 성공!");
+    // console.log(response);
 
-//             } else {
-//                 alert("오류 입니다.");
-//             }
-//             })
-//         .catch((error) => console.log("error:", error));
+    // //                displayComment(commentJson, recvID, recvParentId);
+
+    //             } else {
+    //                 alert("오류 입니다.");
+    //             }
+    //             })
+    //         .catch((error) => console.log("error:", error));
 }
 
 

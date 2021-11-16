@@ -87,13 +87,22 @@ const questionList = [
     }
 ];
 
+// ======================== Variables ========================
 const body = document.querySelector("body");
+const selectBtns = document.querySelectorAll(".select_btn");
+const qNums = document.querySelectorAll('.q-num:nth-child(n)');
+const blocks = document.querySelectorAll(".block:nth-child(n)");
+const next = document.querySelector(".next");
+const questionNumMax = questionList.length;
+
+let questionNum = 1;
+let clientClicked = "";
+
+
+// ======================== Functions ========================
 
 // body 안에 질문들을 보여준다.
 // html이 반복되어 사용되어 js를 사용하였다.
-
-displayQuestion(questionList);
-
 function displayQuestion(question) {
     let innerQuestion = question.map(function (q) {
 
@@ -119,31 +128,87 @@ function displayQuestion(question) {
 }
 
 
-// --------------------------------------------------------------------
+// 버튼을 누를 때마다 다음 문제로 이동한다.
+function scrollToNextQuestion(element, nextQuestion, duration) {
+    let setBlockCenter = 0;
 
-const selectBtns = document.querySelectorAll(".select_btn");
-const qNums = document.querySelectorAll('.q-num:nth-child(n)');
-const blocks = document.querySelectorAll(".block:nth-child(n)");
-const next = document.querySelector(".next");
-const questionNumMax = questionList.length;
+    // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
+    if (window.innerHeight > 811 && window.innerWidth < 429) {
+        setBlockCenter = vh(15);
+    }
+    else {
+        setBlockCenter = vh(7);
+    }
 
-let questionNum = 1;
-let clientClicked = "";
+    let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20;
 
+    let animateScroll = function () {
+        currentTime += increment;
+        let movement = Math.easeInOutQuad(currentTime, start, change, duration);
+        element.scrollTop = movement;
+
+        if (currentTime < duration) {
+            setTimeout(animateScroll, increment);
+        }
+    }
+    animateScroll();
+}
+
+// 남은 문항 수를 next에 보여준다.
+function changeNextText() {
+    let leftQuestion = questionNumMax - questionNum - 1;
+
+    if (window.innerWidth < 756) {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
+        next.textContent += `(총 ${questionNumMax}문항)`;
+    }
+    else {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+    }
+}
+
+// 보이는 문항의 qnum을 보여준다.
+function showNextQnum() {
+    qNums[questionNum].style.display = "block";
+}
+
+// 스스륵 내려가는 거 보여줄 때 사용한다.
+// t = current time,  b = start value, c = change in value, d = duration
+Math.easeInOutQuad = function (t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+};
+
+// vh를 계산한다.
+function vh(value) {
+    let vHeight = window.innerHeight * 0.01;
+    return vHeight * value;
+}
+
+
+// ======================== ㄱ ========================
+
+displayQuestion(questionList);
+
+
+// 1번 문제의 q-num image를 보여준다.
 qNums[questionNum - 1].style.display = "block";
 
 
 // next btn의 text의 초깃값 (11개의 항목이 남았습니다.)
 next.setAttribute('style', 'white-space: pre;');
 
+// 가로가 좁을 때 next 문장을 2줄로 표기한다.
 if (window.innerWidth < 756) {
     next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다.\r\n`;
     next.textContent += `(총 ${questionNumMax}문항)`;
-    console.log(next);
 }
 else {
     next.textContent = `${questionNumMax - 1}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
 }
+
 
 selectBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -172,64 +237,11 @@ selectBtns.forEach((btn) => {
         // 문항이 선택되면 아래로 이동한다.
         if (questionNum < questionNumMax) {
             scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
+            // (2) next btn text 변경
+            changeNextText();
+            // (3) 다음 q-num이 보인다.
+            showNextQnum();
             questionNum += 1;
         }
     });
 });
-
-
-// 버튼을 누를 때마다 다음 문제로 이동한다.
-function scrollToNextQuestion(element, nextQuestion, duration) {
-    let setBlockCenter = 0;
-
-    // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
-    if (window.innerHeight > 811 && screen.width < 429) {
-        setBlockCenter = vh(15);
-    }
-    else {
-        setBlockCenter = vh(7);
-    }
-
-    // (1) 이동
-    let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20;
-
-    let animateScroll = function () {
-        currentTime += increment;
-        let movement = Math.easeInOutQuad(currentTime, start, change, duration);
-        element.scrollTop = movement;
-
-        if (currentTime < duration) {
-            setTimeout(animateScroll, increment);
-        }
-    }
-
-    // (2) next btn text 변경
-    let leftQuestion = questionNumMax - questionNum - 1;
-
-    if (window.innerWidth < 756) {
-        next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
-        next.textContent += `(총 ${questionNumMax}문항)`;
-    }
-    else {
-        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
-    }
-
-    animateScroll();
-
-    // (3) 다음 q-num이 보인다.
-    qNums[questionNum].style.display = "block";
-}
-
-// t = current time,  b = start value, c = change in value, d = duration
-Math.easeInOutQuad = function (t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return c / 2 * t * t + b;
-    t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
-};
-
-
-function vh(value) {
-    let vHeight = window.innerHeight * 0.01;
-    return vHeight * value;
-}
