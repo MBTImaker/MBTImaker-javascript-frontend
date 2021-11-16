@@ -135,6 +135,7 @@ block - btns
   color: var(--next-btn-unclicked-font-color);
 
   cursor: default;
+  white-space: pre;
 }
 
 .showResult {
