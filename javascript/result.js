@@ -58,6 +58,7 @@ window.addEventListener('load', showAnimation);
 window.addEventListener('scroll', showAnimation);
 
 // =========================== Comment ===========================
+// 정문님 파이팅 ><
 
 const showComment = document.querySelector(".show-comment");
 
