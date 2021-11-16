@@ -640,7 +640,7 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .show-comment .comment {
-  background: #FFFFFF;
+  background: #ffffff;
 
   width: 89%;
   height: 100%;
@@ -659,10 +659,10 @@ block - communication (ver.21-11-09)
   height: 22.6%;
 }
 
-.block .communication .show-comment .comment .info .rstName{
+.block .communication .show-comment .comment .info .rstName {
   width: 40%;
   height: 83%;
-  
+
   color: var(--chemi-movie-title-mobile-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
 
@@ -670,7 +670,6 @@ block - communication (ver.21-11-09)
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .block .communication .show-comment .comment .info .rstDate {
