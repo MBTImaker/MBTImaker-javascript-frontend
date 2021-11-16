@@ -219,6 +219,10 @@ selectBtns.forEach((btn) => {
         e.currentTarget.classList.add("active");
 
         // 선택지에서 위를 선택하면 '0', 아래를 선택하면 '1'이 추가된다.
+        if (clientClicked.length > questionNum) {
+            clientClicked = clientClicked.substring(0, questionNum);
+        }
+
         if (e.currentTarget.classList.contains("top")) {
             if (selectBtns[selectBtnIndex + 1].classList.contains("active")) {
                 selectBtns[selectBtnIndex + 1].classList.remove("active");
