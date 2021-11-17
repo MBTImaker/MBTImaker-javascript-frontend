@@ -47,7 +47,9 @@ media
   }
 
   .block .share span,
-  .block .movies span {
+  .block .movies span,
+  .block .likeMe span,
+  .block .mostType span {
     font-size: var(--share-mobile-font-xs-size);
   }
 }
@@ -63,6 +65,14 @@ media
     margin: 0.625rem 3.75rem;
     border-width: 4px;
     border-radius: 32px;
+  }
+
+  .subTitle {
+    /* font */
+    font-size: var(--share-desktop-font-size);
+
+    /* margin */
+    margin-top: 3rem;
   }
 
   /* ----------------- block ----------------- */
@@ -210,15 +220,23 @@ media
     margin-bottom: 2.25rem;
   }
 
-  /* ----------------- share ----------------- */
-  .block .share span,
-  .block .movies span {
-    /* font */
-    font-size: var(--share-desktop-font-size);
-
-    /* margin */
-    margin-top: 3rem;
+  .block .whiteBox .imgAndGraph {
+    flex-direction: row;
+    justify-content: center;
   }
+
+  /* ----------------- graph ----------------- */
+
+  .block .whiteBox img {
+    margin: 1rem 2.5rem 3.75rem 0;
+  }
+
+  .circular {
+    top: -20px;
+    margin-bottom: 0;
+  }
+
+  /* ----------------- share ----------------- */
 
   .block .share .share-btns {
     /* size */

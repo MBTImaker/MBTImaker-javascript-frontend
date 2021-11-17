@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+let vHeight = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vHeight}px`);
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+const head = document.getElementsByTagName("head")[0];
 
-    <!-- favicon -->
-    <!-- test -->
-    <!-- <link rel="shortcut icon" href="../favicon/favicon.ico">
+const favicon = function () {
+    return `<link rel="shortcut icon" href="../favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
@@ -25,31 +21,7 @@
     <link rel="manifest" href="../favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff"> -->
+    <meta name="theme-color" content="#ffffff">`;
+}
 
-    <!-- css -->
-    <link rel="stylesheet" href="../css/default.css">
-    <link rel="stylesheet" href="../css/home.css">
-
-    <!-- javascript -->
-    <script src="../javascript/default.js" defer></script>
-
-    <!-- title -->
-    <title>christmas MBTI</title>
-</head>
-
-<body class="body">
-    <!-- header -->
-    <header>
-        <div class="sub-title"></div>
-        <div class="title"></div>
-    </header>
-
-    <!-- btnAndText -->
-    <div class="btnAndText">
-        <button class="btn-start" onclick="location.href=`question.html`"></button>
-        <span class="text-start">현재 총 <span class="count">34</span>명이 참여했어요.</span>
-    </div>
-</body>
-
-</html>
+head.innerHTML += favicon();

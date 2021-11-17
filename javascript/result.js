@@ -1,11 +1,64 @@
+// =========================== Variables ===========================
+
+// loading
 const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
+
+// graph
+const numb = document.querySelector(".numb");
+const circle = document.querySelector('.circle');
+const leftProgress = document.querySelector(".circle .left .progress");
+const rightProgress = document.querySelector(".circle .right .progress");
+const dot = document.querySelector(".circle .dot");
+
+// share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
 const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
 const shareText = "크리스마스";
 
-// loading 보여주기
+// graph
+const showMargin = 950;
+
+let percentage = 89;
+let counter = 0;
+
+// =========================== Loading ===========================
+
 block.style.display = "none";
+
+// =========================== Graph ===========================
+
+const showAnimation = function () {
+    if (!circle.classList.contains('show')) {
+        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+            circle.classList.add('show');
+            toggleShow();
+
+            let drawing = setInterval(() => {
+                if (counter == percentage) {
+                    toggleShow();
+                    clearInterval(drawing);
+                } else {
+                    counter += 1;
+                    numb.textContent = `${counter}%`;
+                }
+            }, 40);
+        }
+    }
+}
+
+function toggleShow() {
+    leftProgress.classList.toggle("show");
+    rightProgress.classList.toggle("show");
+    dot.classList.toggle("show");
+}
+
+
+window.addEventListener('load', showAnimation);
+window.addEventListener('scroll', showAnimation);
+
+// =========================== Comment ===========================
+// 정문님 파이팅 ><
 
 const showComment = document.querySelector(".show-comment");
 
@@ -232,12 +285,6 @@ function searchComment() {  // 댓글 페이징 조회
             })
         .catch((error) => console.log("error:", error));
 }
-
-
-
-
-
-
 
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
 console.log(Kakao.isInitialized());
