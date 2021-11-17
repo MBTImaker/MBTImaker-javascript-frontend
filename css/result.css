@@ -446,9 +446,9 @@ block - graph - image & text
 }
 
 .block .whiteBox img {
-  width: 148px;
+  width: 9.25rem;
   content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
-  margin: 1rem 2.5rem 3.75rem 0;
+  margin: 1rem 0 1.875rem 0;
 }
 /*
 ======================
@@ -460,7 +460,9 @@ block - graph - design
   height: var(--circular-size);
   width: var(--circular-size);
   position: relative;
-  top: -20px;
+  top: 0px;
+
+  margin-bottom: 3rem;
 }
 
 .circular .inner,
