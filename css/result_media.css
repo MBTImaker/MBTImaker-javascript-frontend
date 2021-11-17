@@ -225,6 +225,17 @@ media
     justify-content: center;
   }
 
+  /* ----------------- graph ----------------- */
+
+  .block .whiteBox img {
+    margin: 1rem 2.5rem 3.75rem 0;
+  }
+
+  .circular {
+    top: -20px;
+    margin-bottom: 0;
+  }
+
   /* ----------------- share ----------------- */
 
   .block .share .share-btns {
