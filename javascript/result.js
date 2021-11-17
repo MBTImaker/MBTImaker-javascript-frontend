@@ -17,7 +17,7 @@ const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/htm
 const shareText = "크리스마스";
 
 // graph
-const showMargin = 940;
+const showMargin = 942;
 
 let percentage = 89;
 let counter = 0;
@@ -42,7 +42,7 @@ const showAnimation = function () {
                     counter += 1;
                     numb.textContent = `${counter}%`;
                 }
-            }, 80);
+            }, 40);
         }
     }
 }

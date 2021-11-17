@@ -51,6 +51,9 @@ Variables
   /* graph size */
   --circular-size: 160px;
   --inner-size: 136px;
+
+  /* time */
+  --circle-half-time: 2s;
 }
 /*
 ===========
@@ -544,7 +547,7 @@ block - graph - design
 }
 .circle .left .progress {
   z-index: 1;
-  animation: left 4s linear both;
+  animation: left var(--circle-half-time) linear both;
   animation-play-state: paused;
 }
 
@@ -564,8 +567,8 @@ block - graph - design
   transform: rotate(180deg);
 }
 .circle .right .progress {
-  animation: right 4s linear both;
-  animation-delay: 4s;
+  animation: right var(--circle-half-time) linear both;
+  animation-delay: var(--circle-half-time);
   animation-play-state: paused;
 }
 @keyframes right {
@@ -581,7 +584,7 @@ block - graph - design
   width: 50%;
   height: calc((var(--circular-size) - var(--inner-size)) / 2);
   margin-top: calc(-1 * (var(--circular-size) - var(--inner-size)) / 4);
-  animation: dot 8s linear both;
+  animation: dot calc(var(--circle-half-time) * 2) linear both;
   transform-origin: 0% 50%;
   animation-play-state: paused;
 }
@@ -603,7 +606,7 @@ block - graph - design
   width: 50%;
   height: calc((var(--circular-size) - var(--inner-size)) / 2);
   margin-top: calc(-1 * (var(--circular-size) - var(--inner-size)) / 4);
-  animation: dot 8s linear both;
+  animation: dot calc(var(--circle-half-time) * 2) linear both;
   transform-origin: 0% 50%;
   animation-play-state: paused;
 }
