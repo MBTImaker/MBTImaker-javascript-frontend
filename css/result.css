@@ -19,6 +19,7 @@ Variables
   --comment-created-font-color: #8a8a8a;
   --comment-reply-background-color: #f5f5f5;
   --comment-reply-border-color: #e8e8e8;
+  --input-background-color: #ffffff;
 
   /* graph color */
   --inner-color: #ffffff;
@@ -34,6 +35,7 @@ Variables
   --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
   --share-mobile-font-size: 1.125rem; /* 18px */
   --comment-created-font-size: 0.687rem; /* 11px */
+  --placeholder-font-size: 0.75rem; /* 12px */
 
   /* line-height */
   --conclusion-desktop-line-height: 2.625rem; /* 42px */
@@ -293,10 +295,6 @@ block - result-character - point-line
 
 .point-line-reply {
   margin-top: 0.25rem;
-}
-
-.point-line-distinct-reply {
-  margin: 37px 0px 0px 33px;
 }
 
 /*
@@ -749,7 +747,8 @@ block - communication (ver.21-11-09)
 */
 
 .block .communication {
-  height: 92.875rem;
+  /* height: 92.875rem; */
+  height: 100%;
   display: flex;
 }
 
@@ -772,55 +771,56 @@ block - communication (ver.21-11-09)
 .block .communication .add-comment .nickname,
 .comment-area,
 .password {
-  background: #ffffff;
-  border: 0.125rem solid #e8e8e8; /* 2px */
-  box-sizing: border-box;
-  border-radius: 0.625rem; /* 10px */
-
+  background: var(--input-background-color);
+  border: 2px solid var(--comment-reply-border-color);
+  border-radius: 10px;
+  font-size: var(--placeholder-font-size);
   padding-left: 1.25rem; /* 20px */
 }
 
 .block .communication .add-comment .nickname {
   width: 89%;
-  height: 19%;
+  height: 2.75rem;
   margin: 2.5rem 1.25rem 0.625rem 1.25rem; /* 40px 20px 10px 20px */
 }
 
 .block .communication .add-comment .comment-area {
   width: 89%;
+  height: 13.5rem;
+  padding-top: 1.25rem;
+}
+
+.block .communication .add-comment .input-pw {
+  width: 100%;
   height: 100%;
-  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .block .communication .add-comment .password {
   width: 89%;
-  height: 19%;
+  height: 2.75rem;
   margin: 0.6875rem 1.25rem 0.625rem 1.25rem; /* 11px 20px 10px 20px */
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
   /* size */
   width: 89%;
-  height: 17.3%;
+  height: 2.25rem;
 
   /* background */
   background-image: url("../imgs/writeCommentBtn_Frame140.png");
-  background-size: 100% 100%;
+  background-size: contain;
   background-color: var(--section-background-color);
-}
-
-.loading {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .block .communication .show-comment {
   /* size */
   width: 100%;
   height: 17.65%;
+
   /* display */
   display: flex;
   flex-direction: column;
