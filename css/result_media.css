@@ -14,6 +14,7 @@ Variables
   --chemi-movie-title-desktop-font-size: 1rem; /* 16px */
   --chemi-movie-character-desktop-font-size: 1.625rem; /* 26px */
   --share-desktop-font-size: 1.75rem; /* 28px */
+  --placeholder-desktop-font-size: 1rem;
 
   --conclusion-mobile-font-xs-size: 1.1rem;
   --feature-mobile-font-xs-size: 0.8rem;
@@ -47,7 +48,9 @@ media
   }
 
   .block .share span,
-  .block .movies span {
+  .block .movies span,
+  .block .likeMe span,
+  .block .mostType span {
     font-size: var(--share-mobile-font-xs-size);
   }
 }
@@ -63,6 +66,14 @@ media
     margin: 0.625rem 3.75rem;
     border-width: 4px;
     border-radius: 32px;
+  }
+
+  .subTitle {
+    /* font */
+    font-size: var(--share-desktop-font-size);
+
+    /* margin */
+    margin-top: 3rem;
   }
 
   /* ----------------- block ----------------- */
@@ -210,15 +221,23 @@ media
     margin-bottom: 2.25rem;
   }
 
-  /* ----------------- share ----------------- */
-  .block .share span,
-  .block .movies span {
-    /* font */
-    font-size: var(--share-desktop-font-size);
-
-    /* margin */
-    margin-top: 3rem;
+  .block .whiteBox .imgAndGraph {
+    flex-direction: row;
+    justify-content: center;
   }
+
+  /* ----------------- graph ----------------- */
+
+  .block .whiteBox img {
+    margin: 1rem 2.5rem 3.75rem 0;
+  }
+
+  .circular {
+    top: -20px;
+    margin-bottom: 0;
+  }
+
+  /* ----------------- share ----------------- */
 
   .block .share .share-btns {
     /* size */
@@ -264,5 +283,48 @@ media
 
     /* margin */
     margin: 2.5rem 0;
+  }
+
+  /* ----------------- comment ----------------- */
+
+  .block .communication .add-comment .nickname,
+  .comment-area,
+  .password {
+    border-width: 3px;
+    border-radius: 20px;
+    font-size: var(--placeholder-desktop-font-size);
+  }
+
+  .block .communication .add-comment .nickname {
+    width: 79.86%;
+    height: 3.25rem;
+    margin: 2.5rem 3.7rem 1.25rem 3.7rem; /* 40px 60px 20px 60px */
+  }
+
+  .block .communication .add-comment .comment-area {
+    width: 79.86%;
+  }
+
+  .block .communication .add-comment .input-pw {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .block .communication .add-comment .password {
+    width: 63.08%;
+    height: 3.25rem;
+    margin: 1.25rem 1.25rem 0.625rem 0; /* 20px 20px 10px 0 */
+  }
+
+  .block .communication .add-comment .wrtie-comment-btn {
+    /* size */
+    width: 13.42%;
+    height: 3.25rem;
+
+    /* background */
+    background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
+
+    margin-top: 1.25rem;
   }
 }

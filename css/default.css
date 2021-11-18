@@ -7,10 +7,13 @@ Font
 */
 @font-face {
   font-family: "SBAggroM";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
-    format("woff");
+  src: local("SB 어그로 M"), local("SB 어그로OTF M"),
+    url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+      format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: fallback;
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
 }
 /*
 ===========
@@ -34,7 +37,7 @@ Global
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "SBAggroM";
+  font-family: "SBAggroM", "NanumBarunGothic";
 
   /* background */
   background-repeat: no-repeat;
@@ -44,8 +47,6 @@ Global
 
 html {
   width: 100vw;
-  /* min-width: 375px; */
-  /* height: 100%; */
 }
 
 body {

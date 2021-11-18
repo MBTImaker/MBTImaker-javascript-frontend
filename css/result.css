@@ -10,7 +10,7 @@ Variables
   --basic-font-color: #2a2a2a;
   --feature-background-color: #ffffff;
   --point-line-color: #ededed;
-  --point-line-color-comment: #E6E6E6;
+  --point-line-color-comment: #e6e6e6;
   --chemi-background-color: #ffffff;
   --chemi-border-color: #e5e5e5;
   --chemi-movie-title-mobile-font-color: #4a4a4a;
@@ -21,8 +21,6 @@ Variables
   --comment-reply-border-color: #E8E8E8;
   --comment-contents-color: #00010C;
 
-
-
   /* font-size */
   --conclusion-mobile-font-size: 1.25rem; /* 20px */
   --feature-mobile-font-size: 0.875rem; /* 14px */
@@ -30,7 +28,8 @@ Variables
   --chemi-movie-title-mobile-font-size: 0.75rem; /* 12px */
   --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
   --share-mobile-font-size: 1.125rem; /* 18px */
-  --comment-created-font-size: 0.687rem;  /* 11px */
+  --comment-created-font-size: 0.687rem; /* 11px */
+  --placeholder-font-size: 0.75rem; /* 12px */
 
   /* line-height */
   --conclusion-desktop-line-height: 2.625rem; /* 42px */
@@ -44,6 +43,13 @@ Variables
 
   /* font-weight*/
   --conclusion-mobile-font-weight: 400;
+
+  /* graph size */
+  --circular-size: 160px;
+  --inner-size: 136px;
+
+  /* time */
+  --circle-half-time: 2s;
 }
 /*
 ===========
@@ -76,6 +82,22 @@ section {
 
   /* margin */
   margin-bottom: 0.625rem; /* 10px */
+}
+
+.subTitle {
+  /* size */
+  width: 100%;
+  height: 3.25rem;
+
+  /* display */
+  display: inline-block;
+
+  /* font */
+  font-size: var(--share-mobile-font-size);
+  line-height: var(--share-mobile-line-height);
+
+  /* margin */
+  margin-top: 1.375rem;
 }
 /*
 ===========
@@ -245,8 +267,8 @@ block - result-character - point-line
 =====================================
 */
 
-.point-line, 
-.point-line-reply, 
+.point-line,
+.point-line-reply,
 .point-line-distinct-reply {
   width: 100%;
   height: 0.625rem;
@@ -369,7 +391,229 @@ block - result-character - chemistry
 .block .result-character .chemistry .bad .character-img {
   content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
 }
+/*
+============================
+block - graph - image & text
+============================
+*/
 
+.block .likeMe,
+.block .mostType {
+  /* padding */
+  padding: 0 3.75rem 3.75rem 3.75rem;
+}
+
+.block .whiteBox {
+  /* size */
+  width: 100%;
+  height: 100%;
+
+  /* background */
+  background-color: var(--chemi-background-color);
+  border: 2px solid var(--chemi-border-color);
+  border-radius: 16px;
+
+  margin-top: 0.625rem;
+}
+
+.block .whiteBox .movie-title {
+  font-size: 0.875rem;
+  margin-top: 2.5rem;
+}
+
+.block .whiteBox .movie-character {
+  font-size: 1.125rem;
+  margin-top: 0.4375rem;
+}
+
+.block .whiteBox .imgAndGraph {
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block .whiteBox img {
+  width: 9.25rem;
+  content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
+  margin: 1rem 0 1.875rem 0;
+}
+/*
+======================
+block - graph - design
+======================
+*/
+
+.circular {
+  height: var(--circular-size);
+  width: var(--circular-size);
+  position: relative;
+  top: 0px;
+
+  margin-bottom: 3rem;
+}
+
+.circular .inner,
+.circular .outer,
+.circular .circle {
+  position: absolute;
+  z-index: 6;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+}
+.circular .inner {
+  top: 50%;
+  left: 50%;
+  height: var(--inner-size);
+  width: var(--inner-size);
+  margin: calc(-1 * var(--inner-size) / 2) 0 0 calc(-1 * var(--inner-size) / 2);
+  background-color: var(--inner-color);
+  border-radius: 100%;
+}
+.circular .circle {
+  z-index: 1;
+  box-shadow: none;
+}
+.circular .numb {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 2rem;
+  color: var(--number-color);
+  white-space: nowrap;
+}
+
+.circular .numb-title {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 0.875rem;
+  color: var(--number-color);
+  white-space: nowrap;
+}
+
+.circular .bar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--bar-color);
+  border-radius: 100%;
+  clip: rect(
+    0px,
+    var(--circular-size),
+    var(--circular-size),
+    calc(var(--circular-size) / 2)
+  );
+}
+
+.circle {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.circle.show {
+  opacity: 1;
+  transform: none;
+}
+
+.circle .bar .progress {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  clip: rect(0px, calc(var(--circular-size) / 2), var(--circular-size), 0px);
+}
+.circle .bar .progress {
+  background: var(--progress-color);
+}
+.dot span,
+.fixed-dot span {
+  background: var(--progress-color);
+}
+.circle .left .progress {
+  z-index: 1;
+  animation: left var(--circle-half-time) linear both;
+  animation-play-state: paused;
+}
+
+.circle .left .progress.show,
+.circle .right .progress.show,
+.circle .dot.show {
+  animation-play-state: running;
+}
+
+@keyframes left {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+.circle .right {
+  z-index: 3;
+  transform: rotate(180deg);
+}
+.circle .right .progress {
+  animation: right var(--circle-half-time) linear both;
+  animation-delay: var(--circle-half-time);
+  animation-play-state: paused;
+}
+@keyframes right {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+.circle .fixed-dot {
+  z-index: 20;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  margin-top: calc(-1 * (var(--circular-size) - var(--inner-size)) / 4);
+  animation: dot calc(var(--circle-half-time) * 2) linear both;
+  transform-origin: 0% 50%;
+  animation-play-state: paused;
+}
+
+.circle .fixed-dot span,
+.circle .dot span {
+  position: absolute;
+  right: 0;
+  width: calc((var(--circular-size) - var(--inner-size)) / 2);
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  border-radius: 100%;
+}
+
+.circle .dot {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: calc((var(--circular-size) - var(--inner-size)) / 2);
+  margin-top: calc(-1 * (var(--circular-size) - var(--inner-size)) / 4);
+  animation: dot calc(var(--circle-half-time) * 2) linear both;
+  transform-origin: 0% 50%;
+  animation-play-state: paused;
+}
+
+@keyframes dot {
+  0% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(90deg);
+    z-index: 4;
+  }
+  100% {
+    transform: rotate(270deg);
+    z-index: 4;
+  }
+}
 /*
 =============
 block - share
@@ -378,23 +622,6 @@ block - share
 
 .block .share {
   height: 100%; /* 166px */
-}
-
-.block .share span,
-.block .movies span {
-  /* size */
-  width: 100%;
-  height: 3.25rem;
-
-  /* display */
-  display: inline-block;
-
-  /* font */
-  font-size: var(--share-mobile-font-size);
-  line-height: var(--share-mobile-line-height);
-
-  /* margin */
-  margin-top: 1.375rem;
 }
 
 .block .share .share-btns {
@@ -510,9 +737,12 @@ block - communication (ver.21-11-09)
 */
 
 .block .communication {
-  height: 92.875rem;
+  /* height: 92.875rem; */
+  height: 100%;
   display: flex;
 }
+
+/* ====================== add-comment ====================== */
 
 .block .communication .add-comment {
   /* size */
@@ -524,57 +754,61 @@ block - communication (ver.21-11-09)
   align-items: center;
 }
 
-.block .communication .add-comment .nickname::placeholder, .comment-area::placeholder, .password::placeholder {
+.block .communication .add-comment .nickname::placeholder,
+.comment-area::placeholder,
+.password::placeholder {
   color: var(--comment-placeholder-color);
 }
 
-.block .communication .add-comment .nickname, .comment-area, .password {
-  background: #FFFFFF;
-  border: 0.125rem solid #E8E8E8; /* 2px */
-  box-sizing: border-box;
-  border-radius: 0.625rem;  /* 10px */
-
-  padding-left: 1.25rem;  /* 20px */
+.block .communication .add-comment .nickname,
+.comment-area,
+.password {
+  background: var(--input-background-color);
+  border: 2px solid var(--comment-reply-border-color);
+  border-radius: 10px;
+  font-size: var(--placeholder-font-size);
+  padding-left: 1.25rem; /* 20px */
 }
 
 .block .communication .add-comment .nickname {
   width: 89%;
-  height: 19%;
-  margin: 2.5rem 1.25rem 0.625rem 1.25rem;  /* 40px 20px 10px 20px */
+  height: 2.75rem;
+  margin: 2.5rem 1.25rem 0.625rem 1.25rem; /* 40px 20px 10px 20px */
 }
-
 
 .block .communication .add-comment .comment-area {
   width: 89%;
-  height: 100%; 
-  padding-top: 0.625rem;
+  height: 13.5rem;
+  padding-top: 1.25rem;
+}
+
+.block .communication .add-comment .input-pw {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .block .communication .add-comment .password {
   width: 89%;
-  height: 19%;
-  margin: 0.6875rem 1.25rem 0.625rem 1.25rem;  /* 11px 20px 10px 20px */
+  height: 2.75rem;
+  margin: 0.6875rem 1.25rem 0.625rem 1.25rem; /* 11px 20px 10px 20px */
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
-    /* size */
-    width: 89%;
-    height: 17.3%;
-  
-    /* background */
-    background-image: url("../imgs/writeCommentBtn_Frame140.png");
-    background-size: 100% 100%;
-    background-color: var(--section-background-color);
+  /* size */
+  width: 89%;
+  height: 2.25rem;
+
+  /* background */
+  background-image: url("../imgs/writeCommentBtn_Frame140.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
 }
 
-.loading {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* ====================== show-comment ====================== */
 
 .block .communication .show-comment {
   /* size */
