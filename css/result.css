@@ -19,6 +19,8 @@ Variables
   --comment-created-font-color: #8A8A8A;
   --comment-reply-background-color: #F5F5F5;
   --comment-reply-border-color: #E8E8E8;
+  --comment-contents-color: #00010C;
+
 
 
   /* font-size */
@@ -263,13 +265,6 @@ block - result-character - point-line
   margin-top: 2.3125rem;
 }
 
-.point-line-reply {
-  margin-top: 0.25rem;
-}
-
-.point-line-distinct-reply {
-  margin: 37px 0px 0px 33px;
-}
 /*
 =====================================
 block - result-character - chemistry
@@ -584,86 +579,179 @@ block - communication (ver.21-11-09)
 .block .communication .show-comment {
   /* size */
   width: 100%;
-  height: 17.65%;
+  height: 18.22%;
+
   /* display */
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-top: 11.5%;
 }
 
 .block .communication .show-comment .comment {
-  background: #FFFFFF;
-
-  width: 89%;
+  width: 82.84%;
   height: 100%;
 
-  margin-top: 11.5%;
-
-  border: 0.125rem solid var(--point-line-color);  /* 2px */
-  box-sizing: border-box;
-  border-radius: 10px;
-}
-
-.block .communication .show-comment .comment .info {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   
-  height: 22.6%;
+  margin-bottom: 0.625rem;
 }
 
-.block .communication .show-comment .comment .info .rstName{
-  width: 40%;
-  height: 83%;
-  
+.block .communication .show-comment .comment .comment_header{
+  background-color: var(--chemi-background-color);
+
+  width: 100%;
+  height: 21.518%;
+
+  /* margin-top: 11.5%; */
+
+  border: 0.125rem solid var( --feature-background-color);  /* 2px */
+  box-sizing: border-box;
+  border-radius: 10px 10px 0px 0px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border-bottom: dashed 2px var(--point-line-color-comment);
+}
+
+.block .communication .show-comment .comment .comment_header .info {
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #FFFFFF;  
+}
+
+.block .communication .show-comment .comment .comment_header .info .commentNickname{
+  /* width: 100%;
+  height: 100%; */
+
   color: var(--chemi-movie-title-mobile-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
 
-  margin: 0.4375rem 1.3125rem 0rem 1.25rem;  /* 7px 21px 0 20px */
+  /* 17px 211px 3px 20px */
+  margin: 1.0625rem 0rem 0.1875rem 1.25rem;    
+
+  display: flex;
+  /* justify-content: flex-start; */
+  /* text-align: left; */
+  align-items: start;
+
+
+}
+
+.block .communication .show-comment .comment .comment_header .info .commentMBTI{
+  /* width: 40%;
+  height: 83%; */
+
+  /* width: 100%;
+  height: 100%; */
+
+  color: var(--comment-created-font-color);
+  font-size: var(--comment-created-font-size);
+
+  /* 0px 0 11px 20px */
+  margin: 0rem 0rem 0.6875rem 1.25rem;    
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
 
 }
 
-.block .communication .show-comment .comment .info .rstDate {
-  width: 37%;
-  height: 83%;
+.block .communication .show-comment .comment .comment_header .btn {
+  display: flex;
+
+  justify-content: space-evenly;
+  align-items: center;
+
+
+  width: 30%;
+}
+
+.block .communication .show-comment .comment .comment_header .btn .del-reply-btn{
+    /* size */
+    width: 32.14%;
+    height: 46%;
+  
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: center;
+  
+    /* background */
+    background-image: url("../imgs/replyDeleteBtn_Frame896.png");
+    background-size: 100% 100%;
+    background-color: var(--feature-background-color);
+}
+
+.block .communication .show-comment .comment .comment_header .btn .report-reply-btn{
+    /* size */
+    width: 32.14%;
+    height: 46%;
+  
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: center;
+  
+    /* background */
+    background-image: url("../imgs/replyReporteBtn_icon.png");
+    background-size: 100% 100%;
+    background-color: var(--feature-background-color);
+  
+}
+
+
+.block .communication .show-comment .comment  .comment_content {
+  background-color: var(--chemi-background-color);
+
+  width: 100%;
+  height: 63.63%;
+
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.block .communication .show-comment .comment  .comment_content .content {
+  /* width: 85.6%;
+  height: 19.3%; */
+
+
+
+  font-size: var(--chemi-movie-character-mobile-font-size);
+  color: var(--comment-contents-color);
+  background-color: var(--chemi-background-color);
+  
+  margin: 1.25rem 1.25rem 0rem 1.25rem;  /* 20px 20px 27px 20px */
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.block .communication .show-comment .comment .createdDate {
+  /* width: 37%;
+  height: 83%; */
   color: var(--comment-created-font-color);
   font-size: var(--comment-created-font-size);
 
-  margin: 0.375rem 1.25rem 0rem 0rem; /* 6px 20px 0 0 */
+  margin: 0.012rem 0rem 0.7rem 1.25rem; /* 24px 0 21px 20px */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.block .communication .show-comment .comment .info .del-reply-btn {
-  /* size */
-  width: 13%;
-  height: 47%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* background */
-  background-image: url("../imgs/replyDeleteBtn_Frame896.png");
-  background-size: 100% 100%;
-  background-color: var(--section-background-color);
-}
-
-.block .communication .show-comment .comment .rstcomment-text {
-  width: 85.6%;
-  height: 19.3%;
-
-  font-size: var(--chemi-movie-character-mobile-font-size);
-  display: inline-block;
-  margin: 1.25rem 0rem 1.125rem 0rem;  /* 20px 0px 18px 0px */
-}
 
 .block .communication .show-comment .comment .add-reply {
   width: 100%;
-  height: 52%;
+  height: 48.9%;
 
   background-color: var(--comment-reply-background-color);
   border: 0.125rem solid #EDEDED; /* 2px */
@@ -674,21 +762,33 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .show-comment .comment .add-reply .comment-reply-area {
-  width: 85.6%;
+  width: 85.66%;
   height: 34.5%;
-  margin: 0.6875rem 1.25rem 0.625rem 0.625rem;  /* 11px 20px 10px 20px */
+  margin: 0.6875rem 1.25rem 0.6875rem 1.25rem;
+  /* margin: 0.6875rem 1.25rem 0.5rem 0.625rem;   */
+  /* 11px 20px 8px 20px */
 
   border: 0.125rem solid var(--comment-reply-border-color);
   box-sizing: border-box;
   border-radius: 0.625rem;
+
+  padding-top: 0.625rem;
+  padding-left: 1.25rem;
+}
+
+.block .communication .show-comment .comment .add-reply .comment-reply-area::placeholder {
+  color: var(--comment-placeholder-color);
+  
 }
 
 .block .communication .show-comment .comment .add-reply .write-reply-btn {
   width: 85.6%;
-  height: 34.5%;
+  height: 28.125%;
 
   /* background */
   background-image: url("../imgs/replyBtn_Frame139.png");
   background-size: 100% 100%;
   background-color: var(--section-background-color);
+
+  margin-top: 0;
 }

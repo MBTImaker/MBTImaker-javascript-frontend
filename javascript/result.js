@@ -1,11 +1,65 @@
+// =========================== Variables ===========================
+
+// loading
 const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
+
+// graph
+const numb = document.querySelector(".numb");
+const circle = document.querySelector('.circle');
+const leftProgress = document.querySelector(".circle .left .progress");
+const rightProgress = document.querySelector(".circle .right .progress");
+const dot = document.querySelector(".circle .dot");
+
+// share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
 const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
 const shareText = "크리스마스";
 
-// loading 보여주기
+// graph
+const showMargin = 950;
+
+let percentage = 89;
+let counter = 0;
+
+
+// =========================== Loading ===========================
+
 block.style.display = "none";
+
+// =========================== Graph ===========================
+
+const showAnimation = function () {
+    if (!circle.classList.contains('show')) {
+        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+            circle.classList.add('show');
+            toggleShow();
+
+            let drawing = setInterval(() => {
+                if (counter == percentage) {
+                    toggleShow();
+                    clearInterval(drawing);
+                } else {
+                    counter += 1;
+                    numb.textContent = `${counter}%`;
+                }
+            }, 40);
+        }
+    }
+}
+
+function toggleShow() {
+    leftProgress.classList.toggle("show");
+    rightProgress.classList.toggle("show");
+    dot.classList.toggle("show");
+}
+
+
+window.addEventListener('load', showAnimation);
+window.addEventListener('scroll', showAnimation);
+
+// =========================== Comment ===========================
+// 정문님 파이팅 ><
 
 const showComment = document.querySelector(".show-comment");
 
@@ -21,7 +75,8 @@ let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 
 window.onload = function () {
     loading.style.display = "none";
     block.style.display = "flex";
-    showComment.style.display = "none";
+
+    searchComment();  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
 }
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
@@ -42,6 +97,8 @@ function dateToStr(svrDate) {
 function commentWrite() {
 
     showComment.style.display = "flex";
+
+    
 
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
@@ -122,22 +179,29 @@ function displayComment(comment, size) {
         
         return `
         <div class="comment" id="comment-${c.id}">
-            <div class="info">
-                <span id="rstName" class="rstName">${c.name}</span>
-                <span id="rstDate" class="rstDate">${changeCreatedDate}</span>
-                <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, ${c.name}, ${c.password})" ></button>
+            <div class="comment_header">
+                <div class="info">
+                    <span id="commentNickname" class="commentNickname">${c.name}</span>
+                    <span id="commentMBTI" class="commentMBTI">닥터 스트레인지</span>
+                </div>
+
+                <div class="btn">
+                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, ${c.name}, ${c.password})" ></button>
+                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
+                </div>
+                
             </div>
 
-                <div class="point-line-reply"></div>
-
-            <span id="rstcomment-text" class="rstcomment-text">${c.content}</span>
+             <div class="comment_content">             
+                <span id="content" class="content">${c.content}</span>
+                <span id="createdDate" class="createdDate">${changeCreatedDate}</span>
+            </div>
 
             <div class="add-reply">
                 <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
                 <button class="write-reply-btn"></button>
             </div>
-        
-        </div>
+    </div>
         `;
     });
         
@@ -185,7 +249,7 @@ console.log("DELETE__password: "+password);
         })
             .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
                 console.log(response);
-                return response.json();ㄴ
+                return response.json();
             })
             .then(response => {
                 if (response.status == 200) {
@@ -232,12 +296,6 @@ function searchComment() {  // 댓글 페이징 조회
             })
         .catch((error) => console.log("error:", error));
 }
-
-
-
-
-
-
 
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
 console.log(Kakao.isInitialized());
