@@ -83,11 +83,11 @@ function dateToStr(svrDate) {
     let today = new Date();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    let hours = ('0' + today.getHours()).slice(-2); 
+    let hours = ('0' + today.getHours()).slice(-2);
     let minutes = ('0' + today.getMinutes()).slice(-2);
-    let seconds = ('0' + today.getSeconds()).slice(-2); 
+    let seconds = ('0' + today.getSeconds()).slice(-2);
 
-    let dateToString = month  + '.' + day + " " + hours + ":" + minutes + ":" + seconds;
+    let dateToString = month + '.' + day + " " + hours + ":" + minutes + ":" + seconds;
     return dateToString;
 }
 
@@ -121,7 +121,7 @@ function commentWrite() {
             'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
             'Origin': 'https://mbti-test.herokuapp.com',
             'Referer': 'https://mbti-test.herokuapp.com'
-            },
+        },
         body: JSON.stringify(commentJson),
     })
         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
@@ -131,32 +131,32 @@ function commentWrite() {
         .then(response => {
             if (response.status == 200) {
                 alert("댓글 작성 성공!");
-console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
+                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
                 searchComment();  // 댓글 조회 함수 호출
             } else {
                 alert("오류 입니다.");
             }
-          })
+        })
         .catch((error) => console.log("error:", error));
-    
+
 }
 
 // 화면에 댓글을 보여주기 위해 HTML 코드를 리턴하는 함수
-function displayComment(comment, size) {  
+function displayComment(comment, size) {
 
     let comments = [];  // 배열 선언
     let innerComment = '';
 
-    if(isDeleteCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
-        for(let i=0; i<size; i++){
+    if (isDeleteCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
+        for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
             showComment.innerHTML = '';
         }
     }
 
-    for(let i=0; i<size; i++){
+    for (let i = 0; i < size; i++) {
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
             mbti: "ISTJ",  // MBTI 유형
@@ -170,9 +170,9 @@ function displayComment(comment, size) {
 
 
     innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
-        
+
         let changeCreatedDate = dateToStr(c.createdDate);
-        
+
         return `
         <div class="comment" id="comment-${c.id}">
             <div class="info">
@@ -193,30 +193,30 @@ function displayComment(comment, size) {
         </div>
         `;
     });
-        
-        
+
+
     // string -> html
     innerComment = innerComment.join("");
 
     // innerHTML
-    showComment.innerHTML += innerComment;    
+    showComment.innerHTML += innerComment;
 
-        
-console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
+
+    console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
 
 }
 
 function commentDelete(id, name, password) {  // 댓글 삭제
 
-// 해당 로그들은 테스트 시에만 사용 *************************************************
-console.log("DELETE__id: "+id);
-console.log("DELETE__name: "+name);
-console.log("DELETE__password: "+password);
-//**************************************************************************
+    // 해당 로그들은 테스트 시에만 사용 *************************************************
+    console.log("DELETE__id: " + id);
+    console.log("DELETE__name: " + name);
+    console.log("DELETE__password: " + password);
+    //**************************************************************************
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
-    
-    if(pwPrompt == password) {
+
+    if (pwPrompt == password) {
         // 서버로 보낼 데이터 셋팅
         let commentJson = {};
         commentJson['id'] = id;
@@ -233,12 +233,12 @@ console.log("DELETE__password: "+password);
                 'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
                 'Origin': 'https://mbti-test.herokuapp.com',
                 'Referer': 'https://mbti-test.herokuapp.com'
-                },
+            },
             body: JSON.stringify(commentJson),
         })
             .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
                 console.log(response);
-                return response.json();ㄴ
+                return response.json(); ㄴ
             })
             .then(response => {
                 if (response.status == 200) {
@@ -248,11 +248,11 @@ console.log("DELETE__password: "+password);
                     searchComment();
 
                     // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
-                    isDeleteCheck = 'true';  
+                    isDeleteCheck = 'true';
                 } else {
                     alert("오류 입니다.");
                 }
-                })
+            })
             .catch((error) => console.log("error:", error));
 
     } else {  // 비밀번호 입력에 실패했을 경우
@@ -268,7 +268,7 @@ function searchComment() {  // 댓글 페이징 조회
     let size = '3';  // 해당 페이지에서 보여 줄 댓글의 수
 
     let tmpURL = 'https://mbti-test.herokuapp.com/comment';
-    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size ;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
+    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
 
     // 서버로 부터 받은 값 저장
     fetch(reqURL)
@@ -282,7 +282,7 @@ function searchComment() {  // 댓글 페이징 조회
             } else {
                 alert("오류 입니다.");
             }
-            })
+        })
         .catch((error) => console.log("error:", error));
 }
 
@@ -306,6 +306,8 @@ function shareKakaotalk() {
         installTalk: true,
     })
 }
+
+// =========================== Share ===========================
 
 // facebook
 function shareFacebook() {
