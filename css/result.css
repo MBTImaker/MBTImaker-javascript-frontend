@@ -19,6 +19,7 @@ Variables
   --comment-created-font-color: #8a8a8a;
   --comment-reply-background-color: #f5f5f5;
   --comment-reply-border-color: #e8e8e8;
+  --input-background-color: #ffffff;
 
   /* graph color */
   --inner-color: #ffffff;
@@ -768,16 +769,16 @@ block - communication (ver.21-11-09)
 .block .communication .add-comment .nickname::placeholder,
 .comment-area::placeholder,
 .password::placeholder {
-  font-size: var(--placeholder-font-size);
   color: var(--comment-placeholder-color);
 }
 
 .block .communication .add-comment .nickname,
 .comment-area,
 .password {
-  background: #ffffff;
+  background: var(--input-background-color);
   border: 2px solid var(--comment-reply-border-color);
   border-radius: 10px;
+  font-size: var(--placeholder-font-size);
   padding-left: 1.25rem; /* 20px */
 }
 
@@ -790,7 +791,16 @@ block - communication (ver.21-11-09)
 .block .communication .add-comment .comment-area {
   width: 89%;
   height: 13.5rem;
-  padding-top: 10px;
+  padding-top: 1.25rem;
+}
+
+.block .communication .add-comment .input-pw {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .block .communication .add-comment .password {
