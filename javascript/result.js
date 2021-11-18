@@ -78,7 +78,8 @@ window.addEventListener('scroll', showAnimation);
 
 
 // =========================== Comment ===========================
-// 정문님 파이팅 ><
+// 정문님 개발 능력 수직 상승
+// 커밋이 안 뜬다
 
 const showComment = document.querySelector(".show-comment");
 
