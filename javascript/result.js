@@ -5,11 +5,8 @@ const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
 
 // graph
-const numb = document.querySelector(".numb");
-const circle = document.querySelector('.circle');
-const leftProgress = document.querySelector(".circle .left .progress");
-const rightProgress = document.querySelector(".circle .right .progress");
-const dot = document.querySelector(".circle .dot");
+const circulars = document.querySelectorAll('.circular');
+const circles = document.querySelectorAll('.circle');
 
 // share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
@@ -19,8 +16,11 @@ const shareText = "크리스마스";
 // graph
 const showMargin = 950;
 
-let percentage = 89;
-let counter = 0;
+let likeMePercentage = 89;
+let mostTypePercentage = 20;
+
+let likeMeCounter = 0;
+let mostTypeCounter = 0;
 
 // =========================== Loading ===========================
 
@@ -28,26 +28,66 @@ block.style.display = "none";
 
 // =========================== Graph ===========================
 
-const showAnimation = function () {
-    if (!circle.classList.contains('show')) {
-        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
-            circle.classList.add('show');
-            toggleShow();
+// const showAnimation = function () {
+//     if (!circle.classList.contains('show')) {
+//         if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+//             circle.classList.add('show');
+//             toggleShow();
 
-            let drawing = setInterval(() => {
-                if (counter == percentage) {
-                    toggleShow();
-                    clearInterval(drawing);
-                } else {
-                    counter += 1;
-                    numb.textContent = `${counter}%`;
-                }
-            }, 40);
+//             let drawing = setInterval(() => {
+//                 if (counter == percentage) {
+//                     toggleShow();
+//                     clearInterval(drawing);
+//                 } else {
+//                     mostTypeCounter += 1;
+//                     numb.textContent = `${counter}%`;
+//                 }
+//             }, 40);
+//         }
+//     }
+// }
+
+const showAnimation = function () {
+    circulars.forEach((circular) => {
+        const circle = circular.querySelector('.circle');
+        const numb = circular.querySelector(".numb");
+
+        if (!circle.classList.contains('show')) {
+            if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+                circle.classList.add('show');
+                toggleShow(circle);
+
+                let drawing = setInterval(() => {
+                    if (circular.id == "likeMe") {
+                        if (likeMeCounter == likeMePercentage) {
+                            toggleShow(circle);
+                            clearInterval(drawing);
+                        } else {
+                            likeMeCounter += 1;
+                            numb.textContent = `${likeMeCounter}%`;
+                        }
+                    }
+                    else {
+                        if (mostTypeCounter == mostTypePercentage) {
+                            toggleShow(circle);
+                            clearInterval(drawing);
+                        } else {
+                            mostTypeCounter += 1;
+                            numb.textContent = `${mostTypeCounter}%`;
+                        }
+                    }
+                }, 40);
+            }
         }
-    }
+    });
+
 }
 
-function toggleShow() {
+function toggleShow(item) {
+    const leftProgress = item.querySelector(".circle .left .progress");
+    const rightProgress = item.querySelector(".circle .right .progress");
+    const dot = item.querySelector(".circle .dot");
+
     leftProgress.classList.toggle("show");
     rightProgress.classList.toggle("show");
     dot.classList.toggle("show");
