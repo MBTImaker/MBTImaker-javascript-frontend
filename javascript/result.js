@@ -5,11 +5,7 @@ const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
 
 // graph
-const numb = document.querySelector(".numb");
-const circle = document.querySelector('.circle');
-const leftProgress = document.querySelector(".circle .left .progress");
-const rightProgress = document.querySelector(".circle .right .progress");
-const dot = document.querySelector(".circle .dot");
+const circulars = document.querySelectorAll('.circular');
 
 // share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
@@ -19,8 +15,11 @@ const shareText = "크리스마스";
 // graph
 const showMargin = 950;
 
-let percentage = 89;
-let counter = 0;
+let likeMePercentage = 89;
+let mostTypePercentage = 20;
+
+let likeMeCounter = 0;
+let mostTypeCounter = 0;
 
 // =========================== Loading ===========================
 
@@ -29,33 +28,54 @@ block.style.display = "none";
 // =========================== Graph ===========================
 
 const showAnimation = function () {
-    if (!circle.classList.contains('show')) {
-        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
-            circle.classList.add('show');
-            toggleShow();
+    circulars.forEach((circular) => {
+        const circle = circular.querySelector('.circle');
+        const numb = circular.querySelector(".numb");
 
-            let drawing = setInterval(() => {
-                if (counter == percentage) {
-                    toggleShow();
-                    clearInterval(drawing);
-                } else {
-                    counter += 1;
-                    numb.textContent = `${counter}%`;
-                }
-            }, 40);
+        if (!circle.classList.contains('show')) {
+            if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+                circle.classList.add('show');
+                toggleShow(circle);
+
+                let drawing = setInterval(() => {
+                    if (circular.id == "likeMe") {
+                        if (likeMeCounter == likeMePercentage) {
+                            toggleShow(circle);
+                            clearInterval(drawing);
+                        } else {
+                            likeMeCounter += 1;
+                            numb.textContent = `${likeMeCounter}%`;
+                        }
+                    }
+                    else {
+                        if (mostTypeCounter == mostTypePercentage) {
+                            toggleShow(circle);
+                            clearInterval(drawing);
+                        } else {
+                            mostTypeCounter += 1;
+                            numb.textContent = `${mostTypeCounter}%`;
+                        }
+                    }
+                }, 40);
+            }
         }
-    }
+    });
+
 }
 
-function toggleShow() {
+function toggleShow(item) {
+    const leftProgress = item.querySelector(".circle .left .progress");
+    const rightProgress = item.querySelector(".circle .right .progress");
+    const dot = item.querySelector(".circle .dot");
+
     leftProgress.classList.toggle("show");
     rightProgress.classList.toggle("show");
     dot.classList.toggle("show");
 }
 
-
 window.addEventListener('load', showAnimation);
 window.addEventListener('scroll', showAnimation);
+
 
 // =========================== Comment ===========================
 // 정문님 파이팅 ><
@@ -68,7 +88,6 @@ const chkcommentArea = document.querySelector(".comment-area");
 
 const chkRstName = document.querySelector('.rstName');  // 댓글이 하나도 없는 경우 댓글 화면을 보여주지 못하므로 해당 값 체크
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
-
 
 
 window.onload = function () {
