@@ -201,7 +201,6 @@ function displayComment(comment, size) {
     // innerHTML
     showComment.innerHTML += innerComment;
 
-
     console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
 
 }
@@ -286,6 +285,8 @@ function searchComment() {  // 댓글 페이징 조회
         .catch((error) => console.log("error:", error));
 }
 
+// =========================== Share ===========================
+
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
 console.log(Kakao.isInitialized());
 
@@ -306,8 +307,6 @@ function shareKakaotalk() {
         installTalk: true,
     })
 }
-
-// =========================== Share ===========================
 
 // facebook
 function shareFacebook() {

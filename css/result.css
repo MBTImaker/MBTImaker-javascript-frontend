@@ -752,6 +752,8 @@ block - communication (ver.21-11-09)
   display: flex;
 }
 
+/* ====================== add-comment ====================== */
+
 .block .communication .add-comment {
   /* size */
   width: 100%;
@@ -816,10 +818,12 @@ block - communication (ver.21-11-09)
   background-color: var(--section-background-color);
 }
 
+/* ====================== show-comment ====================== */
+
 .block .communication .show-comment {
   /* size */
   width: 100%;
-  height: 17.65%;
+  height: 100%;
 
   /* display */
   display: flex;
@@ -828,31 +832,35 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .show-comment .comment {
-  background: #ffffff;
-
+  /* size */
   width: 89%;
   height: 100%;
 
-  margin-top: 11.5%;
+  /* margin */
+  margin-top: 2.0625rem;
 
-  border: 0.125rem solid var(--point-line-color); /* 2px */
-  box-sizing: border-box;
+  /* background */
+  background: #ffffff;
+  border: 2px solid var(--point-line-color);
   border-radius: 10px;
 }
 
 .block .communication .show-comment .comment .info {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   height: 22.6%;
 }
 
 .block .communication .show-comment .comment .info .rstName {
-  width: 40%;
-  height: 83%;
+  /* width: 40%; */
+  /* height: 83%; */
 
   color: var(--chemi-movie-title-mobile-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
+  line-height: 3rem;
 
   margin: 0.4375rem 1.3125rem 0rem 1.25rem; /* 7px 21px 0 20px */
   display: flex;
