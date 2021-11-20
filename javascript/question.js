@@ -249,7 +249,7 @@ selectBtns.forEach((btn) => {
             next.classList.remove("next");
             next.classList.add("showResult");
             next.onclick = function () {
-                location.href = 'result.html';
+                location.href = "result.html?result=" + clientClicked;
             }
         }
     });

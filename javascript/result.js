@@ -25,6 +25,9 @@ let mostTypeCounter = 0;
 
 block.style.display = "none";
 
+const result = location.href.split("=")[1];
+console.log(result);
+
 // =========================== Graph ===========================
 
 const showAnimation = function () {
