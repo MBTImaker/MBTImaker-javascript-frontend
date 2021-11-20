@@ -5,11 +5,6 @@ const loading = document.querySelector(".loading");
 const block = document.querySelector(".block");
 
 // graph
-const numb = document.querySelector(".numb");
-const circle = document.querySelector('.circle');
-const leftProgress = document.querySelector(".circle .left .progress");
-const rightProgress = document.querySelector(".circle .right .progress");
-const dot = document.querySelector(".circle .dot");
 const circulars = document.querySelectorAll('.circular');
 
 // share
@@ -18,11 +13,7 @@ const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/htm
 const shareText = "크리스마스";
 
 // graph
-const showMargin = 950;
-
-let percentage = 89;
-let counter = 0;
-
+const showMargin = 970;
 
 let likeMePercentage = 89;
 let mostTypePercentage = 20;
@@ -37,25 +28,6 @@ block.style.display = "none";
 // =========================== Graph ===========================
 
 const showAnimation = function () {
-    if (!circle.classList.contains('show')) {
-        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
-            circle.classList.add('show');
-            toggleShow();
-
-            let drawing = setInterval(() => {
-                if (counter == percentage) {
-                    toggleShow();
-                    clearInterval(drawing);
-                } else {
-                    counter += 1;
-                    numb.textContent = `${counter}%`;
-                }
-            }, 40);
-        }
-    }
-}
-
-function toggleShow() {
     circulars.forEach((circular) => {
         const circle = circular.querySelector('.circle');
         const numb = circular.querySelector(".numb");
@@ -88,7 +60,6 @@ function toggleShow() {
             }
         }
     });
-
 }
 
 function toggleShow(item) {
@@ -100,7 +71,6 @@ function toggleShow(item) {
     rightProgress.classList.toggle("show");
     dot.classList.toggle("show");
 }
-
 
 window.addEventListener('load', showAnimation);
 window.addEventListener('scroll', showAnimation);
@@ -146,7 +116,7 @@ function commentWrite() {
 
     showComment.style.display = "flex";
 
-    
+
 
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
