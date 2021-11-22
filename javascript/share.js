@@ -1,3 +1,13 @@
+// =========================== Variables ===========================
+
+// share
+const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
+const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
+const mainText = "나의 영화 캐릭터 유형은? ‘닥터스트레인지의 닥터스트레인지’";
+const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
+const shareImage = "url(../imgs/share_img_test.png)";
+
+
 // =========================== Share ===========================
 
 Kakao.init('KAKAO_JAVASCRIPT_KEY');
@@ -28,7 +38,7 @@ function shareFacebook() {
 
 // twitter
 function shareTwitter() {
-    window.open("https://twitter.com/intent/tweet?text=" + shareText + "&url=" + shareLink);
+    window.open("https://twitter.com/intent/tweet?text=" + mainText + "&url=" + shareLink);
 }
 
 function format() {
@@ -40,7 +50,7 @@ function format() {
 
 // band
 function shareBand() {
-    let encodeBody = encodeURIComponent(format('{0}\n{1}', shareText, shareLink));
+    let encodeBody = encodeURIComponent(format('{0}\n{1}', mainText, shareLink));
     let encodeRoute = encodeURIComponent(window.location.href);
     let link = format('http://band.us/plugin/share?body={0}&route={1}', encodeBody, encodeRoute);
     window.open(link, 'share', 'width=500, height=500');

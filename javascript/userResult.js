@@ -7,11 +7,6 @@ const block = document.querySelector(".block");
 // graph
 const circulars = document.querySelectorAll('.circular');
 
-// share
-const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
-const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
-const shareText = "크리스마스";
-
 // graph
 const showMargin = 970;
 
