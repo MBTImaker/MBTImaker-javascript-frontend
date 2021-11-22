@@ -186,7 +186,7 @@ block - result-character - textAndImg
   height: 1.25rem;
 
   /* background */
-  content: url("../imgs/movie_title/ISFJ_T.png");
+  /* content: url("../imgs/movie_title/ISFJ_T.png"); */
 
   /* margin */
   margin-top: 1.6rem;
