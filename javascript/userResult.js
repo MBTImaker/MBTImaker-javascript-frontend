@@ -53,11 +53,10 @@ function showResult(data) {
     const mbtiResult = data.mbtiResult;
     console.log(`user MBTI: ${mbtiResult.mbti}`);
 
-    const movieTitle = document.querySelector(".block .result-character .textAndImg .movie-title");
-    // movieTitle.style.content = "url('mbtiResult.character.movieName.url')";
-    // console.log(movieTitle.style.content);
-    // console.log(movieTitle);
-    // console.log(mbtiResult.character.movieName.url);
+    const textAndImg = document.querySelector(".block .result-character .textAndImg");
+    textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;
+    textAndImg.querySelector(".movie-character").src = mbtiResult.character.name.url;
+    textAndImg.querySelector(".character-img").src = mbtiResult.character.image.url;
 
 
     // ---------------- conclusion ----------------
@@ -70,15 +69,30 @@ function showResult(data) {
     }
 
     // ---------------- chemistry ----------------
-    const goodChemi = document.querySelector(".block .result-character .chemistry .good"); // 
+    const goodChemi = document.querySelector(".block .result-character .chemistry .good");
     goodChemi.querySelector(".movie-title").innerHTML = mbtiResult.bestChemistry.movieName;
     goodChemi.querySelector(".movie-character").innerHTML = mbtiResult.bestChemistry.characterName;
-    goodChemi.querySelector(".character-img").style.content = "url('mbtiResult.bestChemistry.imageUrl')";
+    goodChemi.querySelector(".character-img").src = mbtiResult.bestChemistry.imageUrl;
 
-    const badChemi = document.querySelector(".block .result-character .chemistry .bad"); // 
+    const badChemi = document.querySelector(".block .result-character .chemistry .bad");
     badChemi.querySelector(".movie-title").innerHTML = mbtiResult.worstChemistry.movieName;
     badChemi.querySelector(".movie-character").innerHTML = mbtiResult.worstChemistry.characterName;
-    badChemi.querySelector(".character-img").style.content = "url('mbtiResult.worstChemistry.imageUrl')";
+    badChemi.querySelector(".character-img").src = mbtiResult.worstChemistry.imageUrl;
+    console.log(mbtiResult.worstChemistry.imageUrl);
+
+    // ------------------ graph -----------------
+    const likeMe = document.querySelector(".block .likeMe .whiteBox");
+    const sameType = data.sameType;
+    likeMe.querySelector(".movie-title").innerHTML = sameType.movieName;
+    likeMe.querySelector(".movie-character").innerHTML = sameType.characterName;
+    likeMe.querySelector("img").src = sameType.imageUrl;
+    console.log(likeMe.querySelector("img"));
+
+    const mostType = document.querySelector(".block .mostType .whiteBox");
+    const mostPopularType = data.mostPopularType;
+    mostType.querySelector(".movie-title").innerHTML = mostPopularType.movieName;
+    mostType.querySelector(".movie-character").innerHTML = mostPopularType.characterName;
+    mostType.querySelector("img").src = mostPopularType.imageUrl;
 }
 
 // =========================== Graph ===========================

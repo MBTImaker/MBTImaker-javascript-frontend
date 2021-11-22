@@ -197,7 +197,7 @@ block - result-character - textAndImg
   height: 1.875rem;
 
   /* background */
-  content: url("../imgs/movie_character/ISFJ_C.png");
+  /* content: url("../imgs/movie_character/ISFJ_C.png"); */
 
   /* margin */
   margin-top: 1.375rem;
@@ -210,7 +210,7 @@ block - result-character - textAndImg
   object-fit: contain;
 
   /* imgage */
-  content: url("../imgs/chracter-img/ISFJ_I.png");
+  /* content: url("../imgs/chracter-img/ISFJ_I.png"); */
 
   /* margin */
   margin-top: 2.375rem;
@@ -391,11 +391,11 @@ block - result-character - chemistry
 }
 
 .block .result-character .chemistry .good .character-img {
-  content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
+  /* content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png"); */
 }
 
 .block .result-character .chemistry .bad .character-img {
-  content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png");
+  /* content: url("../imgs/movie_character/soundofmusic_maria_s_image31.png"); */
 }
 /*
 ============================
