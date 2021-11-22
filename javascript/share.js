@@ -2,8 +2,8 @@
 
 // share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
-const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
-const mainText = "나의 영화 캐릭터 유형은? ‘닥터스트레인지의 닥터스트레인지’";
+const shareLink = window.location.href;// "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
+const mainText = "나의 영화 캐릭터 유형은? 닥터스트레인지의 닥터스트레인지";
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(../imgs/share_img_test.png)";
 
