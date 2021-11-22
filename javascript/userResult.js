@@ -10,8 +10,8 @@ const circulars = document.querySelectorAll('.circular');
 // graph
 const showMargin = 970;
 
-let likeMePercentage = 89;
-let mostTypePercentage = 20;
+let likeMePercentage = 0;
+let mostTypePercentage = 0;
 
 let likeMeCounter = 0;
 let mostTypeCounter = 0;
@@ -86,13 +86,14 @@ function showResult(data) {
     likeMe.querySelector(".movie-title").innerHTML = sameType.movieName;
     likeMe.querySelector(".movie-character").innerHTML = sameType.characterName;
     likeMe.querySelector("img").src = sameType.imageUrl;
-    console.log(likeMe.querySelector("img"));
+    likeMePercentage = sameType.percentage;
 
     const mostType = document.querySelector(".block .mostType .whiteBox");
     const mostPopularType = data.mostPopularType;
     mostType.querySelector(".movie-title").innerHTML = mostPopularType.movieName;
     mostType.querySelector(".movie-character").innerHTML = mostPopularType.characterName;
     mostType.querySelector("img").src = mostPopularType.imageUrl;
+    mostTypePercentage = mostType.percentage;
 }
 
 // =========================== Graph ===========================
