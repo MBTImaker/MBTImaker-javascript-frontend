@@ -4,10 +4,31 @@
 
 // share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
-const shareLink = window.location.href;
-const mainText = "나의 영화 캐릭터 유형은? '닥터스트레인지의 닥터스트레인지'";
+const shareLink = window.location.href; // 차후에 배포되면 home.html로 수정
+let mainText = "나의 영화 캐릭터 유형은? ";
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(../imgs/share_img_test.png)";
+
+switch (MBTI) {
+    case (ISTJ): {
+        mainText += "'킹스맨의 해리 하트'";
+    }
+    case (ISFJ): {
+        mainText += "'셜록홈즈의 왓슨'";
+    }
+    case (ISTP): {
+        mainText += "'007의 제임스 본드'";
+    }
+    case (ISFP): {
+        mainText += "'타이타닉의 로즈'";
+    }
+    case (INTJ): {
+        mainText += "'닥터 스트레인지의 닥터 스트레인지'";
+    }
+    case (INTP): {
+        mainText += "'이미테이션 게임의 앨런 튜링'";
+    }
+}
 
 
 // =========================== Share ===========================
