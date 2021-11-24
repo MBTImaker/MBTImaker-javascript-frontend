@@ -17,7 +17,7 @@ let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
 // userResult.js
-let MBTI = '';
+let MBTI = "";
 
 // =========================== Loading ===========================
 
@@ -53,11 +53,14 @@ fetch("https://mbti-test.herokuapp.com/test", {
         showResult(info.data);
     });
 
+
+
 // 가져온 것들을 html에 설정한다.
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
     console.log(`user MBTI: ${mbtiResult.mbti}`);
     MBTI = mbtiResult.mbti;
+    setMaintext(MBTI);
 
     const textAndImg = document.querySelector(".block .result-character .textAndImg");
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;
