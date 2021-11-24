@@ -1,5 +1,7 @@
 // =========================== Variables ===========================
 
+
+
 // share
 const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
 const shareLink = window.location.href;// "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
