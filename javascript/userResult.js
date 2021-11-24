@@ -78,7 +78,6 @@ function showResult(data) {
     badChemi.querySelector(".movie-title").innerHTML = mbtiResult.worstChemistry.movieName;
     badChemi.querySelector(".movie-character").innerHTML = mbtiResult.worstChemistry.characterName;
     badChemi.querySelector(".character-img").src = mbtiResult.worstChemistry.imageUrl;
-    console.log(mbtiResult.worstChemistry.imageUrl);
 
     // ------------------ graph -----------------
     const likeMe = document.querySelector(".block .likeMe .whiteBox");
@@ -87,13 +86,22 @@ function showResult(data) {
     likeMe.querySelector(".movie-character").innerHTML = sameType.characterName;
     likeMe.querySelector("img").src = sameType.imageUrl;
     likeMePercentage = sameType.percentage;
+    console.log(likeMePercentage);
 
     const mostType = document.querySelector(".block .mostType .whiteBox");
     const mostPopularType = data.mostPopularType;
     mostType.querySelector(".movie-title").innerHTML = mostPopularType.movieName;
     mostType.querySelector(".movie-character").innerHTML = mostPopularType.characterName;
     mostType.querySelector("img").src = mostPopularType.imageUrl;
-    mostTypePercentage = mostType.percentage;
+    mostTypePercentage = mostPopularType.percentage;
+    console.log(mostTypePercentage);
+
+    // ----------- recommendedMovies -----------
+    const movieList = document.querySelectorAll(".block .movies .movie-list li img:nth-child(n)");
+    const recommendedMovies = mbtiResult.recommendedMovies;
+    for (let i = 0; i < movieList.length; i++) {
+        movieList[i].src = recommendedMovies[i].url;
+    }
 }
 
 // =========================== Graph ===========================

@@ -678,7 +678,7 @@ block - movies
 */
 
 .block .movies {
-  height: 53.375rem;
+  height: 100%;
 }
 
 .block .movies .movie-list {
@@ -706,17 +706,8 @@ block - movies
 .block .movies .movie-list li img {
   /* size */
   width: 100%;
-  height: 100%;
+  height: 14.875rem;
   object-fit: contain;
-
-  /* background */
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid var(--chemi-border-color);
-  border-radius: 16px;
-}
-
-.block .movies .movie-list li .movie-01 {
-  content: url("../imgs/share-icons/share_instagram_Frame89.png");
 }
 /*
 ===============
