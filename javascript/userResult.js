@@ -16,6 +16,9 @@ let mostTypePercentage = 0;
 let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
+// userResult.js
+const MBTI = '';
+
 // =========================== Loading ===========================
 
 block.style.display = "none";
@@ -54,6 +57,7 @@ fetch("https://mbti-test.herokuapp.com/test", {
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
     console.log(`user MBTI: ${mbtiResult.mbti}`);
+    MBTI = mbtiResult.mbti;
 
     const textAndImg = document.querySelector(".block .result-character .textAndImg");
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;
