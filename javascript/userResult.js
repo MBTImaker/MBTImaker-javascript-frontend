@@ -17,7 +17,7 @@ let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
 // userResult.js
-const MBTI = '';
+let MBTI = '';
 
 // =========================== Loading ===========================
 
