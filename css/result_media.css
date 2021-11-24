@@ -226,6 +226,16 @@ media
     justify-content: center;
   }
 
+  .block .whiteBox .movie-title {
+    font-size: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .block .whiteBox .movie-character {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
   /* ----------------- graph ----------------- */
 
   .block .whiteBox img {
