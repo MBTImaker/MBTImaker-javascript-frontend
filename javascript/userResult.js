@@ -59,8 +59,8 @@ function showResult(data) {
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;
     textAndImg.querySelector(".movie-character").src = mbtiResult.character.name.url;
     textAndImg.querySelector(".character-img").src = mbtiResult.character.image.url;
-    // document.querySelector('meta[property="og:image"]').setAttribute("content", "http://www.your-domain.com/path/image.jpg");
-    // document.querySelector('meta[name="twitter:image"]').setAttribute("content", "http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg");
+    document.querySelector('meta[property="og:image"]').setAttribute("content", mbtiResult.character.image.url);
+    document.querySelector('meta[name="twitter:image"]').setAttribute("content", mbtiResult.character.image.url);
 
     // ---------------- conclusion ----------------
     const conclusion = document.querySelector(".block .result-character .conclusion");
