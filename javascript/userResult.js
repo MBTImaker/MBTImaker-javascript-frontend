@@ -59,8 +59,8 @@ function showResult(data) {
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;
     textAndImg.querySelector(".movie-character").src = mbtiResult.character.name.url;
     textAndImg.querySelector(".character-img").src = mbtiResult.character.image.url;
-    document.querySelector('meta[property="og:image"]').setAttribute("content", mbtiResult.character.image.url);
-    document.querySelector('meta[name="twitter:image"]').setAttribute("content", mbtiResult.character.image.url);
+    document.querySelector('meta[property="og:image"]').setAttribute("src", mbtiResult.character.image.url);
+    document.querySelector('meta[name="twitter:image"]').setAttribute("src", mbtiResult.character.image.url);
 
     // ---------------- conclusion ----------------
     const conclusion = document.querySelector(".block .result-character .conclusion");
