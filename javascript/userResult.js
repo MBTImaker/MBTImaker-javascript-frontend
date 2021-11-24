@@ -8,7 +8,7 @@ const block = document.querySelector(".block");
 const circulars = document.querySelectorAll('.circular');
 
 // graph
-const showMargin = 970;
+const showMargin = 900;
 
 let likeMePercentage = 0;
 let mostTypePercentage = 0;
@@ -29,12 +29,14 @@ block.style.display = "flex";
 
 // ========================= MBTI Result =========================
 
+// 000000000000 -> 000-000-000-000
 let result = location.href.split("=")[1];
 
 result = result.slice(0, 3) + '-' + result.slice(2, 5) + '-' + result.slice(4, 7) + '-' + result.slice(6, 9);
 console.log(`user clicked: ${result}`);
 
 
+// 결과값을 보내면 파이어베이스에서 텍스트와 이미지를 가져온다.
 fetch("https://mbti-test.herokuapp.com/test", {
     method: "POST",
     headers: {
@@ -48,7 +50,7 @@ fetch("https://mbti-test.herokuapp.com/test", {
         showResult(info.data);
     });
 
-
+// 가져온 것들을 html에 설정한다.
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
     console.log(`user MBTI: ${mbtiResult.mbti}`);
@@ -106,6 +108,7 @@ function showResult(data) {
 
 // =========================== Graph ===========================
 
+// result.html에서 그래프 2개를 가져와서 애니메이션을 실행한다.
 const showAnimation = function () {
     circulars.forEach((circular) => {
         const circle = circular.querySelector('.circle');
@@ -117,6 +120,7 @@ const showAnimation = function () {
                 toggleShow(circle);
 
                 let drawing = setInterval(() => {
+                    // id에 따라서 다른 숫자를 보여준다.
                     if (circular.id == "likeMe") {
                         if (likeMeCounter == likeMePercentage) {
                             toggleShow(circle);
@@ -135,12 +139,13 @@ const showAnimation = function () {
                             numb.textContent = `${mostTypeCounter}%`;
                         }
                     }
-                }, 40);
+                }, 40); // 숫자가 작을수록 빠르다.
             }
         }
     });
 }
 
+// .show를 toggle한다. 처음엔 없다가 보여주고 숫자에 다다르면 애니메이션을 종료한다.
 function toggleShow(item) {
     const leftProgress = item.querySelector(".circle .left .progress");
     const rightProgress = item.querySelector(".circle .right .progress");
