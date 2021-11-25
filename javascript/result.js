@@ -116,7 +116,6 @@ const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
 
 
-const chkRstName = document.querySelector('.rstName');  // 댓글이 하나도 없는 경우 댓글 화면을 보여주지 못하므로 해당 값 체크
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 
 
@@ -129,15 +128,14 @@ window.onload = function () {
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(svrDate) {
+// 서버에서 보내주는 값: 2021-11-23T13:04:59.610937
 
-    let today = new Date();
-    let month = ('0' + (today.getMonth() + 1)).slice(-2);
-    let day = ('0' + today.getDate()).slice(-2);
-    let hours = ('0' + today.getHours()).slice(-2);
-    let minutes = ('0' + today.getMinutes()).slice(-2);
-    let seconds = ('0' + today.getSeconds()).slice(-2);
+    let month = svrDate.substring(5, 7);
+    let day = svrDate.substring(8, 10);
+    let times = svrDate.substring(11, 19);
 
-    let dateToString = month + '.' + day + " " + hours + ":" + minutes + ":" + seconds;
+
+    let dateToString = month + '.' + day + " " + times;
     return dateToString;
 }
 
@@ -145,8 +143,6 @@ function dateToStr(svrDate) {
 function commentWrite() {
 
     showComment.style.display = "flex";
-
-    
 
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
@@ -237,19 +233,16 @@ function displayComment(comment, size) {
                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, ${c.name}, ${c.password})" ></button>
                     <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
                 </div>
-                
+            
             </div>
 
-             <div class="comment_content">             
+            <div class="comment_content">             
                 <span id="content" class="content">${c.content}</span>
                 <span id="createdDate" class="createdDate">${changeCreatedDate}</span>
             </div>
 
-            <div class="add-reply">
-                <textarea name="comment-reply-area" class="comment-reply-area" id="comment-reply-area" rows="18" placeholder="답글을 달아주세요"></textarea>
-                <button class="write-reply-btn"></button>
-            </div>
-    </div>
+            
+        </div>
         `;
     });
 
@@ -345,6 +338,8 @@ function searchComment() {  // 댓글 페이징 조회
         })
         .catch((error) => console.log("error:", error));
 }
+
+
 
 
 // =========================== Share ===========================
