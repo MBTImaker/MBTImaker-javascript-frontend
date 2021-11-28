@@ -1,3 +1,111 @@
+// =========================== Variables ===========================
+
+// loading
+const loading = document.querySelector(".loading");
+const block = document.querySelector(".block");
+
+// graph
+const numb = document.querySelector(".numb");
+const circle = document.querySelector('.circle');
+const leftProgress = document.querySelector(".circle .left .progress");
+const rightProgress = document.querySelector(".circle .right .progress");
+const dot = document.querySelector(".circle .dot");
+const circulars = document.querySelectorAll('.circular');
+
+// share
+const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
+const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html";
+const shareText = "크리스마스";
+
+// graph
+const showMargin = 950;
+
+let percentage = 89;
+let counter = 0;
+
+
+let likeMePercentage = 89;
+let mostTypePercentage = 20;
+
+let likeMeCounter = 0;
+let mostTypeCounter = 0;
+
+// =========================== Loading ===========================
+
+block.style.display = "none";
+
+// =========================== Graph ===========================
+
+const showAnimation = function () {
+    if (!circle.classList.contains('show')) {
+        if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+            circle.classList.add('show');
+            toggleShow();
+
+            let drawing = setInterval(() => {
+                if (counter == percentage) {
+                    toggleShow();
+                    clearInterval(drawing);
+                } else {
+                    counter += 1;
+                    numb.textContent = `${counter}%`;
+                }
+            }, 40);
+        }
+    }
+}
+
+function toggleShow() {
+    circulars.forEach((circular) => {
+        const circle = circular.querySelector('.circle');
+        const numb = circular.querySelector(".numb");
+
+        if (!circle.classList.contains('show')) {
+            if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
+                circle.classList.add('show');
+                toggleShow(circle);
+
+                let drawing = setInterval(() => {
+                    if (circular.id == "likeMe") {
+                        if (likeMeCounter == likeMePercentage) {
+                            toggleShow(circle);
+                            clearInterval(drawing);
+                        } else {
+                            likeMeCounter += 1;
+                            numb.textContent = `${likeMeCounter}%`;
+                        }
+                    }
+                    else {
+                        if (mostTypeCounter == mostTypePercentage) {
+                            toggleShow(circle);
+                            clearInterval(drawing);
+                        } else {
+                            mostTypeCounter += 1;
+                            numb.textContent = `${mostTypeCounter}%`;
+                        }
+                    }
+                }, 40);
+            }
+        }
+    });
+
+}
+
+function toggleShow(item) {
+    const leftProgress = item.querySelector(".circle .left .progress");
+    const rightProgress = item.querySelector(".circle .right .progress");
+    const dot = item.querySelector(".circle .dot");
+
+    leftProgress.classList.toggle("show");
+    rightProgress.classList.toggle("show");
+    dot.classList.toggle("show");
+}
+
+
+window.addEventListener('load', showAnimation);
+window.addEventListener('scroll', showAnimation);
+
+
 // =========================== Comment ===========================
 // 정문님 개발 능력 수직 상승
 // 커밋이 안 뜬다
@@ -8,12 +116,14 @@ const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
 
 
+const chkRstName = document.querySelector('.rstName');  // 댓글이 하나도 없는 경우 댓글 화면을 보여주지 못하므로 해당 값 체크
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 
-let errorMsg = '';  // 에러메시지 안내
-let tmpMBTI = '';
 
 window.onload = function () {
+    loading.style.display = "none";
+    block.style.display = "flex";
+
     searchComment();  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
 }
 
@@ -35,8 +145,6 @@ function commentWrite() {
 
     showComment.style.display = "flex";
 
-    setMaintext(MBTI);  // share.js 파일의 setMaintext() 함수를 통해 MBTI 유형 값을 받아옴
-
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
     let content = document.getElementById("comment-area").value;
@@ -45,7 +153,7 @@ function commentWrite() {
     // 서버로 보낼 데이터 셋팅
     let commentJson = {};
     commentJson['content'] = content;
-    commentJson['mbti'] = MBTI;
+    commentJson['mbti'] = 'ISTJ';
     commentJson['name'] = nickname;
     commentJson['password'] = password;
 
@@ -76,11 +184,7 @@ function commentWrite() {
 
                 searchComment();  // 댓글 조회 함수 호출
             } else {
-                // 오류 발생 시 alert 로 메시지 표출
-                for(let i=0; i<response.errors.length; i++){
-                    errorMsg += response.errors[i].reason + '\n';
-                }
-                alert(errorMsg);
+                alert("오류 입니다.");
             }
         })
         .catch((error) => console.log("error:", error));
@@ -93,9 +197,6 @@ function displayComment(comment, size) {
     let comments = [];  // 배열 선언
     let innerComment = '';
 
-    let j = 3;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
-
-
     if (isDeleteCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
             comments.length = 0;
@@ -105,27 +206,15 @@ function displayComment(comment, size) {
     }
 
     for (let i = 0; i < size; i++) {
-        // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
-        userMBTI = comment.data.content[i].mbti; 
-        setMaintext(userMBTI);
-
-        let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
-
-        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length); // 분리된 값들은 배열 형식으로 저장되며, '의' 글자 뒷 부분이 영화 주인공 이름임.
-        //==========================================================================================
-
-
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${characterNameForReply}`,  // MBTI 유형
+            mbti: "ISTJ",  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
             parentId: `${comment.data.content[i].parentId}`,  // 해당 댓글의 부모 id(서버에서 보관)
             createdDate: `${comment.data.content[i].createdDate}`,  // 해당 댓글 작성 시간
         });
-
-        j += 2;
     }
 
 
@@ -138,7 +227,7 @@ function displayComment(comment, size) {
             <div class="comment_header">
                 <div class="info">
                     <span id="commentNickname" class="commentNickname">${c.name}</span>
-                    <span id="commentMBTI" class="commentMBTI">${c.mbti}</span>
+                    <span id="commentMBTI" class="commentMBTI">닥터 스트레인지</span>
                 </div>
 
                 <div class="btn">
@@ -154,6 +243,7 @@ function displayComment(comment, size) {
             </div>
 
             
+
         </div>
         `;
     });
@@ -215,12 +305,8 @@ function commentDelete(id, name, password) {  // 댓글 삭제
                     // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
                     isDeleteCheck = 'true';
                 } else {
-                    // 오류 발생 시 alert 로 메시지 표출
-                    for(let i=0; i<response.errors.length; i++){
-                        errorMsg += response.errors[i].reason + '\n';
-                    }
-                    alert(errorMsg);
-                    }
+                    alert("오류 입니다.");
+                }
             })
             .catch((error) => console.log("error:", error));
 
@@ -253,4 +339,117 @@ function searchComment() {  // 댓글 페이징 조회
             }
         })
         .catch((error) => console.log("error:", error));
+}
+
+function replyWrite(replyNickName, replyCont, replyPw, parentId) {
+
+console.log("replyNickName: "+replyNickName);
+console.log("replyCont: "+replyCont);
+console.log("replyPw: "+replyPw);
+console.log("parentId: "+parentId);
+
+    showComment.style.display = "flex";
+
+    // 사용자가 입력 한 값을 받아온다.
+    let nickname = document.getElementById("nickname").value;
+    let content = document.getElementById("comment-reply-area").value;
+    let password = document.getElementById("password").value;
+
+    // 서버로 보낼 데이터 셋팅
+    let commentJson = {};
+    commentJson['content'] = content;
+    commentJson['mbti'] = 'ISTJ';
+    commentJson['name'] = nickname;
+    commentJson['password'] = password;
+    commentJson['parentId'] = parentId;
+
+    // 서버로 부터 받은 값 저장
+    // let recvID; // 각 댓글의 id 값
+    // let recvParentId; // 각 댓글의 부모id 값
+
+    fetch('https://mbti-test.herokuapp.com/reply', {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Accept': '*/*',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/reply',
+            'Origin': 'https://mbti-test.herokuapp.com',
+            'Referer': 'https://mbti-test.herokuapp.com'
+        },
+        body: JSON.stringify(commentJson),
+    })
+        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+            console.log(response);
+            return response.json();
+        })
+        .then(response => {
+            if (response.status == 200) {
+                alert("댓글 작성 성공!");
+                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
+
+//                searchComment();  // 댓글 조회 함수 호출
+alert("대댓글 성공!");
+            } else {
+                console.log(response);
+                alert("오류 입니다.");
+            }
+        })
+        .catch((error) => console.log("error:", error));
+
+}
+
+
+
+// =========================== Share ===========================
+
+Kakao.init('KAKAO_JAVASCRIPT_KEY');
+console.log(Kakao.isInitialized());
+
+function shareKakaotalk() {
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: 'christmas MBTI',
+            description: '#MBTI #christmas #크리스마스 #연말 #난코딩하고있는데 #어디가',
+            imageUrl:
+                'http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg',
+            link: {
+                mobileWebUrl: 'https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html',
+                webUrl: 'https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html',
+            },
+        },
+        // 카카오톡 미설치 시 카카오톡 설치 경로이동
+        installTalk: true,
+    })
+}
+
+// facebook
+function shareFacebook() {
+    window.open("http://www.facebook.com/sharer/sharer.php?u=" + shareLink);
+}
+
+// twitter
+function shareTwitter() {
+    window.open("https://twitter.com/intent/tweet?text=" + shareText + "&url=" + shareLink);
+}
+
+function format() {
+    let args = Array.prototype.slice.call(arguments, 1);
+    return arguments[0].replace(/\{(\d+)\}/g, function (match, index) {
+        return args[index];
+    });
+}
+
+// band
+function shareBand() {
+    let encodeBody = encodeURIComponent(format('{0}\n{1}', shareText, shareLink));
+    let encodeRoute = encodeURIComponent(window.location.href);
+    let link = format('http://band.us/plugin/share?body={0}&route={1}', encodeBody, encodeRoute);
+    window.open(link, 'share', 'width=500, height=500');
+}
+
+// Instagram
+function shareInstagram() {
+    window.open("hhttps://www.instagram.com/?url=https://www.drdrop.co/" + shareLink);
 }
