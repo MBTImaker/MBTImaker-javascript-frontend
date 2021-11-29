@@ -29,6 +29,7 @@ Variables
   --chemi-movie-character-mobile-font-size: 0.875rem; /* 14px */
   --share-mobile-font-size: 1.125rem; /* 18px */
   --comment-created-font-size: 0.687rem; /* 11px */
+  --comment-nickname-font-size: 1rem; /* 16px */
   --placeholder-font-size: 0.75rem; /* 12px */
 
   /* graph color */
@@ -831,7 +832,7 @@ block - communication (ver.21-11-09)
 .block .communication .show-comment {
   /* size */
   width: 100%;
-  height: 95.7%;
+  height: 63.7%;
 
   /* display */
   display: flex;
@@ -844,8 +845,8 @@ block - communication (ver.21-11-09)
 
 .block .communication .show-comment .comment {
   /* size */
-  width: 82.84%;
-  height: 100%;
+  width: 90.15%;
+  height: 20%;
 
   /* display */
   display: flex;
@@ -861,14 +862,14 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .show-comment .comment .comment_header {
-  background-color: var(--chemi-background-color);
+  background-color: var(--comment-reply-background-color);
 
   width: 100%;
-  height: 3.625rem;
+  height: 43.5%;
 
   /* margin-top: 11.5%; */
 
-  border: 0.125rem solid var(--feature-background-color); /* 2px */
+  /* border: 0.125rem solid var(--feature-background-color); 2px */
   box-sizing: border-box;
   border-radius: 10px 10px 0px 0px;
 
@@ -883,22 +884,17 @@ block - communication (ver.21-11-09)
   display: flex;
   flex-direction: column;
 
-  background-color: #ffffff;
+
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .info
-  .commentNickname {
+.block .communication .show-comment .comment .comment_header .info .commentNickname {
   /* width: 100%;
   height: 100%; */
 
-  color: var(--chemi-movie-title-mobile-font-color);
-  font-size: var(--chemi-movie-title-mobile-font-size);
+  color: var(--comment-contents-color);
+  font-size: var(--comment-nickname-font-size);
 
+  line-height: 19px;
   /* 17px 211px 3px 20px */
   margin: 1.0625rem 0rem 0.1875rem 1.25rem;
 
@@ -908,13 +904,7 @@ block - communication (ver.21-11-09)
   align-items: start;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .info
-  .commentMBTI {
+.block .communication .show-comment .comment .comment_header .info .commentMBTI {
   /* width: 40%;
   height: 83%; */
 
@@ -930,6 +920,7 @@ block - communication (ver.21-11-09)
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
 }
 
 .block .communication .show-comment .comment .comment_header .btn {
@@ -941,13 +932,7 @@ block - communication (ver.21-11-09)
   width: 30%;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .btn
-  .del-reply-btn {
+.block .communication .show-comment .comment .comment_header .btn .del-reply-btn {
   /* size */
   width: 32.14%;
   height: 46%;
@@ -960,16 +945,10 @@ block - communication (ver.21-11-09)
   /* background */
   background-image: url("../imgs/replyDeleteBtn_Frame896.png");
   background-size: 100% 100%;
-  background-color: var(--feature-background-color);
+  background-color: var(--comment-reply-background-color);
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .btn
-  .report-reply-btn {
+.block .communication .show-comment .comment .comment_header .btn .report-reply-btn {
   /* size */
   width: 32.14%;
   height: 46%;
@@ -982,7 +961,7 @@ block - communication (ver.21-11-09)
   /* background */
   background-image: url("../imgs/replyReporteBtn_icon.png");
   background-size: 100% 100%;
-  background-color: var(--feature-background-color);
+  background-color: var(--comment-reply-background-color);
 }
 
 .block .communication .show-comment .comment .comment_content {
@@ -993,13 +972,16 @@ block - communication (ver.21-11-09)
 
   display: flex;
   flex-direction: column;
+
+  border-radius: 0px 0px 20px 20px;
+
 }
 
 .block .communication .show-comment .comment .comment_content .content {
   /* width: 85.6%;
   height: 19.3%; */
 
-  font-size: var(--chemi-movie-character-mobile-font-size);
+  font-size: var(--comment-nickname-font-size);
   color: var(--comment-contents-color);
   background-color: var(--chemi-background-color);
 
@@ -1007,15 +989,17 @@ block - communication (ver.21-11-09)
 
   display: flex;
   justify-content: flex-start;
+
+  text-align: left;
 }
 
 .block .communication .show-comment .comment .createdDate {
   /* width: 37%;
   height: 83%; */
   color: var(--comment-created-font-color);
-  font-size: var(--comment-created-font-size);
+  font-size: var(--chemi-movie-title-mobile-font-size);
 
-  margin: 0rem 1.25rem 1.3125rem 1.25rem; 
+  margin: 1.25rem 1.25rem 1.3125rem 1.25rem; 
 
   display: flex;
   justify-content: flex-start;
@@ -1088,6 +1072,63 @@ block - communication (ver.21-11-09)
   height: 2.25rem;
 
   background-image: url("../imgs/replyBtn_Frame139.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
+
+  margin-top: 0;
+}
+
+.block .communication .show-comment .comment-pages {
+  /* background-color: var(--chemi-background-color); */
+  background-color: red;
+
+  width: 72%;
+  height: 3.6%;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+}
+
+.block .communication .show-comment .comment-pages .left-btn {
+  width: 20%;
+  /* height: 46%; */
+
+  background-image: url("../imgs/index_left_btn_Frame 81.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
+
+  margin-top: 0;
+}
+
+.block .communication .show-comment .comment-pages .index {
+  /* width: 20%; */
+  /* height: 20%; */
+
+  /* font-family: SB AggroOTF; */
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  /* line-height: 54px; */
+  /* or 337% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+
+
+
+
+}
+
+.block .communication .show-comment .comment-pages .right-btn {
+  width: 20%;
+  /* height: 46%; */
+
+  background-image: url("../imgs/index_right_btn_Frame 80.png");
   background-size: contain;
   background-color: var(--section-background-color);
 

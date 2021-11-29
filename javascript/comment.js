@@ -10,24 +10,29 @@ const chkcommentArea = document.querySelector(".comment-area");
 
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 let isFirst = false;
+let isIndexCheck = false;
 
 let errorMsg = '';  // 에러메시지 안내
 let tmpMBTI = '';
 
+let page = 1;   // 조회 할 페이지
+let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
+
+
 window.onload = function () {
-    searchComment();  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
+    searchComment(page, size);  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
+    isFirst = 'true';
 }
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(svrDate) {
-// 서버에서 보내주는 값: 2021-11-23T13:04:59.610937
-
+    // 서버에서 보내주는 값: 2021-11-23T13:04:59.610937
     let month = svrDate.substring(5, 7);
     let day = svrDate.substring(8, 10);
     let times = svrDate.substring(11, 19);
 
-
     let dateToString = month + '.' + day + " " + times;
+    
     return dateToString;
 }
 
@@ -75,8 +80,8 @@ function commentWrite() {
                 alert("댓글 작성 성공!");
                 console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
-                isFirst = 'true';
-                searchComment();  // 댓글 조회 함수 호출
+                
+                searchComment(page, size);  // 댓글 조회 함수 호출
             } else {
                 // 오류 발생 시 alert 로 메시지 표출
                 for(let i=0; i<response.errors.length; i++){
@@ -96,15 +101,24 @@ function displayComment(comment, size) {
 
     let comments = [];  // 배열 선언
     let innerComment = '';
+    let commentPages = '';
+    let commentIndex = document.querySelector(".block .communication .show-comment .comment-pages .index");
+    let innerCommentIndex = '';
+    let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
+    let characterNameForReply = '';
 
     let j = 3;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
  
 
-   if (isDeleteCheck || isFirst) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
+   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
        for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
             showComment.innerHTML = '';
+
+            // index 부분에서 1페이지, 2페이지를 누를 때 마다 index가 1234567812345678 이런식으로 계속 생겨서 초기화 해 줌
+            innerCommentIndex = '';
+            commentIndex.innerHTML = '';
         }
     }
 
@@ -114,11 +128,9 @@ function displayComment(comment, size) {
         setMaintext(userMBTI);
 
         let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
-console.log(splitMainText);
-//        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length); // 분리된 값들은 배열 형식으로 저장되며, '의' 글자 뒷 부분이 영화 주인공 이름임.
         let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length);
+        console.log("characterNameForReply["+i+"]:::"+characterNameForReply);
         //==========================================================================================
-
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
@@ -157,12 +169,11 @@ console.log(splitMainText);
                 <span id="content" class="content">${c.content}</span>
                 <span id="createdDate" class="createdDate">${changeCreatedDate}</span>
             </div>
-
+            
             
         </div>
         `;
     });
-
 
     // string -> html
     innerComment = innerComment.join("");
@@ -170,9 +181,36 @@ console.log(splitMainText);
     // innerHTML
     showComment.innerHTML += innerComment;
 
+
+    // 화면 맨 아랫 부분에 페이지 번호 표시 ===========================================================================
+    commentPages = `
+                <div class="comment-pages">
+                    <div class="left-btn"></div>
+                    <div class="right-btn"></div>
+                </div>
+                `;
+
+    showComment.innerHTML += commentPages;
+
+    // for(let i=1; i<totalPages+1; i++){
+    for(let i=1; i<11; i++){
+        innerCommentIndex += `
+            <button type="submit" class="index" id="index-${i}" onclick="searchComment(${i}, ${size})">${i}</button>
+        `;
+
+    }
+
+    commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
+
+    // left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
+    let commentLeftBtn = document.querySelector(".left-btn");
+    commentLeftBtn.after(commentIndex);
+console.log(commentIndex);
+
     console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
 
 }
+
 
 function commentDelete(id, name, password) {  // 댓글 삭제
 
@@ -215,7 +253,7 @@ function commentDelete(id, name, password) {  // 댓글 삭제
                     alert("댓글 삭제 성공!");
 
                     // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
-                    searchComment();
+                    searchComment(page, size);
 
                     // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
                     isDeleteCheck = 'true';
@@ -235,11 +273,7 @@ function commentDelete(id, name, password) {  // 댓글 삭제
 }
 
 
-function searchComment() {  // 댓글 페이징 조회
-
-    // 화면 크기 별로 해당 값들이 달라질 수 있으니 변수 처리
-    let page = '1';  // 조회 할 페이지
-    let size = '3';  // 해당 페이지에서 보여 줄 댓글의 수
+function searchComment(page, size) {  // 댓글 페이징 조회
 
     let tmpURL = 'https://mbti-test.herokuapp.com/comment';
     let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
@@ -252,6 +286,9 @@ function searchComment() {  // 댓글 페이징 조회
         })
         .then(response => {
             if (response.status == 200) {
+console.log(response.data);
+
+isIndexCheck = true;
                 displayComment(response, size);
             } else {
                 alert("오류 입니다.");
