@@ -9,6 +9,7 @@ const chkcommentArea = document.querySelector(".comment-area");
 
 
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
+let isFirst = false;
 
 let errorMsg = '';  // 에러메시지 안내
 let tmpMBTI = '';
@@ -74,6 +75,7 @@ function commentWrite() {
                 alert("댓글 작성 성공!");
                 console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
+                isFirst = 'true';
                 searchComment();  // 댓글 조회 함수 호출
             } else {
                 // 오류 발생 시 alert 로 메시지 표출
@@ -81,9 +83,11 @@ function commentWrite() {
                     errorMsg += response.errors[i].reason + '\n';
                 }
                 alert(errorMsg);
+                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
+                
             }
         })
-        .catch((error) => console.log("error:", error));
+        .catch((error) => console.log("error: ", error));
 
 }
 
@@ -94,10 +98,10 @@ function displayComment(comment, size) {
     let innerComment = '';
 
     let j = 3;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
+ 
 
-
-    if (isDeleteCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
-        for (let i = 0; i < size; i++) {
+   if (isDeleteCheck || isFirst) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
+       for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
             showComment.innerHTML = '';
@@ -110,8 +114,9 @@ function displayComment(comment, size) {
         setMaintext(userMBTI);
 
         let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
-
-        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length); // 분리된 값들은 배열 형식으로 저장되며, '의' 글자 뒷 부분이 영화 주인공 이름임.
+console.log(splitMainText);
+//        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length); // 분리된 값들은 배열 형식으로 저장되며, '의' 글자 뒷 부분이 영화 주인공 이름임.
+        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length);
         //==========================================================================================
 
 
