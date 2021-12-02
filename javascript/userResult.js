@@ -1,3 +1,7 @@
+"use strict";
+
+/* 설명: 사용자가 선택한 값에 따라 MBTI 결과값을 서버에서 가져와 화면에 보여줍니다. */
+
 // =========================== Variables ===========================
 
 // loading
@@ -21,13 +25,9 @@ let MBTI = "";
 
 // =========================== Loading ===========================
 
-block.style.display = "none";
+// block.style.display = "none";
 loading.style.display = "none";
 block.style.display = "flex";
-
-// window.onload = function () {
-// }
-
 
 
 // ========================= MBTI Result =========================
@@ -51,13 +51,18 @@ fetch("https://mbti-test.herokuapp.com/test", {
 }).then((response) => response.json())
     .then((info) => {
         showResult(info.data);
+        KAKAO_JAVASCRIPT_KEY = info.data.kakao_JAVASCRIPT_KEY;
+    }).then(() => {
+        // 시크릿키 받아와 저장한 이후에 설정한다.
+        Kakao.init(KAKAO_JAVASCRIPT_KEY);
+        console.log("kakao : " + Kakao.isInitialized());
     });
-
 
 
 // 가져온 것들을 html에 설정한다.
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
+
     console.log(`user MBTI: ${mbtiResult.mbti}`);
     MBTI = mbtiResult.mbti;
     setMaintext(MBTI);
@@ -94,7 +99,6 @@ function showResult(data) {
     likeMe.querySelector(".movie-character").innerHTML = sameType.characterName;
     likeMe.querySelector("img").src = sameType.imageUrl;
     likeMePercentage = sameType.percentage;
-    console.log(likeMePercentage);
 
     const mostType = document.querySelector(".block .mostType .whiteBox");
     const mostPopularType = data.mostPopularType;
@@ -102,7 +106,6 @@ function showResult(data) {
     mostType.querySelector(".movie-character").innerHTML = mostPopularType.characterName;
     mostType.querySelector("img").src = mostPopularType.imageUrl;
     mostTypePercentage = mostPopularType.percentage;
-    console.log(mostTypePercentage);
 
     // ----------- recommendedMovies -----------
     const movieList = document.querySelectorAll(".block .movies .movie-list li img:nth-child(n)");

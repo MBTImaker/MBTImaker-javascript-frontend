@@ -1,6 +1,12 @@
+"use strict";
+
+/* 설명: 모든 페이지에 적용되는 사항입니다. */
+
+// (1) vh값을 css에서 정의된 값이 아닌 새로운 값을 사용한다.
 let vHeight = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vHeight}px`);
 
+// (2) head tag 안에 favicon(타이틀 왼쪽에 들어가는 이미지)을 넣는다.
 const head = document.getElementsByTagName("head")[0];
 
 const favicon = function () {

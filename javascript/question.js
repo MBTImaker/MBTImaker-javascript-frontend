@@ -1,5 +1,7 @@
 "use strict";
 
+/* 설명: 질문 12가지를 화면에 보여줍니다. */
+
 // =========================== Variables ===========================
 
 const questionList = [
@@ -90,10 +92,6 @@ const questionList = [
 ];
 
 const body = document.querySelector("body");
-
-// body 안에 질문들을 보여준다.
-// html이 반복되어 사용되어 js를 사용하였다.
-
 
 // =========================== Function ===========================
 
@@ -206,6 +204,7 @@ function vh(value) {
 
 // ============================== Run ==============================
 
+// 첫 문항의 이미지를 화면에 보여준다.
 qNums[0].style.display = "block";
 
 changeNextText();
@@ -224,6 +223,7 @@ selectBtns.forEach((btn) => {
         }
 
         if (e.currentTarget.classList.contains("top")) {
+            // 선택지 2개 중에서 하나만 선택할 수 있다.
             if (selectBtns[selectBtnIndex + 1].classList.contains("active")) {
                 selectBtns[selectBtnIndex + 1].classList.remove("active");
             }

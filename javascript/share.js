@@ -1,3 +1,5 @@
+"use strict";
+
 // =========================== Variables ===========================
 
 // share
@@ -6,6 +8,7 @@ const shareLink = window.location.href; // 차후에 배포되면 home.html로 �
 let mainText = "나의 영화 캐릭터 유형은? ";
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(../imgs/share_img_test.png)";
+let KAKAO_JAVASCRIPT_KEY = "";
 
 
 function setMaintext(userMBTI) {
@@ -84,8 +87,9 @@ function setMaintext(userMBTI) {
 
 // =========================== Share ===========================
 
-Kakao.init('KAKAO_JAVASCRIPT_KEY');
-console.log(Kakao.isInitialized());
+// Kakao.init(KAKAO_JAVASCRIPT_KEY);
+// console.log(KAKAO_JAVASCRIPT_KEY);
+// console.log("kakao : " + Kakao.isInitialized());
 
 function shareKakaotalk() {
     Kakao.Link.sendDefault({
