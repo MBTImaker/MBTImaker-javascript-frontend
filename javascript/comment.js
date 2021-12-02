@@ -1,5 +1,3 @@
-"use strict";
-
 // =========================== Comment ===========================
 // 정문님 개발 능력 수직 상승
 // 커밋이 안 뜬다
@@ -113,7 +111,7 @@ function displayComment(comment, size) {
     let characterNameForReply = '';
 
     let j = 1;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
- 
+
 
    if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
        for (let i = 0; i < size; i++) {
