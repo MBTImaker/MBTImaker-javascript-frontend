@@ -14,7 +14,7 @@ let isIndexCheck = false;
 
 let errorMsg = '';  // 에러메시지 안내
 let tmpMBTI = '';
-let userMBTI;
+//let userMBTI;
 
 let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
@@ -110,7 +110,7 @@ function displayComment(comment, size) {
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
     let characterNameForReply = '';  // 댓글에 쓰이는 MBTI 유형별 영화 주인공 이름
 
-    let j = 3;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
+    let j = 1;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
 
    if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
@@ -128,14 +128,9 @@ function displayComment(comment, size) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti; 
 
-        let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
-
-        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length);
-        
-
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${characterNameForReply}`,  // MBTI 유형
+            mbti: `${comment.data.content[i].mbti}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
