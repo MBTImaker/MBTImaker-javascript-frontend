@@ -14,7 +14,7 @@ let isIndexCheck = false;
 
 let errorMsg = '';  // 에러메시지 안내
 let tmpMBTI = '';
-let userMBTI;
+//let userMBTI;
 
 let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
@@ -103,18 +103,17 @@ function commentWrite() {
 function displayComment(comment, size) {
 
     let comments = [];  // 배열 선언
-    let innerComment = '';
-    let commentPages = '';
+    let innerComment = '';  // 각 댓글의 전체 창을 만듬
+    let commentPages = '';  // 페이징 부분만 만듬
     let commentIndex = document.querySelector(".block .communication .show-comment .comment-pages .index");
-    let innerCommentIndex = '';
+    let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듬
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
-    let characterNameForReply = '';
+    let characterNameForReply = '';  // 댓글에 쓰이는 MBTI 유형별 영화 주인공 이름
 
     let j = 1;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
 
-
    if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
-       for (let i = 0; i < size; i++) {
+        for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
             showComment.innerHTML = '';
@@ -128,18 +127,10 @@ function displayComment(comment, size) {
     for (let i = 0; i < size; i++) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti; 
-        setMaintext(userMBTI);
-
-console.log(mainText);
-        let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
-console.log(splitMainText);
-        let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length);
-        console.log("characterNameForReply["+i+"]:::"+characterNameForReply);
-        //==========================================================================================
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${characterNameForReply}`,  // MBTI 유형
+            mbti: `${comment.data.content[i].mbti}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
@@ -197,137 +188,69 @@ console.log(splitMainText);
 
     let b_pageNum_list = 10;  // 블럭에 나타낼 페이지 번호 갯수
 
-//    for(let i=1; i<totalPages+1; i++){
-//     for(let i=1; i<11; i++){
-//         innerCommentIndex += `
-//             <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
-//         `;
 
-//     }
+    let block = Math.ceil(currentPage / b_pageNum_list);   //현재 리스트의 블럭 구하기
+    let b_start_page = ((block - 1) * b_pageNum_list) + 1;  //현재 블럭에서 시작페이지 번호
+    let b_end_page = b_start_page + b_pageNum_list - 1; //현재 블럭에서 마지막 페이지 번호
 
-//     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
+    if(b_end_page > totalPages) b_end_page = totalPages;
 
-//     // left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
-//     let commentLeftBtn = document.querySelector(".left-btn");
-//     commentLeftBtn.after(commentIndex);
-// console.log(commentIndex);
-
-
-console.log("currentPage::"+currentPage);
-
-
-let block = Math.ceil(currentPage / b_pageNum_list);
-let b_start_page = ((block - 1) * b_pageNum_list) + 1; 
-let b_end_page = b_start_page + b_pageNum_list - 1;
-
-if(b_end_page > totalPages) b_end_page = totalPages;
-
-for(let i = b_start_page; i<=b_end_page; i++){
-    if(currentPage <= i){
-        // innerCommentIndex += `
-        //     <button type="submit" class="index" id="index" style="color=red;">${i}</button>
-        // `;
-
-        innerCommentIndex += `
-        <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
-        `; 
-    } else {
-        innerCommentIndex += `
-            <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
-        `;        
-    }
-}
-
-const indexBtns = document.querySelectorAll(".index:nth-child(n)");
-
-console.log(indexBtns);
-indexBtns.forEach((idxbtn) => {
-    idxbtn.addEventListener("click", (e) => {
-
-        // 선택된 인덱스의 색을 바꾸어준다.
-        e.target.classList.add("active");
-
-        console.log(e.target);
-
-        //currentPage
-        if(e.target.classList.contains("active")) {
-            currentPage = e.target.value;
-            console.log("클릭된 페이지:::"+currentPage);
+    for(let i = b_start_page; i<=b_end_page; i++){
+        if(currentPage <= i){
+            innerCommentIndex += `
+                <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+            `; 
+        } else {
+            innerCommentIndex += `
+                <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+            `;        
         }
-
-    });
-});
-
-
-let total_block = Math.ceil(totalPages / b_pageNum_list);
-console.log("total_block::"+total_block);
-console.log("block::"+block);
-console.log("b_end_page:::"+b_end_page);
-if(block >= total_block){
-    innerCommentIndex = '';
-    commentIndex.innerHTML = '';
-} else {
-    innerCommentIndex += `
-        <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${b_end_page+1}, ${size})">다음</button>
-    `;    
-}
-
-if(currentPage >= totalPages) {
-    innerCommentIndex += `
-        <button type="submit" class="index" id="index" style="color=red;">마지막</button>
-    `;    
-} else {
-    innerCommentIndex += `
-        <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${totalPages}, ${size})" value="${totalPages}">마지막</button>
-    `;        
-}    
-
-commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
-
-// left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
-commentLeftBtn = document.querySelector(".left-btn");
-commentLeftBtn.after(commentIndex);
-
-
-
-    console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
-
-
-
-
-
-
-
-/*========================================================================================================================================
-    commentPages = `
-                <div class="comment-pages">
-                    <div class="left-btn"></div>
-                    <div class="right-btn"></div>
-                </div>
-                `;
-
-    showComment.innerHTML += commentPages;
-
-    // for(let i=1; i<totalPages+1; i++){
-    for(let i=1; i<11; i++){
-        innerCommentIndex += `
-            <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
-        `;
-
     }
+
+    const indexBtns = document.querySelectorAll(".index:nth-child(n)");
+
+    // 생성된 인덱스 버튼들이 몇 페이지 인지 인식하기 위해 이벤트를 사용했으나 안됨..
+    indexBtns.forEach((idxbtn) => {
+        idxbtn.addEventListener("click", (e) => {
+
+            // 선택된 인덱스의 색을 바꾸어준다.
+            e.target.classList.add("active");
+
+            //active 가 된 인덱스들의 value를 currentPage 값으로 저장 
+            if(e.target.classList.contains("active")) {
+                currentPage = e.target.value;
+            }
+
+        });
+    });
+
+    let total_block = Math.ceil(totalPages / b_pageNum_list);
+    
+    // 다음 링크 만들기
+    if(block >= total_block){   //block 과 총 block 갯수와 값이 같다면 맨 마지막 블럭이므로 다음링크버튼이 필요없어서 보여주지 않는다.
+        innerCommentIndex = '';
+        commentIndex.innerHTML = '';
+    } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
+        innerCommentIndex += `
+            <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${b_end_page+1}, ${size})">다음</button>
+        `;    
+    }
+
+    if(currentPage >= totalPages) {   //페이지 넘버와 총 페이지가 같다면 마지막 페이지이므로 링크없이 마지막만 빨간색으로 출력
+        innerCommentIndex += `
+            <button type="submit" class="index" id="index" style="color=red;">마지막</button>
+        `;    
+    } else {  // 그게 아니라면 페이지변수를 total_page로 주어서 마지막으로 가는 링크버튼을 출력
+        innerCommentIndex += `
+            <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${totalPages}, ${size})" value="${totalPages}">마지막</button>
+        `;        
+    }    
 
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
 
     // left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
-    let commentLeftBtn = document.querySelector(".left-btn");
+    commentLeftBtn = document.querySelector(".left-btn");
     commentLeftBtn.after(commentIndex);
-console.log(commentIndex);
-
-
-
-
-    console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
- 정상 일 때 ====================================================================================================================================*/
 
 }
 
