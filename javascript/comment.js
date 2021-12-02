@@ -187,6 +187,120 @@ console.log(splitMainText);
     showComment.innerHTML += innerComment;
 
 
+    // 화면 맨 아랫 부분에 페이지 번호 표시(개발중)===========================================================================
+    commentPages = `
+                <div class="comment-pages">
+                    <div class="left-btn"></div>
+                    <div class="right-btn"></div>
+                </div>
+                `;
+
+    showComment.innerHTML += commentPages;
+
+    let b_pageNum_list = 10;  // 블럭에 나타낼 페이지 번호 갯수
+
+//    for(let i=1; i<totalPages+1; i++){
+//     for(let i=1; i<11; i++){
+//         innerCommentIndex += `
+//             <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+//         `;
+
+//     }
+
+//     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
+
+//     // left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
+//     let commentLeftBtn = document.querySelector(".left-btn");
+//     commentLeftBtn.after(commentIndex);
+// console.log(commentIndex);
+
+
+console.log("currentPage::"+currentPage);
+
+
+let block = Math.ceil(currentPage / b_pageNum_list);
+let b_start_page = ((block - 1) * b_pageNum_list) + 1; 
+let b_end_page = b_start_page + b_pageNum_list - 1;
+
+if(b_end_page > totalPages) b_end_page = totalPages;
+
+for(let i = b_start_page; i<=b_end_page; i++){
+    if(currentPage <= i){
+        // innerCommentIndex += `
+        //     <button type="submit" class="index" id="index" style="color=red;">${i}</button>
+        // `;
+
+        innerCommentIndex += `
+        <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+        `; 
+    } else {
+        innerCommentIndex += `
+            <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+        `;        
+    }
+}
+
+const indexBtns = document.querySelectorAll(".index:nth-child(n)");
+
+console.log(indexBtns);
+indexBtns.forEach((idxbtn) => {
+    idxbtn.addEventListener("click", (e) => {
+
+        // 선택된 인덱스의 색을 바꾸어준다.
+        e.target.classList.add("active");
+
+        console.log(e.target);
+
+        //currentPage
+        if(e.target.classList.contains("active")) {
+            currentPage = e.target.value;
+            console.log("클릭된 페이지:::"+currentPage);
+        }
+
+    });
+});
+
+
+let total_block = Math.ceil(totalPages / b_pageNum_list);
+console.log("total_block::"+total_block);
+console.log("block::"+block);
+console.log("b_end_page:::"+b_end_page);
+if(block >= total_block){
+    innerCommentIndex = '';
+    commentIndex.innerHTML = '';
+} else {
+    innerCommentIndex += `
+        <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${b_end_page+1}, ${size})">다음</button>
+    `;    
+}
+
+if(currentPage >= totalPages) {
+    innerCommentIndex += `
+        <button type="submit" class="index" id="index" style="color=red;">마지막</button>
+    `;    
+} else {
+    innerCommentIndex += `
+        <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${totalPages}, ${size})" value="${totalPages}">마지막</button>
+    `;        
+}    
+
+commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
+
+// left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
+commentLeftBtn = document.querySelector(".left-btn");
+commentLeftBtn.after(commentIndex);
+
+
+
+    console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
+
+
+
+
+
+
+
+/*========================================================================================================================================
     commentPages = `
                 <div class="comment-pages">
                     <div class="left-btn"></div>
@@ -215,6 +329,7 @@ console.log(commentIndex);
 
 
     console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
+ 정상 일 때 ====================================================================================================================================*/
 
 }
 
