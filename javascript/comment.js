@@ -154,7 +154,7 @@ function displayComment(comment, size) {
                     <span id="commentMBTI" class="commentMBTI">${c.mbti}</span>
                 </div>
                 <div class="btn">
-                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, ${c.name}, ${c.password})" ></button>
+                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, '${c.name}', '${c.password}')" ></button>
                     <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
                 </div>
             
@@ -296,11 +296,13 @@ function commentDelete(id, name, password) {  // 댓글 삭제
                 if (response.status == 200) {
                     alert("댓글 삭제 성공!");
 
+                    // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
+                    isDeleteCheck = 'true';
+
                     // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
                     searchComment(page, size);
 
-                    // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
-                    isDeleteCheck = 'true';
+
                 } else {
                     // 오류 발생 시 alert 로 메시지 표출
                     for(let i=0; i<response.errors.length; i++){
