@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- ========================= files ========================= -->
+
     <!-- css -->
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/result.css">
@@ -17,12 +19,12 @@
     <script src="../javascript/share.js" defer></script>
     <script src="../javascript/comment.js" defer></script>
 
-    <!-- share -->
+    <!-- ========================= share ========================= -->
 
     <!-- kakao sdk 호출 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-    <!-- facebook (여기서 설정)-->
+    <!-- facebook -->
     <meta property="og:url" content="window.location.href" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="나의 영화 캐릭터 유형은?" />
@@ -46,6 +48,7 @@
         <img src="../imgs/loading_ment.png" alt="영화캐릭터 분석중">
     </div>
 
+    <!-- facebook -->
     <div id="fb-root"></div>
     <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -57,7 +60,6 @@
 
     <!-- 하얀 영역 -->
     <div class="block">
-        <!-- 나랑 비슷한 영화 캐릭터는 -->
         <section class="result-character">
             <div class="textAndImg">
                 <img class="subject"></img>
@@ -221,8 +223,6 @@
             </div>
 
             <div class="point-line-distinct-reply"></div>
-
-
 
             <div class="show-comment">
                 <!-- 코드 예시
