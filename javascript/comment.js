@@ -130,11 +130,11 @@ function displayComment(comment, size) {
         userMBTI = comment.data.content[i].mbti; 
         setMaintext(userMBTI);
 
-console.log(mainText);
+//console.log(mainText);
         let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
-console.log(splitMainText);
+//console.log(splitMainText);
         let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length);
-        console.log("characterNameForReply["+i+"]:::"+characterNameForReply);
+        //console.log("characterNameForReply["+i+"]:::"+characterNameForReply);
         //==========================================================================================
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
@@ -213,7 +213,7 @@ console.log(splitMainText);
 // console.log(commentIndex);
 
 
-console.log("currentPage::"+currentPage);
+//console.log("currentPage::"+currentPage);
 
 
 let block = Math.ceil(currentPage / b_pageNum_list);
@@ -252,7 +252,7 @@ indexBtns.forEach((idxbtn) => {
         //currentPage
         if(e.target.classList.contains("active")) {
             currentPage = e.target.value;
-            console.log("클릭된 페이지:::"+currentPage);
+//            console.log("클릭된 페이지:::"+currentPage);
         }
 
     });
@@ -290,7 +290,7 @@ commentLeftBtn.after(commentIndex);
 
 
 
-    console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
+ //   console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
 
 
 
