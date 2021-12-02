@@ -105,7 +105,7 @@ function displayComment(comment, size) {
     let comments = [];  // 배열 선언
     let innerComment = '';  // 각 댓글의 전체 창을 만듬
     let commentPages = '';  // 페이징 부분만 만듬
-    let commentIndex = document.querySelector(".block .communication .show-comment .comment-pages .index");
+    let commentIndex = document.querySelector(".block .communication .comment-pages");
     let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듬
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
     let characterNameForReply = '';  // 댓글에 쓰이는 MBTI 유형별 영화 주인공 이름
@@ -176,18 +176,9 @@ function displayComment(comment, size) {
     showComment.innerHTML += innerComment;
 
 
-    // 화면 맨 아랫 부분에 페이지 번호 표시(개발중)===========================================================================
-    commentPages = `
-                <div class="comment-pages">
-                    <div class="left-btn"></div>
-                    <div class="right-btn"></div>
-                </div>
-                `;
+    // =========================== 페이지 번호 표시 ===========================
 
-    showComment.innerHTML += commentPages;
-
-    let b_pageNum_list = 10;  // 블럭에 나타낼 페이지 번호 갯수
-
+    let b_pageNum_list = 3;  // 블럭에 나타낼 페이지 번호 갯수
 
     let block = Math.ceil(currentPage / b_pageNum_list);   //현재 리스트의 블럭 구하기
     let b_start_page = ((block - 1) * b_pageNum_list) + 1;  //현재 블럭에서 시작페이지 번호
@@ -195,63 +186,69 @@ function displayComment(comment, size) {
 
     if(b_end_page > totalPages) b_end_page = totalPages;
 
+    // if(currentPage <= 1) {  // 현재 페이지가 1보다 작거나 같다면, 링크 없이 그냥 처음 이라는 문자만 출력  ==>> 여기 실행 안됨!!!!
+    //     innerCommentIndex += `
+    //         <button type="submit" class="index" id="index" style="color:red;" value="1">처음</button>
+    //     `;
+    // } else {    // 1보다 클 경우, 링크 걸린 처음을 출력
+    //     innerCommentIndex += `
+    //         <button type="submit" class="index" id="index" onclick="searchComment(1, ${size})" value="1">처음</button>
+    //     `;
+    // }
+
+    // =========================== '이전' 버튼 만들기 ===========================
+    if(block <= 1 ) {   // block 이 1보다 작거나 같으면 더 이상 거꾸로 갈 수 없으므로 아무 표시도 하지 않음. 여기서 초기화 해버리면 '처음' 도 안나옴!
+
+    } else {    // block 이 1보다 크다면 이전 링크를 보여줌
+        innerCommentIndex += `
+            <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${b_start_page-1}, ${size})" value="${b_start_page-1}"></button>
+        `;
+    }
+
     for(let i = b_start_page; i<=b_end_page; i++){
-        if(currentPage <= i){
+        if(currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
             innerCommentIndex += `
-                <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+                <button type="submit" class="index" id="index" style="color:red;" value="${i}">${i}</button>
             `; 
-        } else {
+        } else {    // 현재 페이지를 제외한 나머지 페이지 번호들에 링크 달아서 출력
             innerCommentIndex += `
-                <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
+                <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
             `;        
         }
     }
 
-    const indexBtns = document.querySelectorAll(".index:nth-child(n)");
+    let total_block = Math.ceil(totalPages / b_pageNum_list);   // block 의 총 갯수
+  
+    // =========================== '다음' 버튼 만들기 ===========================
+    if(block >= total_block){   //block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
 
-    // 생성된 인덱스 버튼들이 몇 페이지 인지 인식하기 위해 이벤트를 사용했으나 안됨..
-    indexBtns.forEach((idxbtn) => {
-        idxbtn.addEventListener("click", (e) => {
-
-            // 선택된 인덱스의 색을 바꾸어준다.
-            e.target.classList.add("active");
-
-            //active 가 된 인덱스들의 value를 currentPage 값으로 저장 
-            if(e.target.classList.contains("active")) {
-                currentPage = e.target.value;
-            }
-
-        });
-    });
-
-    let total_block = Math.ceil(totalPages / b_pageNum_list);
-    
-    // 다음 링크 만들기
-    if(block >= total_block){   //block 과 총 block 갯수와 값이 같다면 맨 마지막 블럭이므로 다음링크버튼이 필요없어서 보여주지 않는다.
-        innerCommentIndex = '';
-        commentIndex.innerHTML = '';
     } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
         innerCommentIndex += `
-            <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${b_end_page+1}, ${size})">다음</button>
+            <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${b_end_page+1}, ${size})" value="${b_end_page+1}"></button>
         `;    
     }
 
-    if(currentPage >= totalPages) {   //페이지 넘버와 총 페이지가 같다면 마지막 페이지이므로 링크없이 마지막만 빨간색으로 출력
-        innerCommentIndex += `
-            <button type="submit" class="index" id="index" style="color=red;">마지막</button>
-        `;    
-    } else {  // 그게 아니라면 페이지변수를 total_page로 주어서 마지막으로 가는 링크버튼을 출력
-        innerCommentIndex += `
-            <button type="submit" class="index" id="index" style="color=red;" onclick="searchComment(${totalPages}, ${size})" value="${totalPages}">마지막</button>
-        `;        
-    }    
+    // =========================== '마지막' 버튼 추가 ===========================
+    // if(currentPage >= totalPages) {   //페이지 넘버와 총 페이지가 같다면 마지막 페이지이므로 링크없이 마지막만 빨간색으로 출력
+    //     innerCommentIndex += `
+    //         <button type="submit" class="index" id="index" style="color:red;">마지막</button>
+    //     `;    
+    // } else {  // 그게 아니라면 페이지변수를 total_page로 주어서 마지막으로 가는 링크버튼을 출력
+    //     innerCommentIndex += `
+    //         <button type="submit" class="index" id="index" onclick="searchComment(${totalPages}, ${size})" value="${totalPages}">마지막</button>
+    //     `;        
+    // }
 
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
 
-    // left-btn 뒤에 기존 방법 처럼 인덱스 부분을 넣고 싶었으나 실패하여 after 를 이용하여 넣음
-    commentLeftBtn = document.querySelector(".left-btn");
-    commentLeftBtn.after(commentIndex);
-
+    const indexBtns = document.querySelectorAll(".index:nth-child(n)");
+    
+    // 생성된 인덱스 버튼들이 몇 페이지 인지 인식한 뒤 currentPage 변수에 저장
+    indexBtns.forEach((idxbtn) => {
+        idxbtn.addEventListener("click", (e) => {
+                currentPage = e.target.value;
+        });
+    });
 }
 
 
