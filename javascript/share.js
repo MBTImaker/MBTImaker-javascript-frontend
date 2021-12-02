@@ -1,16 +1,20 @@
 "use strict";
 
+/* 설명: 공유 기능 구현 */
+
 // =========================== Variables ===========================
 
 // share
-const shareLink2 = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/result.html/";
 const shareLink = window.location.href; // 차후에 배포되면 home.html로 수정
 let mainText = "나의 영화 캐릭터 유형은? ";
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
-const shareImage = "url(../imgs/share_img_test.png)";
+const shareImage = "url(https://mbti-test.herokuapp.com/og_image.png)";
 let KAKAO_JAVASCRIPT_KEY = "";
 
 
+// =========================== Share ===========================
+
+// MBTI에 따라 공유되는 텍스트를 다르게 설정한다.
 function setMaintext(userMBTI) {
     console.log(userMBTI);
     switch (userMBTI) {
@@ -84,24 +88,17 @@ function setMaintext(userMBTI) {
     }
 }
 
-
-// =========================== Share ===========================
-
-// Kakao.init(KAKAO_JAVASCRIPT_KEY);
-// console.log(KAKAO_JAVASCRIPT_KEY);
-// console.log("kakao : " + Kakao.isInitialized());
-
 function shareKakaotalk() {
     Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
-            title: 'christmas MBTI',
-            description: '#MBTI #christmas #크리스마스 #연말 #난코딩하고있는데 #어디가',
+            title: mainText,
+            description: subText,
             imageUrl:
-                'http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg',
+                'https://mbti-test.herokuapp.com/og_image.png',
             link: {
-                mobileWebUrl: 'https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html',
-                webUrl: 'https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html',
+                mobileWebUrl: shareLink,
+                webUrl: shareLink,
             },
         },
         // 카카오톡 미설치 시 카카오톡 설치 경로이동
