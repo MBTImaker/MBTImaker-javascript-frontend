@@ -312,7 +312,6 @@ block - result-character - point-line
   margin-top: 0rem;
 }
 
-
 /*
 =====================================
 block - result-character - chemistry
@@ -426,7 +425,7 @@ block - graph - image & text
 .block .likeMe,
 .block .mostType {
   /* padding */
-  padding: 0 3.75rem 3.75rem 3.75rem;
+  padding: 0 1.25rem 1.25rem 1.25rem;
 }
 
 .block .whiteBox {
@@ -883,11 +882,15 @@ block - communication (ver.21-11-09)
 .block .communication .show-comment .comment .comment_header .info {
   display: flex;
   flex-direction: column;
-
-
 }
 
-.block .communication .show-comment .comment .comment_header .info .commentNickname {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .info
+  .commentNickname {
   /* width: 100%;
   height: 100%; */
 
@@ -904,7 +907,13 @@ block - communication (ver.21-11-09)
   align-items: start;
 }
 
-.block .communication .show-comment .comment .comment_header .info .commentMBTI {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .info
+  .commentMBTI {
   /* width: 40%;
   height: 83%; */
 
@@ -920,7 +929,6 @@ block - communication (ver.21-11-09)
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .block .communication .show-comment .comment .comment_header .btn {
@@ -932,7 +940,13 @@ block - communication (ver.21-11-09)
   width: 30%;
 }
 
-.block .communication .show-comment .comment .comment_header .btn .del-reply-btn {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .btn
+  .del-reply-btn {
   /* size */
   width: 32.14%;
   height: 46%;
@@ -948,7 +962,13 @@ block - communication (ver.21-11-09)
   background-color: var(--comment-reply-background-color);
 }
 
-.block .communication .show-comment .comment .comment_header .btn .report-reply-btn {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .btn
+  .report-reply-btn {
   /* size */
   width: 32.14%;
   height: 46%;
@@ -974,7 +994,6 @@ block - communication (ver.21-11-09)
   flex-direction: column;
 
   border-radius: 0px 0px 20px 20px;
-
 }
 
 .block .communication .show-comment .comment .comment_content .content {
@@ -999,7 +1018,7 @@ block - communication (ver.21-11-09)
   color: var(--comment-created-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
 
-  margin: 1.25rem 1.25rem 1.3125rem 1.25rem; 
+  margin: 1.25rem 1.25rem 1.3125rem 1.25rem;
 
   display: flex;
   justify-content: flex-start;
@@ -1034,12 +1053,11 @@ block - communication (ver.21-11-09)
   height: 2.75rem;
   margin: 1.25rem 1.125rem 0.625rem 1.125rem; /* 20px 18px 10px 18px */
 
-  
   /* 11px 20px 8px 20px */
   /* margin: 0.6875rem 1.25rem 0.6875rem 1.25rem; */
   /* 20px 18px 10px 18px */
   margin: 1.25rem 1.125rem 0.625rem 1.125rem;
-  
+
   border: 0.125rem solid var(--comment-reply-border-color);
   border-radius: 0.625rem;
 
@@ -1089,7 +1107,6 @@ block - communication (ver.21-11-09)
   flex-direction: row;
 
   justify-content: space-between;
-
 }
 
 .block .communication .show-comment .comment-pages .left-btn {
@@ -1118,10 +1135,6 @@ block - communication (ver.21-11-09)
   align-items: center;
   text-align: center;
   justify-content: space-between;
-
-
-
-
 }
 
 .block .communication .show-comment .comment-pages .right-btn {

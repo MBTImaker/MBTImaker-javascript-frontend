@@ -221,6 +221,12 @@ media
     margin-bottom: 2.25rem;
   }
 
+  .block .likeMe,
+  .block .mostType {
+    /* padding */
+    padding: 0 3.75rem 3.75rem 3.75rem;
+  }
+
   .block .whiteBox .imgAndGraph {
     flex-direction: row;
     justify-content: center;
