@@ -16,14 +16,17 @@ let isIndexCheck = false;
 
 let errorMsg = '';  // 에러메시지 안내
 let tmpMBTI = '';
+let userMBTI;
 
 let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
+let currentPage = 1; // 현재 페이지
 
 
 window.onload = function () {
     searchComment(page, size);  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
     isFirst = 'true';
+
 }
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
@@ -109,7 +112,7 @@ function displayComment(comment, size) {
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
     let characterNameForReply = '';
 
-    let j = 3;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
+    let j = 1;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
  
 
    if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
@@ -129,7 +132,9 @@ function displayComment(comment, size) {
         userMBTI = comment.data.content[i].mbti; 
         setMaintext(userMBTI);
 
+console.log(mainText);
         let splitMainText = mainText.split('\'');   // ' 를 기준으로 mainText 값들을 분리
+console.log(splitMainText);
         let characterNameForReply = splitMainText[j].slice(splitMainText[j].lastIndexOf("의 ")+2, splitMainText[j].length);
         console.log("characterNameForReply["+i+"]:::"+characterNameForReply);
         //==========================================================================================
@@ -159,14 +164,12 @@ function displayComment(comment, size) {
                     <span id="commentNickname" class="commentNickname">${c.name}</span>
                     <span id="commentMBTI" class="commentMBTI">${c.mbti}</span>
                 </div>
-
                 <div class="btn">
                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, ${c.name}, ${c.password})" ></button>
                     <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
                 </div>
             
             </div>
-
             <div class="comment_content">             
                 <span id="content" class="content">${c.content}</span>
                 <span id="createdDate" class="createdDate">${changeCreatedDate}</span>
@@ -184,7 +187,6 @@ function displayComment(comment, size) {
     showComment.innerHTML += innerComment;
 
 
-    // 화면 맨 아랫 부분에 페이지 번호 표시 ===========================================================================
     commentPages = `
                 <div class="comment-pages">
                     <div class="left-btn"></div>
@@ -197,7 +199,7 @@ function displayComment(comment, size) {
     // for(let i=1; i<totalPages+1; i++){
     for(let i=1; i<11; i++){
         innerCommentIndex += `
-            <button type="submit" class="index" id="index-${i}" onclick="searchComment(${i}, ${size})">${i}</button>
+            <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
         `;
 
     }
@@ -209,9 +211,16 @@ function displayComment(comment, size) {
     commentLeftBtn.after(commentIndex);
 console.log(commentIndex);
 
+
+
+
     console.log(showComment);  //받아온 댓글 리스트 들이 정상적으로 나오는지 콘솔 로그 확인 (삭제 예정)
 
 }
+
+
+
+
 
 
 function commentDelete(id, name, password) {  // 댓글 삭제
