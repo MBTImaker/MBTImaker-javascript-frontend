@@ -13,6 +13,7 @@ let KAKAO_JAVASCRIPT_KEY = "";
 
 
 // =========================== Share ===========================
+// test sharing
 
 // MBTI에 따라 공유되는 텍스트를 다르게 설정한다.
 function setMaintext(userMBTI) {
