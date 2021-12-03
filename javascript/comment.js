@@ -126,12 +126,13 @@ function displayComment(comment, size) {
         }
     }
 
-    /* 서버의 response 값이 정상적으로 올 경우에만 size 값을 글로벌 변수인 size 로 적용하고, 
-    아닌 경우엔 서버의 response 값으로 온 length 를 size 값으로 넣어준다. */
+    /* 서버의 response 로 온 댓글의 갯수(comment.data.content.length) 와 선언해 놓은 size 값이 동일할 경우에만 
+    size 값을 글로벌 변수인 size 값으로 적용하고, 
+    동일하지 않을 경우에는 서버의 response 로 온 댓글의 갯수(comment.data.content.length)를 size 값으로 넣어준다. */
     if(comment.data.content.length != size) {
         size = comment.data.content.length;
     }
-    
+
     for (let i = 0; i < size; i++) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti; 
@@ -290,7 +291,7 @@ function commentDelete(id, name, password) {  // 댓글 삭제
 
 
         fetch('https://mbti-test.herokuapp.com/comment', {
-            method: 'DELETE',
+            method: 'PATCH',
             cache: 'no-cache',
             headers: {
                 'Accept': '*',
