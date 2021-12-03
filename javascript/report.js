@@ -2,19 +2,24 @@
 
 /* 설명: 사용자가 선택한 값에 따라 MBTI 결과값을 서버에서 가져와 화면에 보여줍니다. */
 
-// [developer id: hotbreakb] 신고버튼이 눌렸을 때 신고 모달을 띄운다.
+// =========================== Variables ===========================
 
 let commentId = 0;
 
+// =========================== Functions ===========================
+
+// 신고한 댓글 아이디를 가져오고 모달을 연다.
 function openReportModal(id) {
     const reportModal = document.querySelector(".report-modal");
     reportModal.classList.add("open-modal");
     commentId = id;
 }
 
+// 서버에 댓글 신고 보내기
 function sendReport() {
-    const reportSubject = document.getElementsById("subject");
-    const reportDescription = document.querySelector("#description");
+    const reportSubject = document.querySelector("#subject");
+    const reportSubjectValue = reportSubject.options[reportSubject.selectedIndex].value;
+    const reportDescriptionValue = document.querySelector("#description").value;
 
     fetch("https://mbti-test.herokuapp.com/report", {
         method: "POST",
@@ -23,17 +28,22 @@ function sendReport() {
         },
         body: JSON.stringify({
             "commentId": commentId,
-            "description": reportDescription,
-            "subject": reportSubject
+            "description": reportDescriptionValue,
+            "subject": reportSubjectValue
         }),
-    }).then((response) => response.json())
-        .then((info) => {
-            console.log(info);
+    }).then((response) => { return response.json(); })
+        .then((response) => {
+            if (response.status != 200) {
+                throw "유효하지 않은 신고 유형입니다.";
+            }
+            cancleReport();
+        }).catch(err => {
+            alert(err);
         });
 }
 
+// 모달 창 닫기
 function cancleReport() {
-    console.log("cancleReport");
     const reportModal = document.querySelector(".report-modal");
     reportModal.classList.remove("open-modal");
 }
