@@ -14,7 +14,7 @@ let isIndexCheck = false;
 
 let errorMsg = '';  // 에러메시지 안내
 let tmpMBTI = '';
-//let userMBTI;
+let userMBTI;
 
 let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
@@ -108,9 +108,11 @@ function displayComment(comment, size) {
     let commentIndex = document.querySelector(".block .communication .comment-pages");
     let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듬
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
+    let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
+    let charWithMovieName; // '' 를 기준으로 각 댓글 당 "영화 이름+영화 주인공" 을 값을 가져온다.
     let characterNameForReply = '';  // 댓글에 쓰이는 MBTI 유형별 영화 주인공 이름
 
-    let j = 1;  // mainText 를 split 한 뒤, 댓글에 표시하기 위한 인덱스
+    let j = 1;
 
     if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
@@ -124,13 +126,24 @@ function displayComment(comment, size) {
         }
     }
 
+    /* 서버의 response 값이 정상적으로 올 경우에만 size 값을 글로벌 변수인 size 로 적용하고, 
+    아닌 경우엔 서버의 response 값으로 온 length 를 size 값으로 넣어준다. */
+    if(comment.data.content.length != size) {
+        size = comment.data.content.length;
+    }
+    
     for (let i = 0; i < size; i++) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
-        userMBTI = comment.data.content[i].mbti;
+        userMBTI = comment.data.content[i].mbti; 
+        setMaintext(userMBTI);
+        mainTextSplit = mainText.substring(mainText.indexOf("?")+3);
+        charWithMovieName = mainTextSplit.split("''");
+        // characterNameForReply = charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2);
+        // console.log(characterNameForReply);
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${comment.data.content[i].mbti}`,  // MBTI 유형
+            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2)}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
@@ -249,6 +262,8 @@ function displayComment(comment, size) {
             currentPage = e.target.value;
         });
     });
+
+
 }
 
 
