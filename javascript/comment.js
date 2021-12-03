@@ -155,7 +155,7 @@ function displayComment(comment, size) {
                 </div>
                 <div class="btn">
                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, '${c.name}', '${c.password}')" ></button>
-                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
+                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal()"></button>
                 </div>
             
             </div>
@@ -250,16 +250,6 @@ function displayComment(comment, size) {
         });
     });
 }
-
-// [id: hotbreakb] 시용자가 댓글 신고
-function reportComment(id, name, password) {
-
-    // const로 모달을 가져온다.
-    // 눌렸으니까 active를 넣어준다.
-    // 
-}
-
-
 
 
 function commentDelete(id, name, password) {  // 댓글 삭제
