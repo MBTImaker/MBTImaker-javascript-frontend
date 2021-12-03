@@ -937,7 +937,7 @@ block - communication (ver.21-11-09)
   justify-content: space-evenly;
   align-items: center;
 
-  width: 30%;
+  width: 16%;
 }
 
 .block
@@ -948,8 +948,8 @@ block - communication (ver.21-11-09)
   .btn
   .del-reply-btn {
   /* size */
-  width: 32.14%;
-  height: 46%;
+  width: 1.3rem;
+  height: 1.3rem;
 
   display: flex;
   justify-content: center;
@@ -970,8 +970,8 @@ block - communication (ver.21-11-09)
   .btn
   .report-reply-btn {
   /* size */
-  width: 32.14%;
-  height: 46%;
+  width: 1.3rem;
+  height: 1.3rem;
 
   display: flex;
   justify-content: center;
