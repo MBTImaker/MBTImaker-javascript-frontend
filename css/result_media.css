@@ -347,6 +347,14 @@ media
     border-radius: 20px;
   }
 
+  .block .communication .show-comment .comment .comment_header {
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .block .communication .show-comment .comment .comment_content {
+    border-radius: 20px 20px 0px 0px;
+  }
+
   .block .communication .show-comment .comment .add-reply {
     flex-direction: row;
     justify-content: center;
