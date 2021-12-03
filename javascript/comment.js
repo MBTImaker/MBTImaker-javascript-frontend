@@ -35,7 +35,7 @@ function dateToStr(svrDate) {
     let times = svrDate.substring(11, 19);
 
     let dateToString = month + '.' + day + " " + times;
-    
+
     return dateToString;
 }
 
@@ -83,19 +83,21 @@ function commentWrite() {
                 alert("댓글 작성 성공!");
                 console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
-                
+
                 searchComment(page, size);  // 댓글 조회 함수 호출
             } else {
                 // 오류 발생 시 alert 로 메시지 표출
-                for(let i=0; i<response.errors.length; i++){
+                for (let i = 0; i < response.errors.length; i++) {
                     errorMsg += response.errors[i].reason + '\n';
                 }
                 alert(errorMsg);
                 errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
-                
+
             }
         })
-        .catch((error) => console.log("error: ", error));
+        .catch(function (e) {
+            console.error(e);
+        });
 
 }
 
@@ -114,7 +116,7 @@ function displayComment(comment, size) {
 
     let j = 1;
 
-   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
+    if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
@@ -126,25 +128,24 @@ function displayComment(comment, size) {
         }
     }
 
-    /* 서버의 response 로 온 댓글의 갯수(comment.data.content.length) 와 선언해 놓은 size 값이 동일할 경우에만 
-    size 값을 글로벌 변수인 size 값으로 적용하고, 
-    동일하지 않을 경우에는 서버의 response 로 온 댓글의 갯수(comment.data.content.length)를 size 값으로 넣어준다. */
-    if(comment.data.content.length != size) {
+    /* 서버의 response 값이 정상적으로 올 경우에만 size 값을 글로벌 변수인 size 로 적용하고, 
+    아닌 경우엔 서버의 response 값으로 온 length 를 size 값으로 넣어준다. */
+    if (comment.data.content.length != size) {
         size = comment.data.content.length;
     }
 
     for (let i = 0; i < size; i++) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
-        userMBTI = comment.data.content[i].mbti; 
+        userMBTI = comment.data.content[i].mbti;
         setMaintext(userMBTI);
-mainTextSplit = mainText.substring(mainText.indexOf("?")+3);
-charWithMovieName = mainTextSplit.split("''");
-// characterNameForReply = charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2);
-// console.log(characterNameForReply);
+        mainTextSplit = mainText.substring(mainText.indexOf("?") + 3);
+        charWithMovieName = mainTextSplit.split("''");
+        // characterNameForReply = charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2);
+        // console.log(characterNameForReply);
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2)}`,  // MBTI 유형
+            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ") + 2)}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
@@ -169,7 +170,7 @@ charWithMovieName = mainTextSplit.split("''");
                 </div>
                 <div class="btn">
                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, '${c.name}', '${c.password}')" ></button>
-                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
+                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal(${c.id})"></button>
                 </div>
             
             </div>
@@ -198,7 +199,7 @@ charWithMovieName = mainTextSplit.split("''");
     let b_start_page = ((block - 1) * b_pageNum_list) + 1;  //현재 블럭에서 시작페이지 번호
     let b_end_page = b_start_page + b_pageNum_list - 1; //현재 블럭에서 마지막 페이지 번호
 
-    if(b_end_page > totalPages) b_end_page = totalPages;
+    if (b_end_page > totalPages) b_end_page = totalPages;
 
     // if(currentPage <= 1) {  // 현재 페이지가 1보다 작거나 같다면, 링크 없이 그냥 처음 이라는 문자만 출력  ==>> 여기 실행 안됨!!!!
     //     innerCommentIndex += `
@@ -211,35 +212,35 @@ charWithMovieName = mainTextSplit.split("''");
     // }
 
     // =========================== '이전' 버튼 만들기 ===========================
-    if(block <= 1 ) {   // block 이 1보다 작거나 같으면 더 이상 거꾸로 갈 수 없으므로 아무 표시도 하지 않음. 여기서 초기화 해버리면 '처음' 도 안나옴!
+    if (block <= 1) {   // block 이 1보다 작거나 같으면 더 이상 거꾸로 갈 수 없으므로 아무 표시도 하지 않음. 여기서 초기화 해버리면 '처음' 도 안나옴!
 
     } else {    // block 이 1보다 크다면 이전 링크를 보여줌
         innerCommentIndex += `
-            <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${b_start_page-1}, ${size})" value="${b_start_page-1}"></button>
+            <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${b_start_page - 1}, ${size})" value="${b_start_page - 1}"></button>
         `;
     }
 
-    for(let i = b_start_page; i<=b_end_page; i++){
-        if(currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
+    for (let i = b_start_page; i <= b_end_page; i++) {
+        if (currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
             innerCommentIndex += `
                 <button type="submit" class="index" id="index" style="color:red;" value="${i}">${i}</button>
-            `; 
+            `;
         } else {    // 현재 페이지를 제외한 나머지 페이지 번호들에 링크 달아서 출력
             innerCommentIndex += `
                 <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
-            `;        
+            `;
         }
     }
 
     let total_block = Math.ceil(totalPages / b_pageNum_list);   // block 의 총 갯수
-  
+
     // =========================== '다음' 버튼 만들기 ===========================
-    if(block >= total_block){   //block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
+    if (block >= total_block) {   //block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
 
     } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
         innerCommentIndex += `
-            <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${b_end_page+1}, ${size})" value="${b_end_page+1}"></button>
-        `;    
+            <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${b_end_page + 1}, ${size})" value="${b_end_page + 1}"></button>
+        `;
     }
 
     // =========================== '마지막' 버튼 추가 ===========================
@@ -256,20 +257,16 @@ charWithMovieName = mainTextSplit.split("''");
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
 
     const indexBtns = document.querySelectorAll(".index:nth-child(n)");
-    
+
     // 생성된 인덱스 버튼들이 몇 페이지 인지 인식한 뒤 currentPage 변수에 저장
     indexBtns.forEach((idxbtn) => {
         idxbtn.addEventListener("click", (e) => {
-                currentPage = e.target.value;
+            currentPage = e.target.value;
         });
     });
 
 
 }
-
-
-
-
 
 
 function commentDelete(id, name, password) {  // 댓글 삭제
@@ -280,7 +277,7 @@ function commentDelete(id, name, password) {  // 댓글 삭제
     console.log("DELETE__password: " + password);
     //**************************************************************************
 
-    let pwPrompt = prompt("비밀번호를 입력해주세요.");
+    let pwPrompt = prompt("비밀번호를 입력해 주세요.");
 
     if (pwPrompt == password) {
         // 서버로 보낼 데이터 셋팅
@@ -321,13 +318,15 @@ function commentDelete(id, name, password) {  // 댓글 삭제
 
                 } else {
                     // 오류 발생 시 alert 로 메시지 표출
-                    for(let i=0; i<response.errors.length; i++){
+                    for (let i = 0; i < response.errors.length; i++) {
                         errorMsg += response.errors[i].reason + '\n';
                     }
                     alert(errorMsg);
-                    }
+                }
             })
-            .catch((error) => console.log("error:", error));
+            .catch(function (e) {
+                console.error(e);
+            });
 
     } else {  // 비밀번호 입력에 실패했을 경우
         alert("비밀번호가 일치하지 않습니다.");
@@ -348,13 +347,15 @@ function searchComment(page, size) {  // 댓글 페이징 조회
         })
         .then(response => {
             if (response.status == 200) {
-console.log(response.data);
+                console.log(response.data);
 
-isIndexCheck = true;
+                isIndexCheck = true;
                 displayComment(response, size);
             } else {
                 alert("오류 입니다.");
             }
         })
-        .catch((error) => console.log("error:", error));
+        .catch(function (e) {
+            console.error(e);
+        });
 }
