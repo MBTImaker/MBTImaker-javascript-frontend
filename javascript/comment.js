@@ -95,7 +95,9 @@ function commentWrite() {
 
             }
         })
-        .catch((error) => console.log("error: ", error));
+        .catch(function (e) {
+            console.error(e);
+        });
 
 }
 
@@ -128,22 +130,22 @@ function displayComment(comment, size) {
 
     /* 서버의 response 값이 정상적으로 올 경우에만 size 값을 글로벌 변수인 size 로 적용하고, 
     아닌 경우엔 서버의 response 값으로 온 length 를 size 값으로 넣어준다. */
-    if(comment.data.content.length != size) {
+    if (comment.data.content.length != size) {
         size = comment.data.content.length;
     }
-    
+
     for (let i = 0; i < size; i++) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
-        userMBTI = comment.data.content[i].mbti; 
+        userMBTI = comment.data.content[i].mbti;
         setMaintext(userMBTI);
-        mainTextSplit = mainText.substring(mainText.indexOf("?")+3);
+        mainTextSplit = mainText.substring(mainText.indexOf("?") + 3);
         charWithMovieName = mainTextSplit.split("''");
         // characterNameForReply = charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2);
         // console.log(characterNameForReply);
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2)}`,  // MBTI 유형
+            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ") + 2)}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
@@ -322,7 +324,9 @@ function commentDelete(id, name, password) {  // 댓글 삭제
                     alert(errorMsg);
                 }
             })
-            .catch((error) => console.log("error:", error));
+            .catch(function (e) {
+                console.error(e);
+            });
 
     } else {  // 비밀번호 입력에 실패했을 경우
         alert("비밀번호가 일치하지 않습니다.");
@@ -351,5 +355,7 @@ function searchComment(page, size) {  // 댓글 페이징 조회
                 alert("오류 입니다.");
             }
         })
-        .catch((error) => console.log("error:", error));
+        .catch(function (e) {
+            console.error(e);
+        });
 }
