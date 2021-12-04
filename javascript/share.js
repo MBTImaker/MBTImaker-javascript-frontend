@@ -12,8 +12,7 @@ const shareImage = "url(https://mbti-test.herokuapp.com/og_image.png)";
 let KAKAO_JAVASCRIPT_KEY = "";
 
 
-// =========================== Share ===========================
-// test sharing
+// =========================== Functions ===========================
 
 // MBTI에 따라 공유되는 텍스트를 다르게 설정한다.
 function setMaintext(userMBTI) {
@@ -132,7 +131,7 @@ function shareBand() {
     window.open(link, 'share', 'width=500, height=500');
 }
 
-// Instagram
-function shareInstagram() {
-    window.open("hhttps://www.instagram.com/?url=https://www.drdrop.co/" + shareLink);
-}
+// Instagram - share test
+// function shareInstagram() {
+//     window.open("hhttps://www.instagram.com/?url=https://www.drdrop.co/" + shareLink);
+// }

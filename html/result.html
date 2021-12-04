@@ -18,6 +18,7 @@
     <script src="../javascript/userResult.js" defer></script>
     <script src="../javascript/share.js" defer></script>
     <script src="../javascript/comment.js" defer></script>
+    <script src="../javascript/report.js" defer></script>
 
     <!-- ========================= share ========================= -->
 
@@ -184,7 +185,7 @@
                 <li><a href="javascript:shareFacebook();" class="facebook"></a></li>
                 <li><a href="javascript:shareTwitter();" class="twitter"></a></li>
                 <li><a href="javascript:shareBand();" class="band"></a></li>
-                <li><a href="javascript:shareInstagram();" class="instagram"></a></li>
+                <li><a href="../imgs/share_img_test.png" class="instagram" download="나의 영화 캐릭터 유형은?.png"></a></li>
             </ul>
         </section>
 
@@ -229,11 +230,32 @@
 
             </div>
 
+            <!-- 신고 모달 -->
+            <div class="report-modal">
+                <div class="report-modal-container">
+                    <h2>신고</h2>
+    
+                    <select name="신고유형" id="subject">
+                        <option value="">신고유형</option>
+                        <option value="ABUSE">욕설/비하</option>
+                        <option value="PORNOGRAPHY">음란물/불건전한 대화</option>
+                        <option value="COMMERCIAL">상업적 광고/판매</option>
+                        <option value="PAPERING">낚시/도배</option>
+                        <option value="DISPUTE">지나친 정치/종교 논쟁</option>
+                        <option value="PROMOTION">불법 홍보</option>
+                    </select>
+    
+                    <input type="text" id="description" placeholder="신고한 이유를 알려주세요">
+                    <div class="btns">
+                        <button id="cancle" onclick="cancleReport()">취소</button>
+                        <input type="submit" id="submit" onclick="sendReport()">
+                    </div>
+                </div>
+            </div>
+
             <!-- 페이지 넘기기 -->   
             <div class="comment-pages" id="comment-pages">
-                <!-- <div class="left-btn"></div>
-                <div class="index"></div>
-                <div class="right-btn"></div>  -->
+
             </div> 
 
         </section>
