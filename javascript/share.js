@@ -131,7 +131,7 @@ function shareBand() {
     window.open(link, 'share', 'width=500, height=500');
 }
 
-// Instagram
+// Instagram - share test
 // function shareInstagram() {
 //     window.open("hhttps://www.instagram.com/?url=https://www.drdrop.co/" + shareLink);
 // }
