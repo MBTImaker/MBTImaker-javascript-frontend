@@ -9,13 +9,13 @@ const chkcommentArea = document.querySelector(".comment-area");
 
 
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
-let isFirst = false;
-let isIndexCheck = false;
+//let isFirst = false;
+let isIndexCheck = false;  // index가 1234567812345678 이런 식으로 발생해서 구분 하기 위해 생성
 
 let errorMsg = '';  // 에러메시지 안내
-let tmpMBTI = '';
-let userMBTI;
+let userMBTI;   // 서버의 response 로 오는 값인 'INTP..' 값들을 저장
 
+/* displayComment() 함수의 index 부분에서 사용 */
 let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
 let currentPage = 1; // 현재 페이지
@@ -23,8 +23,7 @@ let currentPage = 1; // 현재 페이지
 
 window.onload = function () {
     searchComment(page, size);  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
-    isFirst = 'true';
-
+    // isFirst = 'true';
 }
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
@@ -112,7 +111,8 @@ function displayComment(comment, size) {
 
     let j = 1;
 
-   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
+    if (isDeleteCheck || isIndexCheck) { 
+//   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
@@ -124,15 +124,12 @@ function displayComment(comment, size) {
         }
     }
 
-    /* 서버의 response 로 온 댓글의 갯수(comment.data.content.length) 와 선언해 놓은 size 값이 동일할 경우에만 
-    size 값을 글로벌 변수인 size 값으로 적용하고, 
-    동일하지 않을 경우에는 서버의 response 로 온 댓글의 갯수(comment.data.content.length)를 size 값으로 넣어준다. */
-    
-    if(comment.data.content.length != size) {
-        size = comment.data.content.length;
-    }
-
     for (let i = 0; i < size; i++) {
+        // size 가 3인데, 댓글이 2개만 있는 경우엔 아래 코드가 실행 되지 않아서 2개만 보여주게 추가해줌.
+        if(comment.data.content[i] == null) {
+            break;
+        }
+
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti; 
         setMaintext(userMBTI);
@@ -197,32 +194,16 @@ function displayComment(comment, size) {
 
     if(b_end_page > totalPages) b_end_page = totalPages;
 
-    // if(currentPage <= 1) {  // 현재 페이지가 1보다 작거나 같다면, 링크 없이 그냥 처음 이라는 문자만 출력  ==>> 여기 실행 안됨!!!!
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index" style="color:red;" value="1">처음</button>
-    //     `;
-    // } else {    // 1보다 클 경우, 링크 걸린 처음을 출력
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index" onclick="searchComment(1, ${size})" value="1">처음</button>
-    //     `;
-    // }
-
     // =========================== '이전' 버튼 만들기 ===========================
-    // if(block <= 1 ) {   // block 이 1보다 작거나 같으면 더 이상 거꾸로 갈 수 없으므로 아무 표시도 하지 않음. 여기서 초기화 해버리면 '처음' 도 안나옴!
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${b_start_page-1}, ${size})" value="${b_start_page-1}"></button>
-    //     `;
-    // } else {    // block 이 1보다 크다면 이전 링크를 보여줌
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${b_start_page-1}, ${size})" value="${b_start_page-1}"></button>
-    //     `;
-    // }
-
-    // '이전' 버튼 생성
-    innerCommentIndex += `
-        <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${b_start_page-1}, ${size})" value="${b_start_page-1}"></button>
-    `;
-
+    if(currentPage <= 1) {  // 현재 페이지가 1보다 작거나 같다면, 링크 없이 이전 버튼만 보여지게 함.
+      innerCommentIndex += `
+        <button type="submit" class="index" id="index-left-btn" value="${b_start_page-1}"></button>
+      `;
+    } else { // 현재 페이지가 1보다 크면, 이전 페이지로 갈 수 있도록 이전 버튼 생성
+      innerCommentIndex += `
+        <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${currentPage-1}, ${size})" value="${currentPage-1}"></button>
+      `;
+    }
 
     for(let i = b_start_page; i<=b_end_page; i++){
         if(currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
@@ -239,28 +220,21 @@ function displayComment(comment, size) {
     let total_block = Math.ceil(totalPages / b_pageNum_list);   // block 의 총 갯수
 
     // =========================== '다음' 버튼 만들기 ===========================
-    // if(block >= total_block){   //block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
+console.log("block::"+block);
+console.log("total_block::"+total_block);
+console.log("b_end_page::"+b_end_page);
+console.log("currentPage::"+currentPage);
+console.log("totalPages:::"+totalPages);
 
-    // } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${b_end_page+1}, ${size})" value="${b_end_page+1}"></button>
-    //     `;
-    // }
-
-    innerCommentIndex += `
-        <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${b_end_page+1}, ${size})" value="${b_end_page+1}"></button>
-    `;
-
-    // =========================== '마지막' 버튼 추가 ===========================
-    // if(currentPage >= totalPages) {   //페이지 넘버와 총 페이지가 같다면 마지막 페이지이므로 링크없이 마지막만 빨간색으로 출력
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index" style="color:red;">마지막</button>
-    //     `;    
-    // } else {  // 그게 아니라면 페이지변수를 total_page로 주어서 마지막으로 가는 링크버튼을 출력
-    //     innerCommentIndex += `
-    //         <button type="submit" class="index" id="index" onclick="searchComment(${totalPages}, ${size})" value="${totalPages}">마지막</button>
-    //     `;        
-    // }
+    if(currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
+      innerCommentIndex += `
+        <button type="submit" class="index" id="index-right-btn" value="${currentPage+1}"></button>
+      `;
+    } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
+      innerCommentIndex += `
+        <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${currentPage+1}, ${size})" value="${currentPage+1}"></button>
+      `;
+    }
 
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
 
@@ -272,15 +246,7 @@ function displayComment(comment, size) {
                 currentPage = e.target.value;
         });
     });
-
-
-    console.log(size);
 }
-
-
-
-
-
 
 function commentDelete(id, name, password) {  // 댓글 삭제
 
@@ -298,7 +264,6 @@ function commentDelete(id, name, password) {  // 댓글 삭제
         commentJson['id'] = id;
         commentJson['name'] = name;
         commentJson['password'] = password;
-
 
         fetch('https://mbti-test.herokuapp.com/comment', {
             method: 'PATCH',
@@ -358,9 +323,9 @@ function searchComment(page, size) {  // 댓글 페이징 조회
         })
         .then(response => {
             if (response.status == 200) {
-console.log(response.data);
+                console.log(response.data);
 
-isIndexCheck = true;
+                isIndexCheck = true;
                 displayComment(response, size);
             } else {
                 alert("오류 입니다.");
@@ -368,3 +333,4 @@ isIndexCheck = true;
         })
         .catch((error) => console.log("error:", error));
 }
+
