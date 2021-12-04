@@ -32,6 +32,8 @@ Variables
   --comment-nickname-font-size: 1rem; /* 16px */
   --placeholder-font-size: 0.75rem; /* 12px */
 
+  --admin-margin-top-size: 0.833rem;  /* 10px */
+
   /* graph color */
   --inner-color: #ffffff;
   --number-color: #222222;
@@ -750,6 +752,19 @@ block - communication (ver.21-11-09)
   display: flex;
 }
 
+/* 관리자 페이지에서는 여백이 필요 없으므로 따로 적용 해줌 */
+.block #admin_communication {   
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  margin-top: var(--admin-margin-top-size);
+}
+
 /* ====================== add-comment ====================== */
 
 .block .communication .add-comment {
@@ -819,7 +834,11 @@ block - communication (ver.21-11-09)
   background-color: var(--section-background-color);
 }
 
-/* ====================== show-comment ====================== */
+/*
+===================================
+block - communication - show-comment
+===================================
+*/
 
 .block .communication .show-comment {
   /* size */
@@ -831,8 +850,6 @@ block - communication (ver.21-11-09)
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-
-  /* margin-top: 11.5%; */
 }
 
 .block .communication .show-comment .comment {
@@ -872,13 +889,7 @@ block - communication (ver.21-11-09)
   flex-direction: column;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .info
-  .commentNickname {
+.block .communication .show-comment .comment .comment_header .info .commentNickname {
   color: var(--comment-contents-color);
   font-size: var(--comment-nickname-font-size);
 
@@ -889,13 +900,7 @@ block - communication (ver.21-11-09)
   align-items: start;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .info
-  .commentMBTI {
+.block .communication .show-comment .comment .comment_header .info .commentMBTI {
   color: var(--comment-created-font-color);
   font-size: var(--comment-created-font-size);
 
@@ -915,13 +920,7 @@ block - communication (ver.21-11-09)
   width: 6rem;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .btn
-  .del-reply-btn {
+.block .communication .show-comment .comment .comment_header .btn .del-reply-btn {
   /* size */
   width: 1.3rem;
   height: 1.3rem;
@@ -937,13 +936,7 @@ block - communication (ver.21-11-09)
   background-color: var(--comment-reply-background-color);
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .btn
-  .report-reply-btn {
+.block .communication .show-comment .comment .comment_header .btn .report-reply-btn {
   /* size */
   width: 1.3rem;
   height: 1.3rem;
@@ -1015,7 +1008,7 @@ block - communication (ver.21-11-09)
   flex-direction: column;
   align-items: center;
 
-  /* backgroudn */
+  /* background */
   background-color: var(--comment-reply-background-color);
   border: 0.125rem solid var(--section-border-color); /* 2px */
   border-radius: 0rem 0rem 0.5rem 0.5rem;
@@ -1026,11 +1019,7 @@ block - communication (ver.21-11-09)
 .block .communication .show-comment .comment .add-reply .comment-reply-area {
   width: 85.66%;
   height: 2.75rem;
-  margin: 1.25rem 1.125rem 0.625rem 1.125rem; /* 20px 18px 10px 18px */
 
-  /* 11px 20px 8px 20px */
-  /* margin: 0.6875rem 1.25rem 0.6875rem 1.25rem; */
-  /* 20px 18px 10px 18px */
   margin: 1.25rem 1.125rem 0.625rem 1.125rem;
 
   border: 0.125rem solid var(--comment-reply-border-color);
@@ -1040,25 +1029,9 @@ block - communication (ver.21-11-09)
   padding-left: 1.25rem;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .add-reply
-  .comment-reply-area::placeholder {
+.block .communication .show-comment .comment .add-reply .comment-reply-area::placeholder {
   color: var(--comment-placeholder-color);
 }
-
-/* .block .communication .show-comment .comment .add-reply .replyWrite {
-  width: 85.66%;
-  height: 48%;
-
-  background-image: url("../imgs/replyBtn_Frame139.png");
-  background-size: 100% 100%;
-  background-color: var(--section-background-color);
-
-  margin: 0rem 1.125rem 1.375rem 1.125rem;
-} */
 
 .block .communication .show-comment .comment .add-reply .write-reply-btn {
   width: 85.6%;
@@ -1114,6 +1087,96 @@ block - communication (ver.21-11-09)
 
   margin-top: 0;
 }
+
+/* 관리자페이지 구현중 =====================================================================================================================*/
+
+.block .communication #admin_show-comment {
+  /* size */
+  width: 100%;
+  height: 95%;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.block .communication #admin_show-comment .comment {
+  /* size */
+  width: 90.15%;
+  height: 26%;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* background */
+  border: 2px solid var(--section-border-color);
+  border-radius: 10px;
+
+  /* margin */
+  margin-bottom: 0.625rem;
+}
+
+.block .communication .comment-pages {
+  background-color: var(--section-background-color);
+
+  width: 72%;
+  height: 3.6%;
+
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.block .communication #admin_comment-pages #index-left-btn {
+  width: 20%;
+  /* height: 46%; */
+
+  background-image: url("../imgs/index_left_btn_Frame 81.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
+
+  margin-top: 0;
+}
+
+.block .communication #admin_comment-pages #index {
+  font-size: var(--comment-nickname-font-size);
+  background-color: var(--section-background-color);
+  color: var(--basic-font-color);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.block .communication #admin_comment-pages #index-right-btn {
+  width: 20%;
+  /* height: 46%; */
+
+  background-image: url("../imgs/index_right_btn_Frame 80.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
+
+  margin-top: 0;
+}
+
+/* ========================================================================================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 ===================================
