@@ -93,6 +93,11 @@ section {
   margin-bottom: 0.625rem; /* 10px */
 }
 
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
 .subTitle {
   /* size */
   width: 100%;
