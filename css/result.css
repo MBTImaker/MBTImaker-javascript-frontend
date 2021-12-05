@@ -32,7 +32,7 @@ Variables
   --comment-nickname-font-size: 1rem; /* 16px */
   --placeholder-font-size: 0.75rem; /* 12px */
 
-  --admin-margin-top-size: 0.833rem;  /* 10px */
+  --admin-margin-top-size: 0.833rem; /* 10px */
 
   /* graph color */
   --inner-color: #ffffff;
@@ -753,7 +753,7 @@ block - communication (ver.21-11-09)
 }
 
 /* 관리자 페이지에서는 여백이 필요 없으므로 따로 적용 해줌 */
-.block #admin_communication {   
+.block #admin_communication {
   width: 100%;
   height: 100%;
 
@@ -876,7 +876,6 @@ block - communication - show-comment
   width: 100%;
   height: 43.5%;
 
-  box-sizing: border-box;
   border-radius: 10px 10px 0px 0px;
 
   display: flex;
@@ -889,7 +888,13 @@ block - communication - show-comment
   flex-direction: column;
 }
 
-.block .communication .show-comment .comment .comment_header .info .commentNickname {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .info
+  .commentNickname {
   color: var(--comment-contents-color);
   font-size: var(--comment-nickname-font-size);
 
@@ -900,7 +905,13 @@ block - communication - show-comment
   align-items: start;
 }
 
-.block .communication .show-comment .comment .comment_header .info .commentMBTI {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .info
+  .commentMBTI {
   color: var(--comment-created-font-color);
   font-size: var(--comment-created-font-size);
 
@@ -920,7 +931,13 @@ block - communication - show-comment
   width: 6rem;
 }
 
-.block .communication .show-comment .comment .comment_header .btn .del-reply-btn {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .btn
+  .del-reply-btn {
   /* size */
   width: 1.3rem;
   height: 1.3rem;
@@ -936,7 +953,13 @@ block - communication - show-comment
   background-color: var(--comment-reply-background-color);
 }
 
-.block .communication .show-comment .comment .comment_header .btn .report-reply-btn {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .btn
+  .report-reply-btn {
   /* size */
   width: 1.3rem;
   height: 1.3rem;
@@ -1029,7 +1052,12 @@ block - communication - show-comment
   padding-left: 1.25rem;
 }
 
-.block .communication .show-comment .comment .add-reply .comment-reply-area::placeholder {
+.block
+  .communication
+  .show-comment
+  .comment
+  .add-reply
+  .comment-reply-area::placeholder {
   color: var(--comment-placeholder-color);
 }
 
@@ -1078,7 +1106,6 @@ block - communication - show-comment
 
   margin-top: 0;
 }
-
 
 .block .communication .comment-pages #index {
   font-size: var(--comment-nickname-font-size);
