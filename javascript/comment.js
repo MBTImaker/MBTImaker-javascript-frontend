@@ -109,7 +109,7 @@ function displayComment(comment, size) {
     let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
     let charWithMovieName; // '' 를 기준으로 각 댓글 당 "영화 이름+영화 주인공" 을 값을 가져온다.
 
-    let j = 1;
+    let j = 1;  // 각 댓글의 mbti 값을 가져올 때 사용.
 
     if (isDeleteCheck || isIndexCheck) { 
 //   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
@@ -192,23 +192,24 @@ function displayComment(comment, size) {
     let b_start_page = ((block - 1) * b_pageNum_list) + 1;  //현재 블럭에서 시작페이지 번호
     let b_end_page = b_start_page + b_pageNum_list - 1; //현재 블럭에서 마지막 페이지 번호
 
-    if(b_end_page > totalPages) b_end_page = totalPages;
+    if(b_end_page > totalPages) b_end_page = totalPages;  // 블럭의 마지막 페이지가 총 페이지 수보다 클 때 두 숫자를 같게 해줌.
+
 
     // =========================== '이전' 버튼 만들기 ===========================
     if(currentPage <= 1) {  // 현재 페이지가 1보다 작거나 같다면, 링크 없이 이전 버튼만 보여지게 함.
       innerCommentIndex += `
-        <button type="submit" class="index" id="index-left-btn" value="${b_start_page-1}"></button>
+        <button type="submit" class="index" id="index_left_btn_not_active" value="${b_start_page-1}"></button>
       `;
     } else { // 현재 페이지가 1보다 크면, 이전 페이지로 갈 수 있도록 이전 버튼 생성
       innerCommentIndex += `
-        <button type="submit" class="index" id="index-left-btn" onclick="searchComment(${currentPage-1}, ${size})" value="${currentPage-1}"></button>
+        <button type="submit" class="index" id="index_left_btn_active" onclick="searchComment(${currentPage-1}, ${size})" value="${currentPage-1}"></button>
       `;
     }
 
     for(let i = b_start_page; i<=b_end_page; i++){
         if(currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
             innerCommentIndex += `
-                <button type="submit" class="index" id="index" style="color:red;" value="${i}">${i}</button>
+                <button type="submit" class="index" id="index" style="color:#E10017;" value="${i}">${i}</button>
             `; 
         } else {    // 현재 페이지를 제외한 나머지 페이지 번호들에 링크 달아서 출력
             innerCommentIndex += `
@@ -222,11 +223,11 @@ function displayComment(comment, size) {
     // =========================== '다음' 버튼 만들기 ===========================
     if(currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
       innerCommentIndex += `
-        <button type="submit" class="index" id="index-right-btn" value="${currentPage+1}"></button>
+        <button type="submit" class="index" id="index_right_btn_not_active" value="${currentPage+1}"></button>
       `;
     } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
       innerCommentIndex += `
-        <button type="submit" class="index" id="index-right-btn" onclick="searchComment(${currentPage+1}, ${size})" value="${currentPage+1}"></button>
+        <button type="submit" class="index" id="index_right_btn_active" onclick="searchComment(${currentPage+1}, ${size})" value="${currentPage+1}"></button>
       `;
     }
 
@@ -237,7 +238,7 @@ function displayComment(comment, size) {
     // 생성된 인덱스 버튼들이 몇 페이지 인지 인식한 뒤 currentPage 변수에 저장
     indexBtns.forEach((idxbtn) => {
         idxbtn.addEventListener("click", (e) => {
-                currentPage = Number(e.target.value);
+                currentPage = Number(e.target.value);  // Number 로 형변환 해주지 않으니 String 으로 맘대로 변환 되서 처리해줌.
         });
     });
 }
