@@ -220,12 +220,6 @@ function displayComment(comment, size) {
     let total_block = Math.ceil(totalPages / b_pageNum_list);   // block 의 총 갯수
 
     // =========================== '다음' 버튼 만들기 ===========================
-console.log("block::"+block);
-console.log("total_block::"+total_block);
-console.log("b_end_page::"+b_end_page);
-console.log("currentPage::"+currentPage);
-console.log("totalPages:::"+totalPages);
-
     if(currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
       innerCommentIndex += `
         <button type="submit" class="index" id="index-right-btn" value="${currentPage+1}"></button>
@@ -243,7 +237,7 @@ console.log("totalPages:::"+totalPages);
     // 생성된 인덱스 버튼들이 몇 페이지 인지 인식한 뒤 currentPage 변수에 저장
     indexBtns.forEach((idxbtn) => {
         idxbtn.addEventListener("click", (e) => {
-                currentPage = e.target.value;
+                currentPage = Number(e.target.value);
         });
     });
 }
