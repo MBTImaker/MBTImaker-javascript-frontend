@@ -1055,16 +1055,30 @@ block - communication - show-comment
   justify-content: space-between;
 }
 
-.block .communication .comment-pages #index-left-btn {
+/* index-left-btn 활성화 경우 */
+.block .communication .comment-pages #index_left_btn_active {
   width: 20%;
   /* height: 46%; */
 
-  background-image: url("../imgs/index_left_btn_Frame 81.png");
+  background-image: url("../imgs/index_left_btn_active.png");
   background-size: contain;
   background-color: var(--section-background-color);
 
   margin-top: 0;
 }
+
+/* index-left-btn 비활성화 경우 */
+.block .communication .comment-pages #index_left_btn_not_active {
+  width: 20%;
+  /* height: 46%; */
+
+  background-image: url("../imgs/index_left_btn_not_active.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
+
+  margin-top: 0;
+}
+
 
 .block .communication .comment-pages #index {
   font-size: var(--comment-nickname-font-size);
@@ -1077,18 +1091,31 @@ block - communication - show-comment
   justify-content: space-between;
 }
 
-.block .communication .comment-pages #index-right-btn {
+/* index-right-btn 활성화 경우 */
+.block .communication .comment-pages #index_right_btn_active {
   width: 20%;
   /* height: 46%; */
 
-  background-image: url("../imgs/index_right_btn_Frame 80.png");
+  background-image: url("../imgs/index_right_btn_active.png");
   background-size: contain;
   background-color: var(--section-background-color);
 
   margin-top: 0;
 }
 
-/* 관리자페이지 댓글 */
+/* index-right-btn 비활성화 경우 */
+.block .communication .comment-pages #index_right_btn_not_active {
+  width: 20%;
+  /* height: 46%; */
+
+  background-image: url("../imgs/index_right_btn_not_active.png");
+  background-size: contain;
+  background-color: var(--section-background-color);
+
+  margin-top: 0;
+}
+
+/* 관리자페이지 댓글 구현중 =====================================================================================================================*/
 
 .block .communication #admin_show-comment {
   /* size */
