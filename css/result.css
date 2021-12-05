@@ -752,19 +752,6 @@ block - communication (ver.21-11-09)
   display: flex;
 }
 
-/* 관리자 페이지에서는 여백이 필요 없으므로 따로 적용 해줌 */
-.block #admin_communication {   
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  margin-top: var(--admin-margin-top-size);
-}
-
 /* ====================== add-comment ====================== */
 
 .block .communication .add-comment {
@@ -1115,81 +1102,6 @@ block - communication - show-comment
   margin-top: 0;
 }
 
-/* 관리자페이지 댓글 구현중 =====================================================================================================================*/
-
-.block .communication #admin_show-comment {
-  /* size */
-  width: 100%;
-  height: 95%;
-
-  /* display */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.block .communication #admin_show-comment .comment {
-  /* size */
-  width: 90.15%;
-  height: 26%;
-
-  /* display */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  /* background */
-  border: 2px solid var(--section-border-color);
-  border-radius: 10px;
-
-  /* margin */
-  margin-bottom: 0.625rem;
-}
-
-.block .communication .comment-pages {
-  background-color: var(--section-background-color);
-
-  width: 72%;
-  height: 3.6%;
-
-  display: flex;
-
-  justify-content: space-between;
-}
-
-.block .communication #admin_comment-pages #index-left-btn {
-  width: 20%;
-  /* height: 46%; */
-
-  background-image: url("../imgs/index_left_btn_Frame 81.png");
-  background-size: contain;
-  background-color: var(--section-background-color);
-
-  margin-top: 0;
-}
-
-.block .communication #admin_comment-pages #index {
-  font-size: var(--comment-nickname-font-size);
-  background-color: var(--section-background-color);
-  color: var(--basic-font-color);
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: space-between;
-}
-
-.block .communication #admin_comment-pages #index-right-btn {
-  width: 20%;
-  /* height: 46%; */
-
-  background-image: url("../imgs/index_right_btn_Frame 80.png");
-  background-size: contain;
-  background-color: var(--section-background-color);
-
-  margin-top: 0;
-}
 
 /*
 ===================================
