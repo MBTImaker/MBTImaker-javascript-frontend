@@ -101,7 +101,6 @@ function showResult(data) {
     mostType.querySelector(".movie-character").innerHTML = mostPopularType.characterName;
     mostType.querySelector("img").src = mostPopularType.imageUrl;
     mostTypePercentage = mostPopularType.percentage;
-    console.log(`likeMePercentage, mostTypePercentage : ${likeMePercentage}, ${mostTypePercentage}`);
 
     // ----------- recommendedMovies -----------
     const movieList = document.querySelectorAll(".block .movies .movie-list li img:nth-child(n)");
@@ -129,7 +128,6 @@ const showAnimation = function () {
                     if (circular.id == "likeMe") {
                         if (likeMeCounter == likeMePercentage) {
                             toggleShow(circle);
-                            circle.classList.remove('show');
                             clearInterval(drawing);
                         } else {
                             likeMeCounter += 1;
@@ -139,7 +137,6 @@ const showAnimation = function () {
                     else {
                         if (mostTypeCounter == mostTypePercentage) {
                             toggleShow(circle);
-                            circle.classList.remove('show');
                             clearInterval(drawing);
                         } else {
                             mostTypeCounter += 1;
