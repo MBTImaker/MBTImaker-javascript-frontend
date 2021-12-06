@@ -613,6 +613,13 @@ block - communication (ver.21-11-09)
   color: var(--comment-placeholder-color);
 }
 
+.block .communication .add-comment .pwAndInput {
+  width: 89%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .block .communication .add-comment .nickname,
 .comment-area,
 .password {
@@ -637,9 +644,9 @@ block - communication (ver.21-11-09)
 }
 
 .block .communication .add-comment .password {
-  width: 89%;
+  width: 100%;
   height: 2.75rem;
-  margin: 0.6875rem 1.25rem 0.625rem 1.25rem;
+  margin: 0.6875rem 0 0.625rem 0;
 }
 
 .block .communication .add-comment .wrtie-comment-btn {
