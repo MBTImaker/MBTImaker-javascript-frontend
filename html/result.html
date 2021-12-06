@@ -8,7 +8,6 @@
 
     <!-- ========================= files ========================= -->
 
-    <!-- css -->
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/result.css">
     <link rel="stylesheet" href="../css/result_media.css">
@@ -52,16 +51,6 @@
     <div class="loading">
         <img src="../imgs/loading_ment.png" alt="영화캐릭터 분석중">
     </div>
-
-    <!-- facebook -->
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
 
     <!-- 하얀 영역 -->
     <div class="block">
@@ -189,7 +178,7 @@
                 <li><a href="javascript:shareFacebook();" class="facebook"></a></li>
                 <li><a href="javascript:shareTwitter();" class="twitter"></a></li>
                 <li><a href="javascript:shareBand();" class="band"></a></li>
-                <li><a href="../imgs/share_img_test.png" class="instagram" download="나의 영화 캐릭터 유형은?.png"></a></li>
+                <li><a href="../imgs/instagram_download_img.png" class="instagram" download="나의 영화 캐릭터 유형은?.png"></a></li>
             </ul>
         </section>
 
@@ -220,20 +209,14 @@
                 <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임을 입력하세요.(2~10자)">
                 <textarea name="comment-area" class="comment-area" id="comment-area" rows="18"
                     placeholder="댓글을 입력하세요"></textarea>
-                <input type="password" class="password" id="password" name="password" placeholder="비밀번호를 입력하세요.(4~20자)">
-
-                <!-- <input type="hidden" id="password" value="<%=password%>" /> -->
-
-                <!-- <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
-                    onclick="commentWrite()"></button> -->
-                <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
-                    onclick="enc(true,false,'')"></button>
-
-
-
+                <div class="pwAndInput">
+                    <input type="password" class="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+                    <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
+                        onclick="commentWrite()"></button>
+                </div>
             </div>
 
-            <div class="point-line-distinct-reply"></div>
+            <div class="point-line"></div>
 
             <!-- 댓글 창 보여주기 -->
             <div class="show-comment">
@@ -264,15 +247,10 @@
             </div>
 
             <!-- 페이지 넘기기 -->   
-            <div class="comment-pages" id="comment-pages">
-            </div> 
+            <div class="comment-pages" id="comment-pages"></div> 
 
         </section>
-
-
     </div>
-
-    <div class="fb-quote"></div>
 </body>
 
 </html>

@@ -1,10 +1,7 @@
 :root {
-  /* font-color */
   --text-start-color: #ffffff;
-
-  /* font-size */
-  --text-start-mobile-size: 0.875rem; /* 14px */
-  --text-start-desktop-size: 1.5rem; /* 24px */
+  --text-start-mobile-size: 0.875rem;
+  --text-start-desktop-size: 1.5rem;
 }
 
 /*
@@ -42,34 +39,19 @@ header {
 }
 
 header .sub-title {
-  width: 90vw; /* 335px*/
+  width: 90vw;
   height: 3vh;
-
-  /* background */
-  background-image: url("../imgs/subTitle_Frame16.png");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: no-repeat center url("../imgs/subTitle_Frame16.png");
   background-size: contain;
-
-  /* margin */
   margin-top: 17.73vh;
 }
 
 header .title {
-  width: 100vw; /* 287px */
+  width: 100vw;
   height: 20vh;
-
-  /* background */
-  background-image: url("../imgs/title.png");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: no-repeat center url("../imgs/title.png");
   background-size: contain;
 }
-/*
-==========
-header
-==========
-*/
 
 .btnAndText {
   height: 60vh;
@@ -82,23 +64,15 @@ header
 .btnAndText .btn-start {
   width: 89.1vw;
   height: 9vh;
-
   border-radius: 80px;
-  background-image: url("../imgs/startBtn_Frame88.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: 99% 100%; */
+  background: no-repeat center url("../imgs/startBtn_Frame88.png") transparent;
   background-size: contain;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 .btnAndText .text-start {
   color: var(--text-start-color);
   font-size: var(--text-start-mobile-size);
-
-  /* margin */
-  margin-top: 3.5vh;
-  margin-bottom: 10vh;
+  margin: 3.5vh 0 10vh 0;
 }
 /*
 ==========
@@ -106,20 +80,16 @@ PC
 ==========
 */
 
-/* mobile(width: 756px, height: 812px) labtop(1020px) / desktop(1400px) */
 @media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
   header .sub-title {
     width: 37vw;
     height: 3.51vh;
-
-    /* margin */
     margin-top: 13.33vh;
   }
 
   header .title {
     width: 37vw;
     height: 18.88vh;
-
     margin-top: 1.94vh;
   }
 
@@ -130,10 +100,7 @@ PC
 
   .btnAndText .text-start {
     font-size: var(--text-start-desktop-size);
-    line-height: 1.8125rem; /* 29px */
-
-    /* margin */
-    margin-top: 3.98vh;
-    margin-bottom: 9.25vh;
+    line-height: 1.8125rem;
+    margin: 3.98vh 0 9.25vh 0;
   }
 }
