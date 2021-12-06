@@ -21,25 +21,15 @@ function sendReport() {
     const reportSubjectValue = reportSubject.options[reportSubject.selectedIndex].value;
     const reportDescriptionValue = document.querySelector("#description").value;
 
-    fetch("https://mbti-test.herokuapp.com/report", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "commentId": commentId,
-            "description": reportDescriptionValue,
-            "subject": reportSubjectValue
-        }),
-    }).then((response) => { return response.json(); })
-        .then((response) => {
-            if (response.status != 200) {
-                throw "유효하지 않은 신고 유형입니다.";
-            }
+    runFetch("POST", "https://mbti-test.herokuapp.com/report", {
+        "commentId": commentId,
+        "description": reportDescriptionValue,
+        "subject": reportSubjectValue,
+    })
+        .then((data) => {
             cancleReport();
-        }).catch(err => {
-            alert(err);
-        });
+        })
+        .catch(err => { alert("잘못된 입력입니다.") });
 }
 
 // 모달 창 닫기
