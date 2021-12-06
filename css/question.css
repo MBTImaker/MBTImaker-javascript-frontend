@@ -5,32 +5,25 @@ Variables
 */
 
 :root {
-  /* font-color */
   --q-num-font-color: #d1d1d1;
   --q-title-font-color: #222222;
   --q-title-shadow-color: #060713;
   --two-btns-unclicked-font-color: #888888;
   --two-btns-clicked-font-color: #ffffff;
   --next-btn-unclicked-font-color: #6f6f70;
-
-  /* button-color */
   --two-btns-unclicked-color: #e8e8e8;
   --two-btns-clicked-color: #2d6242;
   --two-btns-clicked-border-color: #1a3e2a;
-
-  /* font-size */
   --q-num-mobile-size: 1.75rem;
-  --q-title-mobile-size: 1.125rem; /* 18px */
-  --q-title-mobile-xs-size: 0.9375rem; /* 15px */
-  --q-title-desktop-size: 2rem; /* 32px */
-  --q-title-desktop-xs-size: 1.25rem; /* 20px */
-  --two-btns-desktop-size: 1.25rem; /* 20px */
-  --button-text-mobile-size: 0.875rem; /* 14px */
-  --button-text-mobile-xs-size: 0.75rem; /* 12px */
-  --button-text-desktop-size: 1.375rem; /* 22px */
+  --q-title-mobile-size: 1.125rem;
+  --q-title-mobile-xs-size: 0.9375rem;
+  --q-title-desktop-size: 2rem;
+  --q-title-desktop-xs-size: 1.25rem;
+  --two-btns-desktop-size: 1.25rem;
+  --button-text-mobile-size: 0.875rem;
+  --button-text-mobile-xs-size: 0.75rem;
+  --button-text-desktop-size: 1.375rem;
   --button-text-desktop-xs-size: 1.125rem;
-
-  /* spacing */
   --letter-spacing: 0.02em;
 }
 /*
