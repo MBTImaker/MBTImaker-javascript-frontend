@@ -5,6 +5,10 @@ const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
 const commentIndex = document.querySelector(".block .communication .comment-pages");
 
+const nickname = document.getElementById("nickname");
+const content = document.getElementById("comment-area");
+const password = document.getElementById("password");
+
 
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 let isIndexCheck = false;  // index가 1234567812345678 이런 식으로 발생해서 구분 하기 위해 생성
@@ -46,21 +50,18 @@ function searchComment(page, size) {  // 댓글 페이징 조회
 
 function commentWrite() {
 
-    const nickname = document.getElementById("nickname").value;
-    const content = document.getElementById("comment-area").value;
-    const password = document.getElementById("password").value;
-
     // 서버로 보낼 데이터 셋팅
-    let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
+    let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
 
     // 서버에서 받은 값 저장
-    let recvID; // 각 댓글의 id 값
-    let recvParentId; // 각 댓글의 부모id 값
+    //let recvID; // 각 댓글의 id 값
+    //let recvParentId; // 각 댓글의 부모id 값
 
     runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
         .then((response) => {
             alert("댓글 작성 성공!");
             searchComment(page, size);  // 댓글 조회 함수 호출
+            [content.value, nickname.value, password.value] = [null, null, null];
         })
         .catch((error) => console.log("error: ", error));
 }
