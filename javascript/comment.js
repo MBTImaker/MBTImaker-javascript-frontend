@@ -28,9 +28,8 @@ let aes256DecodeData = "";
 let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
 
 
-window.onload = function () {
-    searchComment(page, size);  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
-}
+window.addEventListener('load', searchComment(page, size));
+
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(svrDate) {
@@ -164,7 +163,6 @@ let mainTextStr = '';
 
         j += 2;
     }
-
 
     innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
         /* 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함. */

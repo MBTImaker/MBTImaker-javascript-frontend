@@ -249,6 +249,12 @@ media
     width: 79.86%;
   }
 
+  .block .communication .add-comment .pwAndInput {
+    width: 79.86%;
+    flex-direction: row;
+    align-items: start;
+  }
+
   .block .communication .add-comment .input-pw {
     flex-direction: row;
     justify-content: center;
@@ -256,20 +262,26 @@ media
   }
 
   .block .communication .add-comment .password {
-    width: 63.08%;
+    width: 78.99%;
     height: 3.25rem;
     margin: 1.25rem 1.25rem 0.625rem 0;
   }
 
   .block .communication .add-comment .wrtie-comment-btn {
-    width: 13.42%;
+    width: 16.8%;
     height: 3.25rem;
     background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
 
     margin-top: 1.25rem;
   }
+
+  .block .communication .show-comment {
+    margin: 4.125rem 0 0.875rem 0;
+  }
+
   .block .communication .show-comment .comment {
     border-radius: 20px;
+    margin-bottom: 1.6875rem;
   }
 
   .block .communication .show-comment .comment .comment_header {
@@ -277,7 +289,7 @@ media
   }
 
   .block .communication .show-comment .comment .comment_content {
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 0px 0px 20px 20px;
   }
 
   .block .communication .show-comment .comment .add-reply {
@@ -297,5 +309,9 @@ media
 
   .block .communication .show-comment .comment .add-reply .comment-reply-area {
     margin: 1.25rem 1.25rem 1.125rem 1.0625rem;
+  }
+
+  .block .communication .comment-pages {
+    width: 40%;
   }
 }

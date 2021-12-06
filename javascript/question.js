@@ -2,6 +2,12 @@
 
 /* 설명: 질문 12가지를 화면에 보여줍니다. */
 
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        scrollTo(0, 0);
+    }, 10);
+});
+
 // =========================== Variables ===========================
 
 const questionList = [
@@ -245,7 +251,7 @@ selectBtns.forEach((btn) => {
             scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
         } else {
             // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
-            next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
+            next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
             next.classList.remove("next");
             next.classList.add("showResult");
             next.onclick = function () {
