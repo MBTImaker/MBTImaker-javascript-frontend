@@ -21,25 +21,40 @@ function sendReport() {
     const reportSubjectValue = reportSubject.options[reportSubject.selectedIndex].value;
     const reportDescriptionValue = document.querySelector("#description").value;
 
-    fetch("https://mbti-test.herokuapp.com/report", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    post("https://mbti-test.herokuapp.com/report", {
+        body: {
             "commentId": commentId,
             "description": reportDescriptionValue,
             "subject": reportSubjectValue
-        }),
-    }).then((response) => { return response.json(); })
-        .then((response) => {
-            if (response.status != 200) {
+        },
+    })
+        .then((data) => {
+            if (data.status != 200) {
                 throw "유효하지 않은 신고 유형입니다.";
             }
             cancleReport();
-        }).catch(err => {
-            alert(err);
-        });
+        })
+        .catch(err => { alert(err); });
+
+    // fetch("https://mbti-test.herokuapp.com/report", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         "commentId": commentId,
+    //         "description": reportDescriptionValue,
+    //         "subject": reportSubjectValue
+    //     }),
+    // }).then((response) => { return response.json(); })
+    //     .then((response) => {
+    //         if (response.status != 200) {
+    //             throw "유효하지 않은 신고 유형입니다.";
+    //         }
+    //         cancleReport();
+    //     }).catch(err => {
+    //         alert(err);
+    //     });
 }
 
 // 모달 창 닫기

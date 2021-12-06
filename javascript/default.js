@@ -31,3 +31,24 @@ const favicon = function () {
 }
 
 head.innerHTML += favicon();
+
+// (3) post
+async function post(postURL, body, headers = {}) {
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            ...headers,
+        },
+        body: JSON.stringify(body),
+    };
+
+    const res = await fetch(postURL, options);
+    const data = await res.json();
+
+    if (res.ok) {
+        return data;
+    } else {
+        throw Error(data);
+    }
+}
