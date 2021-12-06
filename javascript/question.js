@@ -2,6 +2,12 @@
 
 /* 설명: 질문 12가지를 화면에 보여줍니다. */
 
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        scrollTo(0, 0);
+    }, 10);
+});
+
 // =========================== Variables ===========================
 
 const questionList = [

@@ -2,12 +2,6 @@
 
 /* 설명: 모든 페이지에 적용되는 사항입니다. */
 
-window.onload = function () {
-    setTimeout(function () {
-        scrollTo(0, 0);
-    }, 100);
-}
-
 // (1) vh값을 css에서 정의된 값이 아닌 새로운 값을 사용한다.
 let vHeight = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vHeight}px`);
