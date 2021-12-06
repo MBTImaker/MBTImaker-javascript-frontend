@@ -18,6 +18,10 @@
     <script src="../javascript/share.js" defer></script>
     <script src="../javascript/comment.js" defer></script>
     <script src="../javascript/report.js" defer></script>
+    <!-- Crypto CDN 로드 -->    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
+
 
     <!-- ========================= share ========================= -->
 
@@ -202,7 +206,7 @@
 
             <!-- 댓글 작성 -->
             <div class="add-comment">
-                <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임을 입력하세요">
+                <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임을 입력하세요.(2~10자)">
                 <textarea name="comment-area" class="comment-area" id="comment-area" rows="18"
                     placeholder="댓글을 입력하세요"></textarea>
                 <div class="pwAndInput">

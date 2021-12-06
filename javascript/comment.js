@@ -5,7 +5,7 @@ const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
 const commentIndex = document.querySelector(".block .communication .comment-pages");
 
-
+let isWriteCheck = false;  // write 함수에서 왔는지 확인하는 값
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 let isIndexCheck = false;  // index가 1234567812345678 이런 식으로 발생해서 구분 하기 위해 생성
 
@@ -16,8 +16,17 @@ let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
 let currentPage = 1; // 현재 페이지
 
+/* 패스워드 노출 방지를 위해 AES 256 방식 사용. */
+let aes256SecretKey = crypto.getRandomValues(new Uint32Array(2)).join('');   // 암호화 키 값으로 랜덤의 16바이트 필요.
+let aes256Iv = crypto.getRandomValues(new Uint16Array(4)).join(''); // iv 랜덤의 16 바이트
+let aes256EncodeData = "";
+let aes256DecodeData = "";
+
+let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
+
 
 window.addEventListener('load', searchComment(page, size));
+
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(svrDate) {
@@ -28,7 +37,7 @@ function dateToStr(svrDate) {
     return dateToString;
 }
 
-function searchComment(page, size) {  // 댓글 페이징 조회
+function commentWrite(aes256DecodeData) {
 
     let tmpURL = 'https://mbti-test.herokuapp.com/comment';
     let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
@@ -46,9 +55,11 @@ function searchComment(page, size) {  // 댓글 페이징 조회
 
 function commentWrite() {
 
-    const nickname = document.getElementById("nickname").value;
-    const content = document.getElementById("comment-area").value;
-    const password = document.getElementById("password").value;
+    // 사용자가 입력 한 값을 받아온다.
+    let nickname = document.getElementById("nickname").value;
+    let content = document.getElementById("comment-area").value;
+    // let password = document.getElementById("password").value;
+    let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
 
     // 서버로 보낼 데이터 셋팅
     let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
@@ -106,7 +117,10 @@ function displayComment(comment, size) {
         j += 2;
     }
 
-    innerComment = comments.map(function (c) {
+    innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
+        /* 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함. */
+        tmpUseEnc = {id: `${c.id}`, pw: `${c.password}`, name: `${c.name}`};
+        localStorage.setItem(`${c.id}`, JSON.stringify(tmpUseEnc));
 
         let changeCreatedDate = dateToStr(c.createdDate);
 
@@ -118,8 +132,8 @@ function displayComment(comment, size) {
                     <span id="commentMBTI" class="commentMBTI">${c.mbti}</span>
                 </div>
                 <div class="btn">
-                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, '${c.name}', '${c.password}')" ></button>
-                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal(${c.id})"></button>
+                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="enc(false, true, ${c.id})" ></button>
+                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
                 </div>
             
             </div>
@@ -206,6 +220,162 @@ function commentDelete(id, name, password) {
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
 
+    if(pwPrompt == null) {  // 취소를 누를 경우
+        return false;   // 아무런 알람 띄우지 않음
+    } else {
+        if (pwPrompt == password) {
+            // 서버로 보낼 데이터 셋팅
+            let commentJson = {};
+            commentJson['id'] = id;
+            commentJson['name'] = name;
+            commentJson['password'] = password;
+    
+            fetch('https://mbti-test.herokuapp.com/comment', {
+                method: 'PATCH',
+                cache: 'no-cache',
+                headers: {
+                    'Accept': '*',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
+                    'Origin': 'https://mbti-test.herokuapp.com',
+                    'Referer': 'https://mbti-test.herokuapp.com'
+                },
+                body: JSON.stringify(commentJson),
+            })
+                .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+                    console.log(response);
+    
+                    return response.json();
+    
+                })
+                .then(response => {
+                    if (response.status == 200) {
+                        alert("댓글 삭제 성공!");
+    
+                        // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
+                        isDeleteCheck = 'true';
+    
+                        // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
+                        searchComment(page, size);
+    
+                    } else {
+                        // 오류 발생 시 alert 로 메시지 표출
+                        for(let i=0; i<response.errors.length; i++){
+                            errorMsg += response.errors[i].reason + '\n';
+                        }
+                        alert(errorMsg);
+                        }
+                })
+                .catch((error) => console.log("error:", error));
+    
+        } else if (pwPrompt != password){   // 비밀번호 입력에 실패했을 경우
+            alert("비밀번호가 일치하지 않습니다.");
+    
+        }
+    }
+}
+
+
+function searchComment(page, size) {  // 댓글 페이징 조회
+
+    let tmpURL = 'https://mbti-test.herokuapp.com/comment';
+    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
+
+    // 서버로 부터 받은 값 저장
+    fetch(reqURL)
+        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+            console.log(response);
+            return response.json();
+        })
+        .then(response => {
+            if (response.status == 200) {
+                console.log(response.data);
+
+                isIndexCheck = true;
+                displayComment(response, size);
+            } else {
+                alert("오류 입니다.");
+            }
+        })
+        .catch((error) => console.log("error:", error));
+}
+
+let localObj;
+
+/*aes128Encode 함수. 함수 인자: (isWriteCheck(Write함수호출함-true), isDeleteCheck(Delete함수호출함-true)) */
+function enc(isWriteCheck, isDeleteCheck, commentID){
+    let secretKey = aes256SecretKey;
+    let Iv = aes256Iv;
+    let data;
+
+    // JSON.parse(localStorage.getItem('json'));
+
+    if(isWriteCheck == true) {
+        data = document.getElementById("password").value;   // write 함수 일 때
+
+        // CBC 모드로 AES 인코딩 수행
+        const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
+            iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
+            padding: CryptoJS.pad.Pkcs7,
+            mode: CryptoJS.mode.CBC // [cbc 모드 선택]
+        });
+
+        // [인코딩 된 데이터 확인 실시]
+        aes256EncodeData = cipher.toString();
+
+        dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
+
+
+    } else if(isDeleteCheck == true) {
+        // searchComment(page, size);
+        
+
+        localObj = JSON.parse(localStorage.getItem(commentID));
+        console.log(localObj);
+
+        commentDelete(localObj.id, localObj.name, localObj.pw);
+
+        // tmp = JSON.parse(localStorage.getItem('json')); // object 타입
+        // data = tmp.pw;
+        // console.log(tmp.pw);
+
+    }
+    
+
+
+
+
+};
+
+
+/* aes256Decode 함수 */
+function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck){
+    secretKey = aes256SecretKey;
+    Iv = aes256Iv;
+
+    // CBC 모드로 AES 디코딩 수행
+    const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
+        iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
+        padding: CryptoJS.pad.Pkcs7,
+        mode: CryptoJS.mode.CBC // [cbc 모드 선택]
+    });
+
+    // [디코딩 된 데이터 확인 실시]
+    aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);    		
+console.log("dec PW:::"+aes256DecodeData);
+
+tmp = JSON.parse(localStorage.getItem('json')); // object 타입
+
+    /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
+    if(isWriteCheck == true){
+        commentWrite(aes256DecodeData);
+    } 
+    
+    // else if(isDeleteCheck == true){  //delete 함수의 경우 굳이 이 코드 까지 안옴. enc 함수에서 끝남
+    //     commentDelete(tmp.id, tmp.name, aes256DecodeData);
+    // }
+};
+=======
     if (pwPrompt !== password) alert("비밀번호가 일치하지 않습니다.");
     else {
         // 서버로 보낼 데이터 셋팅
