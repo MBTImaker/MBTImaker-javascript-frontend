@@ -29,7 +29,6 @@ Variables
   --comment-created-font-size: 0.687rem;
   --comment-nickname-font-size: 1rem;
   --placeholder-font-size: 0.75rem;
-
   --admin-margin-top-size: 0.833rem;
 
   --inner-color: #ffffff;
@@ -76,6 +75,11 @@ section {
   border: 2px solid var(--section-border-color);
   border-radius: 10px;
   margin-bottom: 0.625rem;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
 }
 
 .subTitle {
@@ -605,11 +609,6 @@ block - communication (ver.21-11-09)
   display: flex;
 }
 
-/*
-====================================
-block - communication - add-comment
-====================================
-*/
 .block .communication .add-comment {
   width: 100%;
   height: 30.14%;
