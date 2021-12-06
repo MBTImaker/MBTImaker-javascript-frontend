@@ -33,12 +33,11 @@ const favicon = function () {
 head.innerHTML += favicon();
 
 // (3) post
-async function post(postURL, body, headers = {}) {
+async function post(postURL, body) {
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            ...headers,
         },
         body: JSON.stringify(body),
     };

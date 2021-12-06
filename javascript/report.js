@@ -22,11 +22,10 @@ function sendReport() {
     const reportDescriptionValue = document.querySelector("#description").value;
 
     post("https://mbti-test.herokuapp.com/report", {
-        body: {
-            "commentId": commentId,
-            "description": reportDescriptionValue,
-            "subject": reportSubjectValue
-        },
+        "commentId": commentId,
+        "description": reportDescriptionValue,
+        "subject": reportSubjectValue
+        ,
     })
         .then((data) => {
             if (data.status != 200) {
