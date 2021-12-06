@@ -212,23 +212,18 @@ block - result-character - point-line
 =====================================
 */
 
-.point-line,
-.point-line-reply,
-.point-line-distinct-reply {
+.point-line {
   width: 100%;
   height: 0.625rem;
-  background: linear-gradient(to right, var(--point-line-color) 50%, rgba(255, 255, 255, 0) 0%) repeat-x bottom;
+  background: linear-gradient(
+      to right,
+      var(--point-line-color) 50%,
+      rgba(255, 255, 255, 0) 0%
+    )
+    repeat-x bottom;
   background-size: 16px 2px;
   margin-top: 2.3125rem;
 }
-
-.point-line-distinct-reply {
-  width: 100%;
-  height: 0.625rem;
-  background: linear-gradient(to right, var(--point-line-color) 50%, rgba(255, 255, 255, 0) 0%) repeat-x bottom;
-  background-size: 16px 2px;
-  margin-top: 0rem;
-} 
 
 /*
 =====================================
@@ -604,11 +599,6 @@ block - communication (ver.21-11-09)
 ====================================
 */
 
-.block .communication {
-  height: 92.875rem;
-  display: flex;
-}
-
 .block .communication .add-comment {
   width: 100%;
   height: 30.14%;
@@ -672,7 +662,7 @@ block - communication - show-comment
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  margin: 2.0625rem 0 0.875rem 0;
 }
 
 .block .communication .show-comment .comment {
@@ -683,7 +673,7 @@ block - communication - show-comment
   align-items: center;
   border: 2px solid var(--section-border-color);
   border-radius: 10px;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.75rem;
 }
 
 .block .communication .show-comment .comment .comment_header {
@@ -702,7 +692,13 @@ block - communication - show-comment
   flex-direction: column;
 }
 
-.block .communication .show-comment .comment .comment_header .info .commentNickname {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .info
+  .commentNickname {
   display: flex;
   align-items: start;
   margin: 1.25rem 0rem 0.6875rem 1.8125rem;
@@ -711,7 +707,13 @@ block - communication - show-comment
   line-height: 19px;
 }
 
-.block .communication .show-comment .comment .comment_header .info .commentMBTI {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .info
+  .commentMBTI {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -727,25 +729,39 @@ block - communication - show-comment
   justify-content: space-evenly;
 }
 
-.block .communication .show-comment .comment .comment_header .btn .del-reply-btn {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .btn
+  .del-reply-btn {
   width: 1.3rem;
   height: 1.3rem;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  background: var(--comment-reply-background-color) url("../imgs/replyDeleteBtn_Frame896.png");
+  background: var(--comment-reply-background-color)
+    url("../imgs/replyDeleteBtn_Frame896.png");
   background-size: 100% 100%;
 }
 
-.block .communication .show-comment .comment .comment_header .btn .report-reply-btn {
+.block
+  .communication
+  .show-comment
+  .comment
+  .comment_header
+  .btn
+  .report-reply-btn {
   width: 1.3rem;
   height: 1.3rem;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  background: var(--comment-reply-background-color) url("../imgs/replyReporteBtn_icon.png") ;
+  background: var(--comment-reply-background-color)
+    url("../imgs/replyReporteBtn_icon.png");
   background-size: 100% 100%;
 }
 
@@ -780,9 +796,10 @@ block - communication - show-comment
 .block .communication .comment-pages {
   background-color: var(--section-background-color);
   width: 72%;
-  height: 3.6%;
+  height: 1.75rem;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2.5rem;
 }
 
 .block .communication .comment-pages #index_left_btn_active {
@@ -826,7 +843,6 @@ block - communication - show-comment
   background-color: var(--section-background-color);
   margin-top: 0;
 }
-
 
 /*
 ===================================

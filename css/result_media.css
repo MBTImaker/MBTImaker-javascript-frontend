@@ -270,6 +270,7 @@ media
   }
   .block .communication .show-comment .comment {
     border-radius: 20px;
+    margin-bottom: 1.6875rem;
   }
 
   .block .communication .show-comment .comment .comment_header {
