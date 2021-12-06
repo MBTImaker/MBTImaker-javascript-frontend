@@ -283,7 +283,7 @@ media
   }
 
   .block .communication .show-comment .comment .comment_content {
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 0px 0px 20px 20px;
   }
 
   .block .communication .show-comment .comment .add-reply {
