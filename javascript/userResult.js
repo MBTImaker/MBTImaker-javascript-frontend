@@ -38,25 +38,20 @@ let result = location.href.split("=")[1];
 result = result.slice(0, 3) + '-' + result.slice(2, 5) + '-' + result.slice(4, 7) + '-' + result.slice(6, 9);
 console.log(`user clicked: ${result}`);
 
-
 // 결과값을 보내면 파이어베이스에서 텍스트와 이미지를 가져온다.
-fetch("https://mbti-test.herokuapp.com/test", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        "testCode": result
-    }),
-}).then((response) => response.json())
+runFetch("POST", "https://mbti-test.herokuapp.com/test", {
+    "testCode": result,
+})
     .then((info) => {
         showResult(info.data);
         KAKAO_JAVASCRIPT_KEY = info.data.kakao_JAVASCRIPT_KEY;
-    }).then(() => {
+    })
+    .then(() => {
         // 시크릿키 받아와 저장한 이후에 설정한다.
         Kakao.init(KAKAO_JAVASCRIPT_KEY);
         console.log("kakao : " + Kakao.isInitialized());
-    });
+    })
+    .catch(err => { alert("카카오 공유가 불가능합니다. 관리자에게 문의해 주세요.") });
 
 
 // 가져온 것들을 html에 설정한다.
@@ -65,7 +60,7 @@ function showResult(data) {
 
     console.log(`user MBTI: ${mbtiResult.mbti}`);
     MBTI = mbtiResult.mbti;
-    setMaintext(MBTI);
+    getNamebyMBTI(mainText, MBTI);
 
     const textAndImg = document.querySelector(".block .result-character .textAndImg");
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;

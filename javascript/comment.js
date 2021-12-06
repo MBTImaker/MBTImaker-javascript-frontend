@@ -49,7 +49,7 @@ function commentWrite(aes256DecodeData) {
 
     showComment.style.display = "flex";
 
-    setMaintext(MBTI);  // share.js 파일의 setMaintext() 함수를 통해 MBTI 유형 값을 받아옴
+    //setMaintext(MBTI);  // share.js 파일의 setMaintext() 함수를 통해 MBTI 유형 값을 받아옴
 
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
@@ -113,6 +113,8 @@ function displayComment(comment, size) {
     let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
     let charWithMovieName; // '' 를 기준으로 각 댓글 당 "영화 이름+영화 주인공" 을 값을 가져온다.
 
+let mainTextStr = '';
+
     let j = 1;  // 각 댓글의 mbti 값을 가져올 때 사용.
 
 //    if (isDeleteCheck || isIndexCheck) { 
@@ -136,8 +138,18 @@ function displayComment(comment, size) {
 
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti; 
-        setMaintext(userMBTI);
-        mainTextSplit = mainText.substring(mainText.indexOf("?")+3);
+        // setMaintext(userMBTI);
+        // getNamebyMBTI(mainText, MBTI);
+
+//        mainTextStr = String(mainText);
+        // console.log(mainText.text);
+        // console.log(typeof mainText.text);
+
+        //console.log(mainText.text.indexOf("?")+3);
+        mainTextStr = mainText.text;
+        mainTextSplit = mainTextStr.substring(mainTextStr.indexOf("?")+3);
+        console.log(mainTextSplit);
+
         charWithMovieName = mainTextSplit.split("''");
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함

@@ -79,6 +79,11 @@ section {
   margin-bottom: 0.625rem;
 }
 
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
 .subTitle {
   width: 100%;
   height: 3.25rem;
@@ -606,11 +611,6 @@ block - communication (ver.21-11-09)
   display: flex;
 }
 
-/*
-====================================
-block - communication - add-comment
-====================================
-*/
 .block .communication .add-comment {
   width: 100%;
   height: 30.14%;

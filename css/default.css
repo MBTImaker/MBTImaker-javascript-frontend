@@ -38,10 +38,7 @@ Global
   margin: 0;
   box-sizing: border-box;
   font-family: "SBAggroM", "NanumBarunGothic";
-
-  /* background */
-  background-repeat: no-repeat;
-  background-position: center;
+  background: no-repeat center;
   background-size: contain;
 }
 
@@ -50,9 +47,8 @@ html {
 }
 
 body {
-  background-color: var(--background-color);
-  background-image: url("../imgs/mobile/mobile_background_Frame96.png");
-  background-repeat: repeat;
+  background: repeat var(--background-color)
+    url("../imgs/mobile/mobile_background_Frame96.png");
 }
 
 button {
@@ -60,11 +56,6 @@ button {
   background-color: white;
   border: 0px;
   opacity: 1;
-}
-
-li {
-  text-decoration: none;
-  list-style: none;
 }
 
 /* mobile(768px) labtop(1020px) / desktop(1400px) */

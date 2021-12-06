@@ -4,29 +4,21 @@ Variables
 ===========
 */
 :root {
-  /* width */
-  --basic-desktop-width: 79.86%; /* 476px*/
-
-  /* font-size */
-  --conclusion-desktop-font-size: 2rem; /* 32px */
-  --feature-desktop-font-size: 1.125rem; /* 18px */
-  --chemi-title-desktop-font-size: 1.5rem; /* 24px */
-  --chemi-movie-title-desktop-font-size: 1rem; /* 16px */
-  --chemi-movie-character-desktop-font-size: 1.625rem; /* 26px */
-  --share-desktop-font-size: 1.75rem; /* 28px */
+  --basic-desktop-width: 79.86%;
+  --conclusion-desktop-font-size: 2rem;
+  --feature-desktop-font-size: 1.125rem;
+  --chemi-title-desktop-font-size: 1.5rem;
+  --chemi-movie-title-desktop-font-size: 1rem;
+  --chemi-movie-character-desktop-font-size: 1.625rem;
+  --share-desktop-font-size: 1.75rem;
   --placeholder-desktop-font-size: 1rem;
-
   --conclusion-mobile-font-xs-size: 1.1rem;
   --feature-mobile-font-xs-size: 0.8rem;
   --share-mobile-font-xs-size: 1.1rem;
-
-  /* line-height */
-  --feature-desktop-line-height: 1.35rem; /* 22px */
-  --chemi-title-desktop-line-height: 1.8125rem; /* 29px */
-  --chemi-movie-title-desktop-line-height: 1.1875rem; /* 19px */
-  --chemi-movie-character-desktop-line-height: 1.9375rem; /* 31px */
-
-  /* font-weight */
+  --feature-desktop-line-height: 1.35rem;
+  --chemi-title-desktop-line-height: 1.8125rem;
+  --chemi-movie-title-desktop-line-height: 1.1875rem;
+  --chemi-movie-character-desktop-line-height: 1.9375rem;
   --feature-desktop-font-weight: 300;
 }
 
@@ -69,46 +61,29 @@ media
   }
 
   .subTitle {
-    /* font */
     font-size: var(--share-desktop-font-size);
-
-    /* margin */
     margin-top: 3rem;
   }
 
   /* ----------------- block ----------------- */
   .block {
-    /* size */
     width: 716px;
-
-    /* background */
     border-width: 6px;
     border-radius: 40px;
-
-    /* margin */
     margin: 5rem 0;
-
-    /* padding */
     padding: 3.75rem;
   }
   .block .result-character .textAndImg .subject {
-    /* size */
     height: 2rem;
-
-    /* margin */
     margin-top: 4rem;
   }
 
   .block .result-character .textAndImg .movie-title {
-    /* size */
     height: 3rem;
-
-    /* margin */
     margin-top: 2.5rem;
   }
 
   .block .result-character .textAndImg .movie-character {
-    /* size */
     height: 4rem;
   }
 
@@ -118,14 +93,9 @@ media
 
   /* ----------------- conclusion ----------------- */
   .block .result-character .conclusion {
-    /* size */
     height: 100%;
-
-    /* font */
     line-height: var(--conclusion-desktop-line-height);
     font-size: var(--conclusion-desktop-font-size);
-
-    /* margin */
     margin-top: 2.375rem;
   }
 
@@ -134,10 +104,7 @@ media
   }
 
   .block .result-character .feature {
-    /* size */
     height: 3.5rem;
-
-    /* font */
     font-size: var(--feature-desktop-font-size);
     line-height: var(--feature-desktop-line-height);
     font-weight: var(--feature-desktop-font-weight);
@@ -146,26 +113,18 @@ media
   /* ----------------- point-line ----------------- */
   .point-line {
     background-size: 28px 4px;
-
     border-width: 4px;
     margin-top: 62px;
   }
 
   /* ----------------- chemistry ----------------- */
   .block .result-character .chemistry {
-    /* size */
     width: var(--basic-desktop-width);
-
-    /* margin */
-    margin-top: 4.125rem;
-    margin-bottom: 3.75rem;
+    margin: 4.125rem 0 3.75rem 0;
   }
 
   .block .result-character .chemistry .chemi {
-    /* size */
     height: 100%;
-
-    /* background */
     border-radius: 16px;
   }
 
@@ -174,56 +133,38 @@ media
   }
 
   .block .result-character .chemistry .chemi .chemi-title {
-    /* size */
     width: 100%;
     height: 3.25rem;
-
-    /* font */
     font-size: var(--chemi-title-desktop-font-size);
     line-height: var(--chemi-title-desktop-line-height);
-
-    /* margin */
     margin-top: 2.5rem;
   }
 
   .block .result-character .chemistry .chemi .character-img {
     width: 64.91%;
     height: 10.75rem;
-
-    /* margin */
     margin-top: 0.625rem;
   }
 
   .block .result-character .chemistry .chemi .movie-title {
-    /* size */
     width: 100%;
     height: 1.375rem;
-
-    /* font */
     font-size: var(--chemi-movie-title-dsektop-font-size);
     line-height: var(--chemi-movie-title-desktop-line-height);
-
-    /* margin */
     margin-top: 2.375rem;
   }
 
   .block .result-character .chemistry .chemi .movie-character {
-    /* size */
     width: 100%;
     height: 2.125rem;
-
-    /* font */
     font-size: var(--chemi-movie-character-desktop-font-size);
     line-height: var(--chemi-movie-character-desktop-line-height);
-
-    /* margin */
     margin-top: 0.75rem;
     margin-bottom: 2.25rem;
   }
 
   .block .likeMe,
   .block .mostType {
-    /* padding */
     padding: 0 3.75rem 3.75rem 3.75rem;
   }
 
@@ -256,14 +197,9 @@ media
   /* ----------------- share ----------------- */
 
   .block .share .share-btns {
-    /* size */
     width: var(--basic-desktop-width);
     height: 4rem;
-
-    /* margin */
     margin: 1.75rem 0 4.25rem 0;
-
-    /* padding */
     padding: 0 1.875rem;
   }
 
@@ -273,16 +209,11 @@ media
   }
 
   .block .movies .movie-list {
-    /* size */
     width: var(--basic-desktop-width);
     height: 13.125rem;
-
-    /* display */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    /* margin */
     margin-top: 1.625rem;
     margin-bottom: 3.75rem;
   }
@@ -293,11 +224,8 @@ media
   }
 
   .block .restart {
-    /* size */
     width: 63.75%;
     height: 5.875rem;
-
-    /* margin */
     margin: 2.5rem 0;
   }
 
@@ -314,7 +242,7 @@ media
   .block .communication .add-comment .nickname {
     width: 79.86%;
     height: 3.25rem;
-    margin: 2.5rem 3.7rem 1.25rem 3.7rem; /* 40px 60px 20px 60px */
+    margin: 2.5rem 3.7rem 1.25rem 3.7rem;
   }
 
   .block .communication .add-comment .comment-area {
@@ -330,15 +258,12 @@ media
   .block .communication .add-comment .password {
     width: 63.08%;
     height: 3.25rem;
-    margin: 1.25rem 1.25rem 0.625rem 0; /* 20px 20px 10px 0 */
+    margin: 1.25rem 1.25rem 0.625rem 0;
   }
 
   .block .communication .add-comment .wrtie-comment-btn {
-    /* size */
     width: 13.42%;
     height: 3.25rem;
-
-    /* background */
     background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
 
     margin-top: 1.25rem;
@@ -364,8 +289,6 @@ media
   .block .communication .show-comment .comment .add-reply .write-reply-btn {
     width: 17.02%;
     height: 3rem;
-
-    /* background */
     background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
     background-color: rgba(0, 0, 0, 0);
 
@@ -373,6 +296,6 @@ media
   }
 
   .block .communication .show-comment .comment .add-reply .comment-reply-area {
-    margin: 1.25rem 1.25rem 1.125rem 1.0625rem; /* 20px 20px 18px 17px */
+    margin: 1.25rem 1.25rem 1.125rem 1.0625rem;
   }
 }
