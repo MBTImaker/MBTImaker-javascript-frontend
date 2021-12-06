@@ -121,6 +121,12 @@ function displayQuestion(question) {
 
 // ============================== Run ==============================
 
+window.onload = function () {
+    setTimeout(function () {
+        scrollTo(0, 0);
+    }, 100);
+}
+
 displayQuestion(questionList);
 
 // =========================== Variables ===========================
