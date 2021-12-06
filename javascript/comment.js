@@ -1,12 +1,8 @@
 // =========================== Comment ===========================
-// 정문님 개발 능력 수직 상승
-// 커밋이 안 뜬다
 
 const showComment = document.querySelector(".show-comment");
-
 const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
-
 
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 //let isFirst = false;
@@ -29,128 +25,94 @@ window.onload = function () {
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(svrDate) {
     // 서버에서 보내주는 값: 2021-11-23T13:04:59.610937
-    let month = svrDate.substring(5, 7);
-    let day = svrDate.substring(8, 10);
-    let times = svrDate.substring(11, 19);
-
+    let [month, day, times] = [svrDate.substring(5, 7), svrDate.substring(8, 10), svrDate.substring(11, 19)];
     let dateToString = month + '.' + day + " " + times;
 
     return dateToString;
 }
 
-// 댓글 작성
+function searchComment(page, size) {  // 댓글 페이징 조회
+
+    let tmpURL = 'https://mbti-test.herokuapp.com/comment';
+    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
+
+    fetch(reqURL)
+        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+            return response.json();
+        })
+        .then(response => {
+            isIndexCheck = true;
+            displayComment(response, size);
+        })
+        .catch((error) => console.log(error));
+}
+
 function commentWrite() {
 
-    showComment.style.display = "flex";
-
-    setMaintext(MBTI);  // share.js 파일의 setMaintext() 함수를 통해 MBTI 유형 값을 받아옴
-
-    // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
     let content = document.getElementById("comment-area").value;
     let password = document.getElementById("password").value;
 
     // 서버로 보낼 데이터 셋팅
-    let commentJson = {};
-    commentJson['content'] = content;
-    commentJson['mbti'] = MBTI;
-    commentJson['name'] = nickname;
-    commentJson['password'] = password;
+    let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
 
-    // 서버로 부터 받은 값 저장
+    // 서버에서 받은 값 저장
     let recvID; // 각 댓글의 id 값
     let recvParentId; // 각 댓글의 부모id 값
 
-    fetch('https://mbti-test.herokuapp.com/comment', {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Accept': '*',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-            'Origin': 'https://mbti-test.herokuapp.com',
-            'Referer': 'https://mbti-test.herokuapp.com'
-        },
-        body: JSON.stringify(commentJson),
-    })
-        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-            console.log(response);
-            return response.json();
-        })
-        .then(response => {
-            if (response.status == 200) {
-                alert("댓글 작성 성공!");
-                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
-
-
-                searchComment(page, size);  // 댓글 조회 함수 호출
-            } else {
-                // 오류 발생 시 alert 로 메시지 표출
-                for (let i = 0; i < response.errors.length; i++) {
-                    errorMsg += response.errors[i].reason + '\n';
-                }
-                alert(errorMsg);
-                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
-
-            }
+    runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
+        .then((response) => {
+            alert("댓글 작성 성공!");
+            console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
+            searchComment(page, size);  // 댓글 조회 함수 호출
         })
         .catch((error) => console.log("error: ", error));
-
 }
 
-// 화면에 댓글을 보여주기 위해 HTML 코드를 리턴하는 함수
 function displayComment(comment, size) {
 
-    let comments = [];  // 배열 선언
-    let innerComment = '';  // 각 댓글의 전체 창을 만듬
-    let commentIndex = document.querySelector(".block .communication .comment-pages");
-    let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듬
+    let comments = [];
+    let innerComment = '';  // 각 댓글의 전체 창을 만듦
+    let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듦
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
     let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
     let charWithMovieName; // '' 를 기준으로 각 댓글 당 "영화 이름+영화 주인공" 을 값을 가져온다.
+    const commentIndex = document.querySelector(".block .communication .comment-pages");
 
     let j = 1;  // 각 댓글의 mbti 값을 가져올 때 사용.
 
     if (isDeleteCheck || isIndexCheck) {
-        //   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
-        for (let i = 0; i < size; i++) {
-            comments.length = 0;
-            innerComment = '';
-            showComment.innerHTML = '';
-
-            // index 부분에서 1페이지, 2페이지를 누를 때 마다 index가 1234567812345678 이런식으로 계속 생겨서 초기화 해 줌
-            innerCommentIndex = '';
-            commentIndex.innerHTML = '';
-        }
+        showComment.innerHTML = '';
+        commentIndex.innerHTML = '';
     }
 
     for (let i = 0; i < size; i++) {
         // size 가 3인데, 댓글이 2개만 있는 경우엔 아래 코드가 실행 되지 않아서 2개만 보여주게 추가해줌.
-        if (comment.data.content[i] == null) {
-            break;
-        }
+        if (comment.data.content[i] == null) break;
 
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti;
-        setMaintext(userMBTI);
-        mainTextSplit = mainText.substring(mainText.indexOf("?") + 3);
-        charWithMovieName = mainTextSplit.split("''");
 
-        comments.push({  //각 댓글마다 아래 항목들을 추가함
-            content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ") + 2, charWithMovieName[i].length)}`,  // MBTI 유형
-            name: `${comment.data.content[i].name}`,  // 작성자 이름
-            password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
+        let namebyMBTI = { "text": "" };
+        getNamebyMBTI(namebyMBTI, userMBTI);
+        charWithMovieName = namebyMBTI.text.split("의 ");
+        charWithMovieName = charWithMovieName[charWithMovieName.length - 1]; // 캐릭터 이름'
+        charWithMovieName = charWithMovieName.substring(0, charWithMovieName.length - 1); // 맨 마지막에 있는 '를 지움.
+
+        comments.push({
+            content: `${comment.data.content[i].content}`,
+            mbti: `${charWithMovieName}`,
+            name: `${comment.data.content[i].name}`,
+            password: `${comment.data.content[i].password}`,
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
             parentId: `${comment.data.content[i].parentId}`,  // 해당 댓글의 부모 id(서버에서 보관)
-            createdDate: `${comment.data.content[i].createdDate}`,  // 해당 댓글 작성 시간
+            createdDate: `${comment.data.content[i].createdDate}`,
         });
 
         j += 2;
     }
 
-
-    innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
+    innerComment = comments.map(function (c) {
 
         let changeCreatedDate = dateToStr(c.createdDate);
 
@@ -177,10 +139,7 @@ function displayComment(comment, size) {
         `;
     });
 
-    // string -> html
     innerComment = innerComment.join("");
-
-    // innerHTML
     showComment.innerHTML += innerComment;
 
 
@@ -233,17 +192,17 @@ function displayComment(comment, size) {
 
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
 
-    const indexBtns = document.querySelectorAll(".index:nth-child(n)");
+    const indexBtns = document.querySelectorAll(".index");
 
     // 생성된 인덱스 버튼들이 몇 페이지 인지 인식한 뒤 currentPage 변수에 저장
     indexBtns.forEach((idxbtn) => {
         idxbtn.addEventListener("click", (e) => {
-            currentPage = Number(e.target.value);  // Number 로 형변환 해주지 않으니 String 으로 맘대로 변환 되서 처리해줌.
+            currentPage = Number(e.target.value);  // Number 로 형변환 해주지 않으니 String 으로 맘대로 변환돼서 처리해줌.
         });
     });
 }
 
-function commentDelete(id, name, password) {  // 댓글 삭제
+function commentDelete(id, name, password) {
 
     // 해당 로그들은 테스트 시에만 사용 *************************************************
     console.log("DELETE__id: " + id);
@@ -253,79 +212,21 @@ function commentDelete(id, name, password) {  // 댓글 삭제
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
 
-    if (pwPrompt == password) {
+    if (pwPrompt !== password) alert("비밀번호가 일치하지 않습니다.");
+    else {
         // 서버로 보낼 데이터 셋팅
-        let commentJson = {};
-        commentJson['id'] = id;
-        commentJson['name'] = name;
-        commentJson['password'] = password;
+        let commentJson = { 'id': id, 'name': name, 'password': password };
 
-        fetch('https://mbti-test.herokuapp.com/comment', {
-            method: 'PATCH',
-            cache: 'no-cache',
-            headers: {
-                'Accept': '*',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-                'Origin': 'https://mbti-test.herokuapp.com',
-                'Referer': 'https://mbti-test.herokuapp.com'
-            },
-            body: JSON.stringify(commentJson),
-        })
-            .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-                console.log(response);
+        runFetch("PATCH", 'https://mbti-test.herokuapp.com/comment', commentJson)
+            .then((response) => {
+                alert("댓글 삭제 성공!");
 
-                return response.json();
+                // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
+                isDeleteCheck = 'true';
 
+                // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
+                searchComment(page, size);
             })
-            .then(response => {
-                if (response.status == 200) {
-                    alert("댓글 삭제 성공!");
-
-                    // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
-                    isDeleteCheck = 'true';
-
-                    // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
-                    searchComment(page, size);
-
-
-                } else {
-                    // 오류 발생 시 alert 로 메시지 표출
-                    for (let i = 0; i < response.errors.length; i++) {
-                        errorMsg += response.errors[i].reason + '\n';
-                    }
-                    alert(errorMsg);
-                }
-            })
-            .catch((error) => console.log("error:", error));
-
-    } else {  // 비밀번호 입력에 실패했을 경우
-        alert("비밀번호가 일치하지 않습니다.");
+            .catch((error) => console.log("error: ", error));
     }
 }
-
-
-function searchComment(page, size) {  // 댓글 페이징 조회
-
-    let tmpURL = 'https://mbti-test.herokuapp.com/comment';
-    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
-
-    // 서버로 부터 받은 값 저장
-    fetch(reqURL)
-        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-            console.log(response);
-            return response.json();
-        })
-        .then(response => {
-            if (response.status == 200) {
-                console.log(response.data);
-
-                isIndexCheck = true;
-                displayComment(response, size);
-            } else {
-                alert("오류 입니다.");
-            }
-        })
-        .catch((error) => console.log("error:", error));
-}
-

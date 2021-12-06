@@ -33,18 +33,16 @@ const favicon = function () {
 head.innerHTML += favicon();
 
 // (3) post
-async function post(postURL, body) {
+async function runFetch(method, postURL, body) {
     const options = {
-        method: "POST",
+        method: method,
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
     };
-
     const res = await fetch(postURL, options);
     const data = await res.json();
-
     if (res.ok) {
         return data;
     } else {
