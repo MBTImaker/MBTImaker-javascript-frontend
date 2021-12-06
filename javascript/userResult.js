@@ -29,6 +29,23 @@ let MBTI = "";
 loading.style.display = "none";
 block.style.display = "flex";
 
+// 페이지가 다시 로드되면 0ms만에 맨 위로 이동한다.
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        scrollTo(0, 0);
+    }, 0);
+});
+
+// 새로고침 했을 때 위치가 맨 위로 움직이지 않으면 "circle"에 show가 로딩되자 마자 바로 들어가서 애니메이션이 동작하지 않는다.
+window.addEventListener('load', () => {
+    const circles = document.querySelectorAll(".circle");
+    circles.forEach(circle => {
+        console.log(circle.classList);
+        if (circle.classList.contains("show"))
+            circle.classList.remove("show");
+    });
+});
+
 
 // ========================= MBTI Result =========================
 
@@ -160,5 +177,4 @@ function toggleShow(item) {
     dot.classList.toggle("show");
 }
 
-window.addEventListener('load', showAnimation);
 window.addEventListener('scroll', showAnimation);

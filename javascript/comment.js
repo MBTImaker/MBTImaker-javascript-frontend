@@ -17,9 +17,7 @@ let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
 let currentPage = 1; // 현재 페이지
 
 
-window.onload = function () {
-    searchComment(page, size);  // 처음에 댓글 작성하지 않아도 댓글 보이게 하도록 댓글 조회 함수 호출
-}
+window.addEventListener('load', searchComment(page, size));
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
 function dateToStr(svrDate) {
