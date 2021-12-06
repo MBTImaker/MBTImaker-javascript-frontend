@@ -17,8 +17,6 @@ let KAKAO_JAVASCRIPT_KEY = "";
 
 // MBTI에 따라 공유되는 텍스트를 다르게 설정한다.
 function getNamebyMBTI(obj, userMBTI) {
-    console.log(userMBTI);
-
     switch (userMBTI) {
         case "ISTJ": {
             obj.text += "'킹스맨의 해리 하트'";
