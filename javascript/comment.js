@@ -196,9 +196,9 @@ function displayComment(comment, size) {
 
 
     // =========================== '이전' 버튼 만들기 ===========================
-    if(currentPage <= 1) {  // 현재 페이지가 1보다 작거나 같다면, 링크 없이 이전 버튼만 보여지게 함.
+    if(currentPage == 1) {  // 현재 페이지가 1 이면, 링크 없이 이전 버튼만 보여지게 함.
       innerCommentIndex += `
-        <button type="submit" class="index" id="index_left_btn_not_active" value="${b_start_page-1}"></button>
+        <button type="submit" class="index" id="index_left_btn_not_active" value="1"></button>
       `;
     } else { // 현재 페이지가 1보다 크면, 이전 페이지로 갈 수 있도록 이전 버튼 생성
       innerCommentIndex += `

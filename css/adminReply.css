@@ -1,0 +1,46 @@
+/* adminReply.html 파일에서 사용하는 css 파일 */
+
+/* 관리자 페이지에서는 여백이 필요 없으므로 따로 적용 해줌 */
+.block #admin_communication {   
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  margin-top: var(--admin-margin-top-size);
+}
+
+/* height 부분만 result.css 파일의 .block .communication .show-comment 부분과 다름 */
+.block .communication #admin_show-comment {
+  /* size */
+  width: 100%;
+  height: 95%;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* height 부분만 result.css 파일의 .block .communication .show-comment .comment 부분과 다름 */
+.block .communication #admin_show-comment .comment {
+  /* size */
+  width: 90.15%;
+  height: 26%;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* background */
+  border: 2px solid var(--section-border-color);
+  border-radius: 10px;
+
+  /* margin */
+  margin-bottom: 0.625rem;
+}
