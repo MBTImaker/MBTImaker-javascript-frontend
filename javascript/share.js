@@ -6,9 +6,10 @@
 
 // share
 const shareLink = window.location.href; // 차후에 배포되면 home.html로 수정
-let mainText = { "text": "나의 영화 캐릭터 유형은? " };
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(https://mbti-test.herokuapp.com/og_image.png)";
+
+let mainText = { "text": "나의 영화 캐릭터 유형은? " };
 let KAKAO_JAVASCRIPT_KEY = "";
 
 
