@@ -659,6 +659,8 @@ block - communication (ver.21-11-09)
   width: 89%;
   height: 13.5rem;
   padding-top: 1.25rem;
+  
+  resize: none;
 }
 
 .block .communication .add-comment .password {
