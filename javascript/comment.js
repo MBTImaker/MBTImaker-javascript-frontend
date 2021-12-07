@@ -7,8 +7,8 @@ const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
 const commentIndex = document.querySelector(".block .communication .comment-pages");
 
-let isWriteCheck = true;  // write 함수에서 왔는지 확인하는 값
-let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
+let isWriteCheck = true;  // write 함수에서 왔는지 확인하는 값. Write 함수를 호출했을 경우 true.
+let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌.
 let isFirst = false;
 let isIndexCheck = false;  // index가 1234567812345678 이런 식으로 발생해서 구분 하기 위해 생성
 let chkeckWrite = true; // wrtie-comment-btn 을 눌렀을 경우, 해당 댓글의 mbti 유형값을 따로 저장하기 위해 사용. display 해서 나오는 mbti 와 구분하기 위해 사용.
@@ -21,11 +21,13 @@ let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
 let currentPage = 1; // 현재 페이지
 
-/* 패스워드 노출 방지를 위해 AES 256 방식 사용. */
-let aes256SecretKey = crypto.getRandomValues(new Uint32Array(2)).join('');   // 암호화 키 값으로 랜덤의 16바이트 필요.
-let aes256Iv = crypto.getRandomValues(new Uint16Array(4)).join(''); // iv 랜덤의 16 바이트
+/* 패스워드 노출 방지를 위해 패스워드 암,복호화 함수 사용시 사용함. AES 256 방식 사용. */
+let aes256SecretKey = crypto.getRandomValues(new Uint32Array(2)).join('');   // 암호화 키 값으로 랜덤의 32바이트 필요.
+let aes256Iv = crypto.getRandomValues(new Uint16Array(4)).join(''); // 초기벡터 값으로, 랜덤의 16 바이트.
 let aes256EncodeData = "";
 let aes256DecodeData = "";
+
+let localObj;   // 암호화 된 패스워드를 복호화 하는 함수(dec) 에서 댓글ID 값을 가져오기 위해 저장함
 
 let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
 
@@ -82,6 +84,12 @@ function commentWrite(aes256DecodeData) {
         .then(response => {
             isIndexCheck = true;
             alert("댓글 작성 성공!");
+
+            // 댓글 작성 후 해당 값들을 빈 값으로 처리.
+            document.getElementById("nickname").value = "";
+            document.getElementById("comment-area").value = "";
+            document.getElementById("password").value = "";
+
             searchComment(page, size);  // 댓글 조회 함수 호출
         })
         .catch((error) => console.log(error));
@@ -120,12 +128,10 @@ function displayComment(comment, size) {
             break;
         }
 
-
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti;
-        // setMaintext(userMBTI);
         getNamebyMBTI(mainText, userMBTI);
-console.log(mainText);
+
         // mainTextStr = String(mainText);
         // console.log(mainText.text);
         // console.log(typeof mainText.text);
@@ -134,10 +140,8 @@ console.log(mainText);
         mainTextStr = mainText.text;
         //console.log(mainTextStr);
         mainTextSplit = mainTextStr.substring(mainTextStr.indexOf("?") + 3);
-        console.log(mainTextSplit);
 
         charWithMovieName = mainTextSplit.split("''");
-        console.log(charWithMovieName);
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
@@ -149,11 +153,6 @@ console.log(mainText);
             createdDate: `${comment.data.content[i].createdDate}`,  // 해당 댓글 작성 시간
         });
         
-        // comments.map(function(m) {
-        //     console.log(`${m.mbti}`);
-        // });
-
-
         j += 2;
     }
 
@@ -208,12 +207,12 @@ console.log(mainText);
     // =========================== '이전' 버튼 만들기 ===========================
     if (currentPage == 1) {  // 현재 페이지가 1 이면, 링크 없이 이전 버튼만 보여지게 함.
         innerCommentIndex += `
-        <button type="submit" class="index" id="index_left_btn_not_active" value="1"></button>
-      `;
+            <button type="submit" class="index" id="index_left_btn_not_active" value="1"></button>
+        `;
     } else { // 현재 페이지가 1보다 크면, 이전 페이지로 갈 수 있도록 이전 버튼 생성
         innerCommentIndex += `
-        <button type="submit" class="index" id="index_left_btn_active" onclick="searchComment(${currentPage - 1}, ${size})" value="${currentPage - 1}"></button>
-      `;
+            <button type="submit" class="index" id="index_left_btn_active" onclick="searchComment(${currentPage - 1}, ${size})" value="${currentPage - 1}"></button>
+        `;
     }
 
     for (let i = b_start_page; i <= b_end_page; i++) {
@@ -233,12 +232,12 @@ console.log(mainText);
     // =========================== '다음' 버튼 만들기 ===========================
     if (currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
         innerCommentIndex += `
-        <button type="submit" class="index" id="index_right_btn_not_active" value="${currentPage + 1}"></button>
-      `;
+            <button type="submit" class="index" id="index_right_btn_not_active" value="${currentPage + 1}"></button>
+        `;
     } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
         innerCommentIndex += `
-        <button type="submit" class="index" id="index_right_btn_active" onclick="searchComment(${currentPage + 1}, ${size})" value="${currentPage + 1}"></button>
-      `;
+            <button type="submit" class="index" id="index_right_btn_active" onclick="searchComment(${currentPage + 1}, ${size})" value="${currentPage + 1}"></button>
+        `;
     }
 
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
@@ -343,15 +342,11 @@ function searchComment(page, size) {  // 댓글 페이징 조회
         .catch((error) => console.log("error:", error));
 }
 
-let localObj;
-
-/*aes128Encode 함수. 함수 인자: (isWriteCheck(Write함수호출함-true), isDeleteCheck(Delete함수호출함-true)) */
-function enc(isWriteCheck, isDeleteCheck, commentID, chkeckWrite) {
+// 패스워드를 AES 256 방식으로 암호화 해주는 함수. 
+function enc(isWriteCheck, isDeleteCheck, commentID) {
     let secretKey = aes256SecretKey;
     let Iv = aes256Iv;
     let data;
-
-    // JSON.parse(localStorage.getItem('json'));
 
     if (isWriteCheck == true) {
         isDeleteCheck = false;
@@ -360,9 +355,9 @@ function enc(isWriteCheck, isDeleteCheck, commentID, chkeckWrite) {
 
         // CBC 모드로 AES 인코딩 수행
         const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
-            iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
+            iv: CryptoJS.enc.Utf8.parse(Iv), // Enter IV (Optional) 지정 방식
             padding: CryptoJS.pad.Pkcs7,
-            mode: CryptoJS.mode.CBC // [cbc 모드 선택]
+            mode: CryptoJS.mode.CBC // cbc 모드 선택
         });
 
         // [인코딩 된 데이터 확인 실시]
@@ -370,30 +365,13 @@ function enc(isWriteCheck, isDeleteCheck, commentID, chkeckWrite) {
 
         dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
 
-
     } else if (isDeleteCheck == true) {
-        // searchComment(page, size);
-
-
         localObj = JSON.parse(localStorage.getItem(commentID));
-        console.log(localObj);
-
         commentDelete(localObj.id, localObj.name, localObj.pw);
-
-        // tmp = JSON.parse(localStorage.getItem('json')); // object 타입
-        // data = tmp.pw;
-        // console.log(tmp.pw);
-
     }
-
-
-
-
-
 };
 
-
-/* aes256Decode 함수 */
+// 암호화 된 스워드를 AES 256 방식으로 복호화 해주는 함수. 
 function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
     secretKey = aes256SecretKey;
     Iv = aes256Iv;
@@ -409,14 +387,8 @@ function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
     aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);
     console.log("dec PW:::" + aes256DecodeData);
 
-    tmp = JSON.parse(localStorage.getItem('json')); // object 타입
-
     /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
     if (isWriteCheck == true) {
         commentWrite(aes256DecodeData);
     }
-
-    // else if(isDeleteCheck == true){  //delete 함수의 경우 굳이 이 코드 까지 안옴. enc 함수에서 끝남
-    //     commentDelete(tmp.id, tmp.name, aes256DecodeData);
-    // }
 };
