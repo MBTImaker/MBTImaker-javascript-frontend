@@ -30,7 +30,6 @@ Variables
   --comment-nickname-font-size: 1rem;
   --placeholder-font-size: 0.75rem;
 
-
   --admin-margin-top-size: 0.833rem;
 
   --inner-color: #ffffff;
@@ -98,6 +97,10 @@ select {
 
 select option {
   font-size: 1.125rem;
+}
+
+textarea {
+  white-space: pre;
 }
 
 .subTitle {
@@ -924,7 +927,7 @@ block - communication - reportModal
   background-color: #ffffff;
 }
 
-input#description {
+textarea#description {
   width: 88.14%;
   height: 40%;
   font-size: 0.8rem;
@@ -948,7 +951,7 @@ input#description {
   border-radius: 80px;
 }
 
-input#description::placeholder {
+textarea#description::placeholder {
   color: var(--comment-placeholder-color);
 }
 
