@@ -45,15 +45,72 @@ function dateToStr(svrDate) {
 }
 
 // 댓글 작성
-function commentWrite(aes256DecodeData) {
-    // 서버로 보낼 데이터 셋팅
-    let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
+// function commentWrite(aes256DecodeData) {
+//     // 서버로 보낼 데이터 셋팅
+//     let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
 
-    runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
-        .then((response) => {
-            alert("댓글 작성 성공!");
-            searchComment(page, size);  // 댓글 조회 함수 호출
-            [content.value, nickname.value, password.value] = [null, null, null];
+//     runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
+//         .then((response) => {
+//             alert("댓글 작성 성공!");
+//             searchComment(page, size);  // 댓글 조회 함수 호출
+//             [content.value, nickname.value, password.value] = [null, null, null];
+//         })
+//         .catch((error) => console.log("error: ", error));
+
+// }
+
+// 댓글 작성
+function commentWrite(aes256DecodeData) {
+
+    showComment.style.display = "flex";
+
+//    setMaintext(MBTI);  // share.js 파일의 setMaintext() 함수를 통해 MBTI 유형 값을 받아옴
+
+    // 사용자가 입력 한 값을 받아온다.
+    let nickname = document.getElementById("nickname").value;
+    let content = document.getElementById("comment-area").value;
+    // let password = document.getElementById("password").value;
+    let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
+
+    // 서버로 보낼 데이터 셋팅
+    let commentJson = {};
+    commentJson['content'] = content;
+    commentJson['mbti'] = MBTI;
+    commentJson['name'] = nickname;
+    commentJson['password'] = password;
+
+    fetch('https://mbti-test.herokuapp.com/comment', {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Accept': '*',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
+            'Origin': 'https://mbti-test.herokuapp.com',
+            'Referer': 'https://mbti-test.herokuapp.com'
+        },
+        body: JSON.stringify(commentJson),
+    })
+        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
+            console.log(response);
+            return response.json();
+        })
+        .then(response => {
+            if (response.status == 200) {
+                alert("댓글 작성 성공!");
+                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
+
+                
+                searchComment(page, size);  // 댓글 조회 함수 호출
+            } else {
+                // 오류 발생 시 alert 로 메시지 표출
+                for(let i=0; i<response.errors.length; i++){
+                    errorMsg += response.errors[i].reason + '\n';
+                }
+                alert(errorMsg);
+                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
+                
+            }
         })
         .catch((error) => console.log("error: ", error));
 
