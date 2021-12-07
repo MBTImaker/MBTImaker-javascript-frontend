@@ -15,6 +15,7 @@ let chkeckWrite = true; // wrtie-comment-btn 을 눌렀을 경우, 해당 댓글
 
 let errorMsg = '';  // 에러메시지 안내
 let userMBTI;   // 서버의 response 로 오는 값인 'INTP..' 값들을 저장
+let displayFuncText = { "text": "나의 영화 캐릭터 유형은? " };  // displayComment() 함수에서 getNamebyMBTI() 함수를 호출 할 때 따로 쓸 변수
 
 /* displayComment() 함수의 index 부분에서 사용 */
 let page = 1;   // 조회 할 페이지
@@ -47,64 +48,25 @@ function dateToStr(svrDate) {
     return dateToString;
 }
 
-// 댓글 작성
+//댓글 작성
 function commentWrite(aes256DecodeData) {
-
-    showComment.style.display = "flex";
-
-    // 사용자가 입력 한 값을 받아온다.
-    let nickname = document.getElementById("nickname").value;
-    let content = document.getElementById("comment-area").value;
-    // let password = document.getElementById("password").value;
-    let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
-
     // 서버로 보낼 데이터 셋팅
-    let commentJson = {};
-    commentJson['content'] = content;
-    commentJson['mbti'] = MBTI;
-    commentJson['name'] = nickname;
-    commentJson['password'] = password;
+    let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
 
-    fetch('https://mbti-test.herokuapp.com/comment', {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Accept': '*',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-            'Origin': 'https://mbti-test.herokuapp.com',
-            'Referer': 'https://mbti-test.herokuapp.com'
-        },
-        body: JSON.stringify(commentJson),
-    })
-        .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-            console.log(response);
-            return response.json();
+    runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
+        .then((response) => {
+            isIndexCheck = true;
+            alert("댓글 작성 성공!");
+            searchComment(page, size);  // 댓글 조회 함수 호출
+            [content.value, nickname.value, password.value] = [null, null, null];
+
+            alert(response.errors);
         })
-        .then(response => {
-            if (response.status == 200) {
-                isIndexCheck = true;
-                alert("댓글 작성 성공!");
-                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
+        .catch((error) => {
+            console.log("error: ", error);
+            alert(error);   // 에러메시지 알림
+        });
 
-                // 댓글 작성 후 해당 값들을 빈 값으로 처리.
-                document.getElementById("nickname").value = "";
-                document.getElementById("comment-area").value = "";
-                document.getElementById("password").value = "";
-                
-                searchComment(page, size);  // 댓글 조회 함수 호출
-            } else {
-                // 오류 발생 시 alert 로 메시지 표출
-                for(let i=0; i<response.errors.length; i++){
-                    errorMsg += response.errors[i].reason + '\n';
-                }
-                alert(errorMsg);
-                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
-                
-            }
-        })
-
-        .catch((error) => console.log(error));
 }
 
 // 화면에 댓글을 보여주기 위해 HTML 코드를 리턴하는 함수
@@ -114,10 +76,10 @@ function displayComment(comment, size) {
     let innerComment = '';  // 각 댓글의 전체 창을 만듬
     let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듬
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
-    let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
+    let displayFuncTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
     let charWithMovieName; // '' 를 기준으로 각 댓글 당 "영화 이름+영화 주인공" 을 값을 가져온다.
 
-    let mainTextStr = '';
+    let displayFuncStr = '';
 
     let j = 0;  // 각 댓글의 mbti 값을 가져올 때 사용.
 
@@ -142,22 +104,17 @@ function displayComment(comment, size) {
 
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti;
-        getNamebyMBTI(mainText, userMBTI);
+        getNamebyMBTI(displayFuncText, userMBTI);
+        
+        displayFuncStr = displayFuncText.text;
 
-        // mainTextStr = String(mainText);
-        // console.log(mainText.text);
-        // console.log(typeof mainText.text);
+        displayFuncTextSplit = displayFuncStr.substring(displayFuncStr.indexOf("?") + 3);
 
-        //console.log(mainText.text.indexOf("?")+3);
-        mainTextStr = mainText.text;
-        //console.log(mainTextStr);
-        mainTextSplit = mainTextStr.substring(mainTextStr.indexOf("?") + 3);
-
-        charWithMovieName = mainTextSplit.split("''");
+        charWithMovieName = displayFuncTextSplit.split("''");
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ") + 2, charWithMovieName[i].length)}`,  // MBTI 유형
+            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2, charWithMovieName[i].length-1)}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
@@ -264,13 +221,10 @@ function displayComment(comment, size) {
     });
 }
 
-function commentDelete(id, name, password) {  // 댓글 삭제
-
-    // 해당 로그들은 테스트 시에만 사용 *************************************************
-    console.log("DELETE__id: " + id);
-    console.log("DELETE__name: " + name);
-    console.log("DELETE__password: " + password);
-    //**************************************************************************
+// 댓글 삭제
+function commentDelete(id, name, password) {
+    // 서버로 보낼 데이터 셋팅
+    let commentJson = { 'id': id, 'name': name, 'password': password };
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
 
@@ -278,56 +232,34 @@ function commentDelete(id, name, password) {  // 댓글 삭제
         return false;   // 아무런 알람 띄우지 않음
     } else {
         if (pwPrompt == password) {
-            // 서버로 보낼 데이터 셋팅
-            let commentJson = {};
-            commentJson['id'] = id;
-            commentJson['name'] = name;
-            commentJson['password'] = password;
-
-            fetch('https://mbti-test.herokuapp.com/comment', {
-                method: 'PATCH',
-                cache: 'no-cache',
-                headers: {
-                    'Accept': '*',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-                    'Origin': 'https://mbti-test.herokuapp.com',
-                    'Referer': 'https://mbti-test.herokuapp.com'
-                },
-                body: JSON.stringify(commentJson),
-            })
-                .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-                    console.log(response);
-
-                    return response.json();
-
-                })
-                .then(response => {
-                    if (response.status == 200) {
-                        alert("댓글 삭제 성공!");
-
-                        // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
-                        isDeleteCheck = 'true';
-
-                        // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
-                        searchComment(page, size);
-
-                    } else {
-                        // 오류 발생 시 alert 로 메시지 표출
-                        for (let i = 0; i < response.errors.length; i++) {
-                            errorMsg += response.errors[i].reason + '\n';
+            runFetch("PATCH", 'https://mbti-test.herokuapp.com/comment', commentJson)
+                .then((response) => {
+                        if (response.status == 200) {
+                            alert("댓글 삭제 성공!");
+                
+                            // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
+                            isDeleteCheck = 'true';
+                
+                            // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
+                            searchComment(page, size);
+                
+                        } else {
+                            // 오류 발생 시 alert 로 메시지 표출
+                            for (let i = 0; i < response.errors.length; i++) {
+                                errorMsg += response.errors[i].reason + '\n';
+                            }
+                            alert(errorMsg);
                         }
-                        alert(errorMsg);
-                    }
-                })
-                .catch((error) => console.log("error:", error));
-
-        } else if (pwPrompt != password) {   // 비밀번호 입력에 실패했을 경우
-            alert("비밀번호가 일치하지 않습니다.");
-
+                        
+                    
+                        [content.value, nickname.value, password.value] = [null, null, null];
+                    })
+                .catch((error) => console.log("error: ", error));
+            }  else if (pwPrompt != password) {   // 비밀번호 입력에 실패했을 경우
+                alert("비밀번호가 일치하지 않습니다.");
+            }
         }
-    }
-}
+}    
 
 
 function searchComment(page, size) {  // 댓글 페이징 조회
