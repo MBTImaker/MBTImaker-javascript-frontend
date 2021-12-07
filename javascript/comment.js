@@ -40,7 +40,7 @@ function dateToStr(svrDate) {
     let times = svrDate.substring(11, 19);
 
     let dateToString = month + '.' + day + " " + times;
-    
+
     return dateToString;
 }
 
@@ -117,12 +117,12 @@ function displayComment(comment, size) {
     let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다
     let charWithMovieName; // '' 를 기준으로 각 댓글 당 "영화 이름+영화 주인공" 을 값을 가져온다.
 
-let mainTextStr = '';
+    let mainTextStr = '';
 
     let j = 1;  // 각 댓글의 mbti 값을 가져올 때 사용.
 
-//    if (isDeleteCheck || isIndexCheck) { 
-   if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
+    //    if (isDeleteCheck || isIndexCheck) { 
+    if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
             comments.length = 0;
             innerComment = '';
@@ -136,29 +136,29 @@ let mainTextStr = '';
 
     for (let i = 0; i < size; i++) {
         // size 가 3인데, 댓글이 2개만 있는 경우엔 아래 코드가 실행 되지 않아서 2개만 보여주게 추가해줌.
-        if(comment.data.content[i] == null) {
+        if (comment.data.content[i] == null) {
             break;
         }
 
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
-        userMBTI = comment.data.content[i].mbti; 
+        userMBTI = comment.data.content[i].mbti;
         // setMaintext(userMBTI);
         // getNamebyMBTI(mainText, MBTI);
 
-//        mainTextStr = String(mainText);
+        //        mainTextStr = String(mainText);
         // console.log(mainText.text);
         // console.log(typeof mainText.text);
 
         //console.log(mainText.text.indexOf("?")+3);
         mainTextStr = mainText.text;
-        mainTextSplit = mainTextStr.substring(mainTextStr.indexOf("?")+3);
+        mainTextSplit = mainTextStr.substring(mainTextStr.indexOf("?") + 3);
         console.log(mainTextSplit);
 
         charWithMovieName = mainTextSplit.split("''");
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2, charWithMovieName[i].length)}`,  // MBTI 유형
+            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ") + 2, charWithMovieName[i].length)}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
@@ -171,7 +171,7 @@ let mainTextStr = '';
 
     innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
         /* 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함. */
-        tmpUseEnc = {id: `${c.id}`, pw: `${c.password}`, name: `${c.name}`};
+        tmpUseEnc = { id: `${c.id}`, pw: `${c.password}`, name: `${c.name}` };
         localStorage.setItem(`${c.id}`, JSON.stringify(tmpUseEnc));
 
         let changeCreatedDate = dateToStr(c.createdDate);
@@ -185,7 +185,7 @@ let mainTextStr = '';
                 </div>
                 <div class="btn">
                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="enc(false, true, ${c.id})" ></button>
-                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn"></button>
+                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal()"></button>
                 </div>
             
             </div>
@@ -214,53 +214,53 @@ let mainTextStr = '';
     let b_start_page = ((block - 1) * b_pageNum_list) + 1;  //현재 블럭에서 시작페이지 번호
     let b_end_page = b_start_page + b_pageNum_list - 1; //현재 블럭에서 마지막 페이지 번호
 
-    if(b_end_page > totalPages) b_end_page = totalPages;  // 블럭의 마지막 페이지가 총 페이지 수보다 클 때 두 숫자를 같게 해줌.
+    if (b_end_page > totalPages) b_end_page = totalPages;  // 블럭의 마지막 페이지가 총 페이지 수보다 클 때 두 숫자를 같게 해줌.
 
 
     // =========================== '이전' 버튼 만들기 ===========================
-    if(currentPage == 1) {  // 현재 페이지가 1 이면, 링크 없이 이전 버튼만 보여지게 함.
-      innerCommentIndex += `
+    if (currentPage == 1) {  // 현재 페이지가 1 이면, 링크 없이 이전 버튼만 보여지게 함.
+        innerCommentIndex += `
         <button type="submit" class="index" id="index_left_btn_not_active" value="1"></button>
       `;
     } else { // 현재 페이지가 1보다 크면, 이전 페이지로 갈 수 있도록 이전 버튼 생성
-      innerCommentIndex += `
-        <button type="submit" class="index" id="index_left_btn_active" onclick="searchComment(${currentPage-1}, ${size})" value="${currentPage-1}"></button>
+        innerCommentIndex += `
+        <button type="submit" class="index" id="index_left_btn_active" onclick="searchComment(${currentPage - 1}, ${size})" value="${currentPage - 1}"></button>
       `;
     }
 
-    for(let i = b_start_page; i<=b_end_page; i++){
-        if(currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
+    for (let i = b_start_page; i <= b_end_page; i++) {
+        if (currentPage == i) {  // 현재 페이지 이면 그냥 현재 페이지만 출력
             innerCommentIndex += `
                 <button type="submit" class="index" id="index" style="color:#E10017;" value="${i}">${i}</button>
-            `; 
+            `;
         } else {    // 현재 페이지를 제외한 나머지 페이지 번호들에 링크 달아서 출력
             innerCommentIndex += `
                 <button type="submit" class="index" id="index" onclick="searchComment(${i}, ${size})" value="${i}">${i}</button>
-            `;        
+            `;
         }
     }
 
     let total_block = Math.ceil(totalPages / b_pageNum_list);   // block 의 총 갯수
 
     // =========================== '다음' 버튼 만들기 ===========================
-    if(currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
-      innerCommentIndex += `
-        <button type="submit" class="index" id="index_right_btn_not_active" value="${currentPage+1}"></button>
+    if (currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
+        innerCommentIndex += `
+        <button type="submit" class="index" id="index_right_btn_not_active" value="${currentPage + 1}"></button>
       `;
     } else {    // 그게 아니면 다음 링크 버튼을 걸어서 보여준다.
-      innerCommentIndex += `
-        <button type="submit" class="index" id="index_right_btn_active" onclick="searchComment(${currentPage+1}, ${size})" value="${currentPage+1}"></button>
+        innerCommentIndex += `
+        <button type="submit" class="index" id="index_right_btn_active" onclick="searchComment(${currentPage + 1}, ${size})" value="${currentPage + 1}"></button>
       `;
     }
 
     commentIndex.innerHTML += innerCommentIndex;    // index 부분을 찾아서 1번부터 totalPages 까지 span 으로 추가함
 
     const indexBtns = document.querySelectorAll(".index:nth-child(n)");
-    
+
     // 생성된 인덱스 버튼들이 몇 페이지 인지 인식한 뒤 currentPage 변수에 저장
     indexBtns.forEach((idxbtn) => {
         idxbtn.addEventListener("click", (e) => {
-                currentPage = Number(e.target.value);  // Number 로 형변환 해주지 않으니 String 으로 맘대로 변환 되서 처리해줌.
+            currentPage = Number(e.target.value);  // Number 로 형변환 해주지 않으니 String 으로 맘대로 변환 되서 처리해줌.
         });
     });
 }
@@ -275,7 +275,7 @@ function commentDelete(id, name, password) {  // 댓글 삭제
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
 
-    if(pwPrompt == null) {  // 취소를 누를 경우
+    if (pwPrompt == null) {  // 취소를 누를 경우
         return false;   // 아무런 알람 띄우지 않음
     } else {
         if (pwPrompt == password) {
@@ -284,7 +284,7 @@ function commentDelete(id, name, password) {  // 댓글 삭제
             commentJson['id'] = id;
             commentJson['name'] = name;
             commentJson['password'] = password;
-    
+
             fetch('https://mbti-test.herokuapp.com/comment', {
                 method: 'PATCH',
                 cache: 'no-cache',
@@ -299,33 +299,33 @@ function commentDelete(id, name, password) {  // 댓글 삭제
             })
                 .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
                     console.log(response);
-    
+
                     return response.json();
-    
+
                 })
                 .then(response => {
                     if (response.status == 200) {
                         alert("댓글 삭제 성공!");
-    
+
                         // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
                         isDeleteCheck = 'true';
-    
+
                         // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
                         searchComment(page, size);
-    
+
                     } else {
                         // 오류 발생 시 alert 로 메시지 표출
-                        for(let i=0; i<response.errors.length; i++){
+                        for (let i = 0; i < response.errors.length; i++) {
                             errorMsg += response.errors[i].reason + '\n';
                         }
                         alert(errorMsg);
-                        }
+                    }
                 })
                 .catch((error) => console.log("error:", error));
-    
-        } else if (pwPrompt != password){   // 비밀번호 입력에 실패했을 경우
+
+        } else if (pwPrompt != password) {   // 비밀번호 입력에 실패했을 경우
             alert("비밀번호가 일치하지 않습니다.");
-    
+
         }
     }
 }
@@ -358,14 +358,14 @@ function searchComment(page, size) {  // 댓글 페이징 조회
 let localObj;
 
 /*aes128Encode 함수. 함수 인자: (isWriteCheck(Write함수호출함-true), isDeleteCheck(Delete함수호출함-true)) */
-function enc(isWriteCheck, isDeleteCheck, commentID){
+function enc(isWriteCheck, isDeleteCheck, commentID) {
     let secretKey = aes256SecretKey;
     let Iv = aes256Iv;
     let data;
 
     // JSON.parse(localStorage.getItem('json'));
 
-    if(isWriteCheck == true) {
+    if (isWriteCheck == true) {
         data = document.getElementById("password").value;   // write 함수 일 때
 
         // CBC 모드로 AES 인코딩 수행
@@ -381,9 +381,9 @@ function enc(isWriteCheck, isDeleteCheck, commentID){
         dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
 
 
-    } else if(isDeleteCheck == true) {
+    } else if (isDeleteCheck == true) {
         // searchComment(page, size);
-        
+
 
         localObj = JSON.parse(localStorage.getItem(commentID));
         console.log(localObj);
@@ -395,7 +395,7 @@ function enc(isWriteCheck, isDeleteCheck, commentID){
         // console.log(tmp.pw);
 
     }
-    
+
 
 
 
@@ -404,7 +404,7 @@ function enc(isWriteCheck, isDeleteCheck, commentID){
 
 
 /* aes256Decode 함수 */
-function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck){
+function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
     secretKey = aes256SecretKey;
     Iv = aes256Iv;
 
@@ -416,16 +416,16 @@ function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck){
     });
 
     // [디코딩 된 데이터 확인 실시]
-    aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);    		
-console.log("dec PW:::"+aes256DecodeData);
+    aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);
+    console.log("dec PW:::" + aes256DecodeData);
 
-tmp = JSON.parse(localStorage.getItem('json')); // object 타입
+    tmp = JSON.parse(localStorage.getItem('json')); // object 타입
 
     /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
-    if(isWriteCheck == true){
+    if (isWriteCheck == true) {
         commentWrite(aes256DecodeData);
-    } 
-    
+    }
+
     // else if(isDeleteCheck == true){  //delete 함수의 경우 굳이 이 코드 까지 안옴. enc 함수에서 끝남
     //     commentDelete(tmp.id, tmp.name, aes256DecodeData);
     // }
