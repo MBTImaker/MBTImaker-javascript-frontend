@@ -659,6 +659,7 @@ block - communication (ver.21-11-09)
   width: 89%;
   height: 13.5rem;
   padding-top: 1.25rem;
+  resize: none;
 }
 
 .block .communication .add-comment .password {
@@ -841,6 +842,7 @@ block - communication - show-comment
   background-size: contain;
   background-color: var(--section-background-color);
   margin-top: 0;
+  cursor: default;
 }
 
 .block .communication .comment-pages #index {
@@ -867,6 +869,7 @@ block - communication - show-comment
   background-size: contain;
   background-color: var(--section-background-color);
   margin-top: 0;
+  cursor: default;
 }
 
 /*

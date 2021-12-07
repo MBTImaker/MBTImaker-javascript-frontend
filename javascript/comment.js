@@ -82,16 +82,28 @@ function commentWrite(aes256DecodeData) {
             return response.json();
         })
         .then(response => {
-            isIndexCheck = true;
-            alert("댓글 작성 성공!");
+            if (response.status == 200) {
+                isIndexCheck = true;
+                alert("댓글 작성 성공!");
+                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
-            // 댓글 작성 후 해당 값들을 빈 값으로 처리.
-            document.getElementById("nickname").value = "";
-            document.getElementById("comment-area").value = "";
-            document.getElementById("password").value = "";
-
-            searchComment(page, size);  // 댓글 조회 함수 호출
+                // 댓글 작성 후 해당 값들을 빈 값으로 처리.
+                document.getElementById("nickname").value = "";
+                document.getElementById("comment-area").value = "";
+                document.getElementById("password").value = "";
+                
+                searchComment(page, size);  // 댓글 조회 함수 호출
+            } else {
+                // 오류 발생 시 alert 로 메시지 표출
+                for(let i=0; i<response.errors.length; i++){
+                    errorMsg += response.errors[i].reason + '\n';
+                }
+                alert(errorMsg);
+                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
+                
+            }
         })
+
         .catch((error) => console.log(error));
 }
 
