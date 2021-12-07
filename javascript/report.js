@@ -37,6 +37,7 @@ function sendReport() {
 
 // 모달 창 닫기
 function cancleReport() {
+    // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value] = [0, null];
     reportModal.classList.remove("open-modal");
 }
