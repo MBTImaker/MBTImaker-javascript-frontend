@@ -7,10 +7,11 @@ const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
 const commentIndex = document.querySelector(".block .communication .comment-pages");
 
-let isWriteCheck = false;  // write 함수에서 왔는지 확인하는 값
+let isWriteCheck = true;  // write 함수에서 왔는지 확인하는 값
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
 let isFirst = false;
 let isIndexCheck = false;  // index가 1234567812345678 이런 식으로 발생해서 구분 하기 위해 생성
+let chkeckWrite = true; // wrtie-comment-btn 을 눌렀을 경우, 해당 댓글의 mbti 유형값을 따로 저장하기 위해 사용. display 해서 나오는 mbti 와 구분하기 위해 사용.
 
 let errorMsg = '';  // 에러메시지 안내
 let userMBTI;   // 서버의 response 로 오는 값인 'INTP..' 값들을 저장
@@ -49,8 +50,6 @@ function commentWrite(aes256DecodeData) {
 
     showComment.style.display = "flex";
 
-    //setMaintext(MBTI);  // share.js 파일의 setMaintext() 함수를 통해 MBTI 유형 값을 받아옴
-
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
     let content = document.getElementById("comment-area").value;
@@ -82,30 +81,11 @@ function commentWrite(aes256DecodeData) {
         })
         .then(response => {
             isIndexCheck = true;
-            displayComment(response, size);
+            alert("댓글 작성 성공!");
+            searchComment(page, size);  // 댓글 조회 함수 호출
         })
         .catch((error) => console.log(error));
 }
-
-function commentWrite() {
-
-    // 서버로 보낼 데이터 셋팅
-    let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
-
-    // 서버에서 받은 값 저장
-    //let recvID; // 각 댓글의 id 값
-    //let recvParentId; // 각 댓글의 부모id 값
-
-    runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
-        .then((response) => {
-            alert("댓글 작성 성공!");
-            searchComment(page, size);  // 댓글 조회 함수 호출
-            [content.value, nickname.value, password.value] = [null, null, null];
-        })
-        .catch((error) => console.log("error: ", error));
-
-}
-
 
 // 화면에 댓글을 보여주기 위해 HTML 코드를 리턴하는 함수
 function displayComment(comment, size) {
@@ -119,7 +99,7 @@ function displayComment(comment, size) {
 
     let mainTextStr = '';
 
-    let j = 1;  // 각 댓글의 mbti 값을 가져올 때 사용.
+    let j = 0;  // 각 댓글의 mbti 값을 가져올 때 사용.
 
     //    if (isDeleteCheck || isIndexCheck) { 
     if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
@@ -135,26 +115,29 @@ function displayComment(comment, size) {
     }
 
     for (let i = 0; i < size; i++) {
-        // size 가 3인데, 댓글이 2개만 있는 경우엔 아래 코드가 실행 되지 않아서 2개만 보여주게 추가해줌.
+        //size 가 3인데, 댓글이 2개만 있는 경우엔 아래 코드가 실행 되지 않아서 2개만 보여주게 추가해줌.
         if (comment.data.content[i] == null) {
             break;
         }
 
+
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti;
         // setMaintext(userMBTI);
-        // getNamebyMBTI(mainText, MBTI);
-
-        //        mainTextStr = String(mainText);
+        getNamebyMBTI(mainText, userMBTI);
+console.log(mainText);
+        // mainTextStr = String(mainText);
         // console.log(mainText.text);
         // console.log(typeof mainText.text);
 
         //console.log(mainText.text.indexOf("?")+3);
         mainTextStr = mainText.text;
+        //console.log(mainTextStr);
         mainTextSplit = mainTextStr.substring(mainTextStr.indexOf("?") + 3);
         console.log(mainTextSplit);
 
         charWithMovieName = mainTextSplit.split("''");
+        console.log(charWithMovieName);
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
@@ -165,6 +148,11 @@ function displayComment(comment, size) {
             parentId: `${comment.data.content[i].parentId}`,  // 해당 댓글의 부모 id(서버에서 보관)
             createdDate: `${comment.data.content[i].createdDate}`,  // 해당 댓글 작성 시간
         });
+        
+        // comments.map(function(m) {
+        //     console.log(`${m.mbti}`);
+        // });
+
 
         j += 2;
     }
@@ -358,7 +346,7 @@ function searchComment(page, size) {  // 댓글 페이징 조회
 let localObj;
 
 /*aes128Encode 함수. 함수 인자: (isWriteCheck(Write함수호출함-true), isDeleteCheck(Delete함수호출함-true)) */
-function enc(isWriteCheck, isDeleteCheck, commentID) {
+function enc(isWriteCheck, isDeleteCheck, commentID, chkeckWrite) {
     let secretKey = aes256SecretKey;
     let Iv = aes256Iv;
     let data;
@@ -366,6 +354,8 @@ function enc(isWriteCheck, isDeleteCheck, commentID) {
     // JSON.parse(localStorage.getItem('json'));
 
     if (isWriteCheck == true) {
+        isDeleteCheck = false;
+
         data = document.getElementById("password").value;   // write 함수 일 때
 
         // CBC 모드로 AES 인코딩 수행
