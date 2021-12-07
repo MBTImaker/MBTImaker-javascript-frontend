@@ -5,6 +5,7 @@
 const showComment = document.querySelector(".show-comment");
 const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
+const commentIndex = document.querySelector(".block .communication .comment-pages");
 
 let isWriteCheck = false;  // write 함수에서 왔는지 확인하는 값
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌
@@ -80,21 +81,26 @@ function commentWrite(aes256DecodeData) {
             return response.json();
         })
         .then(response => {
-            if (response.status == 200) {
-                alert("댓글 작성 성공!");
-                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
+            isIndexCheck = true;
+            displayComment(response, size);
+        })
+        .catch((error) => console.log(error));
+}
 
-                
-                searchComment(page, size);  // 댓글 조회 함수 호출
-            } else {
-                // 오류 발생 시 alert 로 메시지 표출
-                for(let i=0; i<response.errors.length; i++){
-                    errorMsg += response.errors[i].reason + '\n';
-                }
-                alert(errorMsg);
-                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
-                
-            }
+function commentWrite() {
+
+    // 서버로 보낼 데이터 셋팅
+    let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
+
+    // 서버에서 받은 값 저장
+    //let recvID; // 각 댓글의 id 값
+    //let recvParentId; // 각 댓글의 부모id 값
+
+    runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
+        .then((response) => {
+            alert("댓글 작성 성공!");
+            searchComment(page, size);  // 댓글 조회 함수 호출
+            [content.value, nickname.value, password.value] = [null, null, null];
         })
         .catch((error) => console.log("error: ", error));
 
@@ -106,7 +112,6 @@ function displayComment(comment, size) {
 
     let comments = [];  // 배열 선언
     let innerComment = '';  // 각 댓글의 전체 창을 만듬
-    let commentIndex = document.querySelector(".block .communication .comment-pages");
     let innerCommentIndex = '';  // 인덱스의 버튼 태그들을 만듬
     let totalPages = comment.data.totalPages;  // 사이즈 수로 나눈 총 페이지 수
     let mainTextSplit;  // mainText 앞 부분인 "나의 영화 캐릭터 유형은? " 이 부분 제거 후 ' 여기 부터 끝까지 잘라온다

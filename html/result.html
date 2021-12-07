@@ -248,21 +248,24 @@
             <div class="report-modal">
                 <div class="report-modal-container">
                     <h2>신고</h2>
+                    <!-- <img src="" alt="" class="report-modal-img"> -->
     
-                    <select name="신고유형" id="subject">
-                        <option value="">신고유형</option>
-                        <option value="ABUSE">욕설/비하</option>
-                        <option value="PORNOGRAPHY">음란물/불건전한 대화</option>
-                        <option value="COMMERCIAL">상업적 광고/판매</option>
-                        <option value="PAPERING">낚시/도배</option>
-                        <option value="DISPUTE">지나친 정치/종교 논쟁</option>
-                        <option value="PROMOTION">불법 홍보</option>
-                    </select>
-    
-                    <input type="text" id="description" placeholder="신고한 이유를 알려주세요">
-                    <div class="btns">
-                        <button id="cancle" onclick="cancleReport()">취소</button>
-                        <input type="submit" id="submit" onclick="sendReport()">
+                    <div class="input-area">
+                        <select name="신고유형" id="subject">
+                            <option value="">신고유형</option>
+                            <option value="ABUSE">욕설/비하</option>
+                            <option value="PORNOGRAPHY">음란물/불건전한 대화</option>
+                            <option value="COMMERCIAL">상업적 광고/판매</option>
+                            <option value="PAPERING">낚시/도배</option>
+                            <option value="DISPUTE">지나친 정치/종교 논쟁</option>
+                            <option value="PROMOTION">불법 홍보</option>
+                        </select>
+        
+                        <input type="text" id="description" placeholder="신고 내용을 적어주세요.">
+                        <div class="btns">
+                            <button class="gray-btn" id="cancle" onclick="cancleReport()">취소</button>
+                            <button class="red-btn" id="submit" onclick="sendReport()">제출</button>
+                        </div>
                     </div>
                 </div>
             </div>
