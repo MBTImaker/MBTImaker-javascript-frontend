@@ -80,17 +80,29 @@ function commentWrite(aes256DecodeData) {
         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
             console.log(response);
             return response.json();
-        })
-        .then(response => {
-            isIndexCheck = true;
-            alert("댓글 작성 성공!");
+        })  
+        .then((response) => {
+            if (response.status == 200) {
+                isIndexCheck = true;
+                alert("댓글 작성 성공!");                
+                
+                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
-            // 댓글 작성 후 해당 값들을 빈 값으로 처리.
-            document.getElementById("nickname").value = "";
-            document.getElementById("comment-area").value = "";
-            document.getElementById("password").value = "";
+                // 댓글 작성 후 해당 값들을 빈 값으로 처리.
+                document.getElementById("nickname").value = "";
+                document.getElementById("comment-area").value = "";
+                document.getElementById("password").value = "";
 
-            searchComment(page, size);  // 댓글 조회 함수 호출
+                
+                searchComment(page, size);  // 댓글 조회 함수 호출
+            } else {
+                // 오류 발생 시 alert 로 메시지 표출
+                for(let i=0; i<response.errors.length; i++){
+                    errorMsg += response.errors[i].reason + '\n';
+                }
+                alert(errorMsg);
+                errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
+            }
         })
         .catch((error) => console.log(error));
 }
