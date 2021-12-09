@@ -2,11 +2,12 @@
 
 /* 설명: 질문 12가지를 화면에 보여줍니다. */
 
-window.addEventListener('load', function () {
-    setTimeout(function () {
+window.addEventListener('load', () => {
+    setTimeout(() => {
         scrollTo(0, 0);
     }, 10);
 });
+
 
 // =========================== Variables ===========================
 
@@ -99,6 +100,8 @@ const questionList = [
 
 const body = document.querySelector("body");
 
+let blockScrolltop = [0];
+
 // =========================== Function ===========================
 
 function displayQuestion(question) {
@@ -128,6 +131,10 @@ function displayQuestion(question) {
 // ============================== Run ==============================
 
 displayQuestion(questionList);
+
+window.addEventListener('resize', () => {
+    document.documentElement.scrollTop = blockScrolltop[blockScrolltop.length - 1];
+});
 
 // =========================== Variables ===========================
 // HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
@@ -162,6 +169,7 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         currentTime += increment;
         let movement = Math.easeInOutQuad(currentTime, start, change, duration);
         element.scrollTop = movement;
+        blockScrolltop.push(movement);
 
         if (currentTime < duration) {
             setTimeout(animateScroll, increment);
