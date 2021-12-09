@@ -100,15 +100,13 @@ const questionList = [
 
 const body = document.querySelector("body");
 
-let blockScrolltop = [0];
-
 // =========================== Function ===========================
 
 function displayQuestion(question) {
     let innerQuestion = question.map(function (q) {
 
         return `
-        <div class="block">
+        <div class="block" id="block">
             <div class="q-num" style="background-image: url('${q.num}');"></div>
             <span class="q-title top">${q.qTop}</span>
             <span class="q-title bottom">${q.qBottom}</span>
@@ -132,8 +130,12 @@ function displayQuestion(question) {
 
 displayQuestion(questionList);
 
+let showCorrectQuestion = null;
+
+// 브라우저 화면 크기가 바뀌었을 때 현문제 위치로 움직인다.
 window.addEventListener('resize', () => {
-    document.documentElement.scrollTop = blockScrolltop[blockScrolltop.length - 1];
+    clearTimeout(showCorrectQuestion);
+    showCorrectQuestion = setTimeout(scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 20), 200);
 });
 
 // =========================== Variables ===========================
@@ -169,7 +171,6 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
         currentTime += increment;
         let movement = Math.easeInOutQuad(currentTime, start, change, duration);
         element.scrollTop = movement;
-        blockScrolltop.push(movement);
 
         if (currentTime < duration) {
             setTimeout(animateScroll, increment);
