@@ -2,11 +2,12 @@
 
 /* 설명: 질문 12가지를 화면에 보여줍니다. */
 
-window.addEventListener('load', function () {
-    setTimeout(function () {
+window.addEventListener('load', () => {
+    setTimeout(() => {
         scrollTo(0, 0);
     }, 10);
 });
+
 
 // =========================== Variables ===========================
 
@@ -105,7 +106,7 @@ function displayQuestion(question) {
     let innerQuestion = question.map(function (q) {
 
         return `
-        <div class="block">
+        <div class="block" id="block">
             <div class="q-num" style="background-image: url('${q.num}');"></div>
             <span class="q-title top">${q.qTop}</span>
             <span class="q-title bottom">${q.qBottom}</span>
@@ -128,6 +129,14 @@ function displayQuestion(question) {
 // ============================== Run ==============================
 
 displayQuestion(questionList);
+
+let showCorrectQuestion = null;
+
+// 브라우저 화면 크기가 바뀌었을 때 현문제 위치로 움직인다.
+window.addEventListener('resize', () => {
+    clearTimeout(showCorrectQuestion);
+    showCorrectQuestion = setTimeout(scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 20), 200);
+});
 
 // =========================== Variables ===========================
 // HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
