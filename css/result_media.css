@@ -314,4 +314,19 @@ media
   .block .communication .comment-pages {
     width: 40%;
   }
+  /* ----------------- reportModal ----------------- */
+  .report-modal .report-modal-container {
+    width: 35vw;
+    height: 50%;
+    border-width: 6px;
+    border-radius: 40px;
+  }
+
+  .report-modal .report-modal-container .input-area {
+    border-radius: 32px;
+  }
+
+  .report-modal-container select {
+    margin-top: 2rem;
+  }
 }

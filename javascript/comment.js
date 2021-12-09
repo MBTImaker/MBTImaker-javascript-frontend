@@ -16,7 +16,10 @@ let chkeckWrite = true; // wrtie-comment-btn 을 눌렀을 경우, 해당 댓글
 let errorMsg = '';  // 에러메시지 안내
 let userMBTI;   // 서버의 response 로 오는 값인 'INTP..' 값들을 저장
 let displayFuncText = { "text": "나의 영화 캐릭터 유형은? " };  // displayComment() 함수에서 getNamebyMBTI() 함수를 호출 할 때 따로 쓸 변수
+<<<<<<< HEAD
 
+=======
+>>>>>>> a97b5a75708a7c9de77dfaf366ef1ddb46ada29d
 
 /* displayComment() 함수의 index 부분에서 사용 */
 let page = 1;   // 조회 할 페이지
