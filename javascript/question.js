@@ -223,23 +223,13 @@ selectBtns.forEach((btn) => {
         // 선택된 문항의 색을 바꾸어준다.
         e.currentTarget.classList.add("active");
 
-        // 선택지에서 위를 선택하면 '0', 아래를 선택하면 '1'이 추가된다.
-        if (clientClicked.length > questionNum) {
-            clientClicked = clientClicked.substring(0, questionNum);
-        }
-
         if (e.currentTarget.classList.contains("top")) {
-            // 선택지 2개 중에서 하나만 선택할 수 있다.
-            if (selectBtns[selectBtnIndex + 1].classList.contains("active")) {
-                selectBtns[selectBtnIndex + 1].classList.remove("active");
-            }
             clientClicked += "0";
+            selectBtns[selectBtnIndex + 1].style.pointerEvents = "none";
         }
         else {
-            if (selectBtns[selectBtnIndex].classList.contains("active")) {
-                selectBtns[selectBtnIndex].classList.remove("active");
-            }
             clientClicked += "1";
+            selectBtns[selectBtnIndex].style.pointerEvents = "none";
         }
 
         // 문항이 선택되면 아래로 이동한다.
@@ -248,7 +238,7 @@ selectBtns.forEach((btn) => {
             questionNum += 1;
             selectBtnIndex += 2;
 
-            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 700);
+            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 1200);
         } else {
             // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
             next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;

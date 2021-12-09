@@ -135,9 +135,8 @@ const showAnimation = function () {
     circulars.forEach((circular) => {
         const circle = circular.querySelector('.circle');
         const numb = circular.querySelector(".numb");
-        console.log(`circle.scrollTop : ${circle.getBoundingClientRect().top}`);
+
         if (!circle.classList.contains('show')) {
-            // if (window.innerHeight > circle.getBoundingClientRect().top + showMargin) {
             if (0 > chemistry.getBoundingClientRect().top) {
                 circle.classList.add('show');
                 toggleShow(circle);
