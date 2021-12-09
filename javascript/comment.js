@@ -32,8 +32,60 @@ let localObj;   // 암호화 된 패스워드를 복호화 하는 함수(dec) �
 
 let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
 
+let errObj = {}; // 에러메시지를 object 형식으로 받아오기 위해 선언
 
 window.addEventListener('load', searchComment(page, size));
+
+// 패스워드를 AES 256 방식으로 암호화 해주는 함수. 
+function enc(isWriteCheck, isDeleteCheck, commentID) {
+    let secretKey = aes256SecretKey;
+    let Iv = aes256Iv;
+    let data;
+
+    if (isWriteCheck == true) {
+        isDeleteCheck = false;
+
+        data = document.getElementById("password").value;   // write 함수 일 때
+
+        // CBC 모드로 AES 인코딩 수행
+        const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
+            iv: CryptoJS.enc.Utf8.parse(Iv), // Enter IV (Optional) 지정 방식
+            padding: CryptoJS.pad.Pkcs7,
+            mode: CryptoJS.mode.CBC // cbc 모드 선택
+        });
+
+        // [인코딩 된 데이터 확인 실시]
+        aes256EncodeData = cipher.toString();
+
+        dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
+
+    } else if (isDeleteCheck == true) {
+        localObj = JSON.parse(localStorage.getItem(commentID));
+        commentDelete(localObj.id, localObj.name, localObj.pw);
+    }
+};
+
+// 암호화 된 스워드를 AES 256 방식으로 복호화 해주는 함수. 
+function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
+    secretKey = aes256SecretKey;
+    Iv = aes256Iv;
+
+    // CBC 모드로 AES 디코딩 수행
+    const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
+        iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
+        padding: CryptoJS.pad.Pkcs7,
+        mode: CryptoJS.mode.CBC // [cbc 모드 선택]
+    });
+
+    // [디코딩 된 데이터 확인 실시]
+    aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);
+    console.log("dec PW:::" + aes256DecodeData);
+
+    /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
+    if (isWriteCheck == true) {
+        commentWrite(aes256DecodeData);
+    }
+};
 
 
 // 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
@@ -88,6 +140,10 @@ function commentWrite(aes256DecodeData) {
                 alert("댓글 작성 성공!");
                 console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
+                // 댓글 작성 후 해당 필드 빈값 처리
+                document.getElementById("nickname").value = "";
+                document.getElementById("comment-area").value = "";
+                document.getElementById("password").value = "";
                 
                 searchComment(page, size);  // 댓글 조회 함수 호출
             } else {
@@ -103,6 +159,33 @@ function commentWrite(aes256DecodeData) {
         .catch((error) => console.log("error: ", error));
 
 }
+
+// function commentWrite() {
+//     // 사용자가 입력 한 값을 받아온다.
+//     let nickname = document.getElementById("nickname").value;
+//     let content = document.getElementById("comment-area").value;
+//     // let password = document.getElementById("password").value;
+//     let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
+
+//     // 서버로 보낼 데이터 셋팅
+//     let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
+
+//     // 서버에서 받은 값 저장
+//     runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
+//         .then((response) => {
+//             alert("댓글 작성 성공!");
+//             searchComment(page, size);  // 댓글 조회 함수 호출
+//             [content.value, nickname.value, password.value] = [null, null, null];
+//         })
+//         .catch((error) => {
+//             //console.log(error);
+//             alert(JSON.stringify(error.errors));
+//             //alert(JSON.parse(error));
+//         })
+// }
+
+
+
 
 // 화면에 댓글을 보여주기 위해 HTML 코드를 리턴하는 함수
 function displayComment(comment, size) {
@@ -321,53 +404,3 @@ function searchComment(page, size) {  // 댓글 페이징 조회
         .catch((error) => console.log("error:", error));
 }
 
-// 패스워드를 AES 256 방식으로 암호화 해주는 함수. 
-function enc(isWriteCheck, isDeleteCheck, commentID) {
-    let secretKey = aes256SecretKey;
-    let Iv = aes256Iv;
-    let data;
-
-    if (isWriteCheck == true) {
-        isDeleteCheck = false;
-
-        data = document.getElementById("password").value;   // write 함수 일 때
-
-        // CBC 모드로 AES 인코딩 수행
-        const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
-            iv: CryptoJS.enc.Utf8.parse(Iv), // Enter IV (Optional) 지정 방식
-            padding: CryptoJS.pad.Pkcs7,
-            mode: CryptoJS.mode.CBC // cbc 모드 선택
-        });
-
-        // [인코딩 된 데이터 확인 실시]
-        aes256EncodeData = cipher.toString();
-
-        dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
-
-    } else if (isDeleteCheck == true) {
-        localObj = JSON.parse(localStorage.getItem(commentID));
-        commentDelete(localObj.id, localObj.name, localObj.pw);
-    }
-};
-
-// 암호화 된 스워드를 AES 256 방식으로 복호화 해주는 함수. 
-function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
-    secretKey = aes256SecretKey;
-    Iv = aes256Iv;
-
-    // CBC 모드로 AES 디코딩 수행
-    const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
-        iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC // [cbc 모드 선택]
-    });
-
-    // [디코딩 된 데이터 확인 실시]
-    aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);
-    console.log("dec PW:::" + aes256DecodeData);
-
-    /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
-    if (isWriteCheck == true) {
-        commentWrite(aes256DecodeData);
-    }
-};
