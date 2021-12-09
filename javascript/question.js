@@ -238,7 +238,7 @@ selectBtns.forEach((btn) => {
             questionNum += 1;
             selectBtnIndex += 2;
 
-            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 1200);
+            scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 650);
         } else {
             // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
             next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
