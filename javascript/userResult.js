@@ -28,6 +28,7 @@ const shareImage = "url(https://mbti-test.herokuapp.com/og_image.png)";
 
 let mainText = { "text": "나의 영화 캐릭터 유형은? " };
 let KAKAO_JAVASCRIPT_KEY = "";
+let MBTI = '';
 
 // ====================== Variables(report) ======================
 /* 설명: 사용자가 선택한 값에 따라 MBTI 결과값을 서버에서 가져와 화면에 보여줍니다. */
@@ -248,6 +249,8 @@ else {
 // 가져온 것들을 html에 설정한다.
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
+    MBTI = mbtiResult.mbti;
+    console.log(`MBTI: ${MBTI}`);
 
     const textAndImg = document.querySelector(".b3 .r1 .t2");
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;

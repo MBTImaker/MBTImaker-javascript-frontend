@@ -111,11 +111,7 @@ function commentWrite(aes256DecodeData) {
     let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
 
     // 서버로 보낼 데이터 셋팅
-    let commentJson = {};
-    commentJson['content'] = content;
-    commentJson['mbti'] = MBTI;
-    commentJson['name'] = nickname;
-    commentJson['password'] = password;
+    let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
 
     fetch('https://mbti-test.herokuapp.com/comment', {
         method: 'POST',
