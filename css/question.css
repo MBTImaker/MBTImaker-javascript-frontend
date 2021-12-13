@@ -85,18 +85,18 @@ block - num & title
   background-size: 100% 100%;
 }
 
-.b2 .q-title {
+.b2 .q1 {
   font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
   line-height: 167%;
   letter-spacing: var(--letter-spacing);
 }
 
-.b2 .q-title.top {
+.b2 .q1.top {
   margin-bottom: 1.375rem;
 }
 
-.b2 .q-title.bottom {
+.b2 .q1.bottom {
   margin-bottom: 1.75rem;
 }
 /*
@@ -205,11 +205,11 @@ media
     margin-bottom: 2.12vh;
   }
 
-  .b2 .q-title {
+  .b2 .q1 {
     font-size: var(--q-title-desktop-size);
   }
 
-  .b2 .q-title.bottom {
+  .b2 .q1.bottom {
     margin-bottom: 2.5rem;
   }
 
@@ -233,7 +233,7 @@ media
 
 /* height < 756px */
 @media screen and (max-height: 47.25rem) {
-  .b2 .q-title {
+  .b2 .q1 {
     font-size: var(--q-title-desktop-xs-size);
   }
 
@@ -251,7 +251,7 @@ media
 
 /* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
 @media screen and (max-width: 23.4375rem) {
-  .b2 .q-title {
+  .b2 .q1 {
     font-size: var(--q-title-mobile-xs-size);
   }
 

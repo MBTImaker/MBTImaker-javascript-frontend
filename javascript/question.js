@@ -117,8 +117,8 @@ function displayQuestion(question) {
         return `
         <div class="b2" id="b2">
             <div class="q-num" style="background-image: url('${q.num}');"></div>
-            <span class="q-title top">${q.qTop}</span>
-            <span class="q-title bottom">${q.qBottom}</span>
+            <span class="q1 top">${q.qTop}</span>
+            <span class="q1 bottom">${q.qBottom}</span>
         
             <div class="two-btns">
                 <button class="select_btn top">${q.btnTop}</button>
