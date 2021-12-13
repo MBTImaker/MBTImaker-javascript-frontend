@@ -53,27 +53,35 @@ window.addEventListener('load', () => {
 let result = location.href.split("=")[1];
 result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9) + '-' + result.slice(9, 12);
 
-// 결과값을 보내면 파이어베이스에서 텍스트와 이미지를 가져온다.
-runFetch("POST", "https://mbti-test.herokuapp.com/test", {
-    "testCode": result,
-})
-    .then((info) => {
-        showResult(info.data);
-        KAKAO_JAVASCRIPT_KEY = info.data.kakao_JAVASCRIPT_KEY;
+// 이전 결과와 다르면 데이터를 새로 불러온다.
+if (window.sessionStorage.getItem('result') !== result) {
+
+    runFetch("POST", "https://mbti-test.herokuapp.com/test", {
+        "testCode": result,
     })
-    .then(() => {
-        // 시크릿키 받아와 저장한 이후에 설정한다.
-        Kakao.init(KAKAO_JAVASCRIPT_KEY);
-        // console.log("kakao : " + Kakao.isInitialized());
-    })
-    .catch(err => { alert("카카오 공유가 불가능합니다. 관리자에게 문의해 주세요.") });
+        .then((info) => {
+            showResult(info.data);
+            window.sessionStorage.setItem('mbtiResult', JSON.stringify(info.data));
+            KAKAO_JAVASCRIPT_KEY = info.data.kakao_JAVASCRIPT_KEY;
+        })
+        .then(() => {
+            // 시크릿키 받아와 저장한 이후에 설정한다.
+            Kakao.init(KAKAO_JAVASCRIPT_KEY);
+            // console.log("kakao : " + Kakao.isInitialized());
+        })
+        .catch(() => { alert("카카오 공유가 불가능합니다. 관리자에게 문의해 주세요.") });
+
+
+    window.sessionStorage.setItem('result', result);
+}
+else {
+    showResult(JSON.parse(window.sessionStorage.getItem('mbtiResult')));
+}
 
 
 // 가져온 것들을 html에 설정한다.
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
-    MBTI = mbtiResult.mbti;
-    getNamebyMBTI(mainText, MBTI);
 
     const textAndImg = document.querySelector(".block .result-character .textAndImg");
     textAndImg.querySelector(".movie-title").src = mbtiResult.character.movieName.url;
@@ -121,6 +129,8 @@ function showResult(data) {
     for (let i = 0; i < movieList.length; i++) {
         movieList[i].src = recommendedMovies[i].url;
     }
+
+    getNamebyMBTI(mainText, mbtiResult.mbti);
 }
 
 // =========================== Graph ===========================
