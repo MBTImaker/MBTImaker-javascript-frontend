@@ -115,14 +115,14 @@ function displayQuestion(question) {
     let innerQuestion = question.map(function (q) {
 
         return `
-        <div class="block" id="block">
-            <div class="q-num" style="background-image: url('${q.num}');"></div>
-            <span class="q-title top">${q.qTop}</span>
-            <span class="q-title bottom">${q.qBottom}</span>
+        <div class="b2" id="b2">
+            <div class="q2" style="background-image: url('${q.num}');"></div>
+            <span class="q1 t0">${q.qTop}</span>
+            <span class="q1 b0">${q.qBottom}</span>
         
-            <div class="two-btns">
-                <button class="select_btn top">${q.btnTop}</button>
-                <button class="select_btn bottom">${q.btnBottom}</button>
+            <div class="t1">
+                <button class="s1 t0">${q.btnTop}</button>
+                <button class="s1 b0">${q.btnBottom}</button>
             </div>
         </div>
         `;
@@ -150,10 +150,10 @@ window.addEventListener('resize', () => {
 // =========================== Variables ===========================
 // HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
 
-const selectBtns = document.querySelectorAll(".select_btn:nth-child(n)");
-const qNums = document.querySelectorAll('.q-num:nth-child(n)');
-const blocks = document.querySelectorAll(".block:nth-child(n)");
-const next = document.querySelector(".next");
+const selectBtns = document.querySelectorAll(".s1:nth-child(n)");
+const qNums = document.querySelectorAll('.q2:nth-child(n)');
+const blocks = document.querySelectorAll(".b2:nth-child(n)");
+const next = document.querySelector(".n1");
 const questionNumMax = questionList.length;
 
 let questionNum = 0;
@@ -241,7 +241,7 @@ selectBtns.forEach((btn) => {
         // 선택된 문항의 색을 바꾸어준다.
         e.currentTarget.classList.add("active");
 
-        if (e.currentTarget.classList.contains("top")) {
+        if (e.currentTarget.classList.contains("t0")) {
             clientClicked += "0";
             selectBtns[selectBtnIndex + 1].style.pointerEvents = "none";
         }
@@ -260,7 +260,7 @@ selectBtns.forEach((btn) => {
         } else {
             // 모든 문항에 답변하면 결과를 볼 수 있는 버튼이 활성화된다.
             next.textContent = `나랑 비슷한 영화 캐릭터 결과 보기`;
-            next.classList.remove("next");
+            next.classList.remove("n1");
             next.classList.add("showResult");
             next.onclick = function () {
                 location.href = "result.html?result=" + clientClicked;

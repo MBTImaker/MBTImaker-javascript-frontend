@@ -31,18 +31,18 @@ media
 /* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
 @media screen and (max-width: 23.4375rem) {
   /* ----------------- conclusion ----------------- */
-  .block .result-character .conclusion {
+  .b3 .r1 .conclusion {
     font-size: var(--conclusion-mobile-font-xs-size);
   }
 
-  .block .result-character .feature {
+  .b3 .r1 .f2 {
     font-size: var(--feature-mobile-font-xs-size);
   }
 
-  .block .share span,
-  .block .movies span,
-  .block .likeMe span,
-  .block .mostType span {
+  .b3 .s1 span,
+  .b3 .m1 span,
+  .b3 .likeMe span,
+  .b3 .mostType span {
     font-size: var(--share-mobile-font-xs-size);
   }
 }
@@ -66,44 +66,44 @@ media
   }
 
   /* ----------------- block ----------------- */
-  .block {
+  .b3 {
     width: 716px;
     border-width: 6px;
     border-radius: 40px;
     margin: 5rem 0;
     padding: 3.75rem;
   }
-  .block .result-character .textAndImg .subject {
+  .b3 .r1 .t2 .subject {
     height: 2rem;
     margin-top: 4rem;
   }
 
-  .block .result-character .textAndImg .movie-title {
+  .b3 .r1 .t2 .movie-title {
     height: 3rem;
     margin-top: 2.5rem;
   }
 
-  .block .result-character .textAndImg .movie-character {
+  .b3 .r1 .t2 .movie-character {
     height: 4rem;
   }
 
-  .block .result-character .textAndImg .character-img {
+  .b3 .r1 .t2 .character-img {
     padding: 0 3.75rem;
   }
 
   /* ----------------- conclusion ----------------- */
-  .block .result-character .conclusion {
+  .b3 .r1 .conclusion {
     height: 100%;
     line-height: var(--conclusion-desktop-line-height);
     font-size: var(--conclusion-desktop-font-size);
     margin-top: 2.375rem;
   }
 
-  .block .result-character .feature-list {
+  .b3 .r1 .f1 {
     width: var(--basic-desktop-width);
   }
 
-  .block .result-character .feature {
+  .b3 .r1 .f2 {
     height: 3.5rem;
     font-size: var(--feature-desktop-font-size);
     line-height: var(--feature-desktop-line-height);
@@ -111,28 +111,28 @@ media
   }
 
   /* ----------------- point-line ----------------- */
-  .point-line {
+  .p1 {
     background-size: 28px 4px;
     border-width: 4px;
     margin-top: 62px;
   }
 
   /* ----------------- chemistry ----------------- */
-  .block .result-character .chemistry {
+  .b3 .r1 .h1 {
     width: var(--basic-desktop-width);
     margin: 4.125rem 0 3.75rem 0;
   }
 
-  .block .result-character .chemistry .chemi {
+  .b3 .r1 .h1 .chemi {
     height: 100%;
     border-radius: 16px;
   }
 
-  .block .result-character .chemistry .good {
+  .b3 .r1 .h1 .good {
     margin-right: 1.25rem;
   }
 
-  .block .result-character .chemistry .chemi .chemi-title {
+  .b3 .r1 .h1 .chemi .chemi-title {
     width: 100%;
     height: 3.25rem;
     font-size: var(--chemi-title-desktop-font-size);
@@ -140,13 +140,13 @@ media
     margin-top: 2.5rem;
   }
 
-  .block .result-character .chemistry .chemi .character-img {
+  .b3 .r1 .h1 .chemi .character-img {
     width: 64.91%;
     height: 10.75rem;
     margin-top: 0.625rem;
   }
 
-  .block .result-character .chemistry .chemi .movie-title {
+  .b3 .r1 .h1 .chemi .movie-title {
     width: 100%;
     height: 1.375rem;
     font-size: var(--chemi-movie-title-dsektop-font-size);
@@ -154,7 +154,7 @@ media
     margin-top: 2.375rem;
   }
 
-  .block .result-character .chemistry .chemi .movie-character {
+  .b3 .r1 .h1 .chemi .movie-character {
     width: 100%;
     height: 2.125rem;
     font-size: var(--chemi-movie-character-desktop-font-size);
@@ -163,29 +163,29 @@ media
     margin-bottom: 2.25rem;
   }
 
-  .block .likeMe,
-  .block .mostType {
+  .b3 .likeMe,
+  .b3 .mostType {
     padding: 0 3.75rem 3.75rem 3.75rem;
   }
 
-  .block .whiteBox .imgAndGraph {
+  .b3 .whiteBox .imgAndGraph {
     flex-direction: row;
     justify-content: center;
   }
 
-  .block .whiteBox .movie-title {
+  .b3 .whiteBox .movie-title {
     font-size: 1rem;
     margin-top: 2.5rem;
   }
 
-  .block .whiteBox .movie-character {
+  .b3 .whiteBox .movie-character {
     font-size: 1.5rem;
     margin-top: 0.5rem;
   }
 
   /* ----------------- graph ----------------- */
 
-  .block .whiteBox img {
+  .b3 .whiteBox img {
     margin: 1rem 2.5rem 3.75rem 0;
   }
 
@@ -196,7 +196,7 @@ media
 
   /* ----------------- share ----------------- */
 
-  .block .share .share-btns {
+  .b3 .s1 .s2 {
     width: var(--basic-desktop-width);
     height: 4rem;
     margin: 1.75rem 0 4.25rem 0;
@@ -204,11 +204,11 @@ media
   }
 
   /* ----------------- movies ----------------- */
-  .block .movies {
+  .b3 .m1 {
     height: 100%;
   }
 
-  .block .movies .movie-list {
+  .b3 .m1 .m2 {
     width: var(--basic-desktop-width);
     height: 13.125rem;
     display: flex;
@@ -218,12 +218,12 @@ media
     margin-bottom: 3.75rem;
   }
 
-  .block .movies .movie-list li {
+  .b3 .m1 .m2 li {
     width: 30%;
     margin-bottom: 0;
   }
 
-  .block .restart {
+  .b3 .restart {
     width: 63.75%;
     height: 5.875rem;
     margin: 2.5rem 0;
@@ -231,7 +231,7 @@ media
 
   /* ----------------- comment ----------------- */
 
-  .block .communication .add-comment .nickname,
+  .b3 .communication .add-comment .nickname,
   .comment-area,
   .password {
     border-width: 3px;
@@ -239,35 +239,35 @@ media
     font-size: var(--placeholder-desktop-font-size);
   }
 
-  .block .communication .add-comment .nickname {
+  .b3 .communication .add-comment .nickname {
     width: 79.86%;
     height: 3.25rem;
     margin: 2.5rem 3.7rem 1.25rem 3.7rem;
   }
 
-  .block .communication .add-comment .comment-area {
+  .b3 .communication .add-comment .comment-area {
     width: 79.86%;
   }
 
-  .block .communication .add-comment .pwAndInput {
+  .b3 .communication .add-comment .pwAndInput {
     width: 79.86%;
     flex-direction: row;
     align-items: start;
   }
 
-  .block .communication .add-comment .input-pw {
+  .b3 .communication .add-comment .input-pw {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
   }
 
-  .block .communication .add-comment .password {
+  .b3 .communication .add-comment .password {
     width: 78.99%;
     height: 3.25rem;
     margin: 1.25rem 1.25rem 0.625rem 0;
   }
 
-  .block .communication .add-comment .wrtie-comment-btn {
+  .b3 .communication .add-comment .wrtie-comment-btn {
     width: 16.8%;
     height: 3.25rem;
     background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
@@ -275,30 +275,30 @@ media
     margin-top: 1.25rem;
   }
 
-  .block .communication .show-comment {
+  .b3 .communication .show-comment {
     margin: 4.125rem 0 0.875rem 0;
   }
 
-  .block .communication .show-comment .comment {
+  .b3 .communication .show-comment .comment {
     border-radius: 20px;
     margin-bottom: 1.6875rem;
   }
 
-  .block .communication .show-comment .comment .comment_header {
+  .b3 .communication .show-comment .comment .comment_header {
     border-radius: 20px 20px 0px 0px;
   }
 
-  .block .communication .show-comment .comment .comment_content {
+  .b3 .communication .show-comment .comment .comment_content {
     border-radius: 0px 0px 20px 20px;
   }
 
-  .block .communication .show-comment .comment .add-reply {
+  .b3 .communication .show-comment .comment .add-reply {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
   }
 
-  .block .communication .show-comment .comment .add-reply .write-reply-btn {
+  .b3 .communication .show-comment .comment .add-reply .write-reply-btn {
     width: 17.02%;
     height: 3rem;
     background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
@@ -307,11 +307,11 @@ media
     margin: 1.125rem 1.0625rem 0 0;
   }
 
-  .block .communication .show-comment .comment .add-reply .comment-reply-area {
+  .b3 .communication .show-comment .comment .add-reply .comment-reply-area {
     margin: 1.25rem 1.25rem 1.125rem 1.0625rem;
   }
 
-  .block .communication .comment-pages {
+  .b3 .communication .comment-pages {
     width: 40%;
   }
   /* ----------------- reportModal ----------------- */

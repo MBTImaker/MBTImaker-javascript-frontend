@@ -1,7 +1,7 @@
 :root {
-  --text-start-color: #ffffff;
-  --text-start-mobile-size: 0.875rem;
-  --text-start-desktop-size: 1.5rem;
+  --t1-color: #ffffff;
+  --t1-mobile-size: 0.875rem;
+  --t1-desktop-size: 1.5rem;
 }
 
 /*
@@ -38,7 +38,7 @@ header {
   align-items: center;
 }
 
-header .sub-title {
+header .t1 {
   width: 90vw;
   height: 3vh;
   background: no-repeat center url("../imgs/subTitle_Frame16.png");
@@ -46,14 +46,14 @@ header .sub-title {
   margin-top: 17.73vh;
 }
 
-header .title {
+header .t2 {
   width: 100vw;
   height: 20vh;
   background: no-repeat center url("../imgs/title.png");
   background-size: contain;
 }
 
-.btnAndText {
+.b1 {
   height: 60vh;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ header .title {
   align-items: center;
 }
 
-.btnAndText .btn-start {
+.b1 .b2 {
   width: 89.1vw;
   height: 9vh;
   border-radius: 80px;
@@ -69,9 +69,9 @@ header .title {
   background-size: contain;
 }
 
-.btnAndText .text-start {
-  color: var(--text-start-color);
-  font-size: var(--text-start-mobile-size);
+.b1 .t1 {
+  color: var(--t1-color);
+  font-size: var(--t1-mobile-size);
   margin: 3.5vh 0 10vh 0;
 }
 /*
@@ -81,25 +81,25 @@ PC
 */
 
 @media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
-  header .sub-title {
+  header .t1 {
     width: 37vw;
     height: 3.51vh;
     margin-top: 13.33vh;
   }
 
-  header .title {
+  header .t2 {
     width: 37vw;
     height: 18.88vh;
     margin-top: 1.94vh;
   }
 
-  .btnAndText .btn-start {
+  .b1 .b2 {
     width: 37vw;
     height: 12.96vh;
   }
 
-  .btnAndText .text-start {
-    font-size: var(--text-start-desktop-size);
+  .b1 .t1 {
+    font-size: var(--t1-desktop-size);
     line-height: 1.8125rem;
     margin: 3.98vh 0 9.25vh 0;
   }

@@ -60,7 +60,7 @@ block - num & title
 ===================
 */
 
-.block {
+.b2 {
   width: 89.25vw;
   /* height: 85vh; */
   height: calc(var(--vh, 1vh) * 85);
@@ -77,7 +77,7 @@ block - num & title
   background-color: var(--block-background-color);
 }
 
-.block .q-num {
+.b2 .q2 {
   display: none;
   width: 66px;
   height: 36px;
@@ -85,18 +85,18 @@ block - num & title
   background-size: 100% 100%;
 }
 
-.block .q-title {
+.b2 .q1 {
   font-size: var(--q-title-mobile-size);
   color: var(--q-title-font-color);
   line-height: 167%;
   letter-spacing: var(--letter-spacing);
 }
 
-.block .q-title.top {
+.b2 .q1.t0 {
   margin-bottom: 1.375rem;
 }
 
-.block .q-title.bottom {
+.b2 .q1.b0 {
   margin-bottom: 1.75rem;
 }
 /*
@@ -105,7 +105,7 @@ block - btns
 ============
 */
 
-.next {
+.n1 {
   width: 78.66%;
   height: 8.62vh;
   min-width: 280px;
@@ -138,14 +138,14 @@ block - btns
   color: #ffffff;
 }
 
-.block .two-btns {
+.b2 .t1 {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.block .two-btns .select_btn {
+.b2 .t1 .s1 {
   width: 88.05%;
   height: 9.85vh;
   min-width: 280px;
@@ -158,11 +158,11 @@ block - btns
   line-height: 1.25rem;
 }
 
-.block .two-btns .select_btn.bottom {
+.b2 .t1 .s1.b0 {
   margin-bottom: 10vh;
 }
 
-.block .two-btns .select_btn.active {
+.b2 .t1 .s1.active {
   background-color: var(--two-btns-clicked-color);
   border: 2px solid var(--two-btns-clicked-border-color);
   color: var(--two-btns-clicked-font-color);
@@ -180,11 +180,11 @@ media
     margin: calc(15vh - 20px) 0 calc(15vh + 20px) 0;
   }
 
-  .block {
+  .b2 {
     height: 70vh;
   }
 
-  .next,
+  .n1,
   .showResult {
     top: 70%;
   }
@@ -192,28 +192,28 @@ media
 
 /* width > 756px */
 @media screen and (min-width: 47.25rem) {
-  .block {
+  .b2 {
     width: 37vw;
     min-width: 716px;
     height: 87.03vh;
     border: 6px var(--block-border-color) solid;
   }
 
-  .block .q-num {
+  .b2 .q2 {
     width: 6.875rem;
     height: 3.375rem;
     margin-bottom: 2.12vh;
   }
 
-  .block .q-title {
+  .b2 .q1 {
     font-size: var(--q-title-desktop-size);
   }
 
-  .block .q-title.bottom {
+  .b2 .q1.b0 {
     margin-bottom: 2.5rem;
   }
 
-  .block .two-btns .select_btn {
+  .b2 .t1 .s1 {
     width: 532px;
     height: 11.11vh;
     max-height: 120px;
@@ -221,7 +221,7 @@ media
     font-size: var(--two-btns-desktop-size);
   }
 
-  .next,
+  .n1,
   .showResult {
     width: 532px;
     height: 9.44vh;
@@ -233,17 +233,17 @@ media
 
 /* height < 756px */
 @media screen and (max-height: 47.25rem) {
-  .block .q-title {
+  .b2 .q1 {
     font-size: var(--q-title-desktop-xs-size);
   }
 
-  .block .two-btns .select_btn,
-  .next,
+  .b2 .t1 .s1,
+  .n1,
   .showResult {
     font-size: var(--button-text-desktop-xs-size);
   }
 
-  .next,
+  .n1,
   .showResult {
     top: 77%;
   }
@@ -251,12 +251,12 @@ media
 
 /* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
 @media screen and (max-width: 23.4375rem) {
-  .block .q-title {
+  .b2 .q1 {
     font-size: var(--q-title-mobile-xs-size);
   }
 
-  .block .two-btns .select_btn,
-  .next,
+  .b2 .t1 .s1,
+  .n1,
   .showResult {
     font-size: var(--button-text-mobile-xs-size);
   }
