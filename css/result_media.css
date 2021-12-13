@@ -35,12 +35,12 @@ media
     font-size: var(--conclusion-mobile-font-xs-size);
   }
 
-  .b3 .r1 .feature {
+  .b3 .r1 .f2 {
     font-size: var(--feature-mobile-font-xs-size);
   }
 
-  .b3 .share span,
-  .b3 .movies span,
+  .b3 .s1 span,
+  .b3 .m1 span,
   .b3 .likeMe span,
   .b3 .mostType span {
     font-size: var(--share-mobile-font-xs-size);
@@ -99,11 +99,11 @@ media
     margin-top: 2.375rem;
   }
 
-  .b3 .r1 .feature-list {
+  .b3 .r1 .f1 {
     width: var(--basic-desktop-width);
   }
 
-  .b3 .r1 .feature {
+  .b3 .r1 .f2 {
     height: 3.5rem;
     font-size: var(--feature-desktop-font-size);
     line-height: var(--feature-desktop-line-height);
@@ -111,28 +111,28 @@ media
   }
 
   /* ----------------- point-line ----------------- */
-  .point-line {
+  .p1 {
     background-size: 28px 4px;
     border-width: 4px;
     margin-top: 62px;
   }
 
   /* ----------------- chemistry ----------------- */
-  .b3 .r1 .chemistry {
+  .b3 .r1 .h1 {
     width: var(--basic-desktop-width);
     margin: 4.125rem 0 3.75rem 0;
   }
 
-  .b3 .r1 .chemistry .chemi {
+  .b3 .r1 .h1 .chemi {
     height: 100%;
     border-radius: 16px;
   }
 
-  .b3 .r1 .chemistry .good {
+  .b3 .r1 .h1 .good {
     margin-right: 1.25rem;
   }
 
-  .b3 .r1 .chemistry .chemi .chemi-title {
+  .b3 .r1 .h1 .chemi .chemi-title {
     width: 100%;
     height: 3.25rem;
     font-size: var(--chemi-title-desktop-font-size);
@@ -140,13 +140,13 @@ media
     margin-top: 2.5rem;
   }
 
-  .b3 .r1 .chemistry .chemi .character-img {
+  .b3 .r1 .h1 .chemi .character-img {
     width: 64.91%;
     height: 10.75rem;
     margin-top: 0.625rem;
   }
 
-  .b3 .r1 .chemistry .chemi .movie-title {
+  .b3 .r1 .h1 .chemi .movie-title {
     width: 100%;
     height: 1.375rem;
     font-size: var(--chemi-movie-title-dsektop-font-size);
@@ -154,7 +154,7 @@ media
     margin-top: 2.375rem;
   }
 
-  .b3 .r1 .chemistry .chemi .movie-character {
+  .b3 .r1 .h1 .chemi .movie-character {
     width: 100%;
     height: 2.125rem;
     font-size: var(--chemi-movie-character-desktop-font-size);
@@ -196,7 +196,7 @@ media
 
   /* ----------------- share ----------------- */
 
-  .b3 .share .share-btns {
+  .b3 .s1 .s2 {
     width: var(--basic-desktop-width);
     height: 4rem;
     margin: 1.75rem 0 4.25rem 0;
@@ -204,11 +204,11 @@ media
   }
 
   /* ----------------- movies ----------------- */
-  .b3 .movies {
+  .b3 .m1 {
     height: 100%;
   }
 
-  .b3 .movies .movie-list {
+  .b3 .m1 .m2 {
     width: var(--basic-desktop-width);
     height: 13.125rem;
     display: flex;
@@ -218,7 +218,7 @@ media
     margin-bottom: 3.75rem;
   }
 
-  .b3 .movies .movie-list li {
+  .b3 .m1 .m2 li {
     width: 30%;
     margin-bottom: 0;
   }

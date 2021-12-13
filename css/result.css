@@ -202,7 +202,7 @@ block - result-character - conclusion
   margin-top: 1.75rem;
 }
 
-.b3 .r1 .feature-list {
+.b3 .r1 .f1 {
   width: 86.44%;
   display: flex;
   flex-direction: column;
@@ -211,7 +211,7 @@ block - result-character - conclusion
   margin-top: 1.3125rem;
 }
 
-.b3 .r1 .feature {
+.b3 .r1 .f2 {
   width: 100%;
   height: 3rem;
   display: flex;
@@ -229,7 +229,7 @@ block - result-character - point-line
 =====================================
 */
 
-.point-line {
+.p1 {
   width: 100%;
   height: 0.625rem;
   background: linear-gradient(
@@ -248,7 +248,7 @@ block - result-character - chemistry
 =====================================
 */
 
-.b3 .r1 .chemistry {
+.b3 .r1 .h1 {
   width: 86.1%;
   display: flex;
   flex-direction: row;
@@ -257,7 +257,7 @@ block - result-character - chemistry
   margin: 2.5625rem 0rem 2.5rem 0rem;
 }
 
-.b3 .r1 .chemistry .chemi {
+.b3 .r1 .h1 .chemi {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -267,11 +267,11 @@ block - result-character - chemistry
   border-radius: 10px;
 }
 
-.b3 .r1 .chemistry .good {
+.b3 .r1 .h1 .good {
   margin-right: 0.625rem;
 }
 
-.b3 .r1 .chemistry .chemi .chemi-title {
+.b3 .r1 .h1 .chemi .chemi-title {
   width: 100%;
   height: 2rem;
   display: inline-block;
@@ -281,12 +281,12 @@ block - result-character - chemistry
   margin-top: 1.5rem;
 }
 
-.b3 .r1 .chemistry .chemi .character-img {
+.b3 .r1 .h1 .chemi .character-img {
   width: 64.91%;
   object-fit: contain;
 }
 
-.b3 .r1 .chemistry .chemi .movie-title {
+.b3 .r1 .h1 .chemi .movie-title {
   width: 67.21%;
   height: 1.75rem;
   display: inline-block;
@@ -296,7 +296,7 @@ block - result-character - chemistry
   margin-top: 1rem;
 }
 
-.b3 .r1 .chemistry .chemi .movie-character {
+.b3 .r1 .h1 .chemi .movie-character {
   width: 67.21%;
   height: 1.0625rem;
   display: inline-block;
@@ -527,11 +527,11 @@ block - share
 =============
 */
 
-.b3 .share {
+.b3 .s1 {
   height: 100%;
 }
 
-.b3 .share .share-btns {
+.b3 .s1 .s2 {
   width: 83.72%;
   height: 2.5rem;
   display: flex;
@@ -540,32 +540,32 @@ block - share
   margin: 0.5rem 0 2.8025rem 0;
 }
 
-.b3 .share .share-btns li {
+.b3 .s1 .s2 li {
   width: 20%;
   height: 100%;
 }
 
-.b3 .share .share-btns li a {
+.b3 .s1 .s2 li a {
   display: inline-block;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
 }
 
-.b3 .share .share-btns li .kakaotalk {
+.b3 .s1 .s2 li .kakaotalk {
   background-image: url("../imgs/share-icons/share_kakaotalk_Frame85.png");
 }
 
-.b3 .share .share-btns li .facebook {
+.b3 .s1 .s2 li .facebook {
   background-image: url("../imgs/share-icons/share_facebook_Frame86.png");
 }
-.b3 .share .share-btns li .twitter {
+.b3 .s1 .s2 li .twitter {
   background-image: url("../imgs/share-icons/share_twitter_Frame87.png");
 }
-.b3 .share .share-btns li .band {
+.b3 .s1 .s2 li .band {
   background-image: url("../imgs/share-icons/share_band_Frame88.png");
 }
-.b3 .share .share-btns li .instagram {
+.b3 .s1 .s2 li .instagram {
   background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
 }
 /*
@@ -574,11 +574,11 @@ block - movies
 ==============
 */
 
-.b3 .movies {
+.b3 .m1 {
   height: 100%;
 }
 
-.b3 .movies .movie-list {
+.b3 .m1 .m2 {
   width: 55.93%;
   height: 100%;
   display: flex;
@@ -587,13 +587,13 @@ block - movies
   margin: 0.375rem 0rem 1.875rem 0rem;
 }
 
-.b3 .movies .movie-list li {
+.b3 .m1 .m2 li {
   width: 100%;
   height: 100%;
   margin-bottom: 0.625rem;
 }
 
-.b3 .movies .movie-list li img {
+.b3 .m1 .m2 li img {
   width: 100%;
   height: 14.875rem;
   object-fit: contain;

@@ -10,7 +10,7 @@ const block = document.querySelector(".b3");
 
 // graph
 const circulars = document.querySelectorAll('.circular');
-const chemistry = document.querySelector('.chemistry');
+const chemistry = document.querySelector('.h1');
 
 // graph
 const showMargin = 900;
@@ -92,18 +92,18 @@ function showResult(data) {
     const conclusion = document.querySelector(".b3 .r1 .conclusion");
     conclusion.innerHTML = mbtiResult.character.representativePersonality;
 
-    const features = document.querySelectorAll(".b3 .r1 .feature:nth-child(n)");
+    const features = document.querySelectorAll(".b3 .r1 .f2:nth-child(n)");
     for (let i = 0; i < features.length; i++) {
         features[i].innerHTML = mbtiResult.character.personalities[i];
     }
 
     // ---------------- chemistry ----------------
-    const goodChemi = document.querySelector(".b3 .r1 .chemistry .good");
+    const goodChemi = document.querySelector(".b3 .r1 .h1 .good");
     goodChemi.querySelector(".movie-title").innerHTML = mbtiResult.bestChemistry.movieName;
     goodChemi.querySelector(".movie-character").innerHTML = mbtiResult.bestChemistry.characterName;
     goodChemi.querySelector(".character-img").src = mbtiResult.bestChemistry.imageUrl;
 
-    const badChemi = document.querySelector(".b3 .r1 .chemistry .bad");
+    const badChemi = document.querySelector(".b3 .r1 .h1 .bad");
     badChemi.querySelector(".movie-title").innerHTML = mbtiResult.worstChemistry.movieName;
     badChemi.querySelector(".movie-character").innerHTML = mbtiResult.worstChemistry.characterName;
     badChemi.querySelector(".character-img").src = mbtiResult.worstChemistry.imageUrl;
@@ -124,7 +124,7 @@ function showResult(data) {
     mostTypePercentage = mostPopularType.percentage;
 
     // ----------- recommendedMovies -----------
-    const movieList = document.querySelectorAll(".b3 .movies .movie-list li img:nth-child(n)");
+    const movieList = document.querySelectorAll(".b3 .m1 .m2 li img:nth-child(n)");
     const recommendedMovies = mbtiResult.recommendedMovies;
     for (let i = 0; i < movieList.length; i++) {
         movieList[i].src = recommendedMovies[i].url;
