@@ -117,11 +117,11 @@ function displayQuestion(question) {
         return `
         <div class="b2" id="b2">
             <div class="q2" style="background-image: url('${q.num}');"></div>
-            <span class="q1 top">${q.qTop}</span>
+            <span class="q1 t0">${q.qTop}</span>
             <span class="q1 bottom">${q.qBottom}</span>
         
             <div class="t1">
-                <button class="s1 top">${q.btnTop}</button>
+                <button class="s1 t0">${q.btnTop}</button>
                 <button class="s1 bottom">${q.btnBottom}</button>
             </div>
         </div>
@@ -241,7 +241,7 @@ selectBtns.forEach((btn) => {
         // 선택된 문항의 색을 바꾸어준다.
         e.currentTarget.classList.add("active");
 
-        if (e.currentTarget.classList.contains("top")) {
+        if (e.currentTarget.classList.contains("t0")) {
             clientClicked += "0";
             selectBtns[selectBtnIndex + 1].style.pointerEvents = "none";
         }
