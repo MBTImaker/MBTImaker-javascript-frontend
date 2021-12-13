@@ -240,6 +240,7 @@ selectBtns.forEach((btn) => {
             clientClicked += "1";
             selectBtns[selectBtnIndex].style.pointerEvents = "none";
         }
+        console.log(`clientClickd : ${clientClicked}`);
 
         // 문항이 선택되면 아래로 이동한다.
         if (questionNum < questionNumMax - 1) {

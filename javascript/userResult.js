@@ -53,7 +53,7 @@ window.addEventListener('load', () => {
 // 000000000000 -> 000-000-000-000
 let result = location.href.split("=")[1];
 
-result = result.slice(0, 3) + '-' + result.slice(2, 5) + '-' + result.slice(4, 7) + '-' + result.slice(6, 9);
+result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9) + '-' + result.slice(9, 12);
 console.log(`user clicked: ${result}`);
 
 // 결과값을 보내면 파이어베이스에서 텍스트와 이미지를 가져온다.
