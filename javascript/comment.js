@@ -144,16 +144,16 @@ function commentWrite(aes256DecodeData) {
                 document.getElementById("nickname").value = "";
                 document.getElementById("comment-area").value = "";
                 document.getElementById("password").value = "";
-                
+
                 searchComment(page, size);  // 댓글 조회 함수 호출
             } else {
                 // 오류 발생 시 alert 로 메시지 표출
-                for(let i=0; i<response.errors.length; i++){
+                for (let i = 0; i < response.errors.length; i++) {
                     errorMsg += response.errors[i].reason + '\n';
                 }
                 alert(errorMsg);
                 errorMsg = '';  // 에러메시지 안내 후 에러메시지 초기화
-                
+
             }
         })
         .catch((error) => console.log("error: ", error));
@@ -223,7 +223,7 @@ function displayComment(comment, size) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti;
         getNamebyMBTI(displayFuncText, userMBTI);
-        
+
         displayFuncStr = displayFuncText.text;
 
         displayFuncTextSplit = displayFuncStr.substring(displayFuncStr.indexOf("?") + 3);
@@ -232,14 +232,14 @@ function displayComment(comment, size) {
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
             content: `${comment.data.content[i].content}`,  // 댓글 내용
-            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ")+2, charWithMovieName[i].length-1)}`,  // MBTI 유형
+            mbti: `${charWithMovieName[i].substring(charWithMovieName[i].lastIndexOf("의 ") + 2, charWithMovieName[i].length - 1)}`,  // MBTI 유형
             name: `${comment.data.content[i].name}`,  // 작성자 이름
             password: `${comment.data.content[i].password}`,  // 작성자 비밀번호
             id: `${comment.data.content[i].id}`,  // 해당 댓글의 id(서버에서 보관)
             parentId: `${comment.data.content[i].parentId}`,  // 해당 댓글의 부모 id(서버에서 보관)
             createdDate: `${comment.data.content[i].createdDate}`,  // 해당 댓글 작성 시간
         });
-        
+
         j += 2;
     }
 
@@ -259,7 +259,7 @@ function displayComment(comment, size) {
                 </div>
                 <div class="btn">
                     <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="enc(false, true, ${c.id})" ></button>
-                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal()"></button>
+                    <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal(${c.id})"></button>
                 </div>
             
             </div>
@@ -352,32 +352,32 @@ function commentDelete(id, name, password) {
         if (pwPrompt == password) {
             runFetch("PATCH", 'https://mbti-test.herokuapp.com/comment', commentJson)
                 .then((response) => {
-                        if (response.status == 200) {
-                            alert("댓글 삭제 성공!");
-                
-                            // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
-                            isDeleteCheck = 'true';
-                
-                            // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
-                            searchComment(page, size);
-                
-                        } else {
-                            // 오류 발생 시 alert 로 메시지 표출
-                            for (let i = 0; i < response.errors.length; i++) {
-                                errorMsg += response.errors[i].reason + '\n';
-                            }
-                            alert(errorMsg);
+                    if (response.status == 200) {
+                        alert("댓글 삭제 성공!");
+
+                        // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
+                        isDeleteCheck = 'true';
+
+                        // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
+                        searchComment(page, size);
+
+                    } else {
+                        // 오류 발생 시 alert 로 메시지 표출
+                        for (let i = 0; i < response.errors.length; i++) {
+                            errorMsg += response.errors[i].reason + '\n';
                         }
-                        
-                    
-                        [content.value, nickname.value, password.value] = [null, null, null];
-                    })
+                        alert(errorMsg);
+                    }
+
+
+                    [content.value, nickname.value, password.value] = [null, null, null];
+                })
                 .catch((error) => console.log("error: ", error));
-            }  else if (pwPrompt != password) {   // 비밀번호 입력에 실패했을 경우
-                alert("비밀번호가 일치하지 않습니다.");
-            }
+        } else if (pwPrompt != password) {   // 비밀번호 입력에 실패했을 경우
+            alert("비밀번호가 일치하지 않습니다.");
         }
-}    
+    }
+}
 
 
 function searchComment(page, size) {  // 댓글 페이징 조회
@@ -405,33 +405,33 @@ function searchComment(page, size) {  // 댓글 페이징 조회
 }
 
 //textarea 바이트 수 체크하는 함수
-function fn_checkByte(obj){
+function fn_checkByte(obj) {
     const maxByte = 500; //최대 500바이트
     const text_val = obj.value; //입력한 문자
     const text_len = text_val.length; //입력한 문자수
 
     let commentCount = document.getElementById("comment_count");  // 작성한 댓글의 글자수 세기
     let commentCountStr = text_len + "/500";
-    
-    let totalByte=0;
-    for(let i=0; i<text_len; i++){
+
+    let totalByte = 0;
+    for (let i = 0; i < text_len; i++) {
         const each_char = text_val.charAt(i);
         const uni_char = escape(each_char) //유니코드 형식으로 변환
-        if(uni_char.length>4){
-        	// 한글 : 2Byte
+        if (uni_char.length > 4) {
+            // 한글 : 2Byte
             totalByte += 2;
-        }else{
-        	// 영문,숫자,특수문자 : 1Byte
+        } else {
+            // 영문,숫자,특수문자 : 1Byte
             totalByte += 1;
         }
     }
-    
-    if(totalByte > maxByte){
-    	alert('최대 500Byte까지만 입력가능합니다.');
+
+    if (totalByte > maxByte) {
+        alert('최대 500Byte까지만 입력가능합니다.');
         commentCountStr = totalByte + "/500";
         commentCount.innerText = commentCountStr;
         commentCount.style.color = "red";
-    } else{
+    } else {
         commentCountStr = totalByte + "/500";
         commentCount.innerText = commentCountStr;
         commentCount.style.color = "green";
