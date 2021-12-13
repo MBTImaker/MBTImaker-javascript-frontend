@@ -30,7 +30,6 @@ Variables
   --comment-nickname-font-size: 1rem;
   --placeholder-font-size: 0.75rem;
 
-
   --admin-margin-top-size: 0.833rem;
 
   --inner-color: #ffffff;
@@ -114,20 +113,20 @@ loading
 ===========
 */
 
-.loading {
+.l1 {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.loading img {
+.l1 img {
   width: 100%;
 }
 
 /* mobile(768px) labtop(1020px) / desktop(1024px) */
 @media screen and (min-width: 47.25rem) {
-  .loading img {
+  .l1 img {
     width: 37vw;
   }
 }
@@ -137,7 +136,7 @@ block
 ===========
 */
 
-.block {
+.b3 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -155,7 +154,7 @@ block - result-character - textAndImg
 =====================================
 */
 
-.block .result-character .textAndImg {
+.b3 .r1 .t2 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -163,7 +162,7 @@ block - result-character - textAndImg
   align-items: center;
 }
 
-.block .result-character .textAndImg .subject {
+.b3 .r1 .t2 .subject {
   width: 90%;
   height: 1rem;
   object-fit: contain;
@@ -171,17 +170,17 @@ block - result-character - textAndImg
   margin-top: 2.5rem;
 }
 
-.block .result-character .textAndImg .movie-title {
+.b3 .r1 .t2 .movie-title {
   height: 1.25rem;
   margin-top: 1.6rem;
 }
 
-.block .result-character .textAndImg .movie-character {
+.b3 .r1 .t2 .movie-character {
   height: 1.875rem;
   margin-top: 1.375rem;
 }
 
-.block .result-character .textAndImg .character-img {
+.b3 .r1 .t2 .character-img {
   width: 100%;
   padding: 0 1.25rem;
   object-fit: contain;
@@ -193,7 +192,7 @@ block - result-character - conclusion
 =====================================
 */
 
-.block .result-character .conclusion {
+.b3 .r1 .conclusion {
   display: inline-block;
   width: 100%;
   height: 3.25rem;
@@ -203,7 +202,7 @@ block - result-character - conclusion
   margin-top: 1.75rem;
 }
 
-.block .result-character .feature-list {
+.b3 .r1 .feature-list {
   width: 86.44%;
   display: flex;
   flex-direction: column;
@@ -212,7 +211,7 @@ block - result-character - conclusion
   margin-top: 1.3125rem;
 }
 
-.block .result-character .feature {
+.b3 .r1 .feature {
   width: 100%;
   height: 3rem;
   display: flex;
@@ -249,7 +248,7 @@ block - result-character - chemistry
 =====================================
 */
 
-.block .result-character .chemistry {
+.b3 .r1 .chemistry {
   width: 86.1%;
   display: flex;
   flex-direction: row;
@@ -258,7 +257,7 @@ block - result-character - chemistry
   margin: 2.5625rem 0rem 2.5rem 0rem;
 }
 
-.block .result-character .chemistry .chemi {
+.b3 .r1 .chemistry .chemi {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -268,11 +267,11 @@ block - result-character - chemistry
   border-radius: 10px;
 }
 
-.block .result-character .chemistry .good {
+.b3 .r1 .chemistry .good {
   margin-right: 0.625rem;
 }
 
-.block .result-character .chemistry .chemi .chemi-title {
+.b3 .r1 .chemistry .chemi .chemi-title {
   width: 100%;
   height: 2rem;
   display: inline-block;
@@ -282,12 +281,12 @@ block - result-character - chemistry
   margin-top: 1.5rem;
 }
 
-.block .result-character .chemistry .chemi .character-img {
+.b3 .r1 .chemistry .chemi .character-img {
   width: 64.91%;
   object-fit: contain;
 }
 
-.block .result-character .chemistry .chemi .movie-title {
+.b3 .r1 .chemistry .chemi .movie-title {
   width: 67.21%;
   height: 1.75rem;
   display: inline-block;
@@ -297,7 +296,7 @@ block - result-character - chemistry
   margin-top: 1rem;
 }
 
-.block .result-character .chemistry .chemi .movie-character {
+.b3 .r1 .chemistry .chemi .movie-character {
   width: 67.21%;
   height: 1.0625rem;
   display: inline-block;
@@ -313,12 +312,12 @@ block - graph - image & text
 ============================
 */
 
-.block .likeMe,
-.block .mostType {
+.b3 .likeMe,
+.b3 .mostType {
   padding: 0 1.25rem 1.25rem 1.25rem;
 }
 
-.block .whiteBox {
+.b3 .whiteBox {
   width: 100%;
   height: 100%;
   background-color: var(--chemi-background-color);
@@ -327,23 +326,23 @@ block - graph - image & text
   margin-top: 0.625rem;
 }
 
-.block .whiteBox .movie-title {
+.b3 .whiteBox .movie-title {
   font-size: 0.875rem;
   margin-top: 2.5rem;
 }
 
-.block .whiteBox .movie-character {
+.b3 .whiteBox .movie-character {
   font-size: 1.125rem;
   margin-top: 0.4375rem;
 }
 
-.block .whiteBox .imgAndGraph {
+.b3 .whiteBox .imgAndGraph {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.block .whiteBox img {
+.b3 .whiteBox img {
   width: 9.25rem;
   margin: 1rem 0 1.875rem 0;
 }
@@ -528,11 +527,11 @@ block - share
 =============
 */
 
-.block .share {
+.b3 .share {
   height: 100%;
 }
 
-.block .share .share-btns {
+.b3 .share .share-btns {
   width: 83.72%;
   height: 2.5rem;
   display: flex;
@@ -541,32 +540,32 @@ block - share
   margin: 0.5rem 0 2.8025rem 0;
 }
 
-.block .share .share-btns li {
+.b3 .share .share-btns li {
   width: 20%;
   height: 100%;
 }
 
-.block .share .share-btns li a {
+.b3 .share .share-btns li a {
   display: inline-block;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
 }
 
-.block .share .share-btns li .kakaotalk {
+.b3 .share .share-btns li .kakaotalk {
   background-image: url("../imgs/share-icons/share_kakaotalk_Frame85.png");
 }
 
-.block .share .share-btns li .facebook {
+.b3 .share .share-btns li .facebook {
   background-image: url("../imgs/share-icons/share_facebook_Frame86.png");
 }
-.block .share .share-btns li .twitter {
+.b3 .share .share-btns li .twitter {
   background-image: url("../imgs/share-icons/share_twitter_Frame87.png");
 }
-.block .share .share-btns li .band {
+.b3 .share .share-btns li .band {
   background-image: url("../imgs/share-icons/share_band_Frame88.png");
 }
-.block .share .share-btns li .instagram {
+.b3 .share .share-btns li .instagram {
   background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
 }
 /*
@@ -575,11 +574,11 @@ block - movies
 ==============
 */
 
-.block .movies {
+.b3 .movies {
   height: 100%;
 }
 
-.block .movies .movie-list {
+.b3 .movies .movie-list {
   width: 55.93%;
   height: 100%;
   display: flex;
@@ -588,13 +587,13 @@ block - movies
   margin: 0.375rem 0rem 1.875rem 0rem;
 }
 
-.block .movies .movie-list li {
+.b3 .movies .movie-list li {
   width: 100%;
   height: 100%;
   margin-bottom: 0.625rem;
 }
 
-.block .movies .movie-list li img {
+.b3 .movies .movie-list li img {
   width: 100%;
   height: 14.875rem;
   object-fit: contain;
@@ -604,7 +603,7 @@ block - movies
 block - restart
 ===============
 */
-.block .restart {
+.b3 .restart {
   width: 100%;
   height: 3.5rem;
   background-image: url("../imgs/restartBtn_Frame134.png");
@@ -617,7 +616,7 @@ block - communication (ver.21-11-09)
 ====================================
 */
 
-.block .communication .add-comment {
+.b3 .communication .add-comment {
   width: 100%;
   height: 30.14%;
   display: flex;
@@ -625,13 +624,13 @@ block - communication (ver.21-11-09)
   align-items: center;
 }
 
-.block .communication .add-comment .nickname::placeholder,
+.b3 .communication .add-comment .nickname::placeholder,
 .comment-area::placeholder,
 .password::placeholder {
   color: var(--comment-placeholder-color);
 }
 
-.block .communication .add-comment .nickname,
+.b3 .communication .add-comment .nickname,
 .comment-area,
 .password {
   background: var(--feature-background-color);
@@ -641,25 +640,25 @@ block - communication (ver.21-11-09)
   padding-left: 1.25rem;
 }
 
-.block .communication .add-comment .nickname {
+.b3 .communication .add-comment .nickname {
   width: 89%;
   height: 2.75rem;
   margin: 2.5rem 1.25rem 0.625rem 1.25rem;
   display: flex;
 }
 
-.block .communication .add-comment .commentArea {
+.b3 .communication .add-comment .commentArea {
   width: 100%;
   position: relative;
   display: inlsine-block;
 }
-.block .communication .add-comment .commentArea .comment-area {
+.b3 .communication .add-comment .commentArea .comment-area {
   width: 89%;
   height: 13.5rem;
   padding-top: 0.5rem;
   resize: none;
 }
-.block .communication .add-comment .commentArea span {
+.b3 .communication .add-comment .commentArea span {
   position: absolute;
   bottom: 20px;
   right: 40px;
@@ -669,13 +668,13 @@ block - communication (ver.21-11-09)
   color: var(--comment-placeholder-color);
 }
 
-.block .communication .add-comment .password {
+.b3 .communication .add-comment .password {
   width: 89%;
   height: 2.75rem;
   margin: 0.6875rem 0 0.625rem 0;
 }
 
-.block .communication .add-comment .wrtie-comment-btn {
+.b3 .communication .add-comment .wrtie-comment-btn {
   width: 89%;
   height: 2.25rem;
   background-image: url("../imgs/writeCommentBtn_Frame\ 140.png");
@@ -689,7 +688,7 @@ block - communication - show-comment
 ===================================
 */
 
-.block .communication .show-comment {
+.b3 .communication .show-comment {
   width: 100%;
   height: 63.7%;
   display: flex;
@@ -698,7 +697,7 @@ block - communication - show-comment
   margin: 2.0625rem 0 0.875rem 0;
 }
 
-.block .communication .show-comment .comment {
+.b3 .communication .show-comment .comment {
   width: 90.15%;
   height: 20%;
   display: flex;
@@ -709,7 +708,7 @@ block - communication - show-comment
   margin-bottom: 0.75rem;
 }
 
-.block .communication .show-comment .comment .comment_header {
+.b3 .communication .show-comment .comment .comment_header {
   width: 100%;
   height: 43.5%;
   display: flex;
@@ -720,12 +719,12 @@ block - communication - show-comment
   background-color: var(--comment-reply-background-color);
 }
 
-.block .communication .show-comment .comment .comment_header .info {
+.b3 .communication .show-comment .comment .comment_header .info {
   display: flex;
   flex-direction: column;
 }
 
-.block
+.b3
   .communication
   .show-comment
   .comment
@@ -740,13 +739,7 @@ block - communication - show-comment
   line-height: 19px;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .info
-  .commentMBTI {
+.b3 .communication .show-comment .comment .comment_header .info .commentMBTI {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -755,20 +748,14 @@ block - communication - show-comment
   font-size: var(--comment-created-font-size);
 }
 
-.block .communication .show-comment .comment .comment_header .btn {
+.b3 .communication .show-comment .comment .comment_header .btn {
   width: 6rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.block
-  .communication
-  .show-comment
-  .comment
-  .comment_header
-  .btn
-  .del-reply-btn {
+.b3 .communication .show-comment .comment .comment_header .btn .del-reply-btn {
   width: 1.3rem;
   height: 1.3rem;
   display: flex;
@@ -780,7 +767,7 @@ block - communication - show-comment
   background-size: 100% 100%;
 }
 
-.block
+.b3
   .communication
   .show-comment
   .comment
@@ -798,7 +785,7 @@ block - communication - show-comment
   background-size: 100% 100%;
 }
 
-.block .communication .show-comment .comment .comment_content {
+.b3 .communication .show-comment .comment .comment_content {
   width: 100%;
   height: 100%;
   display: flex;
@@ -807,7 +794,7 @@ block - communication - show-comment
   background-color: var(--chemi-background-color);
 }
 
-.block .communication .show-comment .comment .comment_content .content {
+.b3 .communication .show-comment .comment .comment_content .content {
   font-size: var(--comment-nickname-font-size);
   color: var(--comment-contents-color);
   background-color: var(--chemi-background-color);
@@ -817,7 +804,7 @@ block - communication - show-comment
   text-align: left;
 }
 
-.block .communication .show-comment .comment .createdDate {
+.b3 .communication .show-comment .comment .createdDate {
   color: var(--comment-created-font-color);
   font-size: var(--chemi-movie-title-mobile-font-size);
   margin: 0.6875rem 1.25rem 1.3125rem 1.8125rem;
@@ -826,7 +813,7 @@ block - communication - show-comment
   align-items: center;
 }
 
-.block .communication .comment-pages {
+.b3 .communication .comment-pages {
   background-color: var(--section-background-color);
   width: 72%;
   height: 1.75rem;
@@ -835,7 +822,7 @@ block - communication - show-comment
   margin-bottom: 2.5rem;
 }
 
-.block .communication .comment-pages #index_left_btn_active {
+.b3 .communication .comment-pages #index_left_btn_active {
   width: 20%;
   background-image: url("../imgs/index_left_btn_active.png");
   background-size: contain;
@@ -843,7 +830,7 @@ block - communication - show-comment
   margin-top: 0;
 }
 
-.block .communication .comment-pages #index_left_btn_not_active {
+.b3 .communication .comment-pages #index_left_btn_not_active {
   width: 20%;
   background-image: url("../imgs/index_left_btn_not_active.png");
   background-size: contain;
@@ -852,7 +839,7 @@ block - communication - show-comment
   cursor: default;
 }
 
-.block .communication .comment-pages #index {
+.b3 .communication .comment-pages #index {
   font-size: var(--comment-nickname-font-size);
   background-color: var(--section-background-color);
   color: var(--basic-font-color);
@@ -862,7 +849,7 @@ block - communication - show-comment
   justify-content: space-between;
 }
 
-.block .communication .comment-pages #index_right_btn_active {
+.b3 .communication .comment-pages #index_right_btn_active {
   width: 20%;
   background-image: url("../imgs/index_right_btn_active.png");
   background-size: contain;
@@ -870,7 +857,7 @@ block - communication - show-comment
   margin-top: 0;
 }
 
-.block .communication .comment-pages #index_right_btn_not_active {
+.b3 .communication .comment-pages #index_right_btn_not_active {
   width: 20%;
   background-image: url("../imgs/index_right_btn_not_active.png");
   background-size: contain;

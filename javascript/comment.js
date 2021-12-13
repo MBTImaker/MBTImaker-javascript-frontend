@@ -5,7 +5,7 @@
 const showComment = document.querySelector(".show-comment");
 const chkCommentInit = document.querySelector(".wrtie-comment-btn");
 const chkcommentArea = document.querySelector(".comment-area");
-const commentIndex = document.querySelector(".block .communication .comment-pages");
+const commentIndex = document.querySelector(".b3 .communication .comment-pages");
 
 let isWriteCheck = true;  // write 함수에서 왔는지 확인하는 값. Write 함수를 호출했을 경우 true.
 let isDeleteCheck = false;  // 해당 값이 true 일 경우, delete -> display 할 때 기존 댓글 목록들 전체를 지워줌.
