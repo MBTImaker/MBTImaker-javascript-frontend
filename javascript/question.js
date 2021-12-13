@@ -116,11 +116,11 @@ function displayQuestion(question) {
 
         return `
         <div class="b2" id="b2">
-            <div class="q-num" style="background-image: url('${q.num}');"></div>
+            <div class="q2" style="background-image: url('${q.num}');"></div>
             <span class="q1 top">${q.qTop}</span>
             <span class="q1 bottom">${q.qBottom}</span>
         
-            <div class="two-btns">
+            <div class="t1">
                 <button class="select_btn top">${q.btnTop}</button>
                 <button class="select_btn bottom">${q.btnBottom}</button>
             </div>
@@ -151,7 +151,7 @@ window.addEventListener('resize', () => {
 // HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
 
 const selectBtns = document.querySelectorAll(".select_btn:nth-child(n)");
-const qNums = document.querySelectorAll('.q-num:nth-child(n)');
+const qNums = document.querySelectorAll('.q2:nth-child(n)');
 const blocks = document.querySelectorAll(".b2:nth-child(n)");
 const next = document.querySelector(".next");
 const questionNumMax = questionList.length;
