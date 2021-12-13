@@ -8,7 +8,6 @@ let commentId = 0;
 
 const reportModal = document.querySelector(".report-modal");
 const reportSubject = document.querySelector("#subject");
-const reportSubjectOption = reportSubject.options[reportSubject.selectedIndex];
 const reportDescription = document.querySelector("#description");
 
 // =========================== Functions ===========================
@@ -21,18 +20,23 @@ function openReportModal(id) {
 
 // 서버에 댓글 신고 보내기
 function sendReport() {
-    const reportSubjectValue = reportSubjectOption.value;
+    const reportSubjectValue = reportSubject.options[reportSubject.selectedIndex].value;
     const reportDescriptionValue = reportDescription.value;
 
-    runFetch("POST", "https://mbti-test.herokuapp.com/report", {
-        "commentId": commentId,
-        "description": reportDescriptionValue,
-        "subject": reportSubjectValue,
-    })
-        .then((data) => {
-            cancleReport();
+    if (reportDescriptionValue === "") {
+        alert("신고 내용을 입력해 주세요.");
+    }
+    else {
+        runFetch("POST", "https://mbti-test.herokuapp.com/report", {
+            "commentId": commentId,
+            "description": reportDescriptionValue,
+            "subject": reportSubjectValue,
         })
-        .catch(err => { alert("잘못된 입력입니다.") });
+            .then((data) => {
+                cancleReport();
+            })
+            .catch(err => { alert("신고 유형을 선택해 주세요.") });
+    }
 }
 
 // 모달 창 닫기
