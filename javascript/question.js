@@ -8,6 +8,15 @@ window.addEventListener('load', () => {
     }, 10);
 });
 
+window.onpageshow = function (event) {
+    // 뒤로가기 선택시
+    if (event.persisted) {
+        window.location.reload();
+    }
+
+    // else - 새로운 페이지 로드 시
+}
+
 
 // =========================== Variables ===========================
 
