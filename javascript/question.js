@@ -8,6 +8,15 @@ window.addEventListener('load', () => {
     }, 10);
 });
 
+window.onpageshow = function (event) {
+    // 뒤로가기 선택시
+    if (event.persisted) {
+        window.location.reload();
+    }
+
+    // else - 새로운 페이지 로드 시
+}
+
 
 // =========================== Variables ===========================
 
@@ -240,6 +249,7 @@ selectBtns.forEach((btn) => {
             clientClicked += "1";
             selectBtns[selectBtnIndex].style.pointerEvents = "none";
         }
+        console.log(`clientClickd : ${clientClicked}`);
 
         // 문항이 선택되면 아래로 이동한다.
         if (questionNum < questionNumMax - 1) {

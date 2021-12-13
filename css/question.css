@@ -62,9 +62,11 @@ block - num & title
 
 .block {
   width: 89.25vw;
-  height: 85vh;
-  /* height: calc(var(--vh, 1vh) * 85); */
+  /* height: 85vh; */
+  height: calc(var(--vh, 1vh) * 85);
   display: flex;
+  min-width: 320px;
+  min-height: 480px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -106,6 +108,7 @@ block - btns
 .next {
   width: 78.66%;
   height: 8.62vh;
+  min-width: 280px;
   max-height: 70px;
   position: fixed;
   top: 80%;
@@ -145,6 +148,7 @@ block - btns
 .block .two-btns .select_btn {
   width: 88.05%;
   height: 9.85vh;
+  min-width: 280px;
   max-height: 80px;
   margin-bottom: 1.25rem;
   border-radius: 162px;
