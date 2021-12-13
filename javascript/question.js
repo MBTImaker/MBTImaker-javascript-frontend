@@ -118,11 +118,11 @@ function displayQuestion(question) {
         <div class="b2" id="b2">
             <div class="q2" style="background-image: url('${q.num}');"></div>
             <span class="q1 t0">${q.qTop}</span>
-            <span class="q1 bottom">${q.qBottom}</span>
+            <span class="q1 b0">${q.qBottom}</span>
         
             <div class="t1">
                 <button class="s1 t0">${q.btnTop}</button>
-                <button class="s1 bottom">${q.btnBottom}</button>
+                <button class="s1 b0">${q.btnBottom}</button>
             </div>
         </div>
         `;
@@ -153,7 +153,7 @@ window.addEventListener('resize', () => {
 const selectBtns = document.querySelectorAll(".s1:nth-child(n)");
 const qNums = document.querySelectorAll('.q2:nth-child(n)');
 const blocks = document.querySelectorAll(".b2:nth-child(n)");
-const next = document.querySelector(".next");
+const next = document.querySelector(".n1");
 const questionNumMax = questionList.length;
 
 let questionNum = 0;

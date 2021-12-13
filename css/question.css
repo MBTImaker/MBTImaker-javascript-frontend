@@ -105,7 +105,7 @@ block - btns
 ============
 */
 
-.next {
+.n1 {
   width: 78.66%;
   height: 8.62vh;
   min-width: 280px;
@@ -184,7 +184,7 @@ media
     height: 70vh;
   }
 
-  .next,
+  .n1,
   .showResult {
     top: 70%;
   }
@@ -221,7 +221,7 @@ media
     font-size: var(--two-btns-desktop-size);
   }
 
-  .next,
+  .n1,
   .showResult {
     width: 532px;
     height: 9.44vh;
@@ -238,12 +238,12 @@ media
   }
 
   .b2 .t1 .s1,
-  .next,
+  .n1,
   .showResult {
     font-size: var(--button-text-desktop-xs-size);
   }
 
-  .next,
+  .n1,
   .showResult {
     top: 77%;
   }
@@ -256,7 +256,7 @@ media
   }
 
   .b2 .t1 .s1,
-  .next,
+  .n1,
   .showResult {
     font-size: var(--button-text-mobile-xs-size);
   }
