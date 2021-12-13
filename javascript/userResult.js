@@ -41,7 +41,6 @@ window.addEventListener('load', function () {
 window.addEventListener('load', () => {
     const circles = document.querySelectorAll(".circle");
     circles.forEach(circle => {
-        console.log(circle.classList);
         if (circle.classList.contains("show"))
             circle.classList.remove("show");
     });
@@ -52,9 +51,7 @@ window.addEventListener('load', () => {
 
 // 000000000000 -> 000-000-000-000
 let result = location.href.split("=")[1];
-
 result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9) + '-' + result.slice(9, 12);
-console.log(`user clicked: ${result}`);
 
 // 결과값을 보내면 파이어베이스에서 텍스트와 이미지를 가져온다.
 runFetch("POST", "https://mbti-test.herokuapp.com/test", {
@@ -67,7 +64,7 @@ runFetch("POST", "https://mbti-test.herokuapp.com/test", {
     .then(() => {
         // 시크릿키 받아와 저장한 이후에 설정한다.
         Kakao.init(KAKAO_JAVASCRIPT_KEY);
-        console.log("kakao : " + Kakao.isInitialized());
+        // console.log("kakao : " + Kakao.isInitialized());
     })
     .catch(err => { alert("카카오 공유가 불가능합니다. 관리자에게 문의해 주세요.") });
 
@@ -75,8 +72,6 @@ runFetch("POST", "https://mbti-test.herokuapp.com/test", {
 // 가져온 것들을 html에 설정한다.
 function showResult(data) {
     const mbtiResult = data.mbtiResult;
-
-    console.log(`user MBTI: ${mbtiResult.mbti}`);
     MBTI = mbtiResult.mbti;
     getNamebyMBTI(mainText, MBTI);
 
