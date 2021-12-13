@@ -115,7 +115,7 @@ function displayQuestion(question) {
     let innerQuestion = question.map(function (q) {
 
         return `
-        <div class="block" id="block">
+        <div class="b2" id="b2">
             <div class="q-num" style="background-image: url('${q.num}');"></div>
             <span class="q-title top">${q.qTop}</span>
             <span class="q-title bottom">${q.qBottom}</span>
@@ -152,7 +152,7 @@ window.addEventListener('resize', () => {
 
 const selectBtns = document.querySelectorAll(".select_btn:nth-child(n)");
 const qNums = document.querySelectorAll('.q-num:nth-child(n)');
-const blocks = document.querySelectorAll(".block:nth-child(n)");
+const blocks = document.querySelectorAll(".b2:nth-child(n)");
 const next = document.querySelector(".next");
 const questionNumMax = questionList.length;
 
