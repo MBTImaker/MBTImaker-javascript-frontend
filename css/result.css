@@ -802,6 +802,8 @@ block - communication - show-comment
   display: flex;
   justify-content: flex-start;
   text-align: left;
+
+  word-break: break-all;
 }
 
 .b3 .communication .show-comment .comment .createdDate {
