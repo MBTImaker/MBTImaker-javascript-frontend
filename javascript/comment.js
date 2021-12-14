@@ -26,6 +26,8 @@ let aes256Iv = crypto.getRandomValues(new Uint16Array(4)).join(''); // 초기벡
 let aes256EncodeData = "";
 let aes256DecodeData = "";
 
+let commentCount = document.getElementById("comment_count");  // 작성한 댓글의 글자수 세기 (fn_checkByte 함수에서 사용)
+
 let localObj;   // 암호화 된 패스워드를 복호화 하는 함수(dec) 에서 댓글ID 값을 가져오기 위해 저장함
 
 let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
@@ -33,6 +35,22 @@ let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 �
 let errObj = {}; // 에러메시지를 object 형식으로 받아오기 위해 선언
 
 window.addEventListener('load', searchComment(page, size));
+
+// 댓글 비밀번호 입력시 숫자만 입력했는지 확인 후 아닐 경우 해당 문자를 삭제해주는 함수
+function isNum(inputPW){
+    let chk = /^[0-9]{1,100}$/g;    // 숫자를 입력하지 않았을 경우를 찾는 정규식
+    let modPW;  // 숫자가 아닌 문자를 입력했을 경우 이를 삭제하고 숫자만 남김.
+
+    if(chk.test(inputPW)) {
+        document.getElementById("password").value = inputPW;
+        return inputPW;
+    } else {    // 숫자가 아닌 문자를 입력했을 경우
+        alert("숫자만 4~20 자리로 입력해주세요.");
+        modPW = inputPW.replace(/[^0-9]{1,100}$/g,'')   // 숫자가 아닌 문자 삭제
+        document.getElementById("password").value = modPW;  // 사용자의 input 값에도 삭제한 패스워드 문자열 반영
+        return modPW;
+    }
+}
 
 // 패스워드를 AES 256 방식으로 암호화 해주는 함수. 
 function enc(isWriteCheck, isDeleteCheck, commentID) {
@@ -45,15 +63,9 @@ function enc(isWriteCheck, isDeleteCheck, commentID) {
 
         data = document.getElementById("password").value;   // write 함수 일 때
 
-        // CBC 모드로 AES 인코딩 수행
-        const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
-            iv: CryptoJS.enc.Utf8.parse(Iv), // Enter IV (Optional) 지정 방식
-            padding: CryptoJS.pad.Pkcs7,
-            mode: CryptoJS.mode.CBC // cbc 모드 선택
-        });
-
-        // [인코딩 된 데이터 확인 실시]
-        aes256EncodeData = cipher.toString();
+        let encJson = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+        let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson));
+        aes256EncodeData = encData;
 
         dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
 
@@ -68,16 +80,9 @@ function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
     secretKey = aes256SecretKey;
     Iv = aes256Iv;
 
-    // CBC 모드로 AES 디코딩 수행
-    const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(secretKey), {
-        iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC // [cbc 모드 선택]
-    });
-
-    // [디코딩 된 데이터 확인 실시]
-    aes256DecodeData = cipher.toString(CryptoJS.enc.Utf8);
-    console.log("dec PW:::" + aes256DecodeData);
+    let decData = CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+    let bytes = CryptoJS.AES.decrypt(decData, secretKey).toString(CryptoJS.enc.Utf8);
+    aes256DecodeData = JSON.parse(bytes);
 
     /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
     if (isWriteCheck == true) {
@@ -103,11 +108,9 @@ function commentWrite(aes256DecodeData) {
 
     showComment.style.display = "flex";
 
-
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
     let content = document.getElementById("comment-area").value;
-    // let password = document.getElementById("password").value;
     let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
 
     // 서버로 보낼 데이터 셋팅
@@ -138,6 +141,7 @@ function commentWrite(aes256DecodeData) {
                 document.getElementById("nickname").value = "";
                 document.getElementById("comment-area").value = "";
                 document.getElementById("password").value = "";
+                commentCount.innerText = "(0/500)";
 
                 searchComment(page, size);  // 댓글 조회 함수 호출
             } else {
@@ -193,8 +197,6 @@ function displayComment(comment, size) {
 
     let displayFuncStr = '';
 
-    let j = 0;  // 각 댓글의 mbti 값을 가져올 때 사용.
-
     //    if (isDeleteCheck || isIndexCheck) { 
     if (isDeleteCheck || isFirst || isIndexCheck) {     // 댓글 삭제 후 해당 함수를 호출 할 경우, 새로운 화면을 띄워줘야 하므로 아래의 값들을 초기화 해줌
         for (let i = 0; i < size; i++) {
@@ -205,7 +207,7 @@ function displayComment(comment, size) {
             // index 부분에서 1페이지, 2페이지를 누를 때 마다 index가 1234567812345678 이런식으로 계속 생겨서 초기화 해 줌
             innerCommentIndex = '';
             commentIndex.innerHTML = '';
-            displayFuncText = { "text": "나의 영화 캐릭터 유형은? " };
+            displayFuncText = { "text": "나의 영화 캐릭터 유형은? " };  // 새로운 페이지 클릭 시 해당 문자열에 계속 이어져서 초기화 작업해줌.
         }
     }
 
@@ -221,7 +223,7 @@ function displayComment(comment, size) {
 
         displayFuncStr = displayFuncText.text;
 
-        displayFuncTextSplit = displayFuncStr.substring(displayFuncStr.indexOf("?") + 3);
+        displayFuncTextSplit = displayFuncStr.substring(displayFuncStr.indexOf("?") + 3);   // ? 문자 3번째 뒤 부터 영화이름+영화주인공이름 시작
 
         charWithMovieName = displayFuncTextSplit.split("''");
 
@@ -234,8 +236,6 @@ function displayComment(comment, size) {
             parentId: `${comment.data.content[i].parentId}`,  // 해당 댓글의 부모 id(서버에서 보관)
             createdDate: `${comment.data.content[i].createdDate}`,  // 해당 댓글 작성 시간
         });
-
-        j += 2;
     }
 
     innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
@@ -399,33 +399,34 @@ function searchComment(page, size) {  // 댓글 페이징 조회
         .catch((error) => console.log("error:", error));
 }
 
-//textarea 바이트 수 체크하는 함수
+// 댓글 글자수 세는 함수
 function fn_checkByte(obj) {
-    const maxByte = 500; //최대 500바이트
-    const text_val = obj.value; //입력한 문자
-    const text_len = text_val.length; //입력한 문자수
+    let maxByte = 500; //최대 500바이트
+    let text_val = obj.value; //입력한 문자
+    let mod_text = "";   // 500 바이트 넘었을 경우 문자열을 자른 뒤 내용 저장하는 변수s
+    let text_len = text_val.length; //입력한 문자수
 
-    let commentCount = document.getElementById("comment_count");  // 작성한 댓글의 글자수 세기
+    let commentArea = document.getElementById("comment-area").value;  // 500 글자 이상 작성시 내용 자르기 위해 사용
     let commentCountStr = text_len + "/500";
 
     let totalByte = 0;
     for (let i = 0; i < text_len; i++) {
-        const each_char = text_val.charAt(i);
-        const uni_char = escape(each_char) //유니코드 형식으로 변환
-        if (uni_char.length > 4) {
-            // 한글 : 2Byte
-            totalByte += 2;
-        } else {
-            // 영문,숫자,특수문자 : 1Byte
-            totalByte += 1;
-        }
+        totalByte ++;
     }
 
-    if (totalByte > maxByte) {
-        alert('최대 500Byte까지만 입력가능합니다.');
-        commentCountStr = totalByte + "/500";
+    if (totalByte > maxByte-1) {    // 입력한 댓글이 500자 이상일 경우
+        alert('최대 500자 까지만 입력가능합니다.');
+
+        mod_text = obj.value.substring(0, 499); // 499자 까지 잘라줌
+        obj.value = mod_text;
+        commentArea.innerHTML += obj.value;
+        fn_checkByte(obj);
+
+        // 500자 이상의 경우 글자수 표시를 빨갛게 변경해줌
+        commentCountStr = maxByte-1 + "/500";
         commentCount.innerText = commentCountStr;
         commentCount.style.color = "red";
+
     } else {
         commentCountStr = totalByte + "/500";
         commentCount.innerText = commentCountStr;
