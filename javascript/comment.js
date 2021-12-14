@@ -205,6 +205,7 @@ function displayComment(comment, size) {
             // index 부분에서 1페이지, 2페이지를 누를 때 마다 index가 1234567812345678 이런식으로 계속 생겨서 초기화 해 줌
             innerCommentIndex = '';
             commentIndex.innerHTML = '';
+            displayFuncText = { "text": "나의 영화 캐릭터 유형은? " };
         }
     }
 
