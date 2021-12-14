@@ -22,7 +22,7 @@ let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
 // ====================== Variables(share) ======================
-const shareLink = window.location.href; // 차후에 배포되면 home.html로 수정
+const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html"; // 차후에 배포되면 home.html로 수정
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(https://mbti-test.herokuapp.com/og_image.png)";
 

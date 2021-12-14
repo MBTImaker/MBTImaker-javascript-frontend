@@ -112,7 +112,6 @@ function commentWrite(aes256DecodeData) {
 
     // 서버로 보낼 데이터 셋팅
     let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
-    console.log(content);
 
     fetch('https://mbti-test.herokuapp.com/comment', {
         method: 'POST',
