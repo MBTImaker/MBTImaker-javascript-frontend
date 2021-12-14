@@ -263,7 +263,8 @@ selectBtns.forEach((btn) => {
             next.classList.remove("n1");
             next.classList.add("showResult");
             next.onclick = function () {
-                location.href = "result.html?result=" + clientClicked;
+                location.href = "result.html";
+                window.sessionStorage.setItem('clientClicked', JSON.stringify(clientClicked));
             }
         }
     });
