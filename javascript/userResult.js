@@ -218,6 +218,7 @@ function shareBand() {
 
 // 000000000000 -> 000-000-000-000
 let result = JSON.parse(window.sessionStorage.getItem('clientClicked'));
+console.log(`result : ${result}`);
 result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9) + '-' + result.slice(9, 12);
 
 // 이전 결과와 다르면 데이터를 새로 불러온다.
