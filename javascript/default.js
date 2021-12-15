@@ -2,8 +2,8 @@
 
 /* 설명: 모든 페이지에 적용되는 사항입니다. */
 
-let agent = navigator.userAgent.toLowerCase();
-if (agent.indexOf("msie") != -1) {
+let browser = navigator.userAgent.toLowerCase();
+if (browser.indexOf('trident') != -1 || browser.indexOf("msie") != -1) {
     alert('Internet Explorer는 호환되지 않는 브라우저 입니다.');
 }
 
