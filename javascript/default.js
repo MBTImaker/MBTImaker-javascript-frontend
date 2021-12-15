@@ -6,6 +6,9 @@ let browser = navigator.userAgent.toLowerCase();
 if (browser.indexOf('trident') != -1 || browser.indexOf("msie") != -1) {
     alert('Internet Explorer는 호환되지 않는 브라우저 입니다.');
 }
+else {
+    console.log(browser);
+}
 
 // (1) vh값을 css에서 정의된 값이 아닌 새로운 값을 사용한다.
 let vHeight = window.innerHeight * 0.01;
