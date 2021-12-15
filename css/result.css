@@ -677,7 +677,7 @@ block - communication (ver.21-11-09)
 .b3 .communication .add-comment .wrtie-comment-btn {
   width: 89%;
   height: 2.25rem;
-  background-image: url("../imgs/writeCommentBtn_Frame\ 140.png");
+  background-image: url("../imgs/writeCommentBtn_Frame140.png");
   background-size: contain;
   background-color: var(--comment-reply-background-color);
 }
