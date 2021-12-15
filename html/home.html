@@ -13,6 +13,17 @@
 </head>
 
 <body class="body">
+
+    <script>
+        let browser = navigator.userAgent.toLowerCase();
+        if (browser.indexOf('trident') != -1 || browser.indexOf("msie") != -1) {
+            alert('Internet Explorer는 호환되지 않는 브라우저 입니다.');
+        }
+        else {
+            alert(browser);
+        }
+    </script>
+
     <header>
         <div class="t1"></div>
         <div class="t2"></div>
