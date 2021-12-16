@@ -193,7 +193,6 @@ function shareFacebook() {
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + shareLink);
 }
 
-// twitter
 function shareTwitter() {
     window.open("https://twitter.com/intent/tweet?text=" + mainText.text + "&url=" + shareLink);
 }
