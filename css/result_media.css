@@ -248,6 +248,16 @@ media
   .b3 .communication .add-comment .commentArea .comment-area {
     width: 79.86%;
   }
+  .b3 .communication .add-comment .commentArea span {
+    position: absolute;
+    bottom: 20px;
+    right: 90px;
+  }
+  #comment_count {
+    font-size: 0.625em;
+    color: var(--comment-placeholder-color);
+  }
+
 
   .b3 .communication .add-comment .pwAndInput {
     width: 79.86%;
@@ -262,9 +272,14 @@ media
   }
 
   .b3 .communication .add-comment .password {
-    width: 78.99%;
+    /* width: 78.99%; */
+    width: 60%;
     height: 3.25rem;
     margin: 1.25rem 1.25rem 0.625rem 0;
+
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .b3 .communication .add-comment .wrtie-comment-btn {
@@ -273,6 +288,10 @@ media
     background-image: url("../imgs/writeCommentBtn_Frame69.png");
 
     margin-top: 1.25rem;
+
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .b3 .communication .show-comment {

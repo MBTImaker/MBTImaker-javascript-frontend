@@ -675,8 +675,8 @@ block - communication (ver.21-11-09)
 }
 
 .b3 .communication .add-comment .wrtie-comment-btn {
-  width: 89%;
-  height: 2.25rem;
+  width: 70vw;
+  height: 5vh;
   background-image: url("../imgs/writeCommentBtn_Frame140.png");
   background-size: contain;
   background-color: var(--comment-reply-background-color);
@@ -803,7 +803,8 @@ block - communication - show-comment
   justify-content: flex-start;
   text-align: left;
 
-  word-break: break-all;
+  /* word-break: break-all; */
+  /* word-break: normal; */
 }
 
 .b3 .communication .show-comment .comment .createdDate {
@@ -931,7 +932,24 @@ input#description {
   border-radius: 20px;
   border: 2px solid var(--comment-reply-border-color);
   padding: 1.25rem;
+  word-break: break-all;
 }
+
+.report-modal .report-modal-container .reportArea span {
+  position: absolute;
+  bottom: 475px;
+  right: 125px;
+}
+
+#report_count {
+  font-size: 0.625em;
+  color: var(--comment-placeholder-color);
+}
+
+/* #comment_count {
+  font-size: 0.625em;
+  color: var(--comment-placeholder-color);
+} */
 
 .gray-btn {
   background: linear-gradient(93.11deg, #dadcdd 4.01%, #bec0c2 97.86%);
