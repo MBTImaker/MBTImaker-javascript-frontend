@@ -231,13 +231,7 @@ if (window.sessionStorage.getItem('result') !== result) {
             if (window.localStorage.getItem('KAKAO_JAVASCRIPT_KEY') == null)
                 window.localStorage.setItem('KAKAO_JAVASCRIPT_KEY', JSON.stringify(info.data.kakao_JAVASCRIPT_KEY));
         })
-        .then(() => {
-            // 시크릿키 받아와 저장한 이후에 설정한다.
-            // Kakao.init(KAKAO_JAVASCRIPT_KEY);
-            console.log("kakao : " + Kakao.isInitialized());
-        })
-        .catch(() => { alert("카카오 공유가 불가능합니다. 관리자에게 문의해 주세요.") });
-
+        .catch(() => { alert("카카오 공유가 불가능합니다.") });
 
     window.sessionStorage.setItem('result', result);
 }
