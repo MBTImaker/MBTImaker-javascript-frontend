@@ -189,7 +189,6 @@ function shareKakaotalk() {
     })
 }
 
-// facebook
 function shareFacebook() {
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + shareLink);
 }
