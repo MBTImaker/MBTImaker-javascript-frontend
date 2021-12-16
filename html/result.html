@@ -194,15 +194,15 @@
             <!-- 댓글 작성 -->
             <div class="add-comment">
                 <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임을 입력하세요.(2~10자)"
-                    onKeyup="checkInput(this.value, true, false, false);">
+                    onKeyup="checkInput(this.value, true, false, false, false);">
                 <div class="commentArea">
                     <textarea name="comment-area" class="comment-area" id="comment-area" rows="18"
                         placeholder="댓글을 입력하세요. (500자 내외)"
-                        onKeyup="checkInput(this.value, false, true, false);"></textarea>
+                        onKeyup="checkInput(this.value, false, true, false, false);"></textarea>
                     <span id="comment_count">(0/500)</span>
                 </div>
                 <input type="password" class="password" id="password" name="password"
-                    placeholder="비밀번호를 입력하세요.(숫자만 4~20자)" onKeyup="checkInput(this.value, false, false, true);">
+                    placeholder="비밀번호를 입력하세요.(숫자만 4~20자)" onKeyup="checkInput(this.value, false, false, true, false);">
                 <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
                     onclick="enc(true,false,'')"></button>
             </div>
@@ -231,7 +231,11 @@
                             <option value="PROMOTION">불법 홍보</option>
                         </select>
 
-                        <input type="text" id="description" placeholder="신고 내용을 적어주세요.">
+                        <div class="reportArea">
+                            <input type="text" id="description" placeholder="신고 내용을 적어주세요." onKeyup="checkInput(this.value, false, false, false, true);">
+                            <span id="report_count">(0/500)</span>
+                        </div>
+
                         <div class="btns">
                             <button class="gray-btn" id="cancle" onclick="cancleReport()">취소</button>
                             <button class="red-btn" id="submit" onclick="sendReport()">제출</button>
