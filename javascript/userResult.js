@@ -23,11 +23,10 @@ let mostTypeCounter = 0;
 
 // ====================== Variables(share) ======================
 const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html";
-const subText = "여기 있는 게 들어가는 거야?"; // "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
+const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png)";
 
 let mainText = { "text": "나의 영화 캐릭터 유형은? " };
-let KAKAO_JAVASCRIPT_KEY = "";
 let MBTI = '';
 
 // ====================== Variables(report) ======================
@@ -172,13 +171,15 @@ function getNamebyMBTI(obj, userMBTI) {
 }
 
 function shareKakaotalk() {
+    Kakao.init(JSON.parse(window.localStorage.getItem('KAKAO_JAVASCRIPT_KEY')));
+
     Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
             title: mainText.text,
             description: subText,
             imageUrl:
-                'https://mbti-test.herokuapp.com/og_image.png',
+                'https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png',
             link: {
                 mobileWebUrl: shareLink,
                 webUrl: shareLink,
@@ -215,7 +216,6 @@ function shareBand() {
 
 // 000000000000 -> 000-000-000-000
 let result = JSON.parse(window.sessionStorage.getItem('clientClicked'));
-console.log(`result : ${result}`);
 result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9) + '-' + result.slice(9, 12);
 
 // 이전 결과와 다르면 데이터를 새로 불러온다.
@@ -227,15 +227,11 @@ if (window.sessionStorage.getItem('result') !== result) {
         .then((info) => {
             showResult(info.data);
             window.sessionStorage.setItem('mbtiResult', JSON.stringify(info.data));
-            KAKAO_JAVASCRIPT_KEY = info.data.kakao_JAVASCRIPT_KEY;
-        })
-        .then(() => {
-            // 시크릿키 받아와 저장한 이후에 설정한다.
-            Kakao.init(KAKAO_JAVASCRIPT_KEY);
-            // console.log("kakao : " + Kakao.isInitialized());
-        })
-        .catch(() => { alert("카카오 공유가 불가능합니다. 관리자에게 문의해 주세요.") });
 
+            if (window.localStorage.getItem('KAKAO_JAVASCRIPT_KEY') == null)
+                window.localStorage.setItem('KAKAO_JAVASCRIPT_KEY', JSON.stringify(info.data.kakao_JAVASCRIPT_KEY));
+        })
+        .catch(() => { alert("카카오 공유가 불가능합니다.") });
 
     window.sessionStorage.setItem('result', result);
 }
