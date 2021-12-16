@@ -15,7 +15,7 @@
     <script src="../javascript/userResult.js" defer></script>
     <script src="../javascript/comment.js" defer></script>
 
-    <!-- Crypto CDN 로드 -->    
+    <!-- Crypto CDN 로드 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 
 
@@ -34,11 +34,20 @@
 
     <!-- twitter -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@nytimes">
+    <meta name="twitter:creator" content="@SarahMaslinNir">
+    <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+    <meta name="twitter:description"
+        content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+    <meta name="twitter:image"
+        content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+<!-- 
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@https://github.com/MBTImaker">
     <meta name="twitter:creator" content="@MBTImaker">
     <meta name="twitter:title" content="나의 영화 캐릭터 유형은?">
     <meta name="twitter:description" content="나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!">
-    <meta name="twitter:image" content="https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png">
+    <meta name="twitter:image" content="https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png"> -->
 
     <!-- title -->
     <title>크리스마스에 영화 뭐 보지?</title>
@@ -174,7 +183,7 @@
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
         </section>
 
         <!-- 결과 공유하기 -->
@@ -213,13 +222,16 @@
 
             <!-- 댓글 작성 -->
             <div class="add-comment">
-                <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임을 입력하세요.(2~10자)" onKeyup="checkInput(this.value, true, false, false);">
+                <input type="text" class="nickname" id="nickname" name="nickname" placeholder="닉네임을 입력하세요.(2~10자)"
+                    onKeyup="checkInput(this.value, true, false, false);">
                 <div class="commentArea">
                     <textarea name="comment-area" class="comment-area" id="comment-area" rows="18"
-                    placeholder="댓글을 입력하세요. (500자 내외)" onKeyup="checkInput(this.value, false, true, false);"></textarea>
+                        placeholder="댓글을 입력하세요. (500자 내외)"
+                        onKeyup="checkInput(this.value, false, true, false);"></textarea>
                     <span id="comment_count">(0/500)</span>
                 </div>
-                <input type="password" class="password" id="password" name="password" placeholder="비밀번호를 입력하세요.(숫자만 4~20자)" onKeyup="checkInput(this.value, false, false, true);">
+                <input type="password" class="password" id="password" name="password"
+                    placeholder="비밀번호를 입력하세요.(숫자만 4~20자)" onKeyup="checkInput(this.value, false, false, true);">
                 <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
                     onclick="enc(true,false,'')"></button>
             </div>
@@ -236,7 +248,7 @@
                 <div class="report-modal-container">
                     <h2>신고</h2>
                     <!-- <img src="" alt="" class="report-modal-img"> -->
-    
+
                     <div class="input-area">
                         <select name="신고유형" id="subject">
                             <option value="">신고유형</option>
@@ -247,7 +259,7 @@
                             <option value="DISPUTE">지나친 정치/종교 논쟁</option>
                             <option value="PROMOTION">불법 홍보</option>
                         </select>
-        
+
                         <input type="text" id="description" placeholder="신고 내용을 적어주세요.">
                         <div class="btns">
                             <button class="gray-btn" id="cancle" onclick="cancleReport()">취소</button>
@@ -257,9 +269,9 @@
                 </div>
             </div>
 
-            <!-- 페이지 넘기기 -->   
+            <!-- 페이지 넘기기 -->
             <div class="comment-pages" id="comment-pages">
-            </div> 
+            </div>
 
         </section>
 
