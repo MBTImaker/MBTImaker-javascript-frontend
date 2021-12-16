@@ -205,17 +205,11 @@ function format() {
     });
 }
 
-// band
 function shareBand() {
     let encodeBody = encodeURIComponent(format('{0}\n{1}', mainText.text, shareLink));
-    encodeBody = shareLink;
-    // let encodeRoute = encodeURIComponent(window.location.href);
-    let encodeRoute = "https://mbtimaker.github.io";
-    // let link = format('http://band.us/plugin/share?body={0}&route={1}', encodeBody, encodeRoute);
-    let link = `http://band.us/plugin/share?body=${encodeBody}&route=${encodeRoute}`;
-    // window.open(link, 'share', 'width=500, height=500');
+    let encodeRoute = encodeURIComponent(window.location.href);
+    let link = format('http://band.us/plugin/share?body={0}&route={1}', encodeBody, encodeRoute);
     window.open(link, 'share', 'width=500, height=500');
-
 }
 
 // ========================= MBTI Result =========================
