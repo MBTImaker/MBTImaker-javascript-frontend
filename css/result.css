@@ -803,7 +803,7 @@ block - communication - show-comment
   justify-content: flex-start;
   text-align: left;
 
-  /* word-break: break-all; */
+  word-break: break-all;
   /* word-break: normal; */
 }
 
