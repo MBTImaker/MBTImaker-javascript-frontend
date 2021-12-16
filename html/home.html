@@ -9,6 +9,24 @@
     <link rel="stylesheet" href="../css/home.css">
     <script src="../javascript/default.js" defer></script>
     <script src="../javascript/home.js" defer></script>
+
+    <!-- facebook -->
+    <meta property="og:url" content="https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="나의 영화 캐릭터 유형은?" />
+    <meta property="og:description" content="나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!" />
+    <meta property="og:image" content="https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png" />
+
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+    <meta name="twitter:description"
+        content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+    <meta name="twitter:image"
+        content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+
     <title>크리스마스에 영화 뭐 보지?</title>
 </head>
 
@@ -21,6 +39,16 @@
         }
     </script>
 
+        <!-- facebook -->
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
     <header>
         <div class="t1"></div>
         <div class="t2"></div>
@@ -31,6 +59,7 @@
         <span class="t1">현재 총 <span class="count"></span>명이 참여했어요.</span>
     </div>
 
+    <div class="fb-quote"></div>
 </body>
 
 </html>
