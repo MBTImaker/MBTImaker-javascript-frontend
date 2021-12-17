@@ -36,6 +36,7 @@ let commentId = 0;
 const reportModal = document.querySelector(".report-modal");
 const reportSubject = document.querySelector("#subject");
 const reportDescription = document.querySelector("#description");
+let checkReportCommit = String(false);    // 신고 제출 후 취소 함수로 갈 경우, 이미 제출 완료 됐는데 취소가 자동으로 호출 되면서 '취소하겠습니까?' 라는 알림이 뜸. 이를 확인하기 위해 선언.
 
 // =========================== Loading ===========================
 
@@ -83,17 +84,28 @@ function sendReport() {
         })
             .then((data) => {
                 alert("신고가 접수되었습니다. 처리될 때까지 조금만 기다려주세요.");
-                closeReportModal();
+                checkReportCommit = true;
+                closeReportModal(checkReportCommit);
             })
             .catch(err => { alert("신고 유형을 선택해 주세요.") });
     }
 }
 
 // 모달 창 닫기
-function closeReportModal() {
+function closeReportModal(checkReportCommit) {
     // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value, reportCount.innerText] = [0, null, "(0/500)"];
-    reportModal.classList.remove("open-modal");
+    if(checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
+        reportModal.classList.remove("open-modal");
+    } else {
+        if(!confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {
+            //alert();    // 아니오 (계속함)
+        } else {    // 예 (신고 취소 원함)
+            alert("신고가 취소 되었습니다.");
+            reportModal.classList.remove("open-modal");
+        }
+    }
+
 }
 
 // ====================== Functions(share) ======================
