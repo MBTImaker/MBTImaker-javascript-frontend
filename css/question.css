@@ -62,10 +62,8 @@ block - num & title
 
 .b2 {
   width: 89.25vw;
-  /* height: 85vh; */
   height: calc(var(--vh, 1vh) * 85);
   display: flex;
-  min-width: 320px;
   min-height: 480px;
   flex-direction: column;
   justify-content: center;
@@ -108,7 +106,6 @@ block - btns
 .n1 {
   width: 78.66%;
   height: 8.62vh;
-  min-width: 280px;
   max-height: 70px;
   position: fixed;
   top: 80%;
@@ -148,7 +145,6 @@ block - btns
 .b2 .t1 .s1 {
   width: 88.05%;
   height: 9.85vh;
-  min-width: 280px;
   max-height: 80px;
   margin-bottom: 1.25rem;
   border-radius: 162px;
