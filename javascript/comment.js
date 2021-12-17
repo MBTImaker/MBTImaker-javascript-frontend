@@ -42,7 +42,6 @@ window.addEventListener('load', searchComment(page, size));
 // 댓글 닉네임, 댓글 본문, 댓글 비밀번호 입력시 입력값 검증 함수
 function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) {
     let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@#$%^&*()_+|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
-//    let chkEmoji = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
     let chkEmoji = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])*/gi;
     let modInput;  // 정규식에 해당지 않는 문자를 입력했을 경우 이를 삭제한 뒤 문자열 저장.
     let chkInput;   // 검증해야 할 입력값
@@ -68,14 +67,12 @@ function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) 
 
         if(isComment == true) {
             // 검증해야 할 값은 댓글 본문 값.
-            chkInput = document.getElementById("comment-area").value;
-console.log("chkInput comment:::"+chkInput);            
+            chkInput = document.getElementById("comment-area").value;          
             checkIsComment = true;
             checkIsReport = false;
         } else {
             // 검증해야 할 값은 신고 내용 본문 값.
             chkInput = document.getElementById("description").value;
-console.log("chkInput report:::"+chkInput);
             checkIsComment = false;
             checkIsReport = true;
         }
@@ -230,8 +227,6 @@ function commentWrite(aes256DecodeData) {
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
     let content = document.getElementById("comment-area").value;
-console.log("받은 content 값::"+content);
-console.log("11111111");
     let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
 
     // 서버로 보낼 데이터 셋팅

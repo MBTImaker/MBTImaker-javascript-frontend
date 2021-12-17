@@ -897,7 +897,7 @@ block - communication - reportModal
   flex-direction: column;
   align-items: center;
   width: 73vw;
-  height: 50%;
+  height: 60%;
   background: var(--feature-background-color);
   border: 2px solid #053f28;
   border-radius: 20px;
@@ -930,6 +930,8 @@ block - communication - reportModal
 }
 
 #description {
+  width: 88.14%;
+  height: 90%;
   font-size: 0.8rem;
   border-radius: 20px;
   border: 2px solid var(--comment-reply-border-color);
