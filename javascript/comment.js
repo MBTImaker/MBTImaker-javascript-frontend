@@ -247,13 +247,11 @@ function commentWrite(aes256DecodeData) {
         body: JSON.stringify(commentJson),
     })
         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-            console.log(response);
             return response.json();
         })
         .then(response => {
             if (response.status == 200) {
                 alert("댓글 작성 성공!");
-                console.log(response.data);  // 성공 시 데이터 확인. (테스트 시에만 사용 하고 지울 예정)
 
                 // 댓글 작성 후 해당 필드 빈값 처리
                 document.getElementById("nickname").value = "";
@@ -272,7 +270,7 @@ function commentWrite(aes256DecodeData) {
 
             }
         })
-        .catch((error) => console.log("error: ", error));
+        .catch((error) => alert("error: ", error));
 
 }
 
@@ -485,7 +483,7 @@ function commentDelete(id, name, password) {
 
                     [content.value, nickname.value, password.value] = [null, null, null];
                 })
-                .catch((error) => console.log("error: ", error));
+                .catch((error) => alert("error: ", error));
         } else if (pwPrompt != password) {   // 비밀번호 입력에 실패했을 경우
             alert("비밀번호가 일치하지 않습니다.");
         }
@@ -501,18 +499,15 @@ function searchComment(page, size) {  // 댓글 페이징 조회
     // 서버로 부터 받은 값 저장
     fetch(reqURL)
         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
-            console.log(response);
             return response.json();
         })
         .then(response => {
             if (response.status == 200) {
-                console.log(response.data);
-
                 isIndexCheck = true;
                 displayComment(response, size);
             } else {
                 alert("오류 입니다.");
             }
         })
-        .catch((error) => console.log("error:", error));
+        .catch((error) => alert("error:", error));
 }
