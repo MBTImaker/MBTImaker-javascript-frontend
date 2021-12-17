@@ -41,7 +41,9 @@ window.addEventListener('load', searchComment(page, size));
 
 // 댓글 닉네임, 댓글 본문, 댓글 비밀번호 입력시 입력값 검증 함수
 function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) {
-    let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@#$%^&*()_+|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
+    //let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@#$%^&*()_+|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
+    let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@\#$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
+
     let chkEmoji = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])*/gi;
     let modInput;  // 정규식에 해당지 않는 문자를 입력했을 경우 이를 삭제한 뒤 문자열 저장.
     let chkInput;   // 검증해야 할 입력값
