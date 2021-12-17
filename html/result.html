@@ -193,11 +193,14 @@
                         onKeyup="checkInput(this.value, false, true, false, false);"></textarea>
                     <span id="comment_count">(0/500)</span>
                 </div>
-                <input type="password" class="password" id="password" name="password"
-                    placeholder="비밀번호를 입력하세요.(숫자만 4~20자)" onKeyup="checkInput(this.value, false, false, true, false);">
-                <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
-                    onclick="enc(true,false,'')"></button>
+                <div class="add-comment-pw">
+                    <input type="password" class="password" id="password" name="password"
+                        placeholder="비밀번호를 입력하세요.(숫자만 4~20자)" onKeyup="checkInput(this.value, false, false, true, false);">
+                    <button type="submit" class="wrtie-comment-btn" id="commentInit" name="commentInit"
+                        onclick="enc(true,false,'')"></button>
+                </div>
             </div>
+
 
             <div class="p1"></div>
 
