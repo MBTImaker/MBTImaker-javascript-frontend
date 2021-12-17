@@ -82,14 +82,15 @@ function sendReport() {
             "subject": reportSubjectValue,
         })
             .then((data) => {
-                cancleReport();
+                alert("신고가 접수되었습니다. 처리될 때까지 조금만 기다려주세요.");
+                closeReportModal();
             })
             .catch(err => { alert("신고 유형을 선택해 주세요.") });
     }
 }
 
 // 모달 창 닫기
-function cancleReport() {
+function closeReportModal() {
     // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value, reportCount.innerText] = [0, null, "(0/500)"];
     reportModal.classList.remove("open-modal");
