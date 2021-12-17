@@ -52,7 +52,7 @@ body::-webkit-scrollbar {
   height: 100%;
   min-height: 100%;
   overflow: hidden !important;
-  touch-action: none;
+  touch-action: pan-y;
 }
 /*
 ===================
