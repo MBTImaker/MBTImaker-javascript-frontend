@@ -82,6 +82,7 @@ function sendReport() {
             "subject": reportSubjectValue,
         })
             .then((data) => {
+                alert("신고가 접수되었습니다. 처리될 때까지 조금만 기다려주세요.");
                 cancleReport();
             })
             .catch(err => { alert("신고 유형을 선택해 주세요.") });
