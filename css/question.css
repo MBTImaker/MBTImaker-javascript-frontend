@@ -106,6 +106,7 @@ block - btns
 .n1 {
   width: 78.66%;
   height: 8.62vh;
+  min-height: 20px;
   max-height: 70px;
   position: fixed;
   top: 80%;
@@ -145,6 +146,7 @@ block - btns
 .b2 .t1 .s1 {
   width: 88.05%;
   height: 9.85vh;
+  min-height: 20px;
   max-height: 80px;
   margin-bottom: 1.25rem;
   border-radius: 162px;
@@ -234,12 +236,6 @@ media
     font-size: var(--q-title-desktop-xs-size);
   }
 
-  .b2 .t1 .s1,
-  .n1,
-  .showResult {
-    font-size: var(--button-text-desktop-xs-size);
-  }
-
   .n1,
   .showResult {
     top: 77%;
@@ -256,5 +252,11 @@ media
   .n1,
   .showResult {
     font-size: var(--button-text-mobile-xs-size);
+  }
+}
+
+@media screen and (max-height: 32.56rem) {
+  .n1 {
+    display: none;
   }
 }
