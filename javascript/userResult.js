@@ -40,12 +40,11 @@ let checkReportCommit = String(false);    // 신고 제출 후 취소 함수로 
 
 // =========================== Loading ===========================
 
-// block.style.display = "none";
-loading.style.display = "none";
-block.style.display = "flex";
-
 // 페이지가 다시 로드되면 0ms만에 맨 위로 이동한다.
 window.addEventListener('load', function () {
+    loading.style.display = "none";
+    block.style.display = "flex";
+
     setTimeout(function () {
         scrollTo(0, 0);
     }, 0);
@@ -95,10 +94,10 @@ function sendReport() {
 function closeReportModal(checkReportCommit) {
     // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value, reportCount.innerText] = [0, null, "(0/500)"];
-    if(checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
+    if (checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
         reportModal.classList.remove("open-modal");
     } else {
-        if(!confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {
+        if (!confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {
             //alert();    // 아니오 (계속함)
         } else {    // 예 (신고 취소 원함)
             alert("신고가 취소 되었습니다.");
