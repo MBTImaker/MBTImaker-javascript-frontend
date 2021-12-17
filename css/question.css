@@ -166,6 +166,7 @@ block - btns
   background-color: var(--two-btns-clicked-color);
   border: 2px solid var(--two-btns-clicked-border-color);
   color: var(--two-btns-clicked-font-color);
+  pointer-events: none;
 }
 
 /*
