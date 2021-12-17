@@ -2,6 +2,11 @@
 
 /* 설명: 사용자가 선택한 값에 따라 MBTI 결과값을 서버에서 가져와 화면에 보여줍니다. */
 
+// ============================== Run ==============================
+if (!document.referrer.includes("question.html")) {
+    location.href = "home.html";
+}
+
 // =========================== Variables ===========================
 
 // loading
@@ -40,12 +45,11 @@ let checkReportCommit = String(false);    // 신고 제출 후 취소 함수로 
 
 // =========================== Loading ===========================
 
-// block.style.display = "none";
-loading.style.display = "none";
-block.style.display = "flex";
-
 // 페이지가 다시 로드되면 0ms만에 맨 위로 이동한다.
 window.addEventListener('load', function () {
+    loading.style.display = "none";
+    block.style.display = "flex";
+
     setTimeout(function () {
         scrollTo(0, 0);
     }, 0);
@@ -103,7 +107,6 @@ function closeReportModal(checkReportCommit) {
             reportModal.classList.remove("open-modal");
         }
     }
-
 }
 
 // ====================== Functions(share) ======================
