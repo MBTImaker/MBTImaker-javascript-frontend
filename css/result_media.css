@@ -259,36 +259,29 @@ media
   }
 
   .b3 .communication .add-comment .add-comment-pw {
-    width: 100%;
+    display: flex;
+    width: 79.86%;
     flex-direction: row;
-    align-items: start;
+    /* align-items: start; */
   }
 
   .b3 .communication .add-comment .add-comment-pw .password {
-    /* width: 78.99%; */
-    width: 60%;
+    width: 60vw;
     height: 3.25rem;
     margin: 1.25rem 1.25rem 0.625rem 0;
 
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    /* justify-content: center;
-    align-items: center; */
   }
 
   .b3 .communication .add-comment .add-comment-pw .wrtie-comment-btn {
-    width: 16.8%;
     height: 3.25rem;
     background-image: url("../imgs/writeCommentBtn_Frame69.png");
-
     margin-top: 1.25rem;
-
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* justify-content: flex-start;
-    align-items: flex-start; */
   }
 
   .b3 .communication .show-comment {
