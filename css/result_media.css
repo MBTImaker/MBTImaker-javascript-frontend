@@ -31,7 +31,7 @@ media
 /* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
 @media screen and (max-width: 23.4375rem) {
   /* ----------------- conclusion ----------------- */
-  .b3 .r1 .conclusion {
+  .b3 .r1 .c1 {
     font-size: var(--conclusion-mobile-font-xs-size);
   }
 
@@ -92,7 +92,7 @@ media
   }
 
   /* ----------------- conclusion ----------------- */
-  .b3 .r1 .conclusion {
+  .b3 .r1 .c1 {
     height: 100%;
     line-height: var(--conclusion-desktop-line-height);
     font-size: var(--conclusion-desktop-font-size);

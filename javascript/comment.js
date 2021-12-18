@@ -53,7 +53,7 @@ function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) 
     let modPW;  // 숫자가 아닌 문자를 입력했을 경우 이를 삭제하고 숫자만 남김.
 
     // 댓글 작성자 부분 인지, 댓글 본문 부분인지 확인 후 각각의 값 셋팅
-    if(isNickname == true) {    // 댓글 작성자 부분 로직 검증시
+    if (isNickname == true) {    // 댓글 작성자 부분 로직 검증시
         // 검증해야 할 값은 댓글 작성자 값. 댓글 작성자, 비밀번호는 글자 수 체킹
         chkInput = document.getElementById("nickname").value;
         eachMaxByte = Number(10);
@@ -61,15 +61,15 @@ function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) 
         checkIsComment = false;
         checkIsPW = false;
         checkIsReport = false;
-    } else if(isComment == true || checkIsReport == true) {  // 댓글 본문, 신고 내용 부분 로직 검증시 
+    } else if (isComment == true || checkIsReport == true) {  // 댓글 본문, 신고 내용 부분 로직 검증시 
         // 나머지 값은 동일하게 셋팅
         eachMaxByte = Number(500);
         checkIsNickname = false;
         checkIsPW = false;
 
-        if(isComment == true) {
+        if (isComment == true) {
             // 검증해야 할 값은 댓글 본문 값.
-            chkInput = document.getElementById("comment-area").value;          
+            chkInput = document.getElementById("comment-area").value;
             checkIsComment = true;
             checkIsReport = false;
         } else {
@@ -87,25 +87,25 @@ function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) 
         checkIsPW = true;
         checkIsReport = false;
 
-        if(chkPWReg.test(userInput)) {
+        if (chkPWReg.test(userInput)) {
             document.getElementById("password").value = userInput;
             countCommentByte(userInput, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
         } else {    // 숫자가 아닌 문자를 입력했을 경우
             alert("비밀번호는 숫자로만, 4~20 자리 이내로 입력해주세요.");
-            modPW = userInput.replace(/[^0-9]*$/g,'')   // 숫자가 아닌 문자 삭제
+            modPW = userInput.replace(/[^0-9]*$/g, '')   // 숫자가 아닌 문자 삭제
             document.getElementById("password").value = modPW;  // 사용자의 input 값에도 삭제한 패스워드 문자열 반영
             countCommentByte(modPW, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
         }
     }
 
     // 입력값 검증. 댓글 작성자와 댓글은 정규식이 같으므로 여기서 따로 입력값 검증.
-    if(checkIsNickname == true || checkIsComment == true || checkIsReport == true) {
-        if(chk.test(userInput)) { 
+    if (checkIsNickname == true || checkIsComment == true || checkIsReport == true) {
+        if (chk.test(userInput)) {
             chkInput = userInput;
             countCommentByte(chkInput, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
         } else {    // 위의 정규식이 아닌 문자를 입력했을 경우
             alert("잘못된 입력 입니다.");
-            modInput = userInput.replace(!chk ,'')   // 숫자가 아닌 문자 삭제
+            modInput = userInput.replace(!chk, '')   // 숫자가 아닌 문자 삭제
             chkInput = modInput;  // 사용자의 input 값에도 삭제한 패스워드 문자열 반영
             countCommentByte(chkInput, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
         }
@@ -118,7 +118,7 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
     let text_len = text_val.length; // 입력한 문자수
     let maxByte = Number(maxBytes); // 최대 입력 가능한 바이트 수
     let mod_text = "";   // maxBytes 바이트 넘었을 경우 문자열을 자른 뒤 내용 저장하는 변수
-    
+
     let commentArea = document.getElementById("comment-area").value;  // 500 글자 이상 작성시 내용 자르기 위해 사용
     let commentCountStr = text_len + "/500";
 
@@ -131,9 +131,9 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
         mod_text = text_val.substring(0, maxByte); // 초과한 자리수 만큼 제거
         text_val = mod_text;
 
-        if(checkIsNickname == true) {    // 댓글 닉네임 일 경우
+        if (checkIsNickname == true) {    // 댓글 닉네임 일 경우
             document.getElementById("nickname").value = text_val;
-        } else if(checkIsComment == true) {     // 댓글 본문 일 경우
+        } else if (checkIsComment == true) {     // 댓글 본문 일 경우
             commentArea.innerHTML += text_val;
             document.getElementById("comment-area").value = text_val;
 
@@ -142,7 +142,7 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
             commentCount.innerText = commentCountStr;
             commentCount.style.color = "green";
             document.getElementById("comment-area").value = text_val;
-        } else if(checkIsPW == true) {    // 댓글 비밀번호 일 경우
+        } else if (checkIsPW == true) {    // 댓글 비밀번호 일 경우
             document.getElementById("password").value = text_val;
         } else {    // 신고 내용 부분일 경우
             reportArea.innerHTML += text_val;
@@ -157,11 +157,11 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
 
     } else {    // 해당 값이 허용한 범위 내에서 입력 됐을 경우
         // 댓글 본문 일 경우에만, 글자수를 동적으로 보여줌
-        if(checkIsComment == true) {
+        if (checkIsComment == true) {
             commentCountStr = text_len + "/500";
             commentCount.innerText = commentCountStr;
             commentCount.style.color = "green";
-        } else if(checkIsReport == true) {   // 신고 내용일 경우
+        } else if (checkIsReport == true) {   // 신고 내용일 경우
             reportCountStr = text_len + "/500";
             reportCount.innerText = reportCountStr;
             reportCount.style.color = "green";
@@ -209,7 +209,7 @@ function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
 };
 
 
-// 댓글 작성 날짜 작성( ex) 11.08 22:49:51 )
+// 댓글 작성 날짜 작성 (ex) 11.08 22:49:51
 function dateToStr(svrDate) {
     // 서버에서 보내주는 값: 2021-11-23T13:04:59.610937
     let month = svrDate.substring(5, 7);
