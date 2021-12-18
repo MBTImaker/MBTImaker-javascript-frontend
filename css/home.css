@@ -25,11 +25,6 @@ body::-webkit-scrollbar {
   display: none;
   width: 0;
 }
-/*
-==========
-header
-==========
-*/
 
 header {
   display: flex;
@@ -74,11 +69,6 @@ header .t2 {
   font-size: var(--t1-mobile-size);
   margin: 3.5vh 0 10vh 0;
 }
-/*
-==========
-PC
-==========
-*/
 
 @media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
   header .t1 {

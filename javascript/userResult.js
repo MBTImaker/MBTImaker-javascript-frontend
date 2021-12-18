@@ -99,10 +99,10 @@ function sendReport() {
 function closeReportModal(checkReportCommit) {
     // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value, reportCount.innerText] = [0, null, "(0/500)"];
-    if(checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
+    if (checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
         reportModal.classList.remove("open-modal");
     } else {
-        if(confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {    // 신고 취소 "예" 누를 경우
+        if (confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {    // 신고 취소 "예" 누를 경우
             alert("신고가 취소 되었습니다.");
             reportModal.classList.remove("open-modal");
         }
@@ -265,7 +265,7 @@ function showResult(data) {
     textAndImg.querySelector(".character-img").src = mbtiResult.character.image.url;
 
     // ---------------- conclusion ----------------
-    const conclusion = document.querySelector(".b3 .r1 .conclusion");
+    const conclusion = document.querySelector(".b3 .r1 .c1");
     conclusion.innerHTML = mbtiResult.character.representativePersonality;
 
     const features = document.querySelectorAll(".b3 .r1 .f2:nth-child(n)");
