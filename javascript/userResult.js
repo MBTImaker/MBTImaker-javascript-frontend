@@ -4,7 +4,7 @@
 
 // ============================== Run ==============================
 if (!document.referrer.includes("question.html")) {
-    location.href = "home.html";
+    location.href = "index.html";
 }
 
 // =========================== Variables ===========================
