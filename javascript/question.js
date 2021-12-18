@@ -40,14 +40,14 @@ const questionList = [
         qTop: "내가 영화 속<br>히어로라면",
         qBottom: "나는?",
         btnTop: "불의를 못 참고,<br>바로 행동에 나서는 히어로.",
-        btnBottom: "계획을 세우고 이후에<br>행동 개시하는 히어로."
+        btnBottom: "계획을 세우고<br>이후에 행동 개시하는 히어로."
     },
     { // 04
         num: "../imgs/question_num/Q4_Frame903.png",
         qTop: "지금 밖에<br>눈이 내린다.",
         qBottom: "옆 사람에게 나는?",
-        btnTop: "\"눈이 2cm 정도 왔네. 길이 미끄러워보여.<br>갈 때 조심해야겠다.\" 라고 말한다.",
-        btnBottom: "\"눈이 많이 왔네.집 갈 때 조심해야겠다.\"<br>라고 말한다."
+        btnTop: "\"눈이 2cm 정도 왔네. 내일은 더 쌓인대.<br>뉴스 봐야겠다.\" 라고 말한다.",
+        btnBottom: "\"눈이 많이 왔네. 집 갈 때 조심해\"<br>라고 말한다."
     },
     { // 05
         num: "../imgs/question_num/Q5_Frame904.png",
@@ -67,8 +67,8 @@ const questionList = [
         num: "../imgs/question_num/Q7_Frame906.png",
         qTop: "크리스마스 데이트하는 날,<br>사고가 나 상대방이 늦었다.",
         qBottom: "그때 나는?",
-        btnTop: "\"괜찮아? 놀랐겠다ㅠㅠ\" 라고 말한다.",
-        btnBottom: "\"무슨 사고? 병원 가야하는거아니야?\"<br>라고 말한다."
+        btnTop: "\"괜찮아? 놀랐겠다ㅠㅠ 병원 다녀왔어?\"<br>라고 말한다.",
+        btnBottom: "\"무슨 사고? 어떻게 하다가 다쳤어?\"<br>라고 말한다."
     },
     { // 08
         num: "../imgs/question_num/Q8_Frame907.png",
