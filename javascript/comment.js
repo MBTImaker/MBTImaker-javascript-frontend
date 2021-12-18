@@ -41,10 +41,7 @@ window.addEventListener('load', searchComment(page, size));
 
 // 댓글 닉네임, 댓글 본문, 댓글 비밀번호 입력시 입력값 검증 함수
 function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) {
-    //let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@#$%^&*()_+|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
     let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@\#$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
-
-    let chkEmoji = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])*/gi;
     let modInput;  // 정규식에 해당지 않는 문자를 입력했을 경우 이를 삭제한 뒤 문자열 저장.
     let chkInput;   // 검증해야 할 입력값
     let eachMaxByte;    // 댓글 작성자, 댓글 본문 마다 최대 입력값이 다르므로 따로 설정해줌
@@ -91,7 +88,7 @@ function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) 
             document.getElementById("password").value = userInput;
             countCommentByte(userInput, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
         } else {    // 숫자가 아닌 문자를 입력했을 경우
-            alert("비밀번호는 숫자로만, 4~20 자리 이내로 입력해주세요.");
+            alert("작성자 비밀번호는 4자 이상 20자 이하 숫자만 입력해주세요.");
             modPW = userInput.replace(/[^0-9]*$/g, '')   // 숫자가 아닌 문자 삭제
             document.getElementById("password").value = modPW;  // 사용자의 input 값에도 삭제한 패스워드 문자열 반영
             countCommentByte(modPW, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
@@ -104,7 +101,6 @@ function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) 
             chkInput = userInput;
             countCommentByte(chkInput, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
         } else {    // 위의 정규식이 아닌 문자를 입력했을 경우
-            alert("잘못된 입력 입니다.");
             modInput = userInput.replace(!chk, '')   // 숫자가 아닌 문자 삭제
             chkInput = modInput;  // 사용자의 input 값에도 삭제한 패스워드 문자열 반영
             countCommentByte(chkInput, eachMaxByte, checkIsNickname, checkIsComment, checkIsPW, checkIsReport);
@@ -126,8 +122,8 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
     let reportCountStr = text_len + "/500";
 
     if (text_len > maxByte) {    // 입력한 댓글이 500자 이상일 경우
-        alert("잘못된 입력 입니다. 다시 한번 입력해주세요.");
-
+        //alert("잘못된 입력 입니다. 다시 한번 입력해주세요.");
+        alert("1자 이상 500자 이하로 입력해주세요.");
         mod_text = text_val.substring(0, maxByte); // 초과한 자리수 만큼 제거
         text_val = mod_text;
 
@@ -251,7 +247,7 @@ function commentWrite(aes256DecodeData) {
         })
         .then(response => {
             if (response.status == 200) {
-                alert("댓글 작성 성공!");
+                alert("댓글이 정상적으로 작성 되었습니다.");
 
                 // 댓글 작성 후 해당 필드 빈값 처리
                 document.getElementById("nickname").value = "";
@@ -260,7 +256,8 @@ function commentWrite(aes256DecodeData) {
                 commentCount.innerText = "(0/500)";
 
                 searchComment(page, size);  // 댓글 조회 함수 호출
-            } else {
+            } 
+            else {
                 // 오류 발생 시 alert 로 메시지 표출
                 for (let i = 0; i < response.errors.length; i++) {
                     errorMsg += response.errors[i].reason + '\n';
