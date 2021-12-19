@@ -235,7 +235,7 @@ result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9
 // 이전 결과와 다르면 데이터를 새로 불러온다.
 if (window.sessionStorage.getItem('result') !== result) {
 
-    runFetch("POST", "https://mbti-test.herokuapp.com/test", {
+    runFetch("POST", "http://ec2-52-78-177-150.ap-northeast-2.compute.amazonaws.com:8080/test", {
         "testCode": result,
     })
         .then((info) => {
