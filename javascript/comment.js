@@ -39,6 +39,21 @@ let reportCount = document.getElementById("report_count");  // 신고 내용의 
 
 window.addEventListener('load', searchComment(page, size));
 
+// 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
+let reqHOST = '';
+let reqURL = '';
+let checkHostName = String(document.location.hostname);    // 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
+let checkIsDevReal = 'DEV'; // default: DVE(개발) 아닐 경우 REAL(운영)
+if(checkIsDevReal == 'mbtimaker.github.io') {   // 운영
+    checkIsDevReal = 'REAL';
+    reqHOST = 'http://ec2-52-78-177-150.ap-northeast-2.compute.amazonaws.com:8080';
+    reqURL = reqHOST + "/comment";
+} else {
+    checkIsDevReal = 'DEV';
+    reqHOST = 'https://mbti-test.herokuapp.com';
+    reqURL = reqHOST + "/comment";
+}
+
 // 댓글 닉네임, 댓글 본문, 댓글 비밀번호 입력시 입력값 검증 함수
 function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) {
     let chk = /^[a-z|A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|~!@\#$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|<>?:{}|\s|\s+$]*$/g;    // 영어소문자,대문자,숫자,한글,특수문자 구분하는 정규식
@@ -230,15 +245,15 @@ function commentWrite(aes256DecodeData) {
     // 서버로 보낼 데이터 셋팅
     let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
 
-    fetch('https://mbti-test.herokuapp.com/comment', {
+    fetch(reqURL, {
         method: 'POST',
         cache: 'no-cache',
         headers: {
             'Accept': '*',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://mbti-test.herokuapp.com/comment',
-            'Origin': 'https://mbti-test.herokuapp.com',
-            'Referer': 'https://mbti-test.herokuapp.com'
+            'Access-Control-Allow-Origin': reqURL,
+            'Origin': reqHOST,
+            'Referer': reqHOST
         },
         body: JSON.stringify(commentJson),
     })
@@ -458,7 +473,7 @@ function commentDelete(id, name, password) {
         return false;   // 아무런 알람 띄우지 않음
     } else {
         if (pwPrompt == password) {
-            runFetch("PATCH", 'https://mbti-test.herokuapp.com/comment', commentJson)
+            runFetch("PATCH", reqURL, commentJson)
                 .then((response) => {
                     if (response.status == 200) {
                         alert("댓글 삭제 성공!");
