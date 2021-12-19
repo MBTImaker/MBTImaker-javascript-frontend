@@ -81,7 +81,7 @@ function sendReport() {
         alert("신고 내용을 입력해 주세요.");
     }
     else {
-        runFetch("POST", "https://mbti-test.herokuapp.com/report", {
+        runFetch("POST", "http://ec2-52-78-177-150.ap-northeast-2.compute.amazonaws.com:8080/report", {
             "commentId": commentId,
             "description": reportDescriptionValue,
             "subject": reportSubjectValue,
