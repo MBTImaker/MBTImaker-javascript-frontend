@@ -37,22 +37,20 @@ let checkIsReport = String(false);  // 신고 부분 신고 내용 영역인지 
 let commentCount = document.getElementById("comment_count");  // 작성한 댓글의 글자수 세기 (countCommentByte() 함수에서 사용)
 let reportCount = document.getElementById("report_count");  // 신고 내용의 글자수 세기 (countCommentByte() 함수에서 사용)
 
-window.addEventListener('load', searchComment(page, size));
-
 // 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
 let reqHOST = '';
 let reqURL = '';
 let checkHostName = String(document.location.hostname);    // 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
-let checkIsDevReal = 'DEV'; // default: DVE(개발) 아닐 경우 REAL(운영)
-if(checkIsDevReal == 'mbtimaker.github.io') {   // 운영
-    checkIsDevReal = 'REAL';
+if(checkHostName == 'mbtimaker.github.io') {   // 운영
     reqHOST = 'http://ec2-52-78-177-150.ap-northeast-2.compute.amazonaws.com:8080';
     reqURL = reqHOST + "/comment";
 } else {
-    checkIsDevReal = 'DEV';
     reqHOST = 'https://mbti-test.herokuapp.com';
     reqURL = reqHOST + "/comment";
 }
+
+window.addEventListener('load', searchComment(page, size));
+
 
 // 댓글 닉네임, 댓글 본문, 댓글 비밀번호 입력시 입력값 검증 함수
 function checkInput(userInput, isNickname, isComment, checkIsPW, checkIsReport) {
@@ -504,12 +502,10 @@ function commentDelete(id, name, password) {
 
 
 function searchComment(page, size) {  // 댓글 페이징 조회
-
-    let tmpURL = reqURL;
-    let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
+    let reqURLSearch = reqURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
 
     // 서버로 부터 받은 값 저장
-    fetch(reqURL)
+    fetch(reqURLSearch)
         .then((response) => {   // http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체. 응답 JSON 데이터를 사용하기 위해 return 해줌.
             return response.json();
         })
