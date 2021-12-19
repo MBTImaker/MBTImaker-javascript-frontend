@@ -1,0 +1,96 @@
+:root {
+  --t1-color: #ffffff;
+  --t1-mobile-size: 0.875rem;
+  --t1-desktop-size: 1.5rem;
+}
+
+/*
+==========
+global
+==========
+*/
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* hide scroll bar */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header .t1 {
+  width: 90vw;
+  height: 3vh;
+  background: no-repeat center url("../imgs/subTitle_Frame16.png");
+  background-size: contain;
+  margin-top: 17.73vh;
+}
+
+header .t2 {
+  width: 100vw;
+  height: 20vh;
+  background: no-repeat center url("../imgs/title.png");
+  background-size: contain;
+}
+
+.b1 {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.b1 .b2 {
+  width: 89.1vw;
+  height: 9vh;
+  border-radius: 80px;
+  background: no-repeat center url("../imgs/startBtn_Frame88.png") transparent;
+  background-size: contain;
+}
+
+.b1 .t1 {
+  color: var(--t1-color);
+  font-size: var(--t1-mobile-size);
+  margin: 3.5vh 0 10vh 0;
+}
+
+@media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
+  header .t1 {
+    width: 37vw;
+    height: 3.51vh;
+    margin-top: 13.33vh;
+  }
+
+  header .t2 {
+    width: 37vw;
+    height: 18.88vh;
+    margin-top: 1.94vh;
+  }
+
+  .b1 .b2 {
+    width: 37vw;
+    height: 12.96vh;
+  }
+
+  .b1 .t1 {
+    font-size: var(--t1-desktop-size);
+    line-height: 1.8125rem;
+    margin: 3.98vh 0 9.25vh 0;
+  }
+}
