@@ -505,7 +505,7 @@ function commentDelete(id, name, password) {
 
 function searchComment(page, size) {  // 댓글 페이징 조회
 
-    let tmpURL = 'https://mbti-test.herokuapp.com/comment';
+    let tmpURL = reqURL;
     let reqURL = tmpURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
 
     // 서버로 부터 받은 값 저장
