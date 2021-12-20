@@ -27,7 +27,7 @@ let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
 // ====================== Variables(share) ======================
-const shareLink = String(document.location.host) + "/html/home.html";
+const shareLink = "https://" + String(document.location.host) + "/html/home.html";
 
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png)";
@@ -186,8 +186,6 @@ function getNamebyMBTI(obj, userMBTI) {
 }
 
 function shareKakaotalk() {
-    Kakao.init(JSON.parse(window.localStorage.getItem('KAKAO_JAVASCRIPT_KEY')));
-
     Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
@@ -243,8 +241,12 @@ if (window.sessionStorage.getItem('result') !== result) {
             showResult(info.data);
             window.sessionStorage.setItem('mbtiResult', JSON.stringify(info.data));
 
-            if (window.localStorage.getItem('KAKAO_JAVASCRIPT_KEY') == null)
-                window.localStorage.setItem('KAKAO_JAVASCRIPT_KEY', JSON.stringify(info.data.kakao_JAVASCRIPT_KEY));
+            if (window.sessionStorage.getItem('KAKAO_JAVASCRIPT_KEY') == null) {
+                window.sessionStorage.setItem('KAKAO_JAVASCRIPT_KEY', JSON.stringify(info.data.kakao_JAVASCRIPT_KEY));
+            }
+            if (!Kakao.isInitialized()) {
+                Kakao.init(JSON.parse(window.sessionStorage.getItem('KAKAO_JAVASCRIPT_KEY')));
+            }
         })
         .catch(() => { alert("카카오 공유가 불가능합니다.") });
 
