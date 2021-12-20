@@ -266,7 +266,7 @@ media
   }
 
   .b3 .communication .add-comment .add-comment-pw .password {
-    width: 60vw;
+    width: 200vw;
     height: 3.25rem;
     margin: 1.25rem 1.25rem 0.625rem 0;
 
@@ -325,13 +325,14 @@ media
   }
   /* ----------------- reportModal ----------------- */
   .report-modal .report-modal-container {
-    width: 35vw;
-    height: 50%;
+    width: 36.9375rem;
+    height: 33rem;
     border-width: 6px;
     border-radius: 40px;
   }
 
   .report-modal .report-modal-container .input-area {
+    height: 27rem;
     border-radius: 32px;
   }
 

@@ -27,7 +27,8 @@ let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
 // ====================== Variables(share) ======================
-const shareLink = "https://mbtimaker.github.io/MBTImaker-javascript-frontend/html/home.html";
+const shareLink = String(document.location.host) + "/home.html";
+console.log(shareLink);
 const subText = "나의 MBTI 유형과 어울리는 캐릭터와 영화를 알아보세요!";
 const shareImage = "url(https://mbti-image-server.s3.ap-northeast-2.amazonaws.com/og_image.png)";
 
