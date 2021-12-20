@@ -41,7 +41,7 @@ let reportCount = document.getElementById("report_count");  // 신고 내용의 
 let reqHOST = '';
 let reqURL = '';
 let checkHostName = String(document.location.hostname);    // 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
-if (checkHostName == 'mbtimaker.github.io') {   // 운영
+if (checkHostName == 'mbtimaker.github.io' || checkHostName == 'christmas-movie.net') {   // 운영
     reqHOST = 'https://mbtimaker.net';
     reqURL = reqHOST + "/comment";
 } else {
