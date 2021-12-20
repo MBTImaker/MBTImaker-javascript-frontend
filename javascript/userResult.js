@@ -82,7 +82,7 @@ function sendReport() {
         alert("신고 내용을 입력해 주세요.");
     }
     else {
-        runFetch("POST", "http://ec2-52-78-177-150.ap-northeast-2.compute.amazonaws.com:8080/report", {
+        runFetch("POST", "https://mbtimaker.net/report", {
             "commentId": commentId,
             "description": reportDescriptionValue,
             "subject": reportSubjectValue,
@@ -236,7 +236,7 @@ result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9
 // 이전 결과와 다르면 데이터를 새로 불러온다.
 if (window.sessionStorage.getItem('result') !== result) {
 
-    runFetch("POST", "http://ec2-52-78-177-150.ap-northeast-2.compute.amazonaws.com:8080/test", {
+    runFetch("POST", "https://mbtimaker.net/test", {
         "testCode": result,
     })
         .then((info) => {
