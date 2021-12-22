@@ -1,5 +1,7 @@
 # MBTImaker-javascript-frontend
 
+### [소개](https://github.com/MBTImaker/Introduction/blob/main/README.md)
+
 ### 개발 기한
 
 - 2021.10.15 ~ 2021.12.21
