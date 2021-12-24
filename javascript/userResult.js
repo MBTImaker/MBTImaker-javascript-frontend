@@ -9,20 +9,16 @@ if (!document.referrer.includes("question.html")) {
 
 // =========================== Variables ===========================
 
-// loading
+let userResultTestReqURL = reqHOST + '/test';
+let userResultReportReqURL = reqHOST + '/report';
 const loading = document.querySelector(".l1");
 const block = document.querySelector(".b3");
-
-// graph
 const circulars = document.querySelectorAll('.circular');
 const chemistry = document.querySelector('.h1');
 
-// graph
 const showMargin = 900;
-
 let likeMePercentage = 0;
 let mostTypePercentage = 0;
-
 let likeMeCounter = 0;
 let mostTypeCounter = 0;
 
@@ -82,7 +78,7 @@ function sendReport() {
         alert("신고 내용을 입력해 주세요.");
     }
     else {
-        runFetch("POST", "https://mbtimaker.net/report", {
+        runFetch("POST", userResultReportReqURL, {
             "commentId": commentId,
             "description": reportDescriptionValue,
             "subject": reportSubjectValue,
@@ -234,7 +230,7 @@ result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9
 // 이전 결과와 다르면 데이터를 새로 불러온다.
 if (window.sessionStorage.getItem('result') !== result) {
 
-    runFetch("POST", "https://mbtimaker.net/test", {
+    runFetch("POST", userResultTestReqURL, {
         "testCode": result,
     })
         .then((info) => {

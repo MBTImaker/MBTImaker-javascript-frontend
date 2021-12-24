@@ -4,7 +4,6 @@
 
 const participants = document.querySelector(".participants");
 const b1 = document.querySelector(".b1");
-
 let testReqURL = reqHOST + '/test';
 
 fetch(testReqURL)
