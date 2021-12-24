@@ -5,7 +5,9 @@
 const participants = document.querySelector(".participants");
 const b1 = document.querySelector(".b1");
 
-fetch("https://mbtimaker.net/test")
+let testReqURL = reqHOST + '/test';
+
+fetch(testReqURL)
     .then((response) => response.json())
     .then((info) => {
         b1.innerHTML = `<button class="b2" onclick="location.href='question.html'"></button>

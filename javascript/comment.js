@@ -28,6 +28,7 @@ let aes256DecodeData = "";
 let localObj;   // 암호화 된 패스워드를 복호화 하는 함수(dec) 에서 댓글ID 값을 가져오기 위해 저장함
 let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
 let errObj = {}; // 에러메시지를 object 형식으로 받아오기 위해 선언
+let commentReqURL = reqHOST + '/comment';
 
 /* 해당 값이 true 일 경우, countCommentByte() 함수 부분에서 사용 */
 let checkIsNickname = String(false); // 댓글 작성자 영역인지 확인
@@ -37,7 +38,6 @@ let checkIsReport = String(false);  // 신고 부분 신고 내용 영역인지 
 let commentCount = document.getElementById("comment_count");  // 작성한 댓글의 글자수 세기 (countCommentByte() 함수에서 사용)
 let reportCount = document.getElementById("report_count");  // 신고 내용의 글자수 세기 (countCommentByte() 함수에서 사용)
 
-let commentReqURL = '';
 
 window.addEventListener('load', searchComment(page, size));
 
