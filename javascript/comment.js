@@ -37,17 +37,7 @@ let checkIsReport = String(false);  // 신고 부분 신고 내용 영역인지 
 let commentCount = document.getElementById("comment_count");  // 작성한 댓글의 글자수 세기 (countCommentByte() 함수에서 사용)
 let reportCount = document.getElementById("report_count");  // 신고 내용의 글자수 세기 (countCommentByte() 함수에서 사용)
 
-// 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
-let reqHOST = '';
-let reqURL = '';
-let checkHostName = String(document.location.hostname);    // 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
-if (checkHostName == 'mbtimaker.github.io' || checkHostName == 'christmas-movie.net') {   // 운영
-    reqHOST = 'https://mbtimaker.net';
-    reqURL = reqHOST + "/comment";
-} else {
-    reqHOST = 'https://mbti-test.herokuapp.com';
-    reqURL = reqHOST + "/comment";
-}
+let commentReqURL = '';
 
 window.addEventListener('load', searchComment(page, size));
 
@@ -243,13 +233,13 @@ function commentWrite(aes256DecodeData) {
     // 서버로 보낼 데이터 셋팅
     let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
 
-    fetch(reqURL, {
+    fetch(commentReqURL, {
         method: 'POST',
         cache: 'no-cache',
         headers: {
             'Accept': '*',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': reqURL,
+            'Access-Control-Allow-Origin': commentReqURL,
             'Origin': reqHOST,
             'Referer': reqHOST
         },
@@ -471,7 +461,7 @@ function commentDelete(id, name, password) {
         return false;   // 아무런 알람 띄우지 않음
     } else {
         if (pwPrompt == password) {
-            runFetch("PATCH", reqURL, commentJson)
+            runFetch("PATCH", commentReqURL, commentJson)
                 .then((response) => {
                     if (response.status == 200) {
                         alert("댓글 삭제 성공!");
@@ -502,7 +492,7 @@ function commentDelete(id, name, password) {
 
 
 function searchComment(page, size) {  // 댓글 페이징 조회
-    let reqURLSearch = reqURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
+    let reqURLSearch = commentReqURL + '?page=' + page + '&' + 'size=' + size;  // ex) https://mbti-test.herokuapp.com/comment?page=1&size=5
 
     // 서버로 부터 받은 값 저장
     fetch(reqURLSearch)

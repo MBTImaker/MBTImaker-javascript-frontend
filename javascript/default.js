@@ -2,6 +2,15 @@
 
 /* 설명: 모든 페이지에 적용되는 사항입니다. */
 
+// (0) github.io와 aws를 구분한다.
+let reqHOST = '';
+let checkHostName = String(document.location.hostname);    // 댓글 작성, 삭제 시 호스트 명을 개발, 운영으로 구분하기 위해 사용
+if (checkHostName === 'christmas-movie.net') {
+    reqHOST = 'https://mbtimaker.net';
+} else {
+    reqHOST = 'https://mbti-test.herokuapp.com';
+}
+
 // (1) vh값을 css에서 정의된 값이 아닌 새로운 값을 사용한다.
 let vHeight = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vHeight}px`);
