@@ -26,7 +26,7 @@ let aes256Iv = crypto.getRandomValues(new Uint16Array(4)).join(''); // 초기벡
 let aes256EncodeData = "";
 let aes256DecodeData = "";
 let localObj;   // 암호화 된 패스워드를 복호화 하는 함수(dec) 에서 댓글ID 값을 가져오기 위해 저장함
-let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
+//let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
 let errObj = {}; // 에러메시지를 object 형식으로 받아오기 위해 선언
 let commentReqURL = reqHOST + '/comment';
 
@@ -170,42 +170,42 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
 }
 
 // 패스워드를 AES 256 방식으로 암호화 해주는 함수. 
-function enc(isWriteCheck, isDeleteCheck, commentID) {
-    let secretKey = aes256SecretKey;
-    let Iv = aes256Iv;
-    let data;
+// function enc(isWriteCheck, isDeleteCheck, commentID) {
+//     let secretKey = aes256SecretKey;
+//     let Iv = aes256Iv;
+//     let data;
 
-    if (isWriteCheck == true) {
-        isDeleteCheck = false;
+//     if (isWriteCheck == true) {
+//         isDeleteCheck = false;
 
-        data = document.getElementById("password").value;   // write 함수 일 때
+//         data = document.getElementById("password").value;   // write 함수 일 때
 
-        let encJson = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-        let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson));
-        aes256EncodeData = encData;
+//         let encJson = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+//         let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson));
+//         aes256EncodeData = encData;
 
-        dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
+//         dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
 
-    } else if (isDeleteCheck == true) {
-        localObj = JSON.parse(localStorage.getItem(commentID));
-        commentDelete(localObj.id, localObj.name, localObj.pw);
-    }
-};
+//     } else if (isDeleteCheck == true) {
+//         localObj = JSON.parse(localStorage.getItem(commentID));
+//         commentDelete(localObj.id, localObj.name, localObj.pw);
+//     }
+// };
 
 // 암호화 된 스워드를 AES 256 방식으로 복호화 해주는 함수. 
-function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
-    secretKey = aes256SecretKey;
-    Iv = aes256Iv;
+// function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
+//     secretKey = aes256SecretKey;
+//     Iv = aes256Iv;
 
-    let decData = CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
-    let bytes = CryptoJS.AES.decrypt(decData, secretKey).toString(CryptoJS.enc.Utf8);
-    aes256DecodeData = JSON.parse(bytes);
+//     let decData = CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+//     let bytes = CryptoJS.AES.decrypt(decData, secretKey).toString(CryptoJS.enc.Utf8);
+//     aes256DecodeData = JSON.parse(bytes);
 
-    /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
-    if (isWriteCheck == true) {
-        commentWrite(aes256DecodeData);
-    }
-};
+//     /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
+//     if (isWriteCheck == true) {
+//         commentWrite(aes256DecodeData);
+//     }
+// };
 
 
 // 댓글 작성 날짜 작성 (ex) 11.08 22:49:51
@@ -221,14 +221,14 @@ function dateToStr(svrDate) {
 }
 
 // 댓글 작성
-function commentWrite(aes256DecodeData) {
+function commentWrite() {
 
     showComment.style.display = "flex";
 
     // 사용자가 입력 한 값을 받아온다.
     let nickname = document.getElementById("nickname").value;
     let content = document.getElementById("comment-area").value;
-    let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
+    let password = document.getElementById("password").value;
 
     // 서버로 보낼 데이터 셋팅
     let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
@@ -356,8 +356,8 @@ function displayComment(comment, size) {
 
     innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
         /* 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함. */
-        tmpUseEnc = { id: `${c.id}`, pw: `${c.password}`, name: `${c.name}` };
-        localStorage.setItem(`${c.id}`, JSON.stringify(tmpUseEnc));
+        // tmpUseEnc = { id: `${c.id}`, pw: `${c.password}`, name: `${c.name}` };
+        // localStorage.setItem(`${c.id}`, JSON.stringify(tmpUseEnc));
 
         let changeCreatedDate = dateToStr(c.createdDate);
 
@@ -369,7 +369,8 @@ function displayComment(comment, size) {
                     <span id="commentMBTI" class="commentMBTI">${c.mbti}</span>
                 </div>
                 <div class="btn">
-                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="enc(false, true, ${c.id})" ></button>
+                
+                    <button type="submit" class="del-reply-btn" id="commentDelete" name="commentDelete" onclick="commentDelete(${c.id}, '${c.name}', '${c.password}')"></button>
                     <button type="submit" class="report-reply-btn" id="report-reply-btn" name="report-reply-btn" onclick="openReportModal(${c.id})"></button>
                 </div>
             
@@ -453,6 +454,9 @@ function displayComment(comment, size) {
 // 댓글 삭제
 function commentDelete(id, name, password) {
     // 서버로 보낼 데이터 셋팅
+console.log("id::"+id);
+console.log("name::"+name);
+console.log("password::"+password);
     let commentJson = { 'id': id, 'name': name, 'password': password };
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
