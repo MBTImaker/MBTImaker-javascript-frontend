@@ -52,7 +52,7 @@ window.addEventListener('load', function () {
     }, 0);
 });
 
-// 새로고침 했을 때 위치가 맨 위로 움직이지 않으면 "circle"에 show가 로딩되자 마자 바로 들어가서 애니메이션이 동작하지 않는다.
+// 새로고침 했을 때 위치가 맨 위로 움직이지 않으면 "circle"에 show가 들어가 있어서 삭제해줘야 한다.
 window.addEventListener('load', () => {
     const circles = document.querySelectorAll(".circle");
     circles.forEach(circle => {
@@ -64,13 +64,13 @@ window.addEventListener('load', () => {
 // ====================== Functions(report) ======================
 
 // 신고한 댓글 아이디를 가져오고 모달을 연다.
-function openReportModal(id) {
+const openReportModal = function (id) {
     reportModal.classList.add("open-modal");
     commentId = id;
 }
 
 // 서버에 댓글 신고 보내기
-function sendReport() {
+const sendReport = function () {
     const reportSubjectValue = reportSubject.options[reportSubject.selectedIndex].value;
     const reportDescriptionValue = reportDescription.value;
 
@@ -93,7 +93,7 @@ function sendReport() {
 }
 
 // 모달 창 닫기
-function closeReportModal(checkReportCommit) {
+const closeReportModal = function (checkReportCommit) {
     // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value, reportCount.innerText] = [0, null, "(0/500)"];
     if (checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
@@ -109,7 +109,7 @@ function closeReportModal(checkReportCommit) {
 // ====================== Functions(share) ======================
 
 // MBTI에 따라 공유되는 텍스트를 다르게 설정한다.
-function getNamebyMBTI(obj, userMBTI) {
+const getNamebyMBTI = function (obj, userMBTI) {
     switch (userMBTI) {
         case "ISTJ": {
             obj.text += "'킹스맨의 해리 하트'";
@@ -181,7 +181,7 @@ function getNamebyMBTI(obj, userMBTI) {
     }
 }
 
-function shareKakaotalk() {
+const shareKakaotalk = function () {
     Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
@@ -199,22 +199,22 @@ function shareKakaotalk() {
     })
 }
 
-function shareFacebook() {
+const shareFacebook = function () {
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + shareLink);
 }
 
-function shareTwitter() {
+const shareTwitter = function () {
     window.open("https://twitter.com/intent/tweet?text=" + mainText.text + "&url=" + shareLink);
 }
 
-function format() {
+const format = function () {
     let args = Array.prototype.slice.call(arguments, 1);
     return arguments[0].replace(/\{(\d+)\}/g, function (match, index) {
         return args[index];
     });
 }
 
-function shareBand() {
+const shareBand = function () {
     let encodeBody = encodeURIComponent(format('{0}\n{1}', mainText.text, shareLink));
     let encodeRoute = encodeURIComponent(window.location.href);
     let link = format('http://band.us/plugin/share?body={0}&route={1}', encodeBody, encodeRoute);
@@ -254,7 +254,7 @@ else {
 
 
 // 가져온 것들을 html에 설정한다.
-function showResult(data) {
+const showResult = function (data) {
     const mbtiResult = data.mbtiResult;
     MBTI = mbtiResult.mbti;
 
@@ -348,7 +348,7 @@ const showAnimation = function () {
 }
 
 // .show를 toggle한다. 처음엔 없다가 보여주고 숫자에 다다르면 애니메이션을 종료한다.
-function toggleShow(item) {
+const toggleShow = function (item) {
     const leftProgress = item.querySelector(".circle .left .progress");
     const rightProgress = item.querySelector(".circle .right .progress");
     const dot = item.querySelector(".circle .dot");
