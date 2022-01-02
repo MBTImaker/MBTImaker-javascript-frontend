@@ -83,12 +83,12 @@ const sendReport = function () {
             "description": reportDescriptionValue,
             "subject": reportSubjectValue,
         })
-            .then((data) => {
+            .then(() => {
                 alert("신고가 접수되었습니다. 처리될 때까지 조금만 기다려주세요.");
                 checkReportCommit = true;
                 closeReportModal(checkReportCommit);
             })
-            .catch(err => { alert("신고 유형을 선택해 주세요.") });
+            .catch(() => { alert("신고 유형을 선택해 주세요.") });
     }
 }
 
@@ -96,10 +96,10 @@ const sendReport = function () {
 const closeReportModal = function (checkReportCommit) {
     // 사용자가 입력한 값 초기화
     [reportSubject.selectedIndex, reportDescription.value, reportCount.innerText] = [0, null, "(0/500)"];
-    if (checkReportCommit == true) { // 신고 제출이 정상적으로 완료 됐으면, 신고 취소 확인 멘트 안내보냄
+    if (checkReportCommit === true) { // 신고 제출이 정상적으로 완료됐으면, 신고 취소 확인 멘트 안 내보냄
         reportModal.classList.remove("open-modal");
     } else {
-        if (confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {    // 신고 취소 "예" 누를 경우
+        if (confirm("신고를 취소 하시겠습니까? 취소를 원하시면 [예], 아니면 [아니오]를 선택해주세요.")) {
             alert("신고가 취소 되었습니다.");
             reportModal.classList.remove("open-modal");
         }
@@ -194,7 +194,7 @@ const shareKakaotalk = function () {
                 webUrl: shareLink,
             },
         },
-        // 카카오톡 미설치 시 카카오톡 설치 경로이동
+        // 카카오톡 미설치 시 카카오톡 설치
         installTalk: true,
     })
 }
@@ -237,7 +237,7 @@ if (window.sessionStorage.getItem('result') !== result) {
             showResult(info.data);
             window.sessionStorage.setItem('mbtiResult', JSON.stringify(info.data));
 
-            if (window.sessionStorage.getItem('KAKAO_JAVASCRIPT_KEY') == null) {
+            if (window.sessionStorage.getItem('KAKAO_JAVASCRIPT_KEY') === null) {
                 window.sessionStorage.setItem('KAKAO_JAVASCRIPT_KEY', JSON.stringify(info.data.kakao_JAVASCRIPT_KEY));
             }
             if (!Kakao.isInitialized()) {
@@ -323,8 +323,8 @@ const showAnimation = function () {
 
                 let drawing = setInterval(() => {
                     // id에 따라서 다른 숫자를 보여준다.
-                    if (circular.id == "likeMe") {
-                        if (likeMeCounter == likeMePercentage) {
+                    if (circular.id === "likeMe") {
+                        if (likeMeCounter === likeMePercentage) {
                             toggleShow(circle);
                             clearInterval(drawing);
                         } else {
@@ -333,7 +333,7 @@ const showAnimation = function () {
                         }
                     }
                     else {
-                        if (mostTypeCounter == mostTypePercentage) {
+                        if (mostTypeCounter === mostTypePercentage) {
                             toggleShow(circle);
                             clearInterval(drawing);
                         } else {
