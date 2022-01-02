@@ -227,30 +227,17 @@ const shareBand = function () {
 let result = JSON.parse(window.sessionStorage.getItem('clientClicked'));
 result = result.slice(0, 3) + '-' + result.slice(3, 6) + '-' + result.slice(6, 9) + '-' + result.slice(9, 12);
 
-// 이전 결과와 다르면 데이터를 새로 불러온다.
-if (window.sessionStorage.getItem('result') !== result) {
+runFetch("POST", userResultTestReqURL, {
+    "testCode": result,
+})
+    .then((info) => {
+        showResult(info.data);
 
-    runFetch("POST", userResultTestReqURL, {
-        "testCode": result,
+        if (!Kakao.isInitialized()) {
+            Kakao.init(info.data.kakao_JAVASCRIPT_KEY);
+        }
     })
-        .then((info) => {
-            showResult(info.data);
-            window.sessionStorage.setItem('mbtiResult', JSON.stringify(info.data));
-
-            if (window.sessionStorage.getItem('KAKAO_JAVASCRIPT_KEY') === null) {
-                window.sessionStorage.setItem('KAKAO_JAVASCRIPT_KEY', JSON.stringify(info.data.kakao_JAVASCRIPT_KEY));
-            }
-            if (!Kakao.isInitialized()) {
-                Kakao.init(JSON.parse(window.sessionStorage.getItem('KAKAO_JAVASCRIPT_KEY')));
-            }
-        })
-        .catch(() => { alert("카카오 공유가 불가능합니다.") });
-
-    window.sessionStorage.setItem('result', result);
-}
-else {
-    showResult(JSON.parse(window.sessionStorage.getItem('mbtiResult')));
-}
+    .catch(() => { alert("카카오 공유가 불가능합니다.") });
 
 
 // 가져온 것들을 html에 설정한다.
