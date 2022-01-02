@@ -2,22 +2,6 @@
 
 /* 설명: 질문 12가지를 화면에 보여줍니다. */
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        scrollTo(0, 0);
-    }, 10);
-});
-
-window.onpageshow = function (event) {
-    // 뒤로가기 선택시
-    if (event.persisted) {
-        window.location.reload();
-    }
-
-    // else - 새로운 페이지 로드 시
-}
-
-
 // =========================== Variables ===========================
 
 const questionList = [
@@ -109,12 +93,33 @@ const questionList = [
 
 const body = document.querySelector("body");
 
-// =========================== Function ===========================
 
-function displayQuestion(question) {
-    let innerQuestion = question.map(function (q) {
+// =========================== window ===========================
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        scrollTo(0, 0);
+    }, 10);
+});
 
-        return `
+window.onpageshow = function (event) {
+    // 뒤로가기 선택시
+    if (event.persisted) {
+        window.location.reload();
+    } // else - 새로운 페이지 로드 시
+}
+
+let showCorrectQuestion = null;
+
+// 브라우저 화면 크기가 바뀌었을 때 현문제 위치로 움직인다.
+window.addEventListener('resize', () => {
+    clearTimeout(showCorrectQuestion);
+    showCorrectQuestion = setTimeout(scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 20), 200);
+});
+
+// 화면에 문제 보여주기
+let innerQuestion = questionList.map(function (q) {
+
+    return `
         <div class="b2">
             <div class="q2" style="background-image: url('${q.num}');"></div>
             <span class="q1 t0">${q.qTop}</span>
@@ -126,26 +131,11 @@ function displayQuestion(question) {
             </div>
         </div>
         `;
-    });
-
-    // string -> html
-    innerQuestion = innerQuestion.join("");
-
-    // innerHTML
-    body.innerHTML += innerQuestion;
-}
-
-// ============================== Run ==============================
-
-displayQuestion(questionList);
-
-let showCorrectQuestion = null;
-
-// 브라우저 화면 크기가 바뀌었을 때 현문제 위치로 움직인다.
-window.addEventListener('resize', () => {
-    clearTimeout(showCorrectQuestion);
-    showCorrectQuestion = setTimeout(scrollToNextQuestion(document.documentElement, blocks[questionNum].offsetTop, 20), 200);
 });
+
+innerQuestion = innerQuestion.join("");
+body.innerHTML += innerQuestion;
+
 
 // =========================== Variables ===========================
 // HTML에 block 12개가 들어가야 아래 변수를 얻을 수 있음.
@@ -158,21 +148,46 @@ const questionNumMax = questionList.length;
 
 let questionNum = 0;
 let clientClicked = "";
+let selectBtnIndex = 0;
 
 // =========================== Functions ===========================
 
+let changeNextText = function () {
+    let leftQuestion = questionNumMax - questionNum - 1;
+
+    if (window.innerWidth < 756) {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
+        next.textContent += `(총 ${questionNumMax}문항)`;
+    }
+    else {
+        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
+    }
+}
+
+let showNextQnum = function () {
+    qNums[questionNum].style.display = "block";
+}
+
+// 부드럽게 아래로 이동할 떄 사용하는 함수
+// t = current time,  b = start value, c = change in value, d = duration
+Math.easeInOutQuad = function (t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+};
+
+let vh = function (value) {
+    let vHeight = window.innerHeight * 0.01;
+    return vHeight * value;
+}
+
 // 버튼을 누를 때마다 다음 문제로 이동한다.
-function scrollToNextQuestion(element, nextQuestion, duration) {
+let scrollToNextQuestion = function (element, nextQuestion, duration) {
     let setBlockCenter = 0;
 
     // 가로로 긴 모바일 화면에서는 이전 문제의 하단이 더 많이 보인다. (iPhone X, Pixel XL)
-    if (window.innerHeight > 811 && window.innerWidth < 429) {
-        setBlockCenter = vh(15);
-    }
-    else {
-        setBlockCenter = vh(7);
-    }
-
+    setBlockCenter = (window.innerHeight > 811 && window.innerWidth < 429) ? vh(15) : vh(7);
 
     let start = element.scrollTop, change = nextQuestion - start - setBlockCenter, currentTime = 0, increment = 20;
 
@@ -195,45 +210,6 @@ function scrollToNextQuestion(element, nextQuestion, duration) {
     // (3) 다음 q-num이 보인다.
     showNextQnum();
 }
-
-function changeNextText() {
-    let leftQuestion = questionNumMax - questionNum - 1;
-
-    if (window.innerWidth < 756) {
-        next.textContent = `${leftQuestion}개의 항목이 남았습니다.\r\n`;
-        next.textContent += `(총 ${questionNumMax}문항)`;
-    }
-    else {
-        next.textContent = `${leftQuestion}개의 항목이 남았습니다. (총 ${questionNumMax}문항)`;
-    }
-}
-
-function showNextQnum() {
-    qNums[questionNum].style.display = "block";
-}
-
-// 부드럽게 아래로 이동할 떄 사용하는 함수
-// t = current time,  b = start value, c = change in value, d = duration
-Math.easeInOutQuad = function (t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return c / 2 * t * t + b;
-    t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
-};
-
-function vh(value) {
-    let vHeight = window.innerHeight * 0.01;
-    return vHeight * value;
-}
-
-// ============================== Run ==============================
-
-// 첫 문항의 이미지를 화면에 보여준다.
-qNums[0].style.display = "block";
-
-changeNextText();
-
-let selectBtnIndex = 0;
 
 selectBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -269,3 +245,8 @@ selectBtns.forEach((btn) => {
         }
     });
 });
+
+// 첫 문항의 이미지를 화면에 보여준다.
+qNums[0].style.display = "block";
+
+changeNextText();
