@@ -20,14 +20,6 @@ let page = 1;   // 조회 할 페이지
 let size = 3;   // 해당 페이지에서 보여 줄 댓글의 수
 let currentPage = 1; // 현재 페이지
 
-/* 패스워드 노출 방지를 위해 패스워드 암,복호화 함수 사용시 사용함. AES 256 방식 사용. */
-let aes256SecretKey = crypto.getRandomValues(new Uint32Array(2)).join('');   // 암호화 키 값으로 랜덤의 32바이트 필요.
-let aes256Iv = crypto.getRandomValues(new Uint16Array(4)).join(''); // 초기벡터 값으로, 랜덤의 16 바이트.
-let aes256EncodeData = "";
-let aes256DecodeData = "";
-let localObj;   // 암호화 된 패스워드를 복호화 하는 함수(dec) 에서 댓글ID 값을 가져오기 위해 저장함
-//let tmpUseEnc;    // 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함.
-let errObj = {}; // 에러메시지를 object 형식으로 받아오기 위해 선언
 let commentReqURL = reqHOST + '/comment';
 
 /* 해당 값이 true 일 경우, countCommentByte() 함수 부분에서 사용 */
@@ -169,45 +161,6 @@ function countCommentByte(input, maxBytes, checkIsNickname, checkIsComment, chec
 
 }
 
-// 패스워드를 AES 256 방식으로 암호화 해주는 함수. 
-// function enc(isWriteCheck, isDeleteCheck, commentID) {
-//     let secretKey = aes256SecretKey;
-//     let Iv = aes256Iv;
-//     let data;
-
-//     if (isWriteCheck == true) {
-//         isDeleteCheck = false;
-
-//         data = document.getElementById("password").value;   // write 함수 일 때
-
-//         let encJson = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-//         let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson));
-//         aes256EncodeData = encData;
-
-//         dec(aes256SecretKey, "", aes256EncodeData, isWriteCheck, isDeleteCheck);   // 인코딩 된 패스워드를 다시 디코딩 해줌
-
-//     } else if (isDeleteCheck == true) {
-//         localObj = JSON.parse(localStorage.getItem(commentID));
-//         commentDelete(localObj.id, localObj.name, localObj.pw);
-//     }
-// };
-
-// 암호화 된 스워드를 AES 256 방식으로 복호화 해주는 함수. 
-// function dec(secretKey, Iv, data, isWriteCheck, isDeleteCheck) {
-//     secretKey = aes256SecretKey;
-//     Iv = aes256Iv;
-
-//     let decData = CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
-//     let bytes = CryptoJS.AES.decrypt(decData, secretKey).toString(CryptoJS.enc.Utf8);
-//     aes256DecodeData = JSON.parse(bytes);
-
-//     /* 디코딩 된 패스워드 값을 댓글 작성 함수(commentWrite), 댓글 삭제 함수(commentDelete) 의 인자값으로 넘겨줌 */
-//     if (isWriteCheck == true) {
-//         commentWrite(aes256DecodeData);
-//     }
-// };
-
-
 // 댓글 작성 날짜 작성 (ex) 11.08 22:49:51
 function dateToStr(svrDate) {
     // 서버에서 보내주는 값: 2021-11-23T13:04:59.610937
@@ -275,14 +228,16 @@ function commentWrite() {
 }
 
 // function commentWrite() {
+
+// showComment.style.display = "flex";
+
 //     // 사용자가 입력 한 값을 받아온다.
 //     let nickname = document.getElementById("nickname").value;
 //     let content = document.getElementById("comment-area").value;
-//     // let password = document.getElementById("password").value;
-//     let password = aes256DecodeData;  // AES256 방식으로 인코딩 한 뒤, 디코딩 한 패스워드 값을 가져온다.
+//     let password = document.getElementById("password").value;
 
 //     // 서버로 보낼 데이터 셋팅
-//     let commentJson = { 'content': content.value, 'mbti': MBTI, 'name': nickname.value, 'password': password.value };
+//        let commentJson = { 'content': content, 'mbti': MBTI, 'name': nickname, 'password': password };
 
 //     // 서버에서 받은 값 저장
 //     runFetch("POST", 'https://mbti-test.herokuapp.com/comment', commentJson)
@@ -294,11 +249,8 @@ function commentWrite() {
 //         .catch((error) => {
 //             //console.log(error);
 //             alert(JSON.stringify(error.errors));
-//             //alert(JSON.parse(error));
 //         })
 // }
-
-
 
 
 // 화면에 댓글을 보여주기 위해 HTML 코드를 리턴하는 함수
@@ -336,11 +288,8 @@ function displayComment(comment, size) {
         // 서버의 response 값으로 mbti 값들은 'INTP' 와 같이 옴. 이를 영화 주인공 이름으로 변형 하기 위해 mbti 값을 변형 시켜 줌.
         userMBTI = comment.data.content[i].mbti;
         getNamebyMBTI(displayFuncText, userMBTI);
-
         displayFuncStr = displayFuncText.text;
-
         displayFuncTextSplit = displayFuncStr.substring(displayFuncStr.indexOf("?") + 3);   // ? 문자 3번째 뒤 부터 영화이름+영화주인공이름 시작
-
         charWithMovieName = displayFuncTextSplit.split("''");
 
         comments.push({  //각 댓글마다 아래 항목들을 추가함
@@ -355,10 +304,6 @@ function displayComment(comment, size) {
     }
 
     innerComment = comments.map(function (c) {  // 각 댓글별로 html 코드 작성
-        /* 해당 과정을 진행해야, 후에 enc() 함수에서 값을 불러와서 사용 할 수 있음. 각각의 값은 댓글 id 별 pw, name 값을 저장함. */
-        // tmpUseEnc = { id: `${c.id}`, pw: `${c.password}`, name: `${c.name}` };
-        // localStorage.setItem(`${c.id}`, JSON.stringify(tmpUseEnc));
-
         let changeCreatedDate = dateToStr(c.createdDate);
 
         return `
@@ -379,8 +324,6 @@ function displayComment(comment, size) {
                 <span id="content" class="content">${c.content}</span>
                 <span id="createdDate" class="createdDate">${changeCreatedDate}</span>
             </div>
-            
-            
         </div>
         `;
     });
@@ -426,8 +369,6 @@ function displayComment(comment, size) {
         }
     }
 
-    let total_block = Math.ceil(totalPages / b_pageNum_list);   // block 의 총 갯수
-
     // =========================== '다음' 버튼 만들기 ===========================
     if (currentPage >= totalPages) {  // block 과 총 block 갯수와 값이 같다면, 맨 마지막 블럭이므로 다음 링크버튼이 필요없으므로 보여주지 않는다.
         innerCommentIndex += `
@@ -454,9 +395,6 @@ function displayComment(comment, size) {
 // 댓글 삭제
 function commentDelete(id, name, password) {
     // 서버로 보낼 데이터 셋팅
-console.log("id::"+id);
-console.log("name::"+name);
-console.log("password::"+password);
     let commentJson = { 'id': id, 'name': name, 'password': password };
 
     let pwPrompt = prompt("비밀번호를 입력해주세요.");
@@ -468,14 +406,13 @@ console.log("password::"+password);
             runFetch("PATCH", commentReqURL, commentJson)
                 .then((response) => {
                     if (response.status == 200) {
-                        alert("댓글 삭제 성공!");
+                        alert("댓글이 정상적으로 삭제 되었습니다.");
 
                         // 삭제 함수(commentDelete)를 호출했을 경우, 해당 값을 true 로 변경 후 댓글을 보여주는 함수 (displayComment)로 넘긴다.
                         isDeleteCheck = 'true';
 
                         // 댓글 삭제에 성공할 경우, 조회 함수(searchComment)를 호출하여 화면에 띄울 댓글들의 목록을 조회해온다.
                         searchComment(page, size);
-
                     } else {
                         // 오류 발생 시 alert 로 메시지 표출
                         for (let i = 0; i < response.errors.length; i++) {
@@ -483,7 +420,6 @@ console.log("password::"+password);
                         }
                         alert(errorMsg);
                     }
-
 
                     [content.value, nickname.value, password.value] = [null, null, null];
                 })
