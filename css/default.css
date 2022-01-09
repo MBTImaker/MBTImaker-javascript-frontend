@@ -27,7 +27,7 @@ body {
 
 button {
   cursor: pointer;
-  background-color: white;
+  background-color: transparent;
   border: 0px;
   opacity: 1;
 }

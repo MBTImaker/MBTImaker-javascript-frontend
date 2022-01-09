@@ -3,13 +3,6 @@
 $t1-mobile-size: 0.875rem;
 $t1-desktop-size: 1.5rem;
 
-@mixin flex($JustifyContent: center) {
-  display: flex;
-  flex-direction: column;
-  justify-content: $JustifyContent;
-  align-items: center;
-}
-
 @mixin background($BackgroundImg) {
   background: no-repeat center url($BackgroundImg);
   background-size: contain;

@@ -1,80 +1,17 @@
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  scrollbar-width: none;
-  /* Firefox */
-}
+/* Error: Undefined variable.
+ *    ,
+ * 52 |     color: $white-color;
+ *    |            ^^^^^^^^^^^^
+ *    '
+ *   scss/home.scss 52:12  root stylesheet */
 
-body::-webkit-scrollbar {
-  display: none;
-  width: 0;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 52 \2502      color: $white-color;\a    \2502             ^^^^^^^^^^^^\a    \2575 \a   scss/home.scss 52:12  root stylesheet";
 }
-
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-header .t1 {
-  background: no-repeat center url("../imgs/subTitle_Frame16.png");
-  background-size: contain;
-  width: 90vw;
-  height: 3vh;
-  margin-top: 17.73vh;
-}
-header .t2 {
-  background: no-repeat center url("../imgs/title.png");
-  background-size: contain;
-  width: 100vw;
-  height: 20vh;
-}
-
-.b1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  height: 60vh;
-}
-.b1 .b2 {
-  background: no-repeat center url("../imgs/startBtn_Frame88.png");
-  background-size: contain;
-  width: 89.1vw;
-  height: 9vh;
-  border-radius: 80px;
-  background-color: transparent;
-}
-.b1 .t1 {
-  color: #ffffff;
-  font-size: 0.875rem;
-  margin: 3.5vh 0 10vh 0;
-}
-
-@media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
-  header .t1 {
-    width: 37vw;
-    height: 3.51vh;
-    margin-top: 13.33vh;
-  }
-  header .t2 {
-    width: 37vw;
-    height: 18.88vh;
-    margin-top: 1.94vh;
-  }
-
-  .b1 .b2 {
-    width: 37vw;
-    height: 12.96vh;
-  }
-  .b1 .t1 {
-    font-size: 1.5rem;
-    line-height: 1.8125rem;
-    margin: 3.98vh 0 9.25vh 0;
-  }
-}
-
-/*# sourceMappingURL=home.css.map */

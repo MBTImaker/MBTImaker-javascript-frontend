@@ -14,9 +14,6 @@
     U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 }
 
-// $dark-green: #053f28;
-
-// $light-gray: #f5f5f5;
 $basic-font: "SBAggroM", "NanumBarunGothic";
 
 * {
@@ -33,12 +30,12 @@ html {
 }
 
 body {
-  background: repeat $green url("../imgs/mobile/mobile_background_Frame96.png");
+  background: repeat $green2 url("../imgs/mobile/mobile_background_Frame96.png");
 }
 
 button {
   cursor: pointer;
-  background-color: white;
+  background-color: transparent;
   border: 0px;
   opacity: 1;
 }
