@@ -261,7 +261,7 @@ block
     }
 
     .imgAndGraph {
-      @include flex(center, row);
+      @include flex(center, column);
     }
 
     img {
@@ -652,7 +652,7 @@ block
       margin-bottom: 2.5rem;
 
       #index_left_btn_active {
-        @include background("../imgs/index_left_btn_active.png");
+        @include indexBtn("../imgs/index_left_btn_active.png");
       }
 
       #index_left_btn_not_active {
@@ -916,7 +916,7 @@ media
           .movie-title {
             width: 100%;
             height: 1.375rem;
-            // font-size: $chemi-movie-title-dsektop-font-size;
+            font-size: 1rem;
             line-height: $chemi-movie-title-desktop-line-height;
             margin-top: 2.375rem;
           }
@@ -934,6 +934,90 @@ media
         .good {
           margin-right: 1.25rem;
         }
+      }
+    }
+
+    .communication {
+      .add-comment {
+        .nickname {
+          width: 79.86%;
+          height: 3.25rem;
+          margin: 2.5rem 3.7rem 1.25rem 3.7rem;
+        }
+
+        .commentArea {
+          .comment-area {
+            width: 79.86%;
+          }
+
+          span {
+            position: absolute;
+            bottom: 20px;
+            right: 90px;
+          }
+
+          #comment_count {
+            font-size: 0.625em;
+          }
+        }
+
+        .add-comment-pw {
+          display: flex;
+          flex-direction: row;
+          width: 79.86%;
+          /* align-items: start; */
+
+          .password {
+            @include flex(flex-start, row);
+            width: 200vw;
+            height: 3.25rem;
+            margin: 1.25rem 1.25rem 0.625rem 0;
+          }
+
+          .wrtie-comment-btn {
+            @include flex(center, row);
+            height: 3.25rem;
+            background-image: url("../imgs/writeCommentBtn_Frame69.png");
+            margin-top: 1.25rem;
+          }
+        }
+      }
+
+      .show-comment {
+        margin: 4.125rem 0 0.875rem 0;
+
+        .comment {
+          border-radius: 20px;
+          margin-bottom: 1.6875rem;
+
+          .comment_header {
+            border-radius: 20px 20px 0px 0px;
+          }
+
+          .comment_content {
+            border-radius: 0px 0px 20px 20px;
+          }
+
+          .add-reply {
+            @include flex(flex-start, row);
+
+            .write-reply-btn {
+              width: 17.02%;
+              height: 3rem;
+              background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
+              background-color: transparent;
+              margin: 1.125rem 1.0625rem 0 0;
+            }
+
+            .comment-reply-area {
+              margin: 1.25rem 1.25rem 1.125rem 1.0625rem;
+            }
+          }
+        }
+      }
+
+      .comment-pages {
+        width: 40%;
       }
     }
 
@@ -1005,5 +1089,29 @@ media
     background-size: 28px 4px;
     border-width: 4px;
     margin-top: 62px;
+  }
+
+  .b3 .communication .add-comment .nickname,
+  .comment-area,
+  .password {
+    border-width: 3px;
+    border-radius: 20px;
+    font-size: var(--placeholder-desktop-font-size);
+  }
+
+  .report-modal .report-modal-container {
+    width: 36.9375rem;
+    height: 33rem;
+    border-width: 6px;
+    border-radius: 40px;
+
+    .input-area {
+      height: 27rem;
+      border-radius: 32px;
+    }
+
+    select {
+      margin-top: 2rem;
+    }
   }
 }

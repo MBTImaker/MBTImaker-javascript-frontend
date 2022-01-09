@@ -225,7 +225,7 @@ block
 }
 .b3 .whiteBox .imgAndGraph {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -615,8 +615,11 @@ block
   margin-bottom: 2.5rem;
 }
 .b3 .communication .comment-pages #index_left_btn_active {
+  width: 20%;
   background-image: url("../imgs/index_left_btn_active.png");
   background-size: contain;
+  background-color: #f8f8f8;
+  margin-top: 0;
 }
 .b3 .communication .comment-pages #index_left_btn_not_active {
   width: 20%;
@@ -873,6 +876,7 @@ media
   .b3 .r1 .h1 .chemi .movie-title {
     width: 100%;
     height: 1.375rem;
+    font-size: 1rem;
     line-height: 1.1875rem;
     margin-top: 2.375rem;
   }
@@ -886,6 +890,78 @@ media
   }
   .b3 .r1 .h1 .good {
     margin-right: 1.25rem;
+  }
+  .b3 .communication .add-comment .nickname {
+    width: 79.86%;
+    height: 3.25rem;
+    margin: 2.5rem 3.7rem 1.25rem 3.7rem;
+  }
+  .b3 .communication .add-comment .commentArea .comment-area {
+    width: 79.86%;
+  }
+  .b3 .communication .add-comment .commentArea span {
+    position: absolute;
+    bottom: 20px;
+    right: 90px;
+  }
+  .b3 .communication .add-comment .commentArea #comment_count {
+    font-size: 0.625em;
+  }
+  .b3 .communication .add-comment .add-comment-pw {
+    display: flex;
+    flex-direction: row;
+    width: 79.86%;
+    /* align-items: start; */
+  }
+  .b3 .communication .add-comment .add-comment-pw .password {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200vw;
+    height: 3.25rem;
+    margin: 1.25rem 1.25rem 0.625rem 0;
+  }
+  .b3 .communication .add-comment .add-comment-pw .wrtie-comment-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 3.25rem;
+    background-image: url("../imgs/writeCommentBtn_Frame69.png");
+    margin-top: 1.25rem;
+  }
+  .b3 .communication .show-comment {
+    margin: 4.125rem 0 0.875rem 0;
+  }
+  .b3 .communication .show-comment .comment {
+    border-radius: 20px;
+    margin-bottom: 1.6875rem;
+  }
+  .b3 .communication .show-comment .comment .comment_header {
+    border-radius: 20px 20px 0px 0px;
+  }
+  .b3 .communication .show-comment .comment .comment_content {
+    border-radius: 0px 0px 20px 20px;
+  }
+  .b3 .communication .show-comment .comment .add-reply {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .b3 .communication .show-comment .comment .add-reply .write-reply-btn {
+    width: 17.02%;
+    height: 3rem;
+    background-image: url("../imgs/desktop/desktop_writeCommentBtn_Frame69.png");
+    background-color: transparent;
+    margin: 1.125rem 1.0625rem 0 0;
+  }
+  .b3 .communication .show-comment .comment .add-reply .comment-reply-area {
+    margin: 1.25rem 1.25rem 1.125rem 1.0625rem;
+  }
+  .b3 .communication .comment-pages {
+    width: 40%;
   }
   .b3 .likeMe,
 .b3 .mostType {
@@ -943,6 +1019,28 @@ media
     background-size: 28px 4px;
     border-width: 4px;
     margin-top: 62px;
+  }
+
+  .b3 .communication .add-comment .nickname,
+.comment-area,
+.password {
+    border-width: 3px;
+    border-radius: 20px;
+    font-size: var(--placeholder-desktop-font-size);
+  }
+
+  .report-modal .report-modal-container {
+    width: 36.9375rem;
+    height: 33rem;
+    border-width: 6px;
+    border-radius: 40px;
+  }
+  .report-modal .report-modal-container .input-area {
+    height: 27rem;
+    border-radius: 32px;
+  }
+  .report-modal .report-modal-container select {
+    margin-top: 2rem;
   }
 }
 
