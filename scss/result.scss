@@ -663,6 +663,82 @@ block
   }
 }
 
+.report-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  z-index: 10;
+
+  .report-modal-container {
+    @include flex(normal);
+    width: 72vw;
+    height: 29rem;
+    background: $white1;
+    border: 2px solid #053f28;
+    border-radius: 20px;
+    text-align: center;
+    padding: 1.25rem;
+
+    .input-area {
+      width: 100%;
+      height: 24rem;
+      background-color: $white3;
+      border: 2px solid $grey4;
+      border-radius: 20px;
+    }
+
+    h2 {
+      margin-top: 1rem;
+    }
+
+    select {
+      width: 88.14%;
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      background-color: $white1;
+    }
+
+    .input-area .reportArea {
+      height: 55%;
+    }
+
+    #description {
+      width: 88.14%;
+      height: 13.5rem;
+      font-size: 0.8rem;
+      border-radius: 20px;
+      border: 2px solid $grey3;
+      padding: 1.25rem;
+      word-break: break-all;
+      resize: none;
+    }
+
+    #description::placeholder {
+      color: $grey6;
+    }
+
+    #report_count {
+      position: absolute;
+      bottom: 255px;
+      right: 150px;
+      font-size: 0.625em;
+      color: $grey6;
+    }
+  }
+}
+
+.open-modal {
+  visibility: visible;
+  z-index: 10;
+}
+
 .b3 .communication .add-comment .nickname::placeholder,
 .comment-area::placeholder,
 .password::placeholder {
@@ -677,6 +753,28 @@ block
   border-radius: 10px;
   font-size: $placeholder-font-size;
   padding-left: 1.25rem;
+}
+
+.btns {
+  margin-top: 1rem;
+}
+
+button#cancle,
+button#submit {
+  width: 29.62%;
+  height: 2.625rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button#cancle {
+  @include greyBtn();
+  margin-right: 0.75rem;
+}
+
+button#submit {
+  @include redBtn();
+  color: $white1;
 }
 
 .p1 {
