@@ -1,0 +1,67 @@
+/* 모든 html 파일 안에 들어가는 css입니다. */
+
+/*
+===========
+Font
+===========
+*/
+@font-face {
+  font-family: "SBAggroM";
+  src: local("SB 어그로 M"), local("SB 어그로OTF M"),
+    url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+  unicode-range: U+0020-007E, U+0030-0039, U+AC00-D7A3, U+0041-005A, U+0061-007A,
+    U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+}
+/*
+===========
+Variable
+===========
+*/
+
+:root {
+  --background-color: #08623e;
+  --block-background-color: #f5f5f5;
+  /* --block-border-color: #053f28; */
+}
+
+/*
+===========
+Global
+===========
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "SBAggroM", "NanumBarunGothic";
+  background: no-repeat center;
+  background-size: contain;
+}
+
+html {
+  width: 100vw;
+}
+
+body {
+  background: repeat var(--background-color)
+    url("../imgs/mobile/mobile_background_Frame96.png");
+}
+
+button {
+  cursor: pointer;
+  background-color: white;
+  border: 0px;
+  opacity: 1;
+}
+
+/* mobile(768px) labtop(1020px) / desktop(1400px) */
+@media screen and (min-width: 47.25rem) {
+  body {
+    background-image: url("../imgs/desktop/desktop_background_Frame48.png");
+  }
+}
