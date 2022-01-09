@@ -57,7 +57,7 @@ body::-webkit-scrollbar {
 
   .q1 {
     font-size: $q-title-mobile-size;
-    color: $black;
+    color: $black2;
     line-height: 167%;
     letter-spacing: $letter-spacing;
   }
@@ -86,7 +86,7 @@ block - btns
   top: 80%;
   line-height: 1.25rem;
   font-size: $button-text-mobile-size;
-  color: $grey4;
+  color: $grey9;
   cursor: default;
   white-space: pre;
 }
@@ -114,8 +114,8 @@ block - btns
       max-height: 80px;
       margin-bottom: 1.25rem;
       border-radius: 162px;
-      background-color: $grey1;
-      color: $grey3;
+      background-color: $grey3;
+      color: $grey8;
       font-size: $button-text-mobile-size;
       line-height: 1.25rem;
     }

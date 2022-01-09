@@ -1,0 +1,689 @@
+@import "./variable.scss";
+
+$conclusion-mobile-font-size: 1.25rem;
+$feature-mobile-font-size: 0.875rem;
+$chemi-title-mobile-font-size: 0.875rem;
+$chemi-movie-title-mobile-font-size: 0.75rem;
+$chemi-movie-character-mobile-font-size: 0.875rem;
+$share-mobile-font-size: 1.125rem;
+$comment-created-font-size: 0.83rem;
+$comment-nickname-font-size: 1rem;
+$placeholder-font-size: 0.75rem;
+$admin-margin-top-size: 0.833rem;
+$conclusion-desktop-line-height: 2.625rem;
+$conclusion-mobile-line-height: 1.875rem;
+$feature-mobile-line-height: 1.5rem;
+$chemi-title-mobile-line-height: 1.0625rem;
+$chemi-movie-title-mobile-line-height: 0.875rem;
+$chemi-movie-character-mobile-line-height: 1.0625rem;
+$share-mobile-line-height: 3.375rem;
+$conclusion-mobile-font-weight: 400;
+$circular-size: 160px;
+$inner-size: 136px;
+$circle-half-time: 2s;
+
+/*
+===========
+Global
+===========
+*/
+body {
+  @include flex(normal);
+  padding: 2.5rem 1.25rem;
+}
+
+section {
+  @include flex(normal);
+  width: 100%;
+  height: 100%;
+  background-color: $white3;
+  border: 2px solid $grey4;
+  border-radius: 10px;
+  margin-bottom: 0.625rem;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
+select {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 13.33%;
+  border-radius: 16px;
+  padding: 0 1.5rem;
+}
+
+select option {
+  font-size: 1.125rem;
+}
+
+.subTitle {
+  width: 100%;
+  height: 3.25rem;
+  display: inline-block;
+  font-size: $share-mobile-font-size;
+  line-height: $share-mobile-line-height;
+  margin-top: 1.375rem;
+}
+/*
+===========
+loading
+===========
+*/
+
+.l1 {
+  @include flex(normal);
+  width: 100vw;
+  height: 100vh;
+
+  img {
+    width: 100%;
+  }
+}
+
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 47.25rem) {
+  .l1 img {
+    width: 37vw;
+  }
+}
+/*
+===========
+block
+===========
+*/
+
+.b3 {
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: $white1;
+  border: 2px solid $green4;
+  border-radius: 20px;
+  padding: 1.25rem;
+
+  .r1 {
+    .t2 {
+      @include flex(normal);
+      width: 100%;
+      height: 100%;
+
+      .subject {
+        @include imgContent("../imgs/result_character_subject.png");
+        width: 90%;
+        height: 1rem;
+        margin-top: 2.5rem;
+      }
+
+      .movie-title {
+        height: 1.25rem;
+        margin-top: 1.6rem;
+      }
+
+      .movie-character {
+        height: 1.875rem;
+        margin-top: 1.375rem;
+      }
+
+      .character-img {
+        width: 100%;
+        padding: 0 1.25rem;
+        object-fit: contain;
+        margin-top: 2.375rem;
+      }
+    }
+
+    .c1 {
+      display: inline-block;
+      width: 100%;
+      height: 3.25rem;
+      font-size: $conclusion-mobile-font-size;
+      line-height: $conclusion-mobile-line-height;
+      font-weight: $conclusion-mobile-font-weight;
+      margin-top: 1.75rem;
+    }
+
+    .f1 {
+      @include flex();
+      width: 86.44%;
+      margin-top: 1.3125rem;
+    }
+
+    .f2 {
+      @include flex(center, row);
+      width: 100%;
+      height: 3rem;
+      background-color: $white1;
+      border-radius: 16px;
+      margin-top: 0.625rem;
+      font-size: feature-mobile-font-size;
+      line-height: feature-mobile-line-height;
+    }
+
+    .h1 {
+      @include flex(center, row);
+      width: 86.1%;
+      margin: 2.5625rem 0rem 2.5rem 0rem;
+
+      .chemi {
+        @include flex(normal);
+        width: 100%;
+        background-color: $white1;
+        border: 2px solid $grey1;
+        border-radius: 10px;
+
+        .chemi-title {
+          width: 100%;
+          height: 2rem;
+          display: inline-block;
+          text-align: center;
+          font-size: $chemi-title-mobile-font-size;
+          line-height: $chemi-title-mobile-line-height;
+          margin-top: 1.5rem;
+        }
+
+        .character-img {
+          width: 64.91%;
+          object-fit: contain;
+        }
+
+        .movie-title {
+          width: 67.21%;
+          height: 1.75rem;
+          display: inline-block;
+          font-size: $chemi-movie-title-mobile-font-size;
+          line-height: $chemi-movie-title-mobile-line-height;
+          color: $grey10;
+          margin-top: 1rem;
+        }
+
+        .movie-character {
+          width: 67.21%;
+          height: 1.0625rem;
+          display: inline-block;
+          font-size: $chemi-movie-character-mobile-font-size;
+          line-height: $chemi-movie-character-mobile-line-height;
+          color: $red;
+          margin: 0.25rem 0rem 1.4375rem 0rem;
+        }
+      }
+
+      .good {
+        margin-right: 0.625rem;
+      }
+    }
+  }
+
+  .likeMe,
+  .mostType {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+  }
+
+  .whiteBox {
+    width: 100%;
+    height: 100%;
+    background-color: $white1;
+    border: 2px solid $grey1;
+    border-radius: 16px;
+    margin-top: 0.625rem;
+
+    .movie-title {
+      font-size: 0.875rem;
+      margin-top: 2.5rem;
+    }
+
+    .movie-character {
+      font-size: 1.125rem;
+      margin-top: 0.4375rem;
+    }
+
+    .imgAndGraph {
+      @include flex(center, row);
+    }
+
+    img {
+      width: 9.25rem;
+      margin: 1rem 0 1.875rem 0;
+    }
+  }
+}
+
+.circular {
+  height: $circular-size;
+  width: $circular-size;
+  position: relative;
+  top: 0px;
+  margin-bottom: 3rem;
+
+  .inner,
+  .outer,
+  .circle {
+    position: absolute;
+    z-index: 6;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+  }
+
+  .inner {
+    top: 50%;
+    left: 50%;
+    height: $inner-size;
+    width: $inner-size;
+    margin: calc(-1 * $inner-size / 2) 0 0 calc(-1 * $inner-size / 2);
+    background-color: $white1;
+    border-radius: 100%;
+  }
+
+  .circle {
+    z-index: 1;
+    box-shadow: none;
+  }
+
+  .numb {
+    @include numb();
+    top: 45%;
+    font-size: 2rem;
+  }
+
+  .numb-title {
+    @include numb();
+    top: 65%;
+    font-size: 0.875rem;
+  }
+
+  .bar {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: $grey1;
+    border-radius: 100%;
+    clip: rect(0px, $circular-size, $circular-size, calc($circular-size / 2));
+  }
+}
+
+.circle {
+  opacity: 0;
+  transition: all 0.5s ease;
+
+  .bar {
+    .progress {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
+      clip: rect(0px, calc($circular-size / 2), $circular-size, 0px);
+    }
+  }
+
+  .progress,
+  .dot span,
+  .fixed-dot span {
+    background: $green2;
+  }
+
+  .left .progress {
+    z-index: 1;
+    animation: left $circle-half-time linear both;
+    animation-play-state: paused;
+  }
+
+  .left .progress.show,
+  .right .progress.show,
+  .dot.show {
+    animation-play-state: running;
+  }
+
+  .right {
+    z-index: 3;
+    transform: rotate(180deg);
+
+    .progress {
+      animation: right $circle-half-time linear both;
+      animation-delay: $circle-half-time;
+      animation-play-state: paused;
+    }
+  }
+
+  .fixed-dot {
+    @include dot(20);
+  }
+
+  .dot {
+    @include dot(2);
+  }
+
+  .fixed-dot span,
+  .dot span {
+    position: absolute;
+    right: 0;
+    width: calc(($circular-size - $inner-size) / 2);
+    height: calc(($circular-size - $inner-size) / 2);
+    border-radius: 100%;
+  }
+}
+
+.circle.show {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes left {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes right {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes dot {
+  0% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(90deg);
+    z-index: 4;
+  }
+  100% {
+    transform: rotate(270deg);
+    z-index: 4;
+  }
+}
+
+.b3 {
+  .s1 {
+    height: 100%;
+
+    .s2 {
+      width: 83.72%;
+      height: 2.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 0.5rem 0 2.8025rem 0;
+
+      li {
+        width: 20%;
+        height: 100%;
+
+        a {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0);
+        }
+
+        .kakaotalk {
+          background-image: url("../imgs/share-icons/share_kakaotalk_Frame85.png");
+        }
+
+        .facebook {
+          background-image: url("../imgs/share-icons/share_facebook_Frame86.png");
+        }
+
+        .twitter {
+          background-image: url("../imgs/share-icons/share_twitter_Frame87.png");
+        }
+
+        .band {
+          background-image: url("../imgs/share-icons/share_band_Frame88.png");
+        }
+
+        .instagram {
+          background-image: url("../imgs/share-icons/share_instagram_Frame89.png");
+        }
+      }
+    }
+  }
+
+  .m1 {
+    height: 100%;
+
+    .m2 {
+      width: 55.93%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0.375rem 0rem 1.875rem 0rem;
+
+      li {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0.625rem;
+
+        img {
+          width: 100%;
+          height: 14.875rem;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .restart {
+    @include background("../imgs/restartBtn_Frame134.png");
+    width: 100%;
+    height: 3.5rem;
+    margin: 2rem 0 2.8125rem 0;
+  }
+
+  .communication {
+    .add-comment {
+      @include flex(normal);
+      width: 100%;
+      height: 30.14%;
+
+      .nickname {
+        width: 89%;
+        height: 2.75rem;
+        margin: 2.5rem 1.25rem 0.625rem 1.25rem;
+        display: flex;
+      }
+
+      .commentArea {
+        width: 100%;
+        position: relative;
+        display: inlsine-block;
+
+        .comment-area {
+          width: 89%;
+          height: 13.5rem;
+          padding-top: 0.5rem;
+          resize: none;
+        }
+
+        span {
+          position: absolute;
+          bottom: 20px;
+          right: 40px;
+        }
+
+        #comment_count {
+          font-size: 0.625em;
+          color: $grey6;
+        }
+      }
+
+      .add-comment-pw {
+        .password {
+          width: 89%;
+          height: 2.75rem;
+          margin: 0.6875rem 0 0.625rem 0;
+        }
+
+        .wrtie-comment-btn {
+          @include background("../imgs/writeCommentBtn_Frame140.png");
+          width: 70vw;
+          height: 5vh;
+          background-color: $white2;
+        }
+      }
+    }
+
+    .show-comment {
+      @include flex(normal);
+      width: 100%;
+      height: 63.7%;
+      margin: 2.0625rem 0 0.875rem 0;
+
+      .comment {
+        @include flex(normal);
+        width: 90.15%;
+        height: 20%;
+        border: 2px solid $grey4;
+        border-radius: 10px;
+        margin-bottom: 0.75rem;
+
+        .comment_header {
+          width: 100%;
+          height: 43.5%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          box-sizing: border-box;
+          border-radius: 10px 10px 0px 0px;
+          background-color: $white2;
+
+          .info {
+            display: flex;
+            flex-direction: column;
+
+            .commentNickname {
+              display: flex;
+              align-items: start;
+              margin: 1.25rem 0rem 0.6875rem 1.8125rem;
+              color: $black3;
+              font-size: $comment-nickname-font-size;
+              line-height: 19px;
+            }
+
+            .commentMBTI {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              margin: 0rem 0rem 1.3125rem 1.8125rem;
+              color: $grey7;
+              font-size: $comment-created-font-size;
+            }
+          }
+
+          .btn {
+            @include flex(space-evenly, row);
+            width: 6rem;
+
+            .del-reply-btn {
+              @include flex(row-reverse);
+              @include replyBtn();
+              @include background("../imgs/replyDeleteBtn_Frame896.png");
+            }
+
+            .report-reply-btn {
+              @include flex(row-reverse);
+              @include replyBtn();
+              @include background("../imgs/replyReporteBtn_icon.png");
+            }
+          }
+        }
+      }
+
+      .comment_content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0px 0px 10px 10px;
+        background-color: $white1;
+
+        .content {
+          font-size: $comment-nickname-font-size;
+          color: $black3;
+          background-color: $white1;
+          margin: 1.25rem 1.25rem 0rem 1.8125rem;
+          display: flex;
+          justify-content: flex-start;
+          text-align: left;
+
+          word-break: break-all;
+          /* word-break: normal; */
+        }
+      }
+
+      .createdDate {
+        @include flex(flex-start, row);
+        color: $grey7;
+        font-size: $chemi-movie-title-mobile-font-size;
+        margin: 0.6875rem 1.25rem 1.3125rem 1.8125rem;
+      }
+    }
+
+    .comment-pages {
+      background-color: $white3;
+      width: 72%;
+      height: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+
+      #index_left_btn_active {
+        @include background("../imgs/index_left_btn_active.png");
+      }
+
+      #index_left_btn_not_active {
+        @include indexBtn("../imgs/index_left_btn_not_active.png");
+        cursor: default;
+      }
+
+      #index {
+        @include flex(space-between);
+        font-size: $comment-nickname-font-size;
+        background-color: $white3;
+        color: $black1;
+      }
+
+      #index_right_btn_active {
+        @include indexBtn("../imgs/index_right_btn_active.png");
+      }
+
+      #index_right_btn_not_active {
+        @include indexBtn("../imgs/index_right_btn_not_active.png");
+      }
+    }
+  }
+}
+
+.b3 .communication .add-comment .nickname::placeholder,
+.comment-area::placeholder,
+.password::placeholder {
+  color: $grey6;
+}
+
+.b3 .communication .add-comment .nickname,
+.comment-area,
+.password {
+  background: $white1;
+  border: 2px solid $grey3;
+  border-radius: 10px;
+  font-size: $placeholder-font-size;
+  padding-left: 1.25rem;
+}
+
+.p1 {
+  width: 100%;
+  height: 0.625rem;
+  background: linear-gradient(to right, $grey4 50%, rgba(255, 255, 255, 0) 0%)
+    repeat-x bottom;
+  background-size: 16px 2px;
+  margin-top: 2.3125rem;
+}
