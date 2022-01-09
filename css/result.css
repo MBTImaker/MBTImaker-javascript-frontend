@@ -496,7 +496,6 @@ block
   background-size: contain;
   width: 70vw;
   height: 5vh;
-  background-color: #f5f5f5;
 }
 .b3 .communication .show-comment {
   display: flex;
@@ -772,6 +771,179 @@ button#submit {
   background: linear-gradient(to right, #ededed 50%, rgba(255, 255, 255, 0) 0%) repeat-x bottom;
   background-size: 16px 2px;
   margin-top: 2.3125rem;
+}
+
+/*
+===========
+media
+===========
+*/
+/* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
+@media screen and (max-width: 23.4375rem) {
+  /* ----------------- conclusion ----------------- */
+  .b3 .r1 .c1 {
+    font-size: 1.1rem;
+  }
+  .b3 .r1 .f2 {
+    font-size: 0.8rem;
+  }
+
+  .b3 .s1 span,
+.b3 .m1 span,
+.b3 .likeMe span,
+.b3 .mostType span {
+    font-size: 1.1rem;
+  }
+}
+/* mobile(768px) labtop(1020px) / desktop(1024px) */
+@media screen and (min-width: 47.25rem) {
+  /* ----------------- Global ----------------- */
+  body {
+    padding: 0;
+  }
+
+  section {
+    margin: 0.625rem 3.75rem;
+    border-width: 4px;
+    border-radius: 32px;
+  }
+
+  .subTitle {
+    font-size: 1.75rem;
+    margin-top: 3rem;
+  }
+
+  /* ----------------- block ----------------- */
+  .b3 {
+    width: 716px;
+    border-width: 6px;
+    border-radius: 40px;
+    margin: 5rem 0;
+    padding: 3.75rem;
+  }
+  .b3 .r1 .t2 .subject {
+    height: 2rem;
+    margin-top: 4rem;
+  }
+  .b3 .r1 .t2 .movie-title {
+    height: 3rem;
+    margin-top: 2.5rem;
+  }
+  .b3 .r1 .t2 .movie-character {
+    height: 4rem;
+  }
+  .b3 .r1 .t2 .character-img {
+    padding: 0 3.75rem;
+  }
+  .b3 .r1 .c1 {
+    height: 100%;
+    line-height: 2.625rem;
+    font-size: 2rem;
+    margin-top: 2.375rem;
+  }
+  .b3 .r1 .f1 {
+    width: 79.86%;
+  }
+  .b3 .r1 .f2 {
+    height: 3.5rem;
+    font-size: 1.125rem;
+    line-height: 1.35rem;
+    font-weight: 300;
+  }
+  .b3 .r1 .h1 {
+    width: 79.86%;
+    margin: 4.125rem 0 3.75rem 0;
+  }
+  .b3 .r1 .h1 .chemi {
+    height: 100%;
+    border-radius: 16px;
+  }
+  .b3 .r1 .h1 .chemi .chemi-title {
+    width: 100%;
+    height: 3.25rem;
+    font-size: 1.5rem;
+    line-height: 1.8125rem;
+    margin-top: 2.5rem;
+  }
+  .b3 .r1 .h1 .chemi .character-img {
+    width: 64.91%;
+    height: 10.75rem;
+    margin-top: 0.625rem;
+  }
+  .b3 .r1 .h1 .chemi .movie-title {
+    width: 100%;
+    height: 1.375rem;
+    line-height: 1.1875rem;
+    margin-top: 2.375rem;
+  }
+  .b3 .r1 .h1 .chemi .movie-character {
+    width: 100%;
+    height: 2.125rem;
+    font-size: 1.625rem;
+    line-height: 1.9375rem;
+    margin-top: 0.75rem;
+    margin-bottom: 2.25rem;
+  }
+  .b3 .r1 .h1 .good {
+    margin-right: 1.25rem;
+  }
+  .b3 .likeMe,
+.b3 .mostType {
+    padding: 0 3.75rem 3.75rem 3.75rem;
+  }
+  .b3 .whiteBox .imgAndGraph {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .b3 .whiteBox .movie-title {
+    font-size: 1rem;
+    margin-top: 2.5rem;
+  }
+  .b3 .whiteBox .movie-character {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  .b3 .whiteBox img {
+    margin: 1rem 2.5rem 3.75rem 0;
+  }
+  .b3 .s1 .s2 {
+    width: 79.86%;
+    height: 4rem;
+    margin: 1.75rem 0 4.25rem 0;
+    padding: 0 1.875rem;
+  }
+  .b3 .m1 {
+    height: 100%;
+  }
+  .b3 .m1 .m2 {
+    width: 79.86%;
+    height: 13.125rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1.625rem;
+    margin-bottom: 3.75rem;
+  }
+  .b3 .m1 .m2 li {
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .b3 .restart {
+    width: 63.75%;
+    height: 5.875rem;
+    margin: 2.5rem 0;
+  }
+
+  .circular {
+    top: -20px;
+    margin-bottom: 0;
+  }
+
+  .p1 {
+    background-size: 28px 4px;
+    border-width: 4px;
+    margin-top: 62px;
+  }
 }
 
 /*# sourceMappingURL=result.css.map */
