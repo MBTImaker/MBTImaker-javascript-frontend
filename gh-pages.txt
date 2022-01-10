@@ -7,3 +7,4 @@ gh-pages update // 2021.12.19 17:56 복구 작업 진행중: favicon 폴더 추�
 gh-pages update // 2022.01.03 21:30 리팩토링 진행중
 gh-pages update // 2022.01.10 13:06 scss 추가
 gh-pages update // 2022.01.10 14:49 github action (AWS-Cloudfront-Deploy)
+gh-pages update // 2022.01.10 14:49 github action (AWS-Cloudfront-Deploy)2
