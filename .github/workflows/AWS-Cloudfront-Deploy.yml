@@ -1,8 +1,8 @@
 name: AWS-Cloudfront-Deploy
 on:
-  push:
+  push: # if main is pushed, it it works.
     branches:
-      - gh-pages
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
