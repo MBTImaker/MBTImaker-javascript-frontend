@@ -11,6 +11,9 @@ jobs:
       id-token: write
       contents: read
       
+    env:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      
     steps:
     - uses: actions/checkout@v2
     - name: Setup Python
@@ -20,11 +23,13 @@ jobs:
         architecture: 'x64'
     - name: Install AWS CLI
       run: pip3 install awscli --upgrade --user
+    - name: print secrets
+      run: echo My AWS_ACCOUNT_ID is $AWS_ACCOUNT_ID
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-region: ap-northeast-2
-        role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-${{ github.event.repository.name }}
+        role-to-assume: arn:aws:iam::$AWS_ACCOUNT_ID:role/github-actions-${{ github.event.repository.name }}
     - name: Cache node modules
       uses: actions/cache@v2
       with:
