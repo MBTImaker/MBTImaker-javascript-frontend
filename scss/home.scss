@@ -1,0 +1,85 @@
+@import "./variable.scss";
+
+$t1-mobile-size: 0.875rem;
+$t1-desktop-size: 1.5rem;
+
+@mixin background($BackgroundImg) {
+  background: no-repeat center url($BackgroundImg);
+  background-size: contain;
+}
+
+body {
+  @include flex();
+  height: 100vh;
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+header {
+  @include flex();
+
+  .t1 {
+    @include background("../imgs/subTitle_Frame16.png");
+    width: 90vw;
+    height: 3vh;
+    margin-top: 17.73vh;
+  }
+
+  .t2 {
+    @include background("../imgs/title.png");
+    width: 100vw;
+    height: 20vh;
+  }
+}
+
+.b1 {
+  @include flex(flex-end);
+  height: 60vh;
+
+  .b2 {
+    @include background("../imgs/startBtn_Frame88.png");
+    width: 89.1vw;
+    height: 9vh;
+    border-radius: 80px;
+    background-color: transparent;
+  }
+
+  .t1 {
+    color: $white1;
+    font-size: $t1-mobile-size;
+    margin: 3.5vh 0 10vh 0;
+  }
+}
+
+@media screen and (min-width: 47.25rem) and (min-height: 50.75rem) {
+  header {
+    .t1 {
+      width: 37vw;
+      height: 3.51vh;
+      margin-top: 13.33vh;
+    }
+
+    .t2 {
+      width: 37vw;
+      height: 18.88vh;
+      margin-top: 1.94vh;
+    }
+  }
+
+  .b1 {
+    .b2 {
+      width: 37vw;
+      height: 12.96vh;
+    }
+
+    .t1 {
+      font-size: $t1-desktop-size;
+      line-height: 1.8125rem;
+      margin: 3.98vh 0 9.25vh 0;
+    }
+  }
+}

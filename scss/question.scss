@@ -1,0 +1,230 @@
+@import "./variable.scss";
+
+$q-num-mobile-size: 1.75rem;
+$q-title-mobile-size: 1.125rem;
+$q-title-mobile-xs-size: 0.9375rem;
+$q-title-desktop-size: 2rem;
+$q-title-desktop-xs-size: 1.25rem;
+$two-btns-desktop-size: 1.25rem;
+$button-text-mobile-size: 0.875rem;
+$button-text-mobile-xs-size: 0.75rem;
+$button-text-desktop-size: 1.375rem;
+$button-text-desktop-xs-size: 1.125rem;
+$letter-spacing: 0.02em;
+/*
+===========
+Global
+===========
+*/
+
+body {
+  @include flex(normal);
+  width: 100%;
+  margin: calc(7vh - 20px) 0 calc(8vh + 20px) 0;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.hidden {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden !important;
+  touch-action: pan-y;
+}
+
+.b2 {
+  @include flex();
+  text-align: center;
+  width: 89.25vw;
+  height: calc(var(--vh, 1vh) * 85);
+  min-height: 480px;
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 2px $green4 solid;
+  background-color: $white2;
+
+  .q2 {
+    display: none;
+    width: 66px;
+    height: 36px;
+    margin-bottom: 14px;
+    background-size: 100% 100%;
+  }
+
+  .q1 {
+    font-size: $q-title-mobile-size;
+    color: $black2;
+    line-height: 167%;
+    letter-spacing: $letter-spacing;
+  }
+
+  .q1.t0 {
+    margin-bottom: 1.375rem;
+  }
+
+  .q1.b0 {
+    margin-bottom: 1.75rem;
+  }
+}
+/*
+============
+block - btns
+============
+*/
+
+.n1 {
+  @include greyBtn;
+  width: 78.66%;
+  height: 8.62vh;
+  min-height: 20px;
+  max-height: 70px;
+  position: fixed;
+  top: 80%;
+  line-height: 1.25rem;
+  font-size: $button-text-mobile-size;
+  color: $grey9;
+  cursor: default;
+  white-space: pre;
+}
+
+.s2 {
+  @include redBtn;
+  width: 78.66%;
+  height: 8.62vh;
+  max-height: 70px;
+  position: fixed;
+  top: 80%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: $white1;
+}
+
+.b2 {
+  .t1 {
+    @include flex(normal);
+    width: 100%;
+    .s1 {
+      width: 88.05%;
+      height: 9.85vh;
+      min-height: 20px;
+      max-height: 80px;
+      margin-bottom: 1.25rem;
+      border-radius: 162px;
+      background-color: $grey3;
+      color: $grey8;
+      font-size: $button-text-mobile-size;
+      line-height: 1.25rem;
+    }
+
+    .s1.b0 {
+      margin-bottom: 10vh;
+    }
+
+    .s1.active {
+      background-color: $green1;
+      border: 2px solid $green3;
+      color: $white1;
+      pointer-events: none;
+    }
+  }
+}
+
+/*
+===========
+media
+===========
+*/
+
+/* (width < 428px) and (height > 812px) */
+@media screen and (max-width: 26.75rem) and (min-height: 50.75rem) {
+  body {
+    margin: calc(15vh - 20px) 0 calc(15vh + 20px) 0;
+  }
+
+  .b2 {
+    height: 70vh;
+  }
+
+  .n1,
+  .s2 {
+    top: 70%;
+  }
+}
+
+/* width > 756px */
+@media screen and (min-width: 47.25rem) {
+  .b2 {
+    width: 37vw;
+    min-width: 716px;
+    height: 87.03vh;
+    border-width: 6px;
+
+    .q2 {
+      width: 6.875rem;
+      height: 3.375rem;
+      margin-bottom: 2.12vh;
+    }
+
+    .q1 {
+      font-size: $q-title-desktop-size;
+    }
+
+    .q1.b0 {
+      margin-bottom: 2.5rem;
+    }
+
+    .t1 {
+      .s1 {
+        width: 532px;
+        height: 11.11vh;
+        max-height: 120px;
+        line-height: 1.875rem;
+        font-size: $two-btns-desktop-size;
+      }
+    }
+  }
+
+  .n1,
+  .s2 {
+    width: 532px;
+    height: 9.44vh;
+    max-height: 102px;
+    line-height: 2.5rem;
+    font-size: $button-text-desktop-size;
+  }
+}
+
+/* height < 756px */
+@media screen and (max-height: 47.25rem) {
+  .b2 .q1 {
+    font-size: $q-title-desktop-xs-size;
+  }
+
+  .n1,
+  .s2 {
+    top: 77%;
+  }
+}
+
+/* width < 320px (Galaxy S5, iPhone 5, iPhone 6/7/8, fold)*/
+@media screen and (max-width: 23.4375rem) {
+  .b2 .q1 {
+    font-size: $q-title-mobile-xs-size;
+  }
+
+  .b2 .t1 .s1,
+  .n1,
+  .s2 {
+    font-size: $button-text-mobile-xs-size;
+  }
+}
+
+@media screen and (max-height: 32.56rem) {
+  .n1 {
+    display: none;
+  }
+}
