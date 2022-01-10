@@ -1,6 +1,6 @@
 name: AWS-Cloudfront-Deploy
 on:
-  push: # if main is pushed, it it works.
+  pull_request: # if main is requested, it it works.
     branches:
       - main
 
