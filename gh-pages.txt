@@ -9,3 +9,4 @@ gh-pages update // 2022.01.10 13:06 scss 추가
 gh-pages update // 2022.01.10 14:49 github action (AWS-Cloudfront-Deploy)
 gh-pages update // 2022.01.10 15:03 dev branch 추가
 gh-pages update // 2022.01.10 15:42 다른 버전으로 github action 테스트
+gh-pages update // 2022.01.10 15:42 다른 버전으로 github action 테스트 2
