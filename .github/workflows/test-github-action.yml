@@ -17,8 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: print secrets
-        run: echo My AWS_ACCOUNT_ID is ${{ secrets.AWS_ACCOUNT_ID }}
+        run: echo My AWS_ACCOUNT_ID is '${{ secrets.AWS_ACCOUNT_ID }}'
         
       - name: print env
-        run: echo My AWS_ACCOUNT_ID is ${{ env.AWS_ACCOUNT_ID }}
+        run: echo My AWS_ACCOUNT_ID is '${{ env.AWS_ACCOUNT_ID }}'
 
